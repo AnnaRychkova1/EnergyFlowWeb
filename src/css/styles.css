@@ -5,17 +5,40 @@
   |============================
 */
 @import url('./reset.css');
-@import url('./vite-promo.css');
+@import url('./fonts.css');
+@import url('./main.css');
 @import url('./header.css');
+@import url('./mobile-menu.css');
+@import url('./hero.css');
+@import url('./quotes.css');
+@import url('./exercises.css');
+@import url('./exercises-details.css');
+@import url('./modal-menu.css');
+@import url('./recommendations.css');
+@import url('./footer.css');
+@import url('./favorite.css');
 
 :root {
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-size: 16px;
-  line-height: 24px;
-  font-weight: 400;
+  line-height: 1.5;
+  font-weight: 500;
+  color: var(--text-main-color);
+  background-color: red;
+  background-color: var(--background-main);
 
-  color: #242424;
-  background-color: rgba(255, 255, 255, 0.87);
+  --text-main-color: #1b1b1b;
+  --text-light-color: #f6f6f6;
+  --text-color-accent: #7e847f;
+
+  --background-main: #f6f6f6;
+  --background-white: #ffffff;
+  --background-light-grey: #e8e8e8;
+  --background-dark-grey: #7e847f;
+  --background-dark: #1b1b1b;
+  --background-btn-hover: #5f6560 ;
+
+  --anim: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
