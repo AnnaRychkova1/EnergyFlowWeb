@@ -30,6 +30,7 @@
   font-weight: 500;
   line-height: 32px;
   text-align: left;
+  padding-bottom: 16px;
 }
 
 .favorites-quotes-text {
@@ -40,17 +41,17 @@
   line-height: 24px;
   letter-spacing: 0px;
   text-align: left;
+  padding-bottom: 25px;
 }
 
 .favorites-quotes-author {
-  width: 81px;
-  height: 24px;
   color: var(--background-main);
   font-size: 16px;
   font-weight: 500;
   line-height: 24px;
   letter-spacing: 0px;
   text-align: left;
+  margin-bottom: 64px;
 }
 
 .favorites-svg-icon {
