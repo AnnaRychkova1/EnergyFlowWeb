@@ -14,9 +14,9 @@ function createMarkupFavorites(hits) {
             < class="favorites-gallery-item">
                <h4 class="workout">WORKOUT</h4>
                <a class="favorites-remove" href="#"> <img class="favorites-icon-bin" src="#" alt="icon-bin"/></a>
-                <a class="favorites-start" href="${#}">Start 
+                <a class="favorites-start" href="#">Start 
                     <span>
-                    <img class="favorites-icon-arrow" src="${#}" alt="icon-arrow"/> 
+                    <img class="favorites-icon-arrow" src="#" alt="icon-arrow"/> 
                     </span>  
                 </a>
                <img class="favorites-icon-runner" src="#" alt="icon-runner"/>
@@ -26,9 +26,9 @@ function createMarkupFavorites(hits) {
               <li class="favorites-gallery-info-item">Body part: <span class="descr-span">${bodyPart}</span></li>
               <li class="favorites-gallery-info-item">Target: <span class="descr-span">${target}</span></li>
             </ul> 
-          <a class="favorites-gallery-link" href="${#}">Start 
+          <a class="favorites-gallery-link" href="#">Start 
             <span>
-              <img class="favorites-icon-arrow" src="${#}" alt="icon-arrow"/> 
+              <img class="favorites-icon-arrow" src="#" alt="icon-arrow"/> 
             </span> 
           </a>`
       )
