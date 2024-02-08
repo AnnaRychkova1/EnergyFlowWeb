@@ -1,0 +1,8 @@
+.style-img {
+  max-width: 704px;
+  max-height: 302px;
+  border-radius: 200px;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
