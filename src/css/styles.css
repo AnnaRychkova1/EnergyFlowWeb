@@ -4,8 +4,10 @@
   | default @import url()
   |============================
 */
+
 @import url('./reset.css');
-/* @import url('./fonts.css'); */
+@import url('./normalize.css');
+@import url('./fonts.css');
 @import url('./main.css');
 @import url('./header.css');
 @import url('./mobile-menu.css');
@@ -24,7 +26,7 @@
   line-height: 1.5;
   font-weight: 500;
   color: var(--text-main-color);
-  background-color: red;
+  background-color:aquamarine;
   /* background-color: var(--background-main); */
 
   --text-main-color: #1b1b1b;

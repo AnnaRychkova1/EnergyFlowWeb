@@ -42,6 +42,7 @@ button {
     height: 48px;
     background-color: var(--background-dark-grey);
     color: var(--text-light-color);
+    /* font-weight: 700; */
     transition: all var(----anim);
 }
 
