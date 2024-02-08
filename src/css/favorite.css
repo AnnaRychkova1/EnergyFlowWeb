@@ -3,6 +3,7 @@
   margin-top: 64px;
   display: flex;
   flex-direction: row;
+  justify-content: center;
 }
 
 .favorites-svg-run {
@@ -18,22 +19,21 @@
   background-color: var(--background-dark-grey);
   width: 704px;
   height: 302px;
+  padding-top: 64px;
+  padding-left: 114px;
+  padding-bottom: 64px;
 }
 
 .favorites-quotes-day {
-  width: 192px;
-  height: 32px;
   color: var(--text-light-color);
   font-size: 24px;
   font-weight: 500;
   line-height: 32px;
-  letter-spacing: 0px;
   text-align: left;
 }
 
 .favorites-quotes-text {
   width: 526px;
-  height: 77px;
   color: rgba(246, 246, 246, 0.6);
   font-size: 16px;
   font-weight: 400;
@@ -63,8 +63,7 @@
   border-radius: 50px;
   width: 352px;
   height: 302px;
-  /* background-color: var(--background-light-grey); */
-  background-color: black;
+  background-color: var(--background-light-grey);
 }
 
 .favorites-day-norma {
@@ -74,42 +73,34 @@
   background-color: var(--background-white);
 }
 
+.favorites-day-block {
+  padding-top: 106px;
+  padding-left: 110px;
+}
+
 .favorites-svg-day {
-  width: 16px;
-  height: 12px;
+  width: 20px;
+  height: 20px;
   background-color: var(--text-main-color);
+  margin-bottom: 15px;
 }
 
 .favorites-day-time {
-  width: 81px;
-  height: 32px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: flex-start;
   padding: 0px;
   color: var(--text-main-color);
   font-size: 24px;
   font-weight: 500;
   line-height: 32px;
   letter-spacing: 0px;
-  text-align: left;
+  margin-bottom: 6px;
 }
 
 .favorites-day-daily {
-  width: 132px;
-  height: 18px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  padding: 0px;
   color: rgba(27, 27, 27, 0.6);
   font-size: 14px;
   font-weight: 400;
   line-height: 18px;
   letter-spacing: 0px;
-  text-align: left;
 }
 
 .favorites-box {
@@ -117,20 +108,17 @@
   height: 687px;
   border-radius: 50px;
   background-color: var(--background-light-grey);
-  display: flex;
-  margin: auto;
+  margin: 0 auto;
 }
 
 .favorites-box-title {
-  width: 176px;
-  height: 48px;
   color: var(--text-main-color);
   font-size: 44px;
   font-weight: 400;
   line-height: 48px;
   letter-spacing: 0.02em;
-  text-align: left;
-  padding: 64px 1184px 575px 48px;
+  padding-top: 64px;
+  padding-left: 48px;
 }
 
 .is-hidden {
@@ -140,36 +128,26 @@
 }
 
 .favorites-box-block {
-  width: 554px;
-  height: 171px;
-  display: block;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  text-align: center;
-  padding: 258px 427px 258px 427px;
-  margin: auto;
+  gap: 28px;
+  margin: 0 auto;
+  padding-top: 164px;
 }
 
 .favorites-box-img {
   width: 115px;
   height: 71px;
-  background-color: black;
-  padding: 0 220px 28px 220px;
+  background-color: #1b1b1b;
 }
 
 .favorites-box-paragraf {
   width: 554px;
   height: 72px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 0px;
-  color: var(--text-main-color);
-  font-size: 18px;
-  font-weight: 400;
-  line-height: 24px;
-  letter-spacing: 0px;
+  color: #1b1b1b;
   text-align: center;
+  font-size: 18px;
+  line-height: 1.33;
 }
