@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // const BASE_URL =
-// const API_KEY =
+
 
 // async function searchExerciseByName  {
 //   const response = await axios
@@ -14,4 +14,4 @@ import axios from 'axios';
 //   return response.data;
 // }
 
-// export { searchExerciseByName };
+// export { searchExerciseByName, hjjkkj, hhh };
