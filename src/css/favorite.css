@@ -113,7 +113,6 @@
 }
 
 .favorites-box {
-  /* position: relative; */
   width: 1408px;
   height: 687px;
   border-radius: 50px;
@@ -134,20 +133,22 @@
   padding: 64px 1184px 575px 48px;
 }
 
+.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
 .favorites-box-block {
-  /* position: absolute; */
   width: 554px;
   height: 171px;
-  display: flex;
+  display: block;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
+  text-align: center;
   padding: 258px 427px 258px 427px;
   margin: auto;
-  /* left: 443px;
-  right: 443px;
-  top: 732px;
-  bottom: 274px; */
 }
 
 .favorites-box-img {
