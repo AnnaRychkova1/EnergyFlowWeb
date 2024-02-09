@@ -1,9 +1,8 @@
 import axios from 'axios';
 import { hide, show, showLoader, hideLoader } from "./services/visibility";
 import { refs } from './templates/refs.js';
+import { searchExerciseByFilters } from "./services/mainApi.js";
 
-const BASE_URL = 'https://energyflow.b.goit.study/api';
-const END_POINT = 'exercises';
 
 // https://energyflow.b.goit.study/api/exercises?bodypart=waist&muscles=abs&equipment=assisted&keyword=side&page=1&limit=10
 
@@ -11,6 +10,8 @@ const END_POINT = 'exercises';
 
 const filterExercise = 'bodypart';
 const nameExercise = 'waist';
+
+export { filterExercise, nameExercise };
 
 const queryParams = {
   filter: nameExercise,
@@ -154,16 +155,4 @@ function renderItemsMarkup(results, resultContainer ) {
     .join('');
 
   resultContainer.insertAdjacentHTML('beforeend', markup);
-}
-
-async function searchExerciseByFilters({ page = 1, limit }) {
-  const response = await axios
-      .get(`${BASE_URL}/${END_POINT}?${filterExercise}=${nameExercise}`, {
-        params: { 
-        keyword: queryParams.keyword,
-        limit,
-        page,
-          },
-      })
-  return response.data;
 }
