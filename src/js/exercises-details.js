@@ -2,6 +2,8 @@ import axios from 'axios';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
+import { refs } from './templates/refs';
+
 const BASE_URL = 'https://energyflow.b.goit.study/api';
 const END_POINT = 'exercises';
 
