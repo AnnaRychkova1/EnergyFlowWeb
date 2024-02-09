@@ -3,6 +3,7 @@ import { filterExercise, nameExercise } from '../exercises-details';
 
 export const BASE_URL = 'https://energyflow.b.goit.study/api';
 const ENDPOINT_QUOTE = 'quote';
+const END_POINT_FILTER = 'exercises';
 
 async function fetchQuoteFromServer() {
   try {
@@ -18,5 +19,17 @@ async function fetchQuoteFromServer() {
   }
 }
 
-export { fetchQuoteFromServer };
+async function searchExerciseByFilters({ keyword, page = 1, limit }) {
+  const response = await axios
+      .get(`${BASE_URL}/${END_POINT_FILTER}?${filterExercise}=${nameExercise}`, {
+        params: { 
+        keyword: keyword,
+        limit,
+        page,
+          },
+      })
+  return response.data;
+}
+
+export { fetchQuoteFromServer, searchExerciseByFilters };
 
