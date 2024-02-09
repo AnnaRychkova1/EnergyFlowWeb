@@ -2,42 +2,75 @@ import axios from 'axios';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
-
-
-
 const BASE_URL = 'https://energyflow.b.goit.study/api';
 const END_POINT = 'exercises';
 
 // https://energyflow.b.goit.study/api/exercises?bodypart=waist&muscles=abs&equipment=assisted&keyword=side&page=1&limit=10
 
+// import { filterExercise, nameExercise} from './exercises';
+
+
+const filterExercise = 'bodypart';
+const nameExercise = 'waist';
+
 const queryParams = {
-    bodypart: '',
-    muscles: '',
-    equipment: '',
-    keyword: '',
-    page: 1,
-    limit: 10,
+  filter: nameExercise,
+  keyword: '',
+  page: 1,
+  limit: 9,
 };
 
-queryParams.bodypart = 'waist';
-queryParams.muscles = 'abs';
-queryParams.equipment = 'dumbbell';
-
-
-
 const refs = {
-    exercisesHeader: document.querySelector('.exersises-header'),
-    resultContainer: document.querySelector('.filtered-cards'),
-    searchForm: document.querySelector('.form'),
+  exercisesHeader: document.querySelector('.exersises-header'),
+  resultContainer: document.querySelector('.filtered-cards'),
+  searchForm: document.querySelector('.form'),
+  searchBtn: document.querySelector('.search-btn'),
+  textResult: document.querySelector('.exercise-text-no-found')
 }
 
 
-console.log(refs.exercisesHeader.textContent);
+refs.exercisesHeader.textContent = `/${nameExercise}`;
+refs.textResult.classList.add("is-hidden");
+renderExerciseByFilter();
+
+async function renderExerciseByFilter(evt) {
+
+  try {
+    const { results, totalPages } = await searchExerciseByFilters(queryParams);
+    console.log(results);
+    console.log(totalPages);
+    
+    // if (results.length > 0 && results.length !== totalPages) {
+    //   refs.loadMoreBtn.addEventListener('click', handleLoadMore);
+    //   buttonService.show(refs.loadMoreBtn);
+    // } else {
+    //   isiToast.endOfSearch();
+    //   buttonService.hide(refs.loadMoreBtn);
+    //   buttonService.enableBtn(refs.searchBtn);
+    // }
+
+      renderItemsMarkup(results, refs.resultContainer);
+      // const lightbox = new SimpleLightbox('.filtered-cards a', {
+      //     captionsData: 'alt',
+      //     captionDelay: 250,
+      // });
+
+      // lightbox.refresh();
+      
+  } catch (error) {
+    console.error('Error fetching images:', error);
+    alert('Wrong request')
+  } finally {
+      
+  }
+}
+
+
+
+
 
 refs.searchForm.addEventListener('submit', handleSearch);
 refs.resultContainer.innerHTML = '';
-
-
 
 
 async function handleSearch(event) {
@@ -57,7 +90,8 @@ async function handleSearch(event) {
   }
 
   try {
-      const { results } = await searchExerciseByFilters(queryParams);
+    console.log(queryParams);
+      const { results, totalPages } = await searchExerciseByFilters(queryParams);
 
     const getQuery = (results, toQuery) =>
     results.filter(result => result.name.includes(toQuery));
@@ -65,7 +99,7 @@ async function handleSearch(event) {
       console.log(getQuery(results, queryParams.keyword)); 
       
 
-
+console.log(totalPages);
     // if (results.length > 0 && results.length !== totalPages) {
     //   refs.loadMoreBtn.addEventListener('click', handleLoadMore);
     //   buttonService.show(refs.loadMoreBtn);
@@ -76,48 +110,49 @@ async function handleSearch(event) {
       // }
 
       renderItemsMarkup(results, refs.resultContainer);
-      const lightbox = new SimpleLightbox('.filtered-cards a', {
-          captionsData: 'alt',
-          captionDelay: 250,
-      });
+      // const lightbox = new SimpleLightbox('.filtered-cards a', {
+      //     captionsData: 'alt',
+      //     captionDelay: 250,
+      // });
 
-      lightbox.refresh();
+      // lightbox.refresh();
       
   } catch (error) {
     console.error('Error fetching images:', error);
     alert('Wrong request')
   } finally {
-      formQuery.reset();
+      refs.searchForm.reset();
   }
 }
-
-
 
 function renderItemsMarkup(results, resultContainer ) {
   const markup = results
     .map(
-      ({
-        rating,
-          gifUrl,
-          name,
-          burnedCalories, time, bodyPart, target
-        }) => `<li class="filtered-card-item">
-        <button class="filtered-btn">Workout</button>
-        <p class="filtered-rating">${rating}</p>
-        <img class="filteered-star" href="#" alt="star" height="35"></img>
-        <a class="to-favorites-link" href="${gifUrl}"><button class="to-favorites-start">Start</button><a/>
-        <img class="filteered-athlete" href="#" alt="athlete" height="35"></img>
-        <h3 class="filteered-title">${name}</h3>
+      ({ _id, rating, name, burnedCalories, time, bodyPart, target }) => `<li class="filtered-card-item">
+        <div class="card-box-workout">
+          <div class="card-box-info">
+            <div class="filtered-workout">Workout</div>
+            <div class="card-box-rating">
+              <p class="filtered-rating">${Math.round(rating)}</p>
+              <img class="filteered-star" href="#" alt="star" height="35"></img>
+            </div>
+          </div>
+          <button data-id=${_id} class="to-favorites-start">Start</button><a/>
+        </div>
+        <div class="card-box-title">
+          <img class="filteered-athlete" href="#" alt="athlete" height="35"></img>
+          <h3 class="filteered-title">${name}</h3>
+        </div>
         <ul class="filtered-description">
-        <li class="filtered-descr-item">
-        <p class="filtered-descr-title">Burned calories: <spam class="filtered-descr-value">${burnedCalories} / ${time} min</spam></p>
-        </li>
-        <li class="filtered-descr-item">
-        <p class="filtered-descr-title">Body part: <spam class="filtered-descr-value">${bodyPart}</spam></p>
-        </li>
-        <li class="filtered-descr-item">
-        <p class="filtered-descr-title">Target: <spam class="filtered-descr-value">${target}</spam></p>
-        </li>
+          <li class="filtered-descr-item">
+            <p class="filtered-descr-title">Burned calories: <spam class="filtered-descr-value">${burnedCalories} / ${time} min</spam></p>
+          </li>
+          <li class="filtered-descr-item">
+            <p class="filtered-descr-title">Body part: <spam class="filtered-descr-value">${bodyPart}</spam></p>
+          </li>
+          <li class="filtered-descr-item">
+            <p class="filtered-descr-title">Target: <spam class="filtered-descr-value">${target}</spam></p>
+          </li>
         </ul>  
   </li>
   `
@@ -127,21 +162,14 @@ function renderItemsMarkup(results, resultContainer ) {
   resultContainer.insertAdjacentHTML('beforeend', markup);
 }
 
-
-
-async function searchExerciseByFilters({bodyQuery, musclesQuery,equipmentQuery,keywordQuery, page = 1, limit}) {
+async function searchExerciseByFilters({ page = 1, limit }) {
   const response = await axios
-      .get(`${BASE_URL}/${END_POINT}/`, {
-          params: {
-              bodypart: bodyQuery,
-              muscles: musclesQuery,
-              equipment: equipmentQuery,
-              keyword: keywordQuery,
-              page,
-              limit,
+      .get(`${BASE_URL}/${END_POINT}?${filterExercise}=${nameExercise}`, {
+        params: {    
+        keyword: queryParams.keyword,
+        limit,
+        page,
           },
       })
   return response.data;
 }
-
-

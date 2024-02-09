@@ -6,7 +6,11 @@
 
 .filtered-card-item {}
 
-.filtered-btn {
+.card-box-workout {}
+
+.card-box-info {}
+
+.filtered-workout {
     border-radius: 15px;
     padding: 5px 8px;
     /* width: 76px; */
@@ -14,14 +18,11 @@
     text-transform: uppercase;
 }
 
-.filtered-card-rating {
-    text-transform: uppercase;
-    
-}
+.card-box-rating {}
+
+.filtered-rating {}
 
 .filtered-star {}
-
-.to-favorites-link {}
 
 .to-favorites-start {
     padding: 5px;
@@ -34,6 +35,8 @@
 .to-favorites-start:hover {
     background-color: aqua;
 }
+
+.card-box-title {}
 
 .filteered-athlete {}
 
