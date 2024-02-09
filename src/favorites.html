@@ -8,29 +8,36 @@
     <title>Favorites</title>
   </head>
   <body>
-    <section class="section">
+    <section class="section favorites-section">
       <div class="container favorites-container">
-        <div class="favorites-quotes">
-          <svg class="favorites-svg-run" width="32" height="32">
-              <use href="#"></use>
-            </svg>
-            <h3 class="favorites-quotes-day">Quote of the day</h3>
-            <p class="favorites-quotes-text">
-              A lot of times I find that people who are blessed with the most
-              talent don't ever develop that attitude, and the ones who aren't
-              blessed in that way are the most competitive and have the biggest
-              heart.
-            </p>
-            <p class="favorites-quotes-author">Tom Brady</p>
-            <svg class="favorites-svg-icon" width="37" height="31">
-              <use href="#"></use>
-            </svg>
-          </div>
+        <blockquote class="quote-container">
+      <div class="quote-title-wrapper">
+        <div class="quote-svg-man">
+          <img
+            class="svg-man"
+            src="/img/icons/all icons/Man.svg"
+            alt="running-man icon"
+          />
+        </div>
+        <div class="title-quote-wrapper">
+          <h3 class="quote-title">Quote of the day</h3>
+          <img
+            class="quote-svg-com"
+            src="/img/icons/all icons/lapki.svg"
+            alt="commas-icon"
+          />
+        </div>
+      </div>
+      <div class="quote-wrapper">
+        <p class="quote-text"></p>
+        <p class="quote-author"></p>
+      </div>
+    </blockquote>
           <img class="favorites-img" src="./img/origin/desc-page-fafor- girl@2.jpg" alt="img" />
           <div class="favorites-day-norma">
             <div class="favorites-day-block">
             <svg class="favorites-svg-day" width="20" height="20">
-              <use href="#"></use>
+              <use href="./img/icons#icon-dumbbell"></use>
             </svg>
             <p class="favorites-day-time">110 min</p>
             <p class="favorites-day-daily">Daily norm of sports</p>
@@ -38,15 +45,28 @@
         </div>
         </div>
       </section>
-        <section>
+        <section class="section-favorites-box">
         <div class="favorites-box">
             <h2 class="favorites-box-title">Favorites</h2>
             <div class="favorites-box-block block">
             <img class="favorites-box-img" src="./img/icons/dumbbell.png" alt="img">
             <p class="favorites-box-paragraf">It appears that you haven't added any exercises to your favorites yet. To get started, you can add exercises that you like to your favorites for easier access in the future.</p>
-         </div>
         </div>
+        
+      
+       <!---------- Favorite Card ------------>
+      <ul class="favorites-list"></ul>
+
+      <!----------- PAGINATION FOR MOBILE------------------>
+      <div class="favorites-pagination-block">
+        <button class="active-btn" aria-label="first-page" type="button">
+          1
+        </button>
+        <button aria-label="second-page" type="button">2</button>
+        <button aria-label="third-page" type="button">3</button>
       </div>
+    </div>
+  </div>
     </section>
     <script type="module" src="./main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
