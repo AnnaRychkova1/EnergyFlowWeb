@@ -8,7 +8,6 @@ import axios from 'axios';
 //     .get(`${BASE_URL}/`, {
 //       params: {
 //         key: API_KEY,
-        
 //       },
 //     })
 //   return response.data;
