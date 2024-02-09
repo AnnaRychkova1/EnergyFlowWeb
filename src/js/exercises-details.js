@@ -2,6 +2,7 @@ import axios from 'axios';
 import { hide, show, showLoader, hideLoader } from "./services/visibility";
 import { refs } from './templates/refs.js';
 import { searchExerciseByFilters } from "./services/mainApi.js";
+import { BASE_URL } from './services/mainApi.js';
 
 
 // https://energyflow.b.goit.study/api/exercises?bodypart=waist&muscles=abs&equipment=assisted&keyword=side&page=1&limit=10
