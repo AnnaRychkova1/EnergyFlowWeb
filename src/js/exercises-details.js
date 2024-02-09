@@ -1,4 +1,4 @@
-import axios from 'axios';
+
 import { hide, show, showLoader, hideLoader } from "./services/visibility";
 import { refs } from './templates/refs.js';
 import { searchExerciseByFilters } from "./services/mainApi.js";
