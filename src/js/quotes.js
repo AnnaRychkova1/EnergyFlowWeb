@@ -1,0 +1,40 @@
+import { fetchQuoteFromServer } from './services/exerciseApi';
+import { saveQuoteToLocalStorage } from './templates/localStorage';
+
+function displayQuoteOnPage(quoteData) {
+  const quoteText = document.querySelector('.quote-text');
+  const quoteAuthor = document.querySelector('.quote-author');
+  quoteText.textContent = quoteData.quote;
+  quoteAuthor.textContent = quoteData.author;
+}
+export async function getQuoteOffTheDay() {
+  const quoteResponse = JSON.parse(localStorage.getItem('quoteResponse'));
+  const savedDate = JSON.parse(localStorage.getItem('savedDate'));
+  try {
+    let quoteData;
+    if (savedDate && quoteResponse) {
+      const currentDate = new Date();
+      if (
+        currentDate.getFullYear() === savedDate.year &&
+        currentDate.getMonth() + 1 === savedDate.month &&
+        currentDate.getDate() === savedDate.day
+      ) {
+        // Використовуємо збережену цитату з локального сховища
+        quoteData = quoteResponse;
+      } else {
+        // Отримуємо нову цитату з сервера
+        quoteData = await fetchQuoteFromServer();
+        saveQuoteToLocalStorage(quoteData);
+      }
+    } else {
+      // Отримуємо нову цитату з сервера
+      quoteData = await fetchQuoteFromServer();
+      saveQuoteToLocalStorage(quoteData);
+    }
+    // Відображаємо цитату на сторінці
+    displayQuoteOnPage(quoteData);
+  } catch (error) {
+    console.log(error);
+  }
+}
+getQuoteOffTheDay();
