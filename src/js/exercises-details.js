@@ -42,6 +42,7 @@ const queryParams = {
 // }
 
 
+
 refs.exercisesHeader.textContent = `/${nameExercise}`;
 refs.textResult.classList.add("is-hidden");
 renderExerciseByFilter();
