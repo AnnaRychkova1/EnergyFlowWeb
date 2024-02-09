@@ -6,7 +6,7 @@ import { getQuoteOffTheDay } from "./quotes";
 getQuoteOffTheDay();
 
 async function getFavorites(resFavorites) { 
-    const BASE_URL_FAVORITES = 'https://energyflow.b.goit.study/api/';
+    const BASE_URL_FAVORITES = 'https://energyflow.b.goit.study/api';
     const ENDPOINT_FAVORITES = 'exercises';
     const resFavorites = await axios.get(`${BASE_URL_FAVORITES}/${ENDPOINT_FAVORITES}`, {
         params: {
