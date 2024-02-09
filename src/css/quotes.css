@@ -1,0 +1,172 @@
+.container-quote {
+  max-width: 375px;
+  width: 100%;
+  padding: 0 20px;
+  margin: 0 auto;
+  height: auto;
+}
+.quote-section {
+  padding: 10px 0;
+}
+.quote-container {
+  background-color: var(--background-dark-grey);
+  padding: 40px 20px;
+  border-radius: 30px;
+  width: 100%;
+  min-height: 272px;
+}
+.quote-title-wrapper {
+  display: flex;
+  margin-bottom: 14px;
+}
+.title-quote-wrapper {
+  position: relative;
+  margin-left: 12px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.quote-title {
+  color: var(--text-light-color);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 28px;
+  letter-spacing: 0px;
+}
+.quote-text {
+  margin-bottom: 14px;
+  line-height: 18px;
+  font-size: 14px;
+  letter-spacing: 0px;
+  color: rgba(246, 246, 246, 0.6);
+}
+.quote-wrapper {
+  margin-left: 46px;
+}
+.quote-author {
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: 0px;
+  line-height: 24px;
+  color: var(--text-light-color);
+}
+.quote-img-container {
+  width: 100%;
+  min-height: 272px;
+  border-radius: 30px;
+  background-repeat: no-repeat;
+  background-image: url(/img/mobile/mobile-section2@1.jpg);
+}
+.quote-svg-com {
+  width: 28px;
+  height: 28px;
+}
+.quote-svg-man {
+  position: relative;
+  background-color: rgba(246, 246, 246, 0.1);
+  min-width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+.svg-man {
+  position: absolute;
+  top: 5px;
+  left: 6px;
+}
+/*  Media  ======================================== */
+
+@media screen and (max-width: 375px) {
+  .quote-wrapper {
+    max-width: 294px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .quote-section {
+    padding: 8px 0;
+  }
+  .container-quote {
+    padding: 0 16px;
+    max-width: 768px;
+    border-radius: 50px;
+  }
+  .quote-container {
+    padding: 64px 80px;
+    min-height: 302px;
+  }
+  .quote-wrapper {
+    margin-left: 50px;
+  }
+  .quote-title {
+    font-size: 24px;
+    line-height: 32px;
+  }
+  .quote-text {
+    font-size: 16px;
+    line-height: 24px;
+    margin-bottom: 25px;
+    max-height: 77px;
+  }
+  .title-quote-wrapper {
+    margin-left: 18px;
+  }
+  .quote-title-wrapper {
+    margin-bottom: 16px;
+  }
+  .quote-img {
+    border-radius: 50px;
+  }
+  .quote-svg-com {
+    position: absolute;
+    top: -22px;
+    right: 0;
+    background: url(/img/icons/inverted-commas-tablet.svg);
+    width: 37px;
+    height: 31px;
+  }
+  .quote-img-container {
+    width: 100%;
+    min-height: 302px;
+    border-radius: 50px;
+    background-image: url(/img/tablet/tablet-section2@1.jpg);
+  }
+}
+@media screen and (min-width: 1440px) {
+  .container-quote {
+    max-width: 1440px;
+  }
+  .container-quote {
+    display: flex;
+  }
+  .quote-container {
+    padding: 64px;
+    max-width: 704px;
+  }
+  .quote-img-container {
+    max-width: 704px;
+    background-image: url(/img/desctop/desc-section2@1.jpg);
+  }
+  .quote-img {
+    height: 302px;
+  }
+}
+@media screen and (min-resolution: 192dpi) {
+  .quote-img-container {
+    background-image: url(/img/mobile/mobile-section2@2.jpg);
+    background-size: 335px;
+  }
+}
+@media screen and (min-width: 768px) and (min-resolution: 192dpi) {
+  .quote-img-container {
+    background-image: url(/img/tablet/tablet-section2@2.jpg);
+    background-size: 736px;
+  }
+}
+@media screen and (min-width: 1280px) and (min-resolution: 192dpi) {
+  .quote-img-container {
+    background-image: url(/img/desctop/desc-section2@2.jpg);
+    background-size: 704px;
+  }
+}
