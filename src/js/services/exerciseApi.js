@@ -1,29 +1,5 @@
 import axios from 'axios';
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 export async function fetchQuoteFromServer() {
   try {
     const response = await axios.get(
@@ -35,4 +11,3 @@ export async function fetchQuoteFromServer() {
     throw error;
   }
 }
->>>>>>> main
