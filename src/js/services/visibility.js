@@ -1,17 +1,17 @@
-function hide(button) {
-  button.classList.add("is-hidden");
+function hide(element) {
+  element.classList.add("is-hidden");
 }
 
-function show(button) {
-  button.classList.remove("is-hidden");
+function show(element) {
+  element.classList.remove("is-hidden");
 }
 
-function showLoader(button) {
-  button.classList.add('show');
+function showLoader(element) {
+  element.classList.add('show');
 }
 
-function hideLoader(button) {
-  button.classList.remove('show');
+function hideLoader(element) {
+  element.classList.remove('show');
 }
 
 export  { hide, show, showLoader, hideLoader  };
