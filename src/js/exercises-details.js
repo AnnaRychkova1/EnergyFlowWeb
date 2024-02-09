@@ -31,7 +31,7 @@ const queryParams = {
 //     alert('Wrong request')
 //   }
 // }
-=======
+
 
 const refs = {
   exercisesHeader: document.querySelector('.exersises-header'),

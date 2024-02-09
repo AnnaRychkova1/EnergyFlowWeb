@@ -6,7 +6,7 @@ export const refs = {
   searchForm: document.querySelector('.form'),
   searchBtn: document.querySelector('.search-btn'),
   textResult: document.querySelector('.exercise-text-no-found'),
-  toStartBtn: document.querySelector('.to-favorites-start')
-=======
+  toStartBtn: document.querySelector('.to-favorites-start'),
+
   loaderModal: document.querySelector('.overlay'),
 };
