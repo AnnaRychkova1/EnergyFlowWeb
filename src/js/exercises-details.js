@@ -2,7 +2,7 @@ import axios from 'axios';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
-// const BASE_URL = 'https://energyflow.b.goit.study/api';
+const BASE_URL = 'https://energyflow.b.goit.study/api';
 const END_POINT = 'exercises';
 
 // https://energyflow.b.goit.study/api/exercises?bodypart=waist&muscles=abs&equipment=assisted&keyword=side&page=1&limit=10
@@ -164,7 +164,7 @@ function renderItemsMarkup(results, resultContainer ) {
 
 async function searchExerciseByFilters({ page = 1, limit }) {
   const response = await axios
-      .get(`https://energyflow.b.goit.study/api/${END_POINT}?${filterExercise}=${nameExercise}`, {
+      .get(`${BASE_URL}/${END_POINT}?${filterExercise}=${nameExercise}`, {
         params: { 
         keyword: queryParams.keyword,
         limit,
