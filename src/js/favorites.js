@@ -15,9 +15,13 @@ function createMarkupFavorites(hits) {
           `
           <ul class="favorites-gallery">
             <li class="favorites-gallery-item">
-                <span class="workout">WORKOUT</span>
+                <span class="workout">workout</span>
                 <a class="favorites-remove" href="#"> <img class="favorites-remove-icon" src="../img/icons/all icons/basket.svg" alt="remove-icon"/></a>
-                <a class="favorites-start" href="#">Start <img class="favorites-start-icon" src="../img/icons/all icons/line.svg" alt="start-icon"/></a>
+                <div>
+                  <button class="favorites-start-btn" type="button">Start 
+                    <img class="favorites-start-icon" src="../img/icons/all icons/line.svg" alt="start-icon"/>
+                  </button>
+                </div>
                 <img class="favorites-man-icon" src="../img/icons/all icons/Man.svg" alt="man-icon"/>
                 <h3 class="favorites-item-title">${name}</h3>
                 <ul class="favorites-gallery-info">

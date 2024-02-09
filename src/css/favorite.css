@@ -151,3 +151,83 @@
   font-size: 18px;
   line-height: 1.33;
 }
+
+.favorites-gallery {
+}
+
+.favorites-gallery-item {
+  border-radius: 15px;
+  padding: 140px 105px;
+  width: 424px;
+  height: 141px;
+  background-color: var(--background-white);
+}
+
+.workout {
+  border-radius: 15px;
+  padding: 5px 8px;
+  width: 76px;
+  height: 26px;
+  background-color: var(--background-light-grey);
+  color: var(--text-light-color);
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 12px;
+}
+
+.favorites-remove {
+  text-decoration: none;
+  margin: 0;
+  display: block;
+}
+
+.favorites-remove-icon {
+  color: var(--text-main-color);
+}
+
+.favorites-remove-icon:hover,
+.favorites-remove-icon:focus {
+  color: var(--background-dark-grey);
+}
+
+.favorites-start-btn {
+  width: 61px;
+  height: 24px;
+  border: none;
+  color: #1b1b1b;
+  background-color: var(--background-white);
+}
+
+.favorites-start-btn:hover,
+.favorites-start-btn:focus {
+  color: var(--background-dark-grey);
+}
+
+.favorites-man-icon {
+  height: 24px;
+  width: 24px;
+}
+
+.favorites-item-title {
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 1.33;
+  color: var(--text-main-color);
+}
+
+.favorites-gallery-info {
+}
+
+.favorites-gallery-info-item {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.5;
+  color: rgba(27, 27, 27, 0.4);
+}
+
+.descr-span {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--text-main-color);
+}
