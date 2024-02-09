@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { hide, show, showLoader, hideLoader } from "./services/visibility"
+import { hide, show, showLoader, hideLoader } from "./services/visibility";
+import { refs } from './templates/refs.js';
 
 const BASE_URL = 'https://energyflow.b.goit.study/api';
 const END_POINT = 'exercises';
@@ -18,13 +19,13 @@ const queryParams = {
   limit: 9,
 };
 
+
 const refs = {
   exercisesHeader: document.querySelector('.exersises-header'),
   resultContainer: document.querySelector('.filtered-cards'),
   searchForm: document.querySelector('.form'),
   searchBtn: document.querySelector('.search-btn'),
   textResult: document.querySelector('.exercise-text-no-found'),
-  loaderModal: document.querySelector('.overlay'),
 }
 
 
