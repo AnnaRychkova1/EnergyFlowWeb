@@ -52,9 +52,9 @@ async function showFavorites(event) {
   queryParams.page = 1;
 
   const LS_KEY_FAVORITES = "Array of Favorites";
-  const queryParams.name = event.currentTarget.elements.name.value();
+  const names = event.currentTarget.elements.name.value();
     
-  if (!queryParams.name) {
+  if (!names) {
     showMessage();
     return;
   }
