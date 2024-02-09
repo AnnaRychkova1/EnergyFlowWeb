@@ -1,0 +1,53 @@
+.exercises-details {
+    margin: 0 50px;
+}
+
+.filtered-cards {}
+
+.filtered-card-item {}
+
+.card-box-workout {}
+
+.card-box-info {}
+
+.filtered-workout {
+    border-radius: 15px;
+    padding: 5px 8px;
+    /* width: 76px; */
+    height: 26px;
+    text-transform: uppercase;
+}
+
+.card-box-rating {}
+
+.filtered-rating {}
+
+.filtered-star {}
+
+.to-favorites-start {
+    padding: 5px;
+    height: 28px;
+    color: black;
+    background-color:antiquewhite;
+    border-radius: 0;
+}
+
+.to-favorites-start:hover {
+    background-color: aqua;
+}
+
+.card-box-title {}
+
+.filteered-athlete {}
+
+.filteered-title {}
+
+.filtered-description {}
+
+.filtered-descr-item {}
+
+.filtered-descr-title {}
+
+.filtered-descr-value {}
+
+
