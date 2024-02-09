@@ -59,18 +59,10 @@ async function handleSearch(event) {
   try {
       const { results } = await searchExerciseByFilters(queryParams);
 
-    //   const isSearch = results.map(({ name }) => name.join(''))
-    //   console.log(isSearch);
+    const getQuery = (results, toQuery) =>
+    results.filter(result => result.name.includes(toQuery));
 
-     let arr = [];
-        for (const result of results) { 
-          console.log(result.name);
-          arr.push(result.name);    
-      }
-      console.log(arr);
- 
-const hasSeasch = arr.some(item => item.includes(queryParams.keyword));
-console.log(hasSeasch);
+      console.log(getQuery(results, queryParams.keyword)); 
       
 
 
