@@ -1,3 +1,92 @@
-<div class="container">
-  <h2>Modal menu</h2>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="dist/basicLightbox.min.css" />
+    <link rel="stylesheet" href="../css/modal-menu.css" />
+  </head>
+  <body>
+    <h2>Modal menu</h2>
+    <div class="container">
+      <div class="backdrop is-hidden">
+        <div class="modal">
+          <button class="modal-close-btn" type="button" data-modal-close>
+            <svg class="modal-close-icon" width="28" height="28">
+              <use href="../"></use>
+            </svg>
+          </button>
+    <div class="exercise-gif">
+      <img src="" class="gif-ex" width="270" height="250" alt="show exercise" />
+    </div>
+    <div class="ex-content-container">
+      <h2 class="exercise-name">Stationary bike walk</h2>
+      <p class="ex-current-rating">4.0</p>
+      <ul class="ex-stars-list">
+        <li>
+          <svg class="ex-rate-icon" width="18" height="18" aria-label="rating icon">
+            <use href="./"></use>
+          </svg>
+        </li>
+        <li>
+          <svg class="ex-rate-icon" width="18" height="18" aria-label="rating icon">
+            <use href="./"></use>
+          </svg>
+        </li>
+        <li>
+          <svg class="ex-rate-icon" width="18" height="18" aria-label="rating icon">
+            <use href="./"></use>
+          </svg>
+        </li>
+        <li>
+          <svg class="ex-rate-icon" width="18" height="18" aria-label="rating icon">
+            <use href="./"></use>
+          </svg>
+        </li>
+        <li>
+          <svg class="ex-rate-icon" width="18" height="18" aria-label="rating icon">
+            <use href="./"></use>
+          </svg>
+        </li>
+      </ul>
+      <div class="ex-information">
+        <div class="ex-block">
+          <span class="ex-value">Targer</span>
+          <span class="ex-label ex-target">Cardiovascular system</span>
+        </div>
+        <div class="ex-block">
+          <span class="ex-value">Body part</span>
+          <span class="ex-label ex-body-part">Cardio</span>
+        </div>
+        <div class="ex-block">
+          <span class="ex-value">Equipment</span>
+          <span class="ex-label ex-equipment">Leverage machine</span>
+        </div>
+        <div class="ex-block">
+          <span class="ex-value">Popular</span>
+          <span class="ex-label ex-popular">0</span>
+        </div>
+        <div class="ex-block">
+          <span class="ex-value">Burned Calories</span>
+          <span class="ex-label ex-burned-calories">116/3 min</span>
+        </div>
+        <p class="ex-description">
+          While not a muscle, this system is essential for endurance training. Aerobic exercises like running, cycling, and swimming improve cardiovascular health.</p>
+
+        <div class="ex-card-container">
+            <button class="ex-add-btn" type="submit">
+              Add to favorites
+              <svg class="add-btn-icon" width="20" height="20">
+                <use href="../"></use>
+              </svg>
+            </button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+    <script src="dist/basicLightbox.min.js"></script>
+    <script src="../js/modal-menu.js" type="module"></script>
+  </body>
+</html>

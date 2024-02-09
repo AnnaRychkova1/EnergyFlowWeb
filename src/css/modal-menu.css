@@ -1,0 +1,121 @@
+.container{
+    
+}
+.backdrop {
+   background-color: rgba(27, 27, 27, 0.6);
+   position: fixed;
+   inset: 0;
+   width: 100px;
+   height: 100px;
+   opacity: 0;
+   visibility: hidden;
+    pointer-events: none;
+    transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    visibility 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.backdrop.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+.modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    padding: 40px;
+    background-color: rgba(246, 246, 246, 1);
+    border-radius: 20px;
+    height: auto;
+    width: 335px;
+    height: 774px;
+   
+}
+.modal-close-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background-color: transparent;
+    color:rgba(27, 27, 27, 1);
+}
+.modal-close-icon {
+    stroke-width: 2px;
+    width: 28px;
+    height: 28px;
+    stroke: var(--text-main-color)
+}
+.ex-add-btn {
+    width: 194px;
+    height: 48px;
+    border: none;
+    color: var(--text-main-color);
+    border-radius: 30px;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    padding: 12px 24px;
+    background-color: var(--background-dark-grey);
+    cursor: pointer;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    transition: background-color 0.25s var(--anim);
+}
+.ex-add-btn:hover,
+.ex-add-btn:focus {
+    background-color: var(--background-btn-hover);
+}
+.add-btn-icon {
+    fill: transparent;
+    margin-left: 8px;
+    stroke: var(--text-light-color);
+}
+.exercise-gift {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 40px;
+    margin-bottom: 134px;
+}                          
+.gif-ex {
+    border-radius: 12px;
+}
+.exercise-name {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 133%;
+    color:var(--text-main-color);
+    margin-bottom: 8px;
+}
+.ex-stars-list {
+    display: flex;
+    gap: 2px;
+}
+.ex-information {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 40px;
+}
+.ex-value {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 150%;
+    color: rgba(27, 27, 27, 0.4);
+}
+
+.ex-label {
+    color: var(--text-main-color);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 18px;
+    display: flex;
+}
+.ex-description {
+    color: rgba(27, 27, 27, 0.6);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 18px;
+}
