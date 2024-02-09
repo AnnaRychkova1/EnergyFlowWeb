@@ -2,7 +2,7 @@ import axios from 'axios';
 import { filterExercise, nameExercise } from '../exercises-details';
 
 export const BASE_URL = 'https://energyflow.b.goit.study/api';
-const ENDPOINT_QUOTE = 'quote';
+const END_POINT_QUOTE = 'quote';
 const END_POINT_FILTER = 'exercises';
 
 async function fetchQuoteFromServer() {
