@@ -25,8 +25,21 @@ const refs = {
   resultContainer: document.querySelector('.filtered-cards'),
   searchForm: document.querySelector('.form'),
   searchBtn: document.querySelector('.search-btn'),
-  textResult: document.querySelector('.exercise-text-no-found')
+  textResult: document.querySelector('.exercise-text-no-found'),
+  toStartBtn: document.querySelector('.to-favorites-start')
 }
+
+// Create modal temporarely
+// refs.toStartBtn.addEventListener('sudmit', createModal);
+// async function createModal(evt) {
+//   try {
+//     const { results } = await renderModal();
+//     console.log(results);
+//   } catch (error) {
+//     console.error('Error fetching images:', error);
+//     alert('Wrong request')
+//   }
+// }
 
 
 refs.exercisesHeader.textContent = `/${nameExercise}`;
@@ -64,6 +77,8 @@ async function renderExerciseByFilter(evt) {
       
   }
 }
+
+
 
 
 
@@ -137,7 +152,7 @@ function renderItemsMarkup(results, resultContainer ) {
               <img class="filteered-star" href="#" alt="star" height="35"></img>
             </div>
           </div>
-          <button data-id=${_id} class="to-favorites-start">Start</button><a/>
+          <button type="submit" data-id=${_id} class="to-favorites-start">Start</button><a/>
         </div>
         <div class="card-box-title">
           <img class="filteered-athlete" href="#" alt="athlete" height="35"></img>
