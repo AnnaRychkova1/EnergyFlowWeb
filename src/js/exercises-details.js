@@ -1,6 +1,5 @@
 import axios from 'axios';
-import SimpleLightbox from 'simplelightbox';
-import 'simplelightbox/dist/simple-lightbox.min.css';
+import { hide, show, showLoader, hideLoader } from "./services/visibility"
 
 const BASE_URL = 'https://energyflow.b.goit.study/api';
 const END_POINT = 'exercises';
@@ -8,7 +7,6 @@ const END_POINT = 'exercises';
 // https://energyflow.b.goit.study/api/exercises?bodypart=waist&muscles=abs&equipment=assisted&keyword=side&page=1&limit=10
 
 // import { filterExercise, nameExercise} from './exercises';
-
 
 const filterExercise = 'bodypart';
 const nameExercise = 'waist';
@@ -25,7 +23,8 @@ const refs = {
   resultContainer: document.querySelector('.filtered-cards'),
   searchForm: document.querySelector('.form'),
   searchBtn: document.querySelector('.search-btn'),
-  textResult: document.querySelector('.exercise-text-no-found')
+  textResult: document.querySelector('.exercise-text-no-found'),
+  loaderModal: document.querySelector('.overlay'),
 }
 
 
