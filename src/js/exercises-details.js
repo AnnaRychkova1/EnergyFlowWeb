@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { refs } from './templates/refs';
+
 
 const BASE_URL = 'https://energyflow.b.goit.study/api';
 const END_POINT = 'exercises';
