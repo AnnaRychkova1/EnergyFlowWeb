@@ -7,6 +7,3 @@ import('./js/exercises-details.js');
 import('./js/footer.js');
 import('./js/favorites.js');
 import('./js/modal-menu.js');
-
-import { getQuoteOffTheDay } from './js/quotes.js';
-getQuoteOffTheDay();

@@ -50,3 +50,5 @@ export async function getQuoteOffTheDay() {
   }
   return;
 }
+
+getQuoteOffTheDay();
