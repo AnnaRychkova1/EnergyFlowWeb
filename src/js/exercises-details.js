@@ -1,6 +1,6 @@
 import axios from 'axios';
-
-
+import { hide, show, showLoader, hideLoader } from "./services/visibility";
+import { refs } from './templates/refs.js';
 
 const BASE_URL = 'https://energyflow.b.goit.study/api';
 const END_POINT = 'exercises';
@@ -8,7 +8,6 @@ const END_POINT = 'exercises';
 // https://energyflow.b.goit.study/api/exercises?bodypart=waist&muscles=abs&equipment=assisted&keyword=side&page=1&limit=10
 
 // import { filterExercise, nameExercise} from './exercises';
-
 
 const filterExercise = 'bodypart';
 const nameExercise = 'waist';
@@ -19,6 +18,7 @@ const queryParams = {
   page: 1,
   limit: 9,
 };
+
 
 // Create modal temporarely
 // refs.toStartBtn.addEventListener('sudmit', createModal);
@@ -31,6 +31,15 @@ const queryParams = {
 //     alert('Wrong request')
 //   }
 // }
+=======
+
+const refs = {
+  exercisesHeader: document.querySelector('.exersises-header'),
+  resultContainer: document.querySelector('.filtered-cards'),
+  searchForm: document.querySelector('.form'),
+  searchBtn: document.querySelector('.search-btn'),
+  textResult: document.querySelector('.exercise-text-no-found'),
+}
 
 
 refs.exercisesHeader.textContent = `/${nameExercise}`;
