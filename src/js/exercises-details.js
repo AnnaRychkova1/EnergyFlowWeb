@@ -33,13 +33,13 @@ const queryParams = {
 // }
 
 
-const refs = {
-  exercisesHeader: document.querySelector('.exersises-header'),
-  resultContainer: document.querySelector('.filtered-cards'),
-  searchForm: document.querySelector('.form'),
-  searchBtn: document.querySelector('.search-btn'),
-  textResult: document.querySelector('.exercise-text-no-found'),
-}
+// const refs = {
+//   exercisesHeader: document.querySelector('.exersises-header'),
+//   resultContainer: document.querySelector('.filtered-cards'),
+//   searchForm: document.querySelector('.form'),
+//   searchBtn: document.querySelector('.search-btn'),
+//   textResult: document.querySelector('.exercise-text-no-found'),
+// }
 
 
 refs.exercisesHeader.textContent = `/${nameExercise}`;
