@@ -25,5 +25,5 @@ import{a as u}from"./vendor-8cce9181.js";const a={loaderModal:document.querySele
           </li>
         </ul>  
   </li>
-  `).join("");r.insertAdjacentHTML("beforeend",t)}const $=Object.freeze(Object.defineProperty({__proto__:null,filterExercise:f,nameExercise:l},Symbol.toStringTag,{value:"Module"})),y="https://energyflow.b.goit.study/api",w="exercises";async function E(){try{return(await u.get(`${y}/${END_POINT_QUOTE}`)).data}catch(e){throw console.log(e),e}}async function g({keyword:e,page:r=1,limit:t}){return(await u.get(`${y}/${w}?${f}=${l}`,{params:{keyword:e,limit:t,page:r}})).data}export{$ as e,E as f};
-//# sourceMappingURL=mainApi-c4b1bd50.js.map
+  `).join("");r.insertAdjacentHTML("beforeend",t)}const E=Object.freeze(Object.defineProperty({__proto__:null,filterExercise:f,nameExercise:l},Symbol.toStringTag,{value:"Module"})),y="https://energyflow.b.goit.study/api",w="quote",b="exercises";async function S(){try{return(await u.get(`${y}/${w}`)).data}catch(e){throw console.log(e),e}}async function g({keyword:e,page:r=1,limit:t}){return(await u.get(`${y}/${b}?${f}=${l}`,{params:{keyword:e,limit:t,page:r}})).data}export{E as e,S as f};
+//# sourceMappingURL=mainApi-bde3592a.js.map
