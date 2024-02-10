@@ -86,37 +86,36 @@
     color:var(--text-main-color);
     margin-bottom: 8px;
 }
-.ex-stars-list {
+.exercise-stars-list {
     display: flex;
     gap: 2px;
 }
-.ex-information {
+.exercise-information {
     display: flex;
     flex-wrap: wrap;
     gap: 16px;
     margin-bottom: 40px;
 }
-.ex-value {
+.exercise-value {
     font-weight: 400;
     font-size: 12px;
     line-height: 150%;
     color: rgba(27, 27, 27, 0.4);
 }
 
-.ex-label {
+.exercise-label {
     color: var(--text-main-color);
     font-size: 14px;
     font-weight: 500;
     line-height: 18px;
     display: flex;
 }
-.ex-description {
+.exercise-description {
     color: rgba(27, 27, 27, 0.6);
     font-size: 14px;
     font-weight: 400;
     line-height: 18px;
 }
-/* =======
 .exercises-modal-window {
     width: 335px;
     position: absolute;
@@ -172,11 +171,11 @@
     margin-bottom: 20px;
 }
 
-.exercise-name {
+/* .exercise-name {
     color: var(--black);
     font-size: 20px;
     font-weight: 500;
-    line-height: 20px;
+    line-height: 20px; */
     /* 100% */
     /* text-transform: capitalize;
     margin-bottom: 10px; */
