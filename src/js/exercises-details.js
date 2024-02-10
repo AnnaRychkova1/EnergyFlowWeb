@@ -172,6 +172,4 @@ function renderItemsMarkup(results, resultContainer ) {
 
 }
 
-
-
-
+<
