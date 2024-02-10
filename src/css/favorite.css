@@ -120,6 +120,11 @@
     margin-bottom: 20px;
   }
 
+  .favorites-pagination-block {
+    opacity: 1;
+    pointer-events: none;
+  }
+
   /* ==================================================================================================== */
 
   /* Оксана адаптив */
@@ -347,6 +352,12 @@
     /* overflow-y: scroll; */
   }
 
+  .favorites-pagination-block {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
   /* ================================================================================================ */
 
   /* Оксана Адаптив */
@@ -510,19 +521,28 @@
 @media screen and (min-width: 1287.98px) and (max-width: 1440px) {
   .favorites-container {
     /* width: 100%; */
+    /* display: flex; */
+    /* gap: 0; */
+    /* flex-direction: row; */
+    /* justify-content: center; */
+    max-width: 1408px;
+    padding: 0;
+  }
+
+  .hfasascghagsc {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin-left: auto;
-    margin-right: auto;
-    /* padding: 64px; */
-    /* max-width: 704px; */
-    width: 1408px;
-    height: 687px;
-    padding: 0 15px;
+    align-items: center;
   }
 
-  /* =============================================================================================================================== */
+  .quote-container {
+    max-width: 704px;
+    padding: 64px;
+    max-height: 302px;
+  }
+
+  /* ================================================================================================================================== */
 
   /* 
   .favorites-svg-run {
@@ -601,12 +621,12 @@
     border-radius: 50px;
   }
 
-  .favorites-day-norma {
+  /* .favorites-day-norma {
     width: 352px;
     height: 302px;
     border-radius: 50px;
     background-color: var(--background-white);
-  }
+  } */
 
   .favorites-day-block {
     padding-top: 106px;
