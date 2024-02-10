@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 .backdrop {
    background-color: rgba(27, 27, 27, 0.6);
    position: fixed;
@@ -179,11 +178,11 @@
     font-weight: 500;
     line-height: 20px;
     /* 100% */
-    text-transform: capitalize;
-    margin-bottom: 10px;
-}
+    /* text-transform: capitalize;
+    margin-bottom: 10px; */
+/* } */
 
-.exercise-rating {
+/* .exercise-rating {
     font-size: 12px;
     line-height: 1.5;
 }
@@ -278,4 +277,4 @@
 .exercise-raiting-btn:focus {
     border: 1px solid var(--grey);
 }
->>>>>>> Stashed changes */
+ */
