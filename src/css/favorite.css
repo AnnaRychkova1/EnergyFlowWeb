@@ -15,6 +15,7 @@
   .favorites-pagination-block {
     display: none !important;
   }
+
   .favorites-container {
     width: 335px;
     min-height: 450px;
@@ -24,22 +25,87 @@
     margin: 0 auto;
   }
 
+  .favorites-day-norma {
+    width: 100%;
+    height: 272px;
+    border-radius: 30px;
+    background: rgb(255, 255, 255);
+    padding: 40px 20px;
+    margin: 0 auto;
+  }
+
+  .favorites-day-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 96px;
+  }
+
+  .favorites-svg-day {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    position: relative;
+    overflow: visible;
+  }
+
+  .favorites-day-time {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-shrink: 0;
+    position: relative;
+  }
+
+  .favorites-day-daily {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    align-items: flex-start;
+    justify-content: flex-end;
+    flex-shrink: 0;
+    position: relative;
+  }
+
+  .favorites-box {
+    background-color: rgb(232, 232, 232);
+    flex-direction: column;
+    border-radius: 30px;
+    margin-top: 80px;
+  }
+
+  .favorites-box-block {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 28px;
+  }
+
   .favorites-box-title {
     color: #1b1b1b;
     font-size: 32px;
     font-weight: 400;
     line-height: 1;
     letter-spacing: 0.02em;
-    padding-left: 20px;
+    padding-bottom: 80px;
   }
 
-  .favorites-box-block {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    flex-wrap: nowrap;
-    margin-top: 20px;
+  .favorites-box-img {
+    width: 85px;
+    height: 52px;
+  }
+
+  .favorites-box-paragraf {
+    width: 247px;
+    height: 90px;
+    color: #1b1b1b;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.28;
   }
 
   .favorites-list {
@@ -183,42 +249,6 @@
   }
 
   /* =================================================================================================== */
-
-  /* Данил адаптив */
-
-  .section-favorites-box {
-    display: flex;
-  }
-
-  .favorites-box {
-    display: none;
-    flex-direction: column;
-    border-radius: 30px;
-    margin-top: 80px;
-  }
-
-  .favorites-box-block {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 28px;
-  }
-
-  .favorites-box-img {
-    width: 85px;
-    height: 52px;
-  }
-
-  .favorites-box-paragraf {
-    width: 247px;
-    height: 90px;
-    color: #1b1b1b;
-    text-align: center;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 1.28;
-  }
 }
 
 /* ==================================================================================================== */
@@ -233,6 +263,43 @@
     background: #e8e8e8;
     padding: 0 20px;
     margin: 0 auto;
+    height: 928px;
+  }
+
+  .favorites-day-norma {
+    width: 100%;
+    border-radius: 30px;
+    background: rgb(255, 255, 255);
+    padding: 40px 20px;
+    margin: 0 auto;
+  }
+
+  .favorites-box {
+    width: 100%;
+    border-radius: 30px;
+  }
+
+  .favorites-box-block {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 28px;
+    margin-top: 208px;
+  }
+
+  .favorites-box-img {
+    width: 115px;
+    height: 71px;
+  }
+
+  .favorites-box-paragraf {
+    width: 554px;
+    height: 72px;
+    color: #1b1b1b;
+    text-align: center;
+    font-size: 18px;
+    line-height: 1.33;
   }
 
   .favorites-box-title {
@@ -420,41 +487,6 @@
   }
 
   /* ================================================================================================================================= */
-
-  /* Данил адаптив */
-
-  .section-favorites-box {
-    display: flex;
-  }
-
-  .favorites-box {
-    display: none;
-    flex-direction: column;
-    border-radius: 30px;
-  }
-
-  .favorites-box-block {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 28px;
-    margin-top: 208px;
-  }
-
-  .favorites-box-img {
-    width: 115px;
-    height: 71px;
-  }
-
-  .favorites-box-paragraf {
-    width: 554px;
-    height: 72px;
-    color: #1b1b1b;
-    text-align: center;
-    font-size: 18px;
-    line-height: 1.33;
-  }
 }
 
 /* ====================================================================================== */
@@ -470,6 +502,7 @@
     justify-content: center;
   }
 
+  /* 
   .favorites-svg-run {
     width: 32px;
     height: 32px;
@@ -522,7 +555,7 @@
     width: 37px;
     height: 31px;
     background-color: var(--background-main);
-  }
+  } */
 
   .favorites-img {
     border-radius: 50px;
