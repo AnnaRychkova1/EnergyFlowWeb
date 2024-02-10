@@ -1,8 +1,9 @@
-
+import { BASE_URL } from "./services/mainApi.js";
 import { hide, show, showLoader, hideLoader } from "./services/visibility";
 import { refs } from './templates/refs.js';
 
-import { BASE_URL } from "./services/mainApi.js";
+// import { BASE_URL } from "./services/mainApi.js";
+// const BASE_URL = 'https://energyflow.b.goit.study/api';
 
 import { searchExerciseByFilters } from "./services/mainApi.js";
 
@@ -65,8 +66,7 @@ async function renderExerciseByFilter(evt) {
       // lightbox.refresh();
       
   } catch (error) {
-    console.error('Error fetching images:', error);
-    alert('Wrong request')
+    console.error('Error fetching request:', error);
   } finally {
       
   }
