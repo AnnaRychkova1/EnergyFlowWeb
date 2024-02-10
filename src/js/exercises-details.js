@@ -2,7 +2,7 @@
 import { hide, show, showLoader, hideLoader } from "./services/visibility";
 import { refs } from './templates/refs.js';
 
-import { BASE_URL } from "./services/visibility";
+import { BASE_URL } from "./services/mainApi.js";
 
 import { searchExerciseByFilters } from "./services/mainApi.js";
 
