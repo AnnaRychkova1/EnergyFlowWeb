@@ -18,8 +18,9 @@ async function fetchQuoteFromServer() {
 
 async function searchExerciseByFilters({ keyword, page = 1, limit }) {
   const response = await axios
-      .get(`${BASE_URL}/${ENDPOINT_FILTER}?${filterExercise}=${nameExercise}`, {
+      .get(`${BASE_URL}/${ENDPOINT_FILTER}`, {
         params: { 
+          [filterExercise]: nameExercise,
         keyword: keyword,
         limit,
         page,
