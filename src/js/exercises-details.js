@@ -22,10 +22,31 @@ const queryParams = {
 };
 
 // Create modal temporarely
-// refs.toStartBtn.addEventListener('sudmit', createModal);
+
+// refs.toStartBtn.addEventListener('click', createModal);
+
+// function createModal(evt) {
+//   const idFilter = evt.target.dataset.id;
+
+//   //request by id
+// }
+
+// refs.toStartBtn.addEventListener('click', createModal);
+
+// function createModal(evt) {
+//   const idFilter = evt.target.dataset.id;
+
+//   // request by id 
+// }
+
 // async function createModal(evt) {
+  
 //   try {
-//     const { results } = await renderModal();
+
+//     const { results } = await 
+
+//     const { results } = await cohkjjhklh
+
 //     console.log(results);
 //   } catch (error) {
 //     console.error('Error fetching images:', error);
@@ -39,6 +60,8 @@ refs.textResult.classList.add("is-hidden");
 renderExerciseByFilter();
 
 async function renderExerciseByFilter(evt) {
+
+  // searchExerciseByFilters({ filter, name });
 
   try {
     const { results, totalPages } = await searchExerciseByFilters(queryParams);

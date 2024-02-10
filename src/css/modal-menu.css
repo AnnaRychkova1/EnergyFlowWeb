@@ -22,6 +22,7 @@
     pointer-events: auto;
 }
 .modal {
+    position: relative;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -30,7 +31,7 @@
     background-color: var(--text-light-color);
     border-radius: 20px;
     height: auto;
-    padding: 20px 40px;
+    padding-left: 20px;
 }
 
 .modal-close-btn {
@@ -43,23 +44,29 @@
     background-color: transparent;
     border: none;
     color:rgba(27, 27, 27, 1);
+    margin-bottom: 2px;
 }
 .modal-close-icon {
     stroke-width: 2px;
-    width: 28px;
-    height: 28px;
+    width: 24px;
+    height: 24px;
     stroke: var(--text-main-color);
     transition: stroke 0.2s var(--anim);
 
 }
 .ex-add-btn {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+.add-btn-icon {
     border: none;
     color: var(--text-light-color);
     border-radius: 30px;
     display: flex;
     justify-content:center;
     align-items: center;
-    padding: 12px 24px;
+    padding: 12px 83px;
     background-color: var(--background-dark-grey);
     cursor: pointer;
     font-size: 14px;
@@ -67,8 +74,9 @@
     font-weight: 400;
     transition: background-color 0.25s var(--anim);
 }
-.ex-add-btn:hover,
-.ex-add-btn:focus {
+
+.add-btn-icon:hover,
+.add-btn-icon:focus {
     background-color: var(--background-btn-hover);
 }
 .add-btn-icon {
@@ -76,7 +84,7 @@
     margin-left: 8px;
     stroke: var(--text-light-color);
 }
-.exercise-gift {
+.exercise-gif {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -121,6 +129,7 @@
     font-size: 14px;
     font-weight: 400;
     line-height: 18px;
+    overflow-y:scroll;
 }
 .heart-svg {
     stroke: var(--text-light-color);
@@ -135,35 +144,28 @@
         padding: 14px;
     }
 
-    .exercise-gift {
+    .exercise-gif {
         display: flex;
         justify-content: center;
         align-items: center;
-        padding-top: 26px;
-        margin-bottom: 20px;
+        padding-top: 40px;
+        margin-bottom: 24px;
     }
 
     .exercise-description {
         margin-bottom: 40px;
     }
 
-    .ex-buttons-container {
+    .ex-add-btn {
         display: flex;
         flex-direction: column;
         gap: 9px;
     }
 
-    .ex-add-favorities {
+    .add-btn-icon {
         padding: 12px 83px 12px 83px;
     }
 
-    .ex-rating-button {
-        padding-left: 107px;
-        padding-right: 107px;
-        padding-top: 12px;
-        padding-bottom: 12px;
-        margin-bottom: 26px;
-    }
 }
 
 @media screen and (min-width: 768px) {
@@ -189,7 +191,7 @@
         flex: 1;
     }
 
-    .ex-buttons-container {
+    .ex-add-btn {
         gap: 7px;
         display: flex;
         justify-content: flex-start;
@@ -197,9 +199,9 @@
 
     .exrcises-description {
         margin-bottom: 32px;
-        height: 108px;
+        height: 71px;
     }
-    .ex-add-btn {
+    .add-btn-icon{
         padding: 12px 24px;
         font-size: 14px;
         line-height: 24px;
@@ -220,11 +222,11 @@
         width: 732px;
     }
 
-    .exercise-gift {
+    .exercise-gif {
         margin-right: 40px;
     }
 
-    .ex-buttons-container {
+    .ex-add-btn {
         justify-content: flex-start;
     }
 }
