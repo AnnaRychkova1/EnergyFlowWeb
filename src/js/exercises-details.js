@@ -170,6 +170,3 @@ function renderItemsMarkup(results, resultContainer ) {
 
   resultContainer.insertAdjacentHTML('beforeend', markup);
 
-}
-
-<
