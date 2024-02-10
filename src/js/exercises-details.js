@@ -40,7 +40,7 @@ refs.exercisesHeader.textContent = `/${nameExercise}`;
 refs.textResult.classList.add("is-hidden");
 renderExerciseByFilter();
 
-async function renderExerciseByFilter(evt) {
+async function renderExerciseByFilter() {
 
   try {
     const { results, totalPages } = await searchExerciseByFilters(queryParams);
@@ -66,7 +66,7 @@ async function renderExerciseByFilter(evt) {
       
   } catch (error) {
     console.error('Error fetching images:', error);
-    alert('Wrong request')
+    
   } finally {
       
   }
