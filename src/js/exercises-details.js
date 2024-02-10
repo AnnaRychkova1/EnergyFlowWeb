@@ -1,9 +1,10 @@
 import axios from 'axios';
 import { hide, show, showLoader, hideLoader } from "./services/visibility";
 import { refs } from './templates/refs.js';
+import { BASE_URL } from "./services/visibility";
 
-const BASE_URL = 'https://energyflow.b.goit.study/api';
-const END_POINT = 'exercises';
+// const BASE_URL = 'https://energyflow.b.goit.study/api';
+// const END_POINT = 'exercises';
 
 // https://energyflow.b.goit.study/api/exercises?bodypart=waist&muscles=abs&equipment=assisted&keyword=side&page=1&limit=10
 
@@ -18,7 +19,6 @@ const queryParams = {
   page: 1,
   limit: 9,
 };
-
 
 // Create modal temporarely
 // refs.toStartBtn.addEventListener('sudmit', createModal);
@@ -166,16 +166,19 @@ function renderItemsMarkup(results, resultContainer ) {
     .join('');
 
   resultContainer.insertAdjacentHTML('beforeend', markup);
+
 }
 
-async function searchExerciseByFilters({ page = 1, limit }) {
-  const response = await axios
-      .get(`${BASE_URL}/${END_POINT}?${filterExercise}=${nameExercise}`, {
-        params: { 
-        keyword: queryParams.keyword,
-        limit,
-        page,
-          },
-      })
-  return response.data;
-}
+export { filterExercise, nameExercise };
+
+// async function searchExerciseByFilters({ page = 1, limit }) {
+//   const response = await axios
+//       .get(`${BASE_URL}/${END_POINT}?${filterExercise}=${nameExercise}`, {
+//         params: { 
+//         keyword: queryParams.keyword,
+//         limit,
+//         page,
+//           },
+//       })
+//   return response.data;
+// }
