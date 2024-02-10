@@ -1,0 +1,284 @@
+<<<<<<< Updated upstream
+.container{
+    
+}
+.backdrop {
+   background-color: rgba(27, 27, 27, 0.6);
+   position: fixed;
+   inset: 0;
+   width: 100px;
+   height: 100px;
+   opacity: 0;
+   visibility: hidden;
+    pointer-events: none;
+    transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    visibility 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.backdrop.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+.modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    padding: 40px;
+    background-color: rgba(246, 246, 246, 1);
+    border-radius: 20px;
+    height: auto;
+    width: 335px;
+    height: 774px;
+   
+}
+.modal-close-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background-color: transparent;
+    color:rgba(27, 27, 27, 1);
+}
+.modal-close-icon {
+    stroke-width: 2px;
+    width: 28px;
+    height: 28px;
+    stroke: var(--text-main-color)
+}
+.ex-add-btn {
+    width: 194px;
+    height: 48px;
+    border: none;
+    color: var(--text-main-color);
+    border-radius: 30px;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    padding: 12px 24px;
+    background-color: var(--background-dark-grey);
+    cursor: pointer;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    transition: background-color 0.25s var(--anim);
+}
+.ex-add-btn:hover,
+.ex-add-btn:focus {
+    background-color: var(--background-btn-hover);
+}
+.add-btn-icon {
+    fill: transparent;
+    margin-left: 8px;
+    stroke: var(--text-light-color);
+}
+.exercise-gift {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 40px;
+    margin-bottom: 134px;
+}                          
+.gif-ex {
+    border-radius: 12px;
+}
+.exercise-name {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 133%;
+    color:var(--text-main-color);
+    margin-bottom: 8px;
+}
+.ex-stars-list {
+    display: flex;
+    gap: 2px;
+}
+.ex-information {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 40px;
+}
+.ex-value {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 150%;
+    color: rgba(27, 27, 27, 0.4);
+}
+
+.ex-label {
+    color: var(--text-main-color);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 18px;
+    display: flex;
+}
+.ex-description {
+    color: rgba(27, 27, 27, 0.6);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 18px;
+}
+=======
+.exercises-modal-window {
+    width: 335px;
+    position: absolute;
+    color: var(--modal-backdrop);
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    border-radius: 20px;
+    background-color: var(--white-dirty);
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.exercise-container {
+    padding: 40px;
+    position: relative;
+    overflow-y: auto;
+}
+
+.exercise-close-btn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border: none;
+    border-radius: 50%;
+    padding: 0;
+    background-color: transparent;
+}
+
+.exercise-close-icon {
+    stroke: var(--black);
+    transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+.exercise-image-wrapper {
+    border-radius: 12px;
+    background-color: var(--stars);
+    background-blend-mode: overlay;
+}
+
+.exercise-image-modal {
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+.exercise-name-container {
+    margin-bottom: 20px;
+}
+
+.exercise-name {
+    color: var(--black);
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 20px;
+    /* 100% */
+    text-transform: capitalize;
+    margin-bottom: 10px;
+}
+
+.exercise-rating {
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.exercise-rating::after {
+    content: '';
+    background-color: var(--stars);
+    height: 1px;
+    display: block;
+}
+
+.exercise-params-container {
+    margin-bottom: 10px;
+}
+
+.exercise-params-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin-bottom: 16px;
+    gap: 20px;
+}
+
+.exercise-params-card {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.exercise-param-name {
+    color: rgba(27, 27, 27, 0.4);
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.exercise-param-value {
+    color: #1b1b1b;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.exercise-descr {
+    margin-bottom: 40px;
+    font-size: 14px;
+    line-height: 18px;
+    
+}
+
+.exercise-buttons {
+    gap: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.exercise-favorite-btn {
+    display: flex;
+    padding: 12px 24px;
+    color: var(--white-dirty);
+    font-family: inherit;
+    font-size: 16px;
+    line-height: 1.5;
+    border-radius: 30px;
+    background-color: var(--grey);
+    border: 1px var(--grey);
+    justify-content: center;
+    align-items: center;
+}
+
+.exercise-favorite-btn:hover,
+.exercise-favorite-btn:focus {
+    background: var(--grey-hover);
+}
+
+.exercise-fav-icon {
+    width: 16px;
+    height: 16px;
+    margin-left: 8px;
+}
+
+.exercise-raiting-btn {
+    padding: 12px 24px;
+    color: var(--black);
+    font-family: inherit;
+    font-size: 16px;
+    line-height: 1.5;
+    border-radius: 30px;
+    border: 1px solid black;
+}
+
+.exercise-raiting-btn:hover,
+.exercise-raiting-btn:focus {
+    border: 1px solid var(--grey);
+}
+>>>>>>> Stashed changes
