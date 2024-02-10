@@ -28,5 +28,15 @@ async function searchExerciseByFilters({ keyword, page = 1, limit }) {
   return response.data;
 }
 
-export { fetchQuoteFromServer, searchExerciseByFilters };
+
+async function searchExerciseByID(id) {
+  try {
+    const  { data }  = await axios.get(`${BASE_URL}/${ENDPOINT_FILTER}/${id}`);
+    return data;
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+export { fetchQuoteFromServer, searchExerciseByFilters, searchExerciseByID };
 

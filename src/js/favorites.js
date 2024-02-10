@@ -1,16 +1,19 @@
 import axios from "axios";
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
+import { searchExerciseByID } from "./services/mainApi.js";
 import { hide, show } from "./services/visibility";
+import { refs } from "./templates/refs.js";
 
-const favoritesGallery = document.querySelector(".favorites-gallery");
-const favoritesMessage = document.querySelector(".favorites-box-block");
+// const refs = {
+//   favoritesGallery: document.querySelector(".favorites-gallery"),
+//   favoritesMessage: document.querySelector(".favorites-box-block"),
+//   onRemoveBtn: document.querySelector(".favorites-remove-btn"),
+//   onStartBtn: document.querySelector(".favorites-start-btn"),
+//   addToFavoriteBtn: document.querySelector('.ex-add-btn'),
+// }
 
 
-const onRemoveBtn = document.querySelector(".favorites-remove-btn");
-const onStartBtn = document.querySelector(".favorites-start-btn");
-
-const addToFavoriteBtn = document.querySelector('.ex-add-btn');
 addToFavoriteBtn.addEventListener('click', addToFavoritesByClick);
 
 async function addToFavoritesOnClick(event) {
