@@ -80,14 +80,14 @@
 /* ! Pagination */
 
 
+
 /* Чорна цифра 1 в чорному кружечку */
-.tui-pagination-btn {
+.tui-pagination-btn:nth-child(1) {
     padding: 8px 12px;
     margin: 0 5px;
     border-radius: 50%;
-    /* Заокруглений круг */
-    background-color: #000;
-    /* Чорний колір */
+    border: 2px solid #000;
+    /* Чорний фон */
     color: #fff;
     /* Білий колір тексту */
 }
@@ -95,7 +95,10 @@
 /* Сіра цифра 2 та 3 без кружечка */
 .tui-pagination-btn:nth-child(2),
 .tui-pagination-btn:nth-child(3) {
-    background-color: transparent;
+    padding: 8px 12px;
+    margin: 0 5px;
+    border: none;
+    
     /* Прозорий фон */
     color: #808080;
     /* Сірий колір тексту */

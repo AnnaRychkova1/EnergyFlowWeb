@@ -6,15 +6,15 @@ import { BASE_URL } from "./services/mainApi.js";
 
 import { searchExerciseByFilters } from "./services/mainApi.js";
 
-
-
-
 // https://energyflow.b.goit.study/api/exercises?bodypart=waist&muscles=abs&equipment=assisted&keyword=side&page=1&limit=10
 
 // import { filterExercise, nameExercise} from './exercises';
 
 const filterExercise = 'bodypart';
 const nameExercise = 'waist';
+
+showLoader(refs.loaderModal);
+hideLoader()
 
 export { filterExercise, nameExercise };
 
@@ -27,6 +27,8 @@ const queryParams = {
 
 // Create modal temporarely
 // refs.toStartBtn.addEventListener('sudmit', createModal);
+
+
 // async function createModal(evt) {
 //   try {
 //     const { results } = await renderModal();
@@ -61,19 +63,6 @@ const instance = new Pagination(pagi, {
  });
 
 instance.getCurrentPage();
-
-// const options = {
-//     itemsPerPage: 10,
-//     visiblePages: 5,
-//     centerAlign: true
-// };
-
-// const pagination = new Pagination('pagination', options);
-//       pagination.reset();
-// pagination.on('beforeMove', function(eventData) {
-//     const currentPage = eventData.page;
-    
-// });
 
 //Finish pagination
 
