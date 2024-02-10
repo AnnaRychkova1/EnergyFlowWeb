@@ -531,6 +531,10 @@
     background-color: var(--background-light-grey);
   }
 
+  .favorites-info-img {
+    border-radius: 50px;
+  }
+
   .favorites-day-norma {
     width: 352px;
     height: 302px;
