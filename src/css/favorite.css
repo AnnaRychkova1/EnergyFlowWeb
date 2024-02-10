@@ -11,7 +11,7 @@
   }
 }
 
-@media (max-width: 767px) {
+@media screen and (min-width: 375px) and (max-width: 767.98px) {
   .favorites-pagination-block {
     display: none !important;
   }
@@ -35,10 +35,14 @@
   }
 
   .favorites-day-block {
+    width: 135px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    padding-top: 96px;
     padding-bottom: 96px;
+    margin: auto;
+    justify-content: flex-start;
+    align-items: flex-start;
   }
 
   .favorites-svg-day {
@@ -255,28 +259,38 @@
 
 /* Tablet */
 
-@media (min-width: 768px) {
+@media screen and (min-width: 768px) and (max-width: 1287.98px) {
   .favorites-container {
     width: 736px;
-    height: 928px;
     border-radius: 30px;
     background: #e8e8e8;
     padding: 0 20px;
     margin: 0 auto;
-    height: 928px;
+    height: 100%;
+  }
+
+  .favorites-container-box {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .favorites-day-norma {
-    width: 100%;
     border-radius: 30px;
     background: rgb(255, 255, 255);
-    padding: 40px 20px;
+    padding-right: 110px;
+    padding-left: 110px;
     margin: 0 auto;
+    display: flex;
+    align-items: center;
   }
 
   .favorites-box {
-    width: 100%;
     border-radius: 30px;
+    height: 928px;
   }
 
   .favorites-box-block {
@@ -489,11 +503,11 @@
   /* ================================================================================================================================= */
 }
 
-/* ====================================================================================== */
+/* =================================================================================================================================== */
 
 /* Desctop */
 
-@media (min-width: 768px) and (min-resolution: 192dpi) {
+@media screen and (min-width: 1287.98px) and (max-width: 1440px) {
   .favorites-container {
     margin: auto;
     margin-top: 64px;
@@ -657,6 +671,7 @@
     margin-left: 204px;
   }
 }
+
 /* ============================================================================================ */
 
 /* <!----------- PAGINATION FOR MOBILE------------------> */
