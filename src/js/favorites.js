@@ -3,20 +3,18 @@ import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 import { getQuoteOffTheDay } from "./quotes";
 
-getQuoteOffTheDay();
-
-async function getFavorites(resFavorites) { 
-    const BASE_URL_FAVORITES = 'https://energyflow.b.goit.study/api/';
-    const ENDPOINT_FAVORITES = 'exercises';
-    const resFavorites = await axios.get(`${BASE_URL_FAVORITES}/${ENDPOINT_FAVORITES}`, {
-        params: {
-        name: [],
-            page: 1,
-            perPage: 9,
-      },
-    });
-    return resFavorites.data;
-}
+// async function getFavorites(resFavorites) { 
+//     const BASE_URL_FAVORITES = 'https://energyflow.b.goit.study/api';
+//     const ENDPOINT_FAVORITES = 'exercises';
+//     const resFavorites = await axios.get(`${BASE_URL_FAVORITES}/${ENDPOINT_FAVORITES}`, {
+//         params: {
+//         name: [],
+//             page: 1,
+//             perPage: 9,
+//       },
+//     });
+//     return resFavorites.data;
+// }
 
 const favoritesGallery = document.querySelector(".favorites-gallery");
 const favoritesMessage = document.querySelector(".favorites-box-block");
@@ -40,7 +38,7 @@ onRemoveBtn.addEventListener("click", removeItemFromFavorites);
 function addToFavorites(event) {
   event.preventDefault();
   
-  getFavorites(); 
+  // getFavorites(); 
 
   queryParams.name = event.currentTarget.elements.name.value();
   localStorage.setItem(LS_KEY_FAVORITES, JSON.stringify(queryParams.name));
@@ -52,9 +50,9 @@ async function showFavorites(event) {
   queryParams.page = 1;
 
   const LS_KEY_FAVORITES = "Array of Favorites";
-  const queryParams.name = event.currentTarget.elements.name.value();
+  const names = event.currentTarget.elements.name.value();
     
-  if (!queryParams.name) {
+  if (!names) {
     showMessage();
     return;
   }

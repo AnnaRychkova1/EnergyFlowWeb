@@ -1,17 +1,18 @@
-import axios from 'axios';
-import SimpleLightbox from 'simplelightbox';
-import 'simplelightbox/dist/simple-lightbox.min.css';
 
-// const BASE_URL = 'https://energyflow.b.goit.study/api';
-const END_POINT = 'exercises';
+//import { BASE_URL } from "./services/mainApi.js";
+const BASE_URL = 'https://energyflow.b.goit.study/api';
+import { hide, show, showLoader, hideLoader } from "./services/visibility";
+import { refs } from './templates/refs.js';
+import { searchExerciseByFilters } from "./services/mainApi.js";
 
 // https://energyflow.b.goit.study/api/exercises?bodypart=waist&muscles=abs&equipment=assisted&keyword=side&page=1&limit=10
 
 // import { filterExercise, nameExercise} from './exercises';
 
-
 const filterExercise = 'bodypart';
 const nameExercise = 'waist';
+
+
 
 const queryParams = {
   filter: nameExercise,
@@ -20,13 +21,17 @@ const queryParams = {
   limit: 9,
 };
 
-const refs = {
-  exercisesHeader: document.querySelector('.exersises-header'),
-  resultContainer: document.querySelector('.filtered-cards'),
-  searchForm: document.querySelector('.form'),
-  searchBtn: document.querySelector('.search-btn'),
-  textResult: document.querySelector('.exercise-text-no-found')
-}
+// Create modal temporarely
+// refs.toStartBtn.addEventListener('sudmit', createModal);
+// async function createModal(evt) {
+//   try {
+//     const { results } = await renderModal();
+//     console.log(results);
+//   } catch (error) {
+//     console.error('Error fetching images:', error);
+//     alert('Wrong request')
+//   }
+// }
 
 
 refs.exercisesHeader.textContent = `/${nameExercise}`;
@@ -58,12 +63,13 @@ async function renderExerciseByFilter(evt) {
       // lightbox.refresh();
       
   } catch (error) {
-    console.error('Error fetching images:', error);
-    alert('Wrong request')
+    console.error('Error fetching request:', error);
   } finally {
       
   }
 }
+
+
 
 
 
@@ -125,7 +131,7 @@ console.log(totalPages);
   }
 }
 
-function renderItemsMarkup(results, resultContainer ) {
+function renderItemsMarkup(results, resultContainer) {
   const markup = results
     .map(
       ({ _id, rating, name, burnedCalories, time, bodyPart, target }) => `<li class="filtered-card-item">
@@ -137,7 +143,7 @@ function renderItemsMarkup(results, resultContainer ) {
               <img class="filteered-star" href="#" alt="star" height="35"></img>
             </div>
           </div>
-          <button data-id=${_id} class="to-favorites-start">Start</button><a/>
+          <button type="submit" data-id=${_id} class="to-favorites-start">Start</button><a/>
         </div>
         <div class="card-box-title">
           <img class="filteered-athlete" href="#" alt="athlete" height="35"></img>
@@ -162,14 +168,6 @@ function renderItemsMarkup(results, resultContainer ) {
   resultContainer.insertAdjacentHTML('beforeend', markup);
 }
 
-async function searchExerciseByFilters({ page = 1, limit }) {
-  const response = await axios
-      .get(`https://energyflow.b.goit.study/api/${END_POINT}?${filterExercise}=${nameExercise}`, {
-        params: { 
-        keyword: queryParams.keyword,
-        limit,
-        page,
-          },
-      })
-  return response.data;
-}
+
+
+export { filterExercise, nameExercise };
