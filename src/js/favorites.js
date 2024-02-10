@@ -1,23 +1,16 @@
-function createMarkupFavorites(hits) { 
+function createMarkupFavorites(hits) {
   return hits
     .map(
-        ({
-            _id,
-        bodyPart,
-        name,
-        target,
-        burnedCalories,
-        time,
-        }) =>
-          `
+      ({ _id, bodyPart, name, target, burnedCalories, time }) =>
+        `
           <ul class=""favorites-gallery">
             < class="favorites-gallery-item">
                <h4 class="workout">WORKOUT</h4>
                <a class="favorites-remove" href="#"> <img class="favorites-icon-bin" src="#" alt="icon-bin"/></a>
-                <a class="favorites-start" href="#">Start 
+                <a class="favorites-start" href="#">Start
                     <span>
-                    <img class="favorites-icon-arrow" src="#" alt="icon-arrow"/> 
-                    </span>  
+                    <img class="favorites-icon-arrow" src="#" alt="icon-arrow"/>
+                    </span>
                 </a>
                <img class="favorites-icon-runner" src="#" alt="icon-runner"/>
             <h3>${name}</h3>
@@ -25,17 +18,19 @@ function createMarkupFavorites(hits) {
               <li class="favorites-gallery-info-item">Burned calories: <span class="descr-span">${burnedCalories} / ${time} min</span></li>
               <li class="favorites-gallery-info-item">Body part: <span class="descr-span">${bodyPart}</span></li>
               <li class="favorites-gallery-info-item">Target: <span class="descr-span">${target}</span></li>
-            </ul> 
-          <a class="favorites-gallery-link" href="#">Start 
+            </ul>
+          <a class="favorites-gallery-link" href="#">Start
             <span>
-              <img class="favorites-icon-arrow" src="#" alt="icon-arrow"/> 
-            </span> 
+              <img class="favorites-icon-arrow" src="#" alt="icon-arrow"/>
+            </span>
           </a>`
-      )
-        .join('');
-    
+    )
+    .join('');
 }
-  
-
-  
-  
+import { mobileMenu, showCurrentPageFavorites } from './header';
+const pageLinks = document.querySelector('.favorites-page');
+const headerEl = document.querySelector('.header-section');
+headerEl.classList.add('header-section-favorites');
+pageLinks.classList.add('active-page');
+showCurrentPageFavorites();
+mobileMenu();
