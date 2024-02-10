@@ -134,7 +134,7 @@ console.log(totalPages);
   }
 }
 
-function renderItemsMarkup(results, resultContainer ) {
+function renderItemsMarkup(results, resultContainer) {
   const markup = results
     .map(
       ({ _id, rating, name, burnedCalories, time, bodyPart, target }) => `<li class="filtered-card-item">
@@ -169,4 +169,4 @@ function renderItemsMarkup(results, resultContainer ) {
     .join('');
 
   resultContainer.insertAdjacentHTML('beforeend', markup);
-
+}
