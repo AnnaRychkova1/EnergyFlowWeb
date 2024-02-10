@@ -1,10 +1,11 @@
-import axios from 'axios';
+
 import { hide, show, showLoader, hideLoader } from "./services/visibility";
 import { refs } from './templates/refs.js';
+
 import { BASE_URL } from "./services/visibility";
 
-// const BASE_URL = 'https://energyflow.b.goit.study/api';
-// const END_POINT = 'exercises';
+import { searchExerciseByFilters } from "./services/mainApi.js";
+
 
 // https://energyflow.b.goit.study/api/exercises?bodypart=waist&muscles=abs&equipment=assisted&keyword=side&page=1&limit=10
 
@@ -12,6 +13,8 @@ import { BASE_URL } from "./services/visibility";
 
 const filterExercise = 'bodypart';
 const nameExercise = 'waist';
+
+export { filterExercise, nameExercise };
 
 const queryParams = {
   filter: nameExercise,
@@ -171,14 +174,4 @@ function renderItemsMarkup(results, resultContainer ) {
 
 export { filterExercise, nameExercise };
 
-// async function searchExerciseByFilters({ page = 1, limit }) {
-//   const response = await axios
-//       .get(`${BASE_URL}/${END_POINT}?${filterExercise}=${nameExercise}`, {
-//         params: { 
-//         keyword: queryParams.keyword,
-//         limit,
-//         page,
-//           },
-//       })
-//   return response.data;
-// }
+
