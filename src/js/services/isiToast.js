@@ -5,7 +5,7 @@ function apiIsiToastError() {
      iziToast.error({
       title: '🥺 Ooops...',
       message:
-        'An error occurred while fetching images. Please try again later.',
+        'An error occurred while fetching results. Please try again later.',
       position: 'center',
     });
 }
@@ -19,4 +19,21 @@ function endOfSearchIsiToast() {
       });
 }
 
-export default { apiIsiToastError, endOfSearchIsiToast };
+function noQuery() {
+    iziToast.error({
+      title: '🥺 Ooops...',
+      message: 'Please, input query!',
+      position: 'center',
+    });
+}
+
+function noResults() {
+     iziToast.error({
+        title: '🥺 Ooops...',
+        message:
+          'Sorry, there are no results matching your search query. Please try again!',
+        position: 'center',
+      });
+}
+
+export default { apiIsiToastError, endOfSearchIsiToast, noQuery, noResults };

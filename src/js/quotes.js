@@ -1,4 +1,4 @@
-import { fetchQuoteFromServer } from './services/exerciseApi';
+import { fetchQuoteFromServer } from './services/mainApi';
 import { saveQuoteToLocalStorage } from './templates/localStorage';
 
 function displayQuoteOnPage(quoteData) {
