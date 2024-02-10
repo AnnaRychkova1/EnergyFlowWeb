@@ -1,7 +1,4 @@
 <<<<<<< Updated upstream
-.container{
-    
-}
 .backdrop {
    background-color: rgba(27, 27, 27, 0.6);
    position: fixed;
@@ -120,7 +117,7 @@
     font-weight: 400;
     line-height: 18px;
 }
-=======
+/* =======
 .exercises-modal-window {
     width: 335px;
     position: absolute;
@@ -281,4 +278,4 @@
 .exercise-raiting-btn:focus {
     border: 1px solid var(--grey);
 }
->>>>>>> Stashed changes
+>>>>>>> Stashed changes */
