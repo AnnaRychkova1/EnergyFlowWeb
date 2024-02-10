@@ -8,7 +8,7 @@ const ENDPOINT = 'filters';
 
 const exercisesBtnEl = document.querySelector('.exercises-btn-list');
 const exercisesGalleryEl = document.querySelector('.exercises-gallery');
-const paginationEl = document.querySelector('.pagination');
+const paginationEl = document.querySelector('.exercises-pagination');
 
 let filterDefault = 'Muscles';
 let currentPage = 1;
@@ -65,10 +65,6 @@ async function filterBtnExercises(event) {
   }
 }
 
-// background: linear-gradient(0deg, rgba(16, 16, 16, 0.70) 0%, rgba(16, 16, 16, 0.70) 100%), url(${imgUrl});
-//          background-size: cover;
-// background-repeat: no-repeat;"
-
 function createExercisesByFilterMarkup(results) {
   const markup = results
     .map(
@@ -87,7 +83,7 @@ function createExercisesByFilterMarkup(results) {
 function pagesPagination(page, totalPages) {
   let disabledMoveButton = '';
   for (let i = 1; i <= totalPages; i += 1) {
-    disabledMoveButton += `<button class="pagination-btn" type="button">${i}</button>`;
+    disabledMoveButton += `<button class="button-pagination" type="button">${i}</button>`;
   }
   return disabledMoveButton;
 }

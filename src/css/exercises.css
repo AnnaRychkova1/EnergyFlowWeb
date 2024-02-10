@@ -1,146 +1,197 @@
-@media only screen and (min-width: 375px) {
-  .first-exercises-section {
-    padding: 10px 20px;
-  }
-  .container {
-    min-width: 280px;
-    max-width: 375px;
-    margin-left: auto;
-    margin-right: auto;
-    border-radius: 30px;
-    background-color: var(--background-light-grey);
-  }
-
-  .exercises-container {
-    padding: 40px 20px;
-  }
-
-  .exercises-title {
-    font-weight: 400;
-    font-size: 32px;
-    line-height: 1;
-    letter-spacing: -0.02em;
-    color: var(--text-main-color);
-    margin-bottom: 20px;
-  }
-
-  .exercises-btn-list {
-    display: flex;
-    justify-content: center;
-    gap: 6px;
-    margin-bottom: 40px;
-  }
-
-  .exercises-btn {
-    font-family: 'DM Sans', sans-serif;
-    border-radius: 30px;
-    height: 32px;
-    padding: 7px 14px;
-    border: none;
-    background-color: var(--background-main);
-    color: var(--text-main-color);
-    font-weight: 400;
-    font-size: 13px;
-    line-height: 1.29;
-    transition: all var(----anim);
-  }
-
-  .exercises-btn:hover,
-  .exercises-btn:focus {
-    background-color: var(--background-dark-grey);
-    color: var(--background-main);
-  }
-
-  .exercises-gallery {
-    margin-bottom: 20px;
-  }
-
-  .exercises-gallery-item {
-    position: relative;
-    margin-bottom: 20px;
-    cursor: pointer;
-    background-color: var(--text-main-color);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 232px;
-    /* border-radius: 12px; */
-    border: 1px solid var(--background-btn-hover);
-    transition: transform var(--anim);
-  }
-
-  .exercises-gallery-item:hover {
-    transform: scale(0.95);
-  }
-
-  /* .exercises-gallery-item:not(:last-child) {
-  margin-bottom: 20px;
-} */
-
-  .exercises-gallery-img {
-    border-radius: 12px;
-    /* border: 1px solid var(--background-btn-hover); */
-    /* background-size: cover;
-  background-repeat: no-repeat; */
-  }
-
-  .exercises-gallery-text {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    gap: 2px;
-    width: 100%;
-    height: 100%;
-    border-radius: 12px;
-    background-color: linear-gradient(
-      0deg,
-      rgba(16, 16, 16, 0.7) 0%,
-      rgba(16, 16, 16, 0.7) 100%
-    );
-  }
-
-  .exercises-gallery-title {
-    text-transform: capitalize;
-    color: var(--text-light-color);
-    text-align: center;
-    font-size: 20px;
-    line-height: 1;
-    margin-bottom: 2px;
-    font-weight: 400;
-  }
-
-  .exercises-gallery-filter {
-    text-align: center;
-    color: var(--background-btn-hover);
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 1.5;
-  }
+.first-exercises-section {
+  padding: 10px 0;
 }
 
-@media (min-width: 375px) and (max-width: 767px) {
-  .exercises-gallery-item {
-    width: 295px;
+.exercises-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding: 40px 20px;
+  min-height: 760px;
+  max-width: 375px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.exercises-title {
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--text-main-color);
+  margin-bottom: 20px;
+}
+
+/* === Exercises-btn === */
+
+.exercises-btn-container {
+  margin-bottom: 40px;
+}
+
+.exercises-btn-list {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+}
+
+.exercises-btn-list button {
+  font-family: 'DM Sans', sans-serif;
+  border-radius: 30px;
+  height: 32px;
+  padding: 7px 14px;
+  border: none;
+  background-color: var(--background-main);
+  color: var(--text-main-color);
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 1.29;
+  transition: all var(----anim);
+}
+
+.exercises-btn-list button.active {
+  color: var(--text-light-color);
+  background-color: var(--text-color-accent);
+}
+
+.exercises-btn:hover,
+.exercises-btn:focus {
+  background-color: var(--background-dark-grey);
+  color: var(--background-main);
+}
+
+/* === Exercises-gallery === */
+
+.exercises-gallery-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.exercises-gallery-item {
+  position: relative;
+  cursor: pointer;
+  background-color: var(--text-main-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 232px;
+  border-radius: 12px;
+  border: 1px solid var(--background-btn-hover);
+  transition: transform var(--anim);
+  margin-bottom: 20px;
+}
+
+.exercises-gallery-item:hover {
+  transform: scale(0.95);
+}
+
+.exercises-gallery-img {
+  width: 295px;
+  height: 232px;
+  border-radius: 12px;
+}
+
+.exercises-gallery-text {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  gap: 2px;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+      0deg,
+      rgba(16, 16, 16, 0.7),
+      rgba(16, 16, 16, 0.7)
+    ),
+    url(close-up-hands-training-with-kettlebell.jpg);
+  border-radius: 12px;
+}
+
+.exercises-gallery-title {
+  text-transform: capitalize;
+  color: var(--text-light-color);
+  text-align: center;
+  font-size: 20px;
+  line-height: 1;
+  margin-bottom: 2px;
+  font-weight: 400;
+}
+
+.exercises-gallery-filter {
+  text-align: center;
+  color: var(--background-btn-hover);
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+/* === Exercises-pagination ==== */
+
+/* .exercises-pagination-container {
+  margin-bottom: 40px;
+} */
+
+.exercises-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+}
+
+.button-pagination {
+  width: 31px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 18px;
+  padding: 0px 12px;
+  color: rgba(27, 27, 27, 0.4);
+  border: none;
+  background-color: var(--background-light-grey);
+}
+
+.button-pagination button {
+  border: none;
+  background-color: var(--background-light-grey);
+}
+
+.button-pagination button.active {
+  background-color: var(--background-light-grey);
+  border: 1px solid var(--text-main-color);
+  color: var(--text-main-color);
+}
+
+.button-pagination:hover,
+.button-pagination:focus {
+  background-color: var(--background-light-grey);
+  border: 1px solid var(--text-main-color);
+  color: var(--text-main-color);
+}
+
+/*  ==== Media ====  */
+
+@media only screen and (min-width: 375px) {
+  .exercises-btn-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 
 @media only screen and (min-width: 768px) {
-  .container {
-    max-width: 768px;
-    border-radius: 50px;
-  }
-
   .first-exercises-section {
-    padding: 8px 16px;
+    padding: 8px auto;
   }
 
   .exercises-container {
+    max-width: 768px;
     padding: 64px 48px;
   }
 
@@ -150,19 +201,25 @@
     margin-bottom: 32px;
   }
 
-  .exercises-btn-list {
+  .exercises-btn-container {
+    margin-bottom: 32px;
     justify-content: flex-start;
   }
 
-  .exercises-btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 16px;
+  .exercises-btn-list {
+    gap: 8px;
+  }
+
+  .exercises-btn-list button {
+    height: 44px;
+    padding: 10px 20px;
+    font-size: 15px;
     line-height: 1.5;
   }
 
   .exercises-gallery {
+    /* align-items: center;
+    justify-content: center; */
     margin-bottom: 32px;
     display: flex;
     flex-wrap: wrap;
@@ -171,46 +228,7 @@
 
   .exercises-gallery-item {
     flex-basis: calc((100% - 14px) / 2);
-  }
-
-  .exercises-gallery-img {
-    border-radius: 12px;
-    /* border: 1px solid var(--background-btn-hover); */
-    /* background-size: cover;
-  background-repeat: no-repeat; */
-  }
-
-  .exercises-gallery-text {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    gap: 2px;
-    width: 100%;
-    height: 100%;
-    border-radius: 12px;
-    background-color: linear-gradient(
-      0deg,
-      rgba(16, 16, 16, 0.7) 0%,
-      rgba(16, 16, 16, 0.7) 100%
-    );
-  }
-
-  .exercises-gallery-title {
-    font-size: 24px;
-  }
-
-  .exercises-gallery-filter {
-    text-align: center;
-    color: var(--background-btn-hover);
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 1.5;
+    margin-bottom: 0;
   }
 }
 
