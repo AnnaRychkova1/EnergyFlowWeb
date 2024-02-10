@@ -54,3 +54,49 @@
 .filtered-descr-value {}
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ! Pagination */
+
+
+/* Чорна цифра 1 в чорному кружечку */
+.tui-pagination-btn {
+    padding: 8px 12px;
+    margin: 0 5px;
+    border-radius: 50%;
+    /* Заокруглений круг */
+    background-color: #000;
+    /* Чорний колір */
+    color: #fff;
+    /* Білий колір тексту */
+}
+
+/* Сіра цифра 2 та 3 без кружечка */
+.tui-pagination-btn:nth-child(2),
+.tui-pagination-btn:nth-child(3) {
+    background-color: transparent;
+    /* Прозорий фон */
+    color: #808080;
+    /* Сірий колір тексту */
+}

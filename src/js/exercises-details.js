@@ -7,6 +7,8 @@ import { BASE_URL } from "./services/mainApi.js";
 import { searchExerciseByFilters } from "./services/mainApi.js";
 
 
+
+
 // https://energyflow.b.goit.study/api/exercises?bodypart=waist&muscles=abs&equipment=assisted&keyword=side&page=1&limit=10
 
 // import { filterExercise, nameExercise} from './exercises';
@@ -35,6 +37,46 @@ const queryParams = {
 //   }
 // }
 
+//! Pagination
+import Pagination from 'tui-pagination'; 
+
+const pagi = document.getElementById('tui-pagination-container');
+const instance = new Pagination(pagi, { 
+  totalItems: 19, // Загальна кількість елементів, які будуть розділені по сторінках
+  itemsPerPage: 9, // Кількість елементів на одній сторінці
+  visiblePages: 6, // Кількість видимих сторінок в пагінації
+  page: 1, // Початкова сторінка
+  centerAlign: true, // Вирівнювання пагінації по центру
+  template: {
+    // Налаштування шаблону кнопок пагінації
+    page: '<a class="tui-pagination-btn">{{page}}</a>',
+    currentPage: '<strong class="tui-pagination-btn tui-pagination-active">{{page}}</strong>',
+    moveButton:
+      '<a class="tui-pagination-btn tui-pagination-control"></a>',
+    disabledMoveButton:
+      '<a class="tui-pagination-btn tui-pagination-control disabled"></a>',
+    moreButton:
+      '<a class="tui-pagination-btn tui-pagination-ellipsis" aria-label="More"></a>'
+  }
+ });
+
+instance.getCurrentPage();
+
+// const options = {
+//     itemsPerPage: 10,
+//     visiblePages: 5,
+//     centerAlign: true
+// };
+
+// const pagination = new Pagination('pagination', options);
+//       pagination.reset();
+// pagination.on('beforeMove', function(eventData) {
+//     const currentPage = eventData.page;
+    
+// });
+
+//Finish pagination
+
 
 refs.exercisesHeader.textContent = `/${nameExercise}`;
 refs.textResult.classList.add("is-hidden");
@@ -56,6 +98,16 @@ async function renderExerciseByFilter() {
     //   buttonService.enableBtn(refs.searchBtn);
     // }
 
+    if (results.length > 0 && results.length !== totalPages) {
+      
+      
+    } else {
+      // isiToast.endOfSearch();
+      // buttonService.hide(refs.loadMoreBtn);
+      // buttonService.enableBtn(refs.searchBtn);
+    }
+
+
       renderItemsMarkup(results, refs.resultContainer);
       // const lightbox = new SimpleLightbox('.filtered-cards a', {
       //     captionsData: 'alt',
@@ -71,6 +123,9 @@ async function renderExerciseByFilter() {
       
   }
 }
+
+
+
 
 
 
