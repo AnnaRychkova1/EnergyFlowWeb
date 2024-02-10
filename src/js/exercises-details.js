@@ -1,8 +1,10 @@
 
 import { hide, show, showLoader, hideLoader } from "./services/visibility";
 import { refs } from './templates/refs.js';
+
+import { BASE_URL } from "./services/visibility";
+
 import { searchExerciseByFilters } from "./services/mainApi.js";
-import { BASE_URL } from "./services/mainApi.js";
 
 
 // https://energyflow.b.goit.study/api/exercises?bodypart=waist&muscles=abs&equipment=assisted&keyword=side&page=1&limit=10
@@ -21,8 +23,17 @@ const queryParams = {
   limit: 9,
 };
 
-
-
+// Create modal temporarely
+// refs.toStartBtn.addEventListener('sudmit', createModal);
+// async function createModal(evt) {
+//   try {
+//     const { results } = await renderModal();
+//     console.log(results);
+//   } catch (error) {
+//     console.error('Error fetching images:', error);
+//     alert('Wrong request')
+//   }
+// }
 
 
 refs.exercisesHeader.textContent = `/${nameExercise}`;
@@ -60,6 +71,8 @@ async function renderExerciseByFilter(evt) {
       
   }
 }
+
+
 
 
 
@@ -133,7 +146,7 @@ function renderItemsMarkup(results, resultContainer ) {
               <img class="filteered-star" href="#" alt="star" height="35"></img>
             </div>
           </div>
-          <button data-id=${_id} class="to-favorites-start">Start</button><a/>
+          <button type="submit" data-id=${_id} class="to-favorites-start">Start</button><a/>
         </div>
         <div class="card-box-title">
           <img class="filteered-athlete" href="#" alt="athlete" height="35"></img>
@@ -156,4 +169,9 @@ function renderItemsMarkup(results, resultContainer ) {
     .join('');
 
   resultContainer.insertAdjacentHTML('beforeend', markup);
+
 }
+
+export { filterExercise, nameExercise };
+
+
