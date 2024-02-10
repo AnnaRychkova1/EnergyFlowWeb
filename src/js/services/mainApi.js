@@ -1,8 +1,7 @@
 import axios from 'axios';
-
 import { filterExercise, nameExercise } from '../exercises-details';
-export const BASE_URL = 'https://energyflow.b.goit.study/api';
 
+const BASE_URL = 'https://energyflow.b.goit.study/api';
 
 const ENDPOINT_QUOTE = 'quote';
 const ENDPOINT_FILTER = 'exercises';

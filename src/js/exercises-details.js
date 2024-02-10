@@ -1,12 +1,9 @@
-export { filterExercise, nameExercise };
-import { BASE_URL } from "./services/mainApi.js";
+
+//import { BASE_URL } from "./services/mainApi.js";
+const BASE_URL = 'https://energyflow.b.goit.study/api';
 import { hide, show, showLoader, hideLoader } from "./services/visibility";
 import { refs } from './templates/refs.js';
-
-// const BASE_URL = 'https://energyflow.b.goit.study/api';
-
 import { searchExerciseByFilters } from "./services/mainApi.js";
-
 
 // https://energyflow.b.goit.study/api/exercises?bodypart=waist&muscles=abs&equipment=assisted&keyword=side&page=1&limit=10
 
@@ -170,3 +167,7 @@ function renderItemsMarkup(results, resultContainer) {
 
   resultContainer.insertAdjacentHTML('beforeend', markup);
 }
+
+
+
+export { filterExercise, nameExercise };
