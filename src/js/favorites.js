@@ -11,9 +11,9 @@ const onRemoveBtn = document.querySelector(".favorites-remove-btn");
 const onStartBtn = document.querySelector(".favorites-start-btn");
 
 const addToFavoriteBtn = document.querySelector('.ex-add-btn');
-addToFavoriteBtn.addEventListener('click', addToFavoriteOnClick);
+addToFavoriteBtn.addEventListener('click', addToFavoritesByClick);
 
-async function addToFavoriteOnClick(event) {
+async function addToFavoritesOnClick(event) {
   const element = event.target.closest('.ex-add-btn');
   const elementId = element.dataset.id;
   const favorites = localStorage.getItem('favorites');
@@ -255,10 +255,10 @@ async function searchExerciseByID(id) {
 }
 
  
- function createMessage(message) {
-     iziToast.show({
-       class: 'error-svg',
-       position: 'topRight',
+//  function createMessage(message) {
+//      iziToast.show({
+//        class: 'error-svg',
+//        position: 'topRight',
 //       icon: 'error-svg',
 //       message: message,
 //       maxWidth: '432',
