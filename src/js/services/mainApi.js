@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { filterExercise, nameExercise } from '../exercises-details';
+// import { filterExercise, nameExercise } from '../exercises-details';
 
 const BASE_URL = 'https://energyflow.b.goit.study/api';
 
