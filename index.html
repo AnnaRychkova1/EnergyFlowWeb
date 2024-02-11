@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Energy Flow</title>
     
-    <script type="module" crossorigin src="/EnergyFlowWeb/assets/main-81d888db.js"></script>
-    <link rel="stylesheet" href="/EnergyFlowWeb/assets/main-f05d249c.css">
+    <script type="module" crossorigin src="/EnergyFlowWeb/assets/main-7e96a0b4.js"></script>
+    <link rel="stylesheet" href="/EnergyFlowWeb/assets/main-223cf060.css">
   </head>
   <body>
     <!-- Oksana, Danil -->
@@ -78,17 +78,24 @@
       <div class="exercises-details">
   <h4 class="exersises-header">Exersices</h4>
   <form class="form">
-    <input type="text" name="query" placeholder="Search images..." />
+    <input
+      class="exercises-input"
+      type="text"
+      name="query"
+      placeholder="Search images..."
+    />
     <button class="search-btn" type="submit">Search</button>
   </form>
   <ul class="filtered-cards"></ul>
   <p class="exercise-text-no-found">
-    hi Unfortunately, <span class="exercise-no-found">no results</span>no
-    results were found. You may want to consider other search options to find
-    the exercise you are looking for. Our range is wide and you have the
-    opportunity to find more options that suit your needs.
+    hi Unfortunately, <span class="exercise-no-found">no results</span> were
+    found. You may want to consider other search options to find the exercise
+    you are looking for. Our range is wide and you have the opportunity to find
+    more options that suit your needs.
   </p>
-  <button>Hello world</button>
+  <div id="tui-pagination-container" class="pagination-container">
+    <ul class="pagination-list"></ul>
+  </div>
 </div>
 
 
