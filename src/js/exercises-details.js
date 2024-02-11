@@ -189,7 +189,12 @@ function renderItemsMarkup(results, resultContainer) {
 }
 
 
-// currentPage, ul, li 
+
+
+// deal with currentPage, ul, li ?????????????
+
+
+
 function createPagination(totalPages) {
   // Створіть новий екземпляр пагінації з використанням поточних налаштувань та totalPages
   const instance = new Pagination(refs.pagi, { 
