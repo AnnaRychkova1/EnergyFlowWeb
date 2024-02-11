@@ -34,21 +34,31 @@
     background-color: var(--background-white);
     padding: 40px 20px;
     margin: 0 auto;
+    position: relative;
   }
 
   .favorites-day-block {
     width: 135px;
     display: flex;
     flex-direction: column;
-    padding-top: 96px;
-    padding-bottom: 96px;
+    /* padding-top: auto;
+    padding-bottom: auto; */
     margin: auto;
+    /* gap: 15px; */
     justify-content: flex-start;
     align-items: flex-start;
+    /* margin-top: 60px; */
+    position: absolute;
+    bottom: 96px;
+    left: 101px;
+    right: 101px;
+    top: 96px;
+    /* margin-bottom: 97px; */
   }
 
   .favorites-svg-day {
     flex-shrink: 0;
+    margin-bottom: 10px;
     width: 20px;
     height: 20px;
     position: relative;
@@ -68,18 +78,31 @@
   .favorites-day-daily {
     display: flex;
     flex-direction: column;
-    gap: 4px;
     align-items: flex-start;
     justify-content: flex-end;
     flex-shrink: 0;
     position: relative;
+    color: rgba(27, 27, 27, 0.6);
+    font-family: sans-serif, 'DM Sans';
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0.02px;
+    text-align: left;
+    width: 132px;
+    height: 18px;
   }
 
   .favorites-box {
     background-color: var(--background-light-grey);
     flex-direction: column;
     border-radius: 30px;
-    margin-top: 80px;
+    margin-top: 20px;
+    /* border: #ff0000 1px solid; */
+    position: relative;
+    height: 450px;
+    margin-left: 0;
+    padding-left: 0;
   }
 
   .favorites-box-block {
@@ -88,6 +111,11 @@
     justify-content: center;
     align-items: center;
     gap: 28px;
+    position: absolute;
+    left: 44px;
+    right: 44px;
+    top: 152px;
+    bottom: 128px;
   }
 
   .favorites-box-title {
@@ -97,6 +125,11 @@
     line-height: 1;
     letter-spacing: 0.02em;
     padding-bottom: 80px;
+    position: absolute;
+    left: 20px;
+    right: 187px;
+    top: 40px;
+    bottom: 378px;
   }
 
   .favorites-box-img {
@@ -107,6 +140,7 @@
   .favorites-box-paragraf {
     width: 247px;
     height: 90px;
+    font-family: DM Sans;
     color: var(--text-main-color);
     text-align: center;
     font-size: 14px;
@@ -122,10 +156,10 @@
     margin-bottom: 20px;
   }
 
-  .favorites-pagination-block {
+  /* .favorites-pagination-block {
     opacity: 1;
     pointer-events: none;
-  }
+  } */
 
   /* ============================================================================================================================== */
 
@@ -268,7 +302,7 @@
 
 /* Tablet */
 
-@media screen and (min-width: 768px) and (max-width: 1287.98px) {
+@media screen and (min-width: 768.95px) and (max-width: 1438.98px) {
   .favorites-container {
     width: 736px;
     border-radius: 30px;
@@ -281,6 +315,7 @@
   .favorites-container-box {
     width: 100%;
     display: flex;
+    margin-bottom: 20px;
     flex-direction: row;
     justify-content: center;
     margin-left: auto;
@@ -297,9 +332,23 @@
     align-items: center;
   }
 
+  .favorites-day-daily {
+    color: rgba(27, 27, 27, 0.6);
+    font-family: sans-serif, 'DM Sans';
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0px;
+  }
+
+  .quote-container {
+    margin-bottom: 16px;
+  }
+
   .favorites-box {
     border-radius: 30px;
     height: 928px;
+    /* border: #ff0000 1px solid; */
   }
 
   .favorites-box-block {
@@ -319,6 +368,7 @@
   .favorites-box-paragraf {
     width: 554px;
     height: 72px;
+    font-family: DM Sans;
     color: var(--text-main-color);
     text-align: center;
     font-size: 18px;
@@ -523,7 +573,7 @@
 
 /* Desctop */
 
-@media screen and (min-width: 1287.98px) {
+@media screen and (min-width: 1440px) {
   .favorites-container {
     /* width: 100%; */
     /* display: flex; */
@@ -657,6 +707,7 @@
 
   .favorites-day-daily {
     color: rgba(27, 27, 27, 0.6);
+    font-family: sans-serif, 'DM Sans';
     font-size: 14px;
     font-weight: 400;
     line-height: 18px;
@@ -668,6 +719,7 @@
     border-radius: 50px;
     background-color: var(--background-light-grey);
     margin: 0 auto;
+    /* border: #ff0000 1px solid; */
   }
 
   .favorites-box-title {
@@ -704,6 +756,7 @@
   .favorites-box-paragraf {
     width: 554px;
     height: 72px;
+    font-family: DM Sans;
     color: var(--text-main-color);
     text-align: center;
     font-size: 18px;

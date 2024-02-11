@@ -8,86 +8,8 @@
     <title>Favorites</title>
   </head>
   <body>
-    <!-- Header section -->
-
-    <header class="header-section">
-      <div class="container container-header">
-        <div class="header-section-container">
-          <a href="./index.html" class="header-title"> energy.flow </a>
-          <nav class="navigation-header">
-            <ul class="navigation-list">
-              <li class="navigation-item">
-                <a
-                  href="./index.html"
-                  class="navigation-links current home-page"
-                  aria-label="Home page link"
-                  >Home</a
-                >
-              </li>
-              <li class="navigation-item">
-                <a
-                  href="./favorites.html"
-                  class="navigation-links favorites-page"
-                  aria-label="Favorties page link"
-                  >Favorites</a
-                >
-              </li>
-            </ul>
-          </nav>
-          <ul class="header-social-list">
-            <li class="header-social-item instagram-animation">
-              <a
-                href="https://www.facebook.com/goITclub/"
-                class="header-social-link"
-                target="_blank"
-                title="facebook"
-              >
-                <svg class="header-social-icon" width="28" height="28">
-                  <use href="../img/icons/symbol-defs.svg#icon-facebook"></use>
-                </svg>
-              </a>
-            </li>
-            <li class="header-social-item facebook-animation">
-              <a
-                href="https://www.instagram.com/goitclub/"
-                class="header-social-link"
-                target="_blank"
-                title="instagram"
-              >
-                <svg class="header-social-icon" width="28" height="28">
-                  <use href="../img/icons/symbol-defs.svg#icon-instagram"></use>
-                </svg>
-              </a>
-            </li>
-            <li class="header-social-item youtube-animation">
-              <a
-                href="https://www.youtube.com/c/GoIT"
-                class="header-social-link"
-                target="_blank"
-                title="youtube"
-              >
-                <svg class="header-social-icon" width="28" height="28">
-                  <use href="../img/icons/symbol-defs.svg#icon-youtube"></use>
-                </svg>
-              </a>
-            </li>
-          </ul>
-          <button
-            class="header-mobile-open-btn"
-            type="button"
-            aria-label="Open mobile menu"
-            data-modal-open
-          >
-            <svg class="mobile-open-icon" width="32" height="16">
-              <use href="../img/icons/symbol-defs.svg#icon-mob-menu"></use>
-            </svg>
-          </button>
-        </div>
-      </div>
-    </header>
-
     <!-- Favorites section -->
-
+    
     <section class="section favorites-section">
       <div class="container favorites-container">
         <div class="favorites-box-container">
@@ -121,12 +43,13 @@
                 src="./img/desctop/desc-page-fafor-girl@1.jpg"
                 alt="women"
                 srcset="
-                    ./img/mobile/mobile-page-fafor-girl@1.jpg x1,
-                    ./img/mobile/mobile-page-fafor-girl@2.jpg x2,
-                    ./img/tablet/tablet-page-fafor-girl@1.jpg x1,
-                    ./img/tablet/tablet-page-fafor-girl@2.jpg x2,
-                    ./img/desctop/desc-page-fafor-girl@1.jpg 1x,
-                    ./img/desctop/desc-page-fafor-girl@2.jpg 2x"
+                  ./img/mobile/mobile-page-fafor-girl@1.jpg 1x,
+                  ./img/mobile/mobile-page-fafor-girl@2.jpg 2x,
+                  ./img/tablet/tablet-page-fafor-girl@1.jpg 1x,
+                  ./img/tablet/tablet-page-fafor-girl@2.jpg 2x,
+                  ./img/desctop/desc-page-fafor-girl@1.jpg  1x,
+                  ./img/desctop/desc-page-fafor-girl@2.jpg  2x
+                "
                 sizes="(min-width:1440px) 352px, (min-width: 768px) and (max-width:1440px) 368px, (max-width: 768px) 335px"
               />
             </div>
@@ -141,6 +64,10 @@
             </div>
           </div>
         </div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container favorites-container">
         <div class="favorites-box">
           <h2 class="favorites-box-title">Favorites</h2>
           <div class="favorites-box-block block">
@@ -160,19 +87,19 @@
 
           <!--------- Favorite Card ---------->
 
-          <ul class="favorites-gallery"></ul>
+          <!-- <ul class="favorites-gallery"></ul> -->
 
           <!------ PAGINATION FOR MOBILE----->
 
-          <!-- <div class="favorites-pagination-block is-hidden">
+          <!-- <div class="favorites-pagination-block">
             <button class="active-btn" aria-label="first-page" type="button">
               1
             </button>
             <button aria-label="second-page" type="button">2</button>
             <button aria-label="third-page" type="button">3</button>
-          </div> -->
+          </div>
         </div>
-      </div>
+      </div> -->
       <!-- <div class="overlay">
         <div class="loader-container"><span class="loader"></span></div>
       </div> -->
