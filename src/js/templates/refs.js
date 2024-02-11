@@ -12,6 +12,6 @@ export const refs = {
   favoritesGallery: document.querySelector(".favorites-gallery"),
   favoritesMessage: document.querySelector(".favorites-box-block"),
   onRemoveBtn: document.querySelector(".favorites-remove-btn"),
-  onStartBtn: document.querySelector(".favorites-start-btn"),
-  addToFavoriteBtn: document.querySelector('.ex-add-btn'),
+  onStartBtn: document.querySelector(".favorites-start-btn"),//TODO needs to be checked with class for button 'Add to favorites' at modal-menu.js
+  addToFavoritesBtn: document.querySelector('.ex-add-btn'), //TODO needs to be checked with class for button 'Add to favorites' at modal-menu.js
 };
