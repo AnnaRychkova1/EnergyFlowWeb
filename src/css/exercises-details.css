@@ -23,8 +23,6 @@
 
 .search-btn {}
 
-.filtered-cards {}
-
 .exercise-text-no-found {
     padding-bottom: 320px;
 }
@@ -41,11 +39,54 @@
     }
 }
 
-.filtered-card-item {}
+.filtered-cards {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
 
-.card-box-workout {}
+@media only screen and (min-width: 768px) {
+    .filtered-cards {
+        gap: 20px 14px;   
+    }
+}
 
-.card-box-info {}
+@media only screen and (min-width: 1440px) {
+    .filtered-cards {
+        gap: 28px 20px;
+    }
+}
+
+.filtered-card-item {
+    border: 1px solid red;
+    border-radius: 15px;
+    width: 295px;
+    padding: 16px;
+}
+
+@media only screen and (min-width: 768px) {
+    .filtered-card-item {
+        width: 313px;
+    }
+}
+
+@media only screen and (min-width: 1440px) {
+    .filtered-card-item {
+        width: 424px;
+    }
+}
+
+.card-box-workout {
+    display: flex;
+    flex-direction: row;
+}
+
+.card-box-info {
+    display: flex;
+    flex-direction: row;
+}
 
 .filtered-workout {
     border-radius: 15px;
@@ -54,7 +95,10 @@
     text-transform: uppercase;
 }
 
-.card-box-rating {}
+.card-box-rating {
+display: flex;
+flex-direction: row;
+}
 
 .filtered-rating {}
 
@@ -72,7 +116,8 @@
     background-color: aqua;
 }
 
-.card-box-title {}
+.card-box-title {
+}
 
 .filteered-athlete {}
 
