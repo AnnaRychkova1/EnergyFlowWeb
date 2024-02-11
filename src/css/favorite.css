@@ -22,7 +22,7 @@
     width: 335px;
     min-height: 450px;
     border-radius: 30px;
-    background: #e8e8e8;
+    background-color: var(--background-light-grey);
     padding: 40px 20px;
     margin: 0 auto;
   }
@@ -31,7 +31,7 @@
     width: 100%;
     height: 272px;
     border-radius: 30px;
-    background: rgb(255, 255, 255);
+    background-color: var(--background-white);
     padding: 40px 20px;
     margin: 0 auto;
   }
@@ -76,7 +76,7 @@
   }
 
   .favorites-box {
-    background-color: rgb(232, 232, 232);
+    background-color: var(--background-light-grey);
     flex-direction: column;
     border-radius: 30px;
     margin-top: 80px;
@@ -91,7 +91,7 @@
   }
 
   .favorites-box-title {
-    color: #1b1b1b;
+    color: var(--text-main-color);
     font-size: 32px;
     font-weight: 400;
     line-height: 1;
@@ -107,7 +107,7 @@
   .favorites-box-paragraf {
     width: 247px;
     height: 90px;
-    color: #1b1b1b;
+    color: var(--text-main-color);
     text-align: center;
     font-size: 14px;
     font-weight: 400;
@@ -272,7 +272,7 @@
   .favorites-container {
     width: 736px;
     border-radius: 30px;
-    background: #e8e8e8;
+    background: var(--background-light-grey);
     padding: 0 20px;
     margin: 0 auto;
     height: 100%;
@@ -289,7 +289,7 @@
 
   .favorites-day-norma {
     border-radius: 30px;
-    background: rgb(255, 255, 255);
+    background-color: var(--background-white);
     padding-right: 110px;
     padding-left: 110px;
     margin: 0 auto;
@@ -319,14 +319,14 @@
   .favorites-box-paragraf {
     width: 554px;
     height: 72px;
-    color: #1b1b1b;
+    color: var(--text-main-color);
     text-align: center;
     font-size: 18px;
     line-height: 1.33;
   }
 
   .favorites-box-title {
-    color: #1b1b1b;
+    color: var(--text-main-color);
     font-size: 32px;
     font-weight: 400;
     line-height: 1;
@@ -353,7 +353,6 @@
     column-gap: 14px;
     row-gap: 20px;
     max-height: 740px;
-    /* overflow-y: scroll; */
   }
 
   .favorites-pagination-block {
@@ -535,7 +534,7 @@
     padding: 0;
   }
 
-  .hfasascghagsc {
+  .favorites-box-container {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -614,6 +613,7 @@
     align-items: center;
     flex-wrap: wrap;
     padding: 16px 0;
+    margin: 0 auto;
   }
 
   .favorites-img {
@@ -627,12 +627,12 @@
     border-radius: 50px;
   }
 
-  /* .favorites-day-norma {
+  .favorites-day-norma {
     width: 352px;
     height: 302px;
     border-radius: 50px;
     background-color: var(--background-white);
-  } */
+  }
 
   .favorites-day-block {
     padding-top: 106px;
@@ -642,7 +642,6 @@
   .favorites-svg-day {
     width: 20px;
     height: 20px;
-    background-color: var(--text-main-color);
     margin-bottom: 15px;
   }
 
@@ -665,7 +664,6 @@
   }
 
   .favorites-box {
-    width: 1408px;
     height: 687px;
     border-radius: 50px;
     background-color: var(--background-light-grey);
@@ -706,7 +704,7 @@
   .favorites-box-paragraf {
     width: 554px;
     height: 72px;
-    color: #1b1b1b;
+    color: var(--text-main-color);
     text-align: center;
     font-size: 18px;
     line-height: 1.33;
@@ -873,7 +871,7 @@
   height: 165px;
   border-radius: 15px;
   padding: 16px;
-  background-color: var(--white-color);
+  background-color: var(--background-white);
   overflow: hidden;
 }
 
@@ -886,9 +884,9 @@
 
 .favorites-list-workout {
   border-radius: 15px;
-  background-color: var(--base-button-color);
+  background-color: var(--background-dark-grey);
   padding: 5px 8px;
-  color: var(--page-bg-color);
+  color: var(--text-light-color);
   font-size: 12px;
   font-weight: 500;
   line-height: 1.5;
@@ -899,14 +897,14 @@
   gap: 8px;
   font-size: 14px;
   line-height: 1.29;
-  color: var(--text-base-color);
+  color: var(--text-main-color);
   align-self: center;
 }
 
 .favorites-arrow-icon {
   width: 14px;
   height: 14px;
-  fill: var(--text-base-color);
+  fill: var(--background-dark);
   align-self: center;
 }
 
@@ -923,7 +921,7 @@
   flex-direction: row;
   width: 24px;
   height: 24px;
-  background-color: var(--base-button-color);
+  background-color: var(--background-dark-grey);
   border-radius: 100%;
   flex-shrink: 0;
   padding: 4px 5px;
@@ -932,7 +930,7 @@
 .favorites-run-icon {
   width: 14px;
   height: 16px;
-  fill: var(--page-bg-color);
+  fill: var(--background-dark);
 }
 
 .favorites-name-item {
@@ -973,7 +971,7 @@
 
 .icon-delete {
   stroke: transparent;
-  fill: #1b1b1b;
+  fill: var(--background-dark);
   padding: 0px;
   width: 12px;
   height: 13px;
