@@ -22,10 +22,31 @@ const queryParams = {
 };
 
 // Create modal temporarely
-// refs.toStartBtn.addEventListener('sudmit', createModal);
+
+// refs.toStartBtn.addEventListener('click', createModal);
+
+// function createModal(evt) {
+//   const idFilter = evt.target.dataset.id;
+
+//   //request by id
+// }
+
+// refs.toStartBtn.addEventListener('click', createModal);
+
+// function createModal(evt) {
+//   const idFilter = evt.target.dataset.id;
+
+//   // request by id 
+// }
+
 // async function createModal(evt) {
+  
 //   try {
-//     const { results } = await renderModal();
+
+//     const { results } = await 
+
+//     const { results } = await cohkjjhklh
+
 //     console.log(results);
 //   } catch (error) {
 //     console.error('Error fetching images:', error);
@@ -39,6 +60,8 @@ refs.textResult.classList.add("is-hidden");
 renderExerciseByFilter();
 
 async function renderExerciseByFilter(evt) {
+
+  // searchExerciseByFilters({ filter, name });
 
   try {
     const { results, totalPages } = await searchExerciseByFilters(queryParams);
@@ -168,6 +191,96 @@ function renderItemsMarkup(results, resultContainer) {
   resultContainer.insertAdjacentHTML('beforeend', markup);
 }
 
+
+
+
+
+// deal with currentPage, ul, li ?????????????
+
+
+
+function createPagination(totalPages) {
+  // Створіть новий екземпляр пагінації з використанням поточних налаштувань та totalPages
+  const instance = new Pagination(refs.pagi, { 
+    totalItems: totalPages, // Кількість елементів, які будуть розділені по сторінках
+    itemsPerPage: 9, // Кількість елементів на одній сторінці
+    visiblePages: 3, // Кількість видимих сторінок в пагінації
+    page: queryParams.page, // Початкова сторінка
+    centerAlign: true, // Вирівнювання пагінації по центру
+    template: {
+      page: '<a class="tui-pagination-btn">{{page}}</a>',
+      currentPage: '<strong class="tui-pagination-btn tui-pagination-active">{{page}}</strong>',
+      moveButton: '<a class="tui-pagination-btn tui-pagination-control"></a>',
+      disabledMoveButton: '<a class="tui-pagination-btn tui-pagination-control disabled"></a>',
+      moreButton: '<a class="tui-pagination-btn tui-pagination-ellipsis" aria-label="More"></a>'
+    }
+  });
+}
+
+function updatePagination(totalPages) {
+  // Створіть новий екземпляр пагінації з використанням поточних налаштувань та totalPages
+  const instance = new Pagination(refs.pagi, { 
+    totalItems: totalPages, // Кількість елементів, які будуть розділені по сторінках
+    itemsPerPage: 9, // Кількість елементів на одній сторінці
+    visiblePages: 6, // Кількість видимих сторінок в пагінації
+    page: 1, // Початкова сторінка
+    centerAlign: true, // Вирівнювання пагінації по центру
+    template: {
+      page: '<a class="tui-pagination-btn">{{page}}</a>',
+      currentPage: '<strong class="tui-pagination-btn tui-pagination-active">{{page}}</strong>',
+      moveButton: '<a class="tui-pagination-btn tui-pagination-control"></a>',
+      disabledMoveButton: '<a class="tui-pagination-btn tui-pagination-control disabled"></a>',
+      moreButton: '<a class="tui-pagination-btn tui-pagination-ellipsis" aria-label="More"></a>'
+    }
+  });
+}
+
+export { renderExerciseByFilter };
+
+renderExerciseByFilter();
+
+
+//! createModal
+// refs.toStartBtn.addEventListener('sudmit', createModal);
+  
+  //! removeListener another developer
+
+// async function createModal(evt) {
+//   try {
+//     const { results } = await renderModal();
+//     console.log(results);
+//   } catch (error) {
+//     console.error('Error fetching images:', error);
+//     alert('Wrong request')
+//   }
+// }
+
+//! Pagination
+//import Pagination from 'tui-pagination'; 
+
+// const pagi = document.getElementById('tui-pagination-container');
+// const instance = new Pagination(pagi, { 
+//   totalItems: 19, // Загальна кількість елементів, які будуть розділені по сторінках
+//   itemsPerPage: 9, // Кількість елементів на одній сторінці
+//   visiblePages: 6, // Кількість видимих сторінок в пагінації
+//   page: 1, // Початкова сторінка
+//   centerAlign: true, // Вирівнювання пагінації по центру
+//   template: {
+//     // Налаштування шаблону кнопок пагінації
+//     page: '<a class="tui-pagination-btn">{{page}}</a>',
+//     currentPage: '<strong class="tui-pagination-btn tui-pagination-active">{{page}}</strong>',
+//     moveButton:
+//       '<a class="tui-pagination-btn tui-pagination-control"></a>',
+//     disabledMoveButton:
+//       '<a class="tui-pagination-btn tui-pagination-control disabled"></a>',
+//     moreButton:
+//       '<a class="tui-pagination-btn tui-pagination-ellipsis" aria-label="More"></a>'
+//   }
+//  });
+
+// instance.getCurrentPage();
+
+//Finish pagination
 
 
 export { filterExercise, nameExercise };
