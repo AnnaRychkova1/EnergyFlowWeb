@@ -76,24 +76,68 @@
             </p>
           </div>
 
-          <!---------- Favorite Card ------------>
+          <!---------- Favorite Card -------------------------->
 
-          <ul class="favorites-list"></ul>
+          <ul class="favorites-list-item"></ul>
 
           <!----------- PAGINATION FOR MOBILE------------------>
 
-          <div class="favorites-pagination-block is-hidden">
+          <!-- <div class="favorites-pagination-block is-hidden">
             <button class="active-btn" aria-label="first-page" type="button">
               1
             </button>
             <button aria-label="second-page" type="button">2</button>
             <button aria-label="third-page" type="button">3</button>
-          </div>
+          </div> -->
+          <li class="favorites-list-item" data-id="${i._id}">
+           <p class="favorites-list-head">
+              <span class="favorites-head-item-wrapper">
+                <span class="favorites-list-workout">WORKOUT</span>
+                  <button class="favorites-delete">
+                    <svg class="icon-delete" width="12" height="13">
+                      <use href="${icons}#icon-trash"></use>
+                    </svg>
+                  </button>
+                  <a class="favorites-list-start" href="#" data-id="${i._id}">
+                    <span>Start</span>
+                     <svg class="favorites-arrow-icon" width="14" height="14">
+                      <use href="${icons}#icon-arrow-start"></use>
+                    </svg>
+                  </a>
+             </p>
+              <span class="favorites-list-title">
+                <span class="favorites-men-run"><svg class="favorites-run-icon" width="14" height="14">
+                  <use href="${icons}#icon-running_man"></use>
+                </svg>
+              </span>
+            <h3 class="favorites-name-item">${
+              i.name.charAt(0).toUpperCase() + i.name.slice(1)
+            }</h3>
+            </span>
+            </span>
+            <p class="favorites-info-item">
+            <span class="favorites-info-group"><span class="favorites-item-desc">Burned calories:</span> <span
+                class="favorites-value-item">${i.burnedCalories} / ${
+          i.time
+        } min</span>
+        </span>
+        <span class="favorites-info-group"><span class="favorites-item-desc">Body part:</span> <span
+                class="favorites-item-value">${
+                  i.bodyPart.charAt(0).toUpperCase() + i.bodyPart.slice(1)
+                }</span>
+        </span>
+        <span class="favorites-info-group"><span class="favorites-item-desc">Target:</span> <span
+                class="favorites-item-value">${
+                  i.target.charAt(0).toUpperCase() + i.target.slice(1)
+                }</span>
+        </span>
+    </p>
+</li>
         </div>
       </div>
-      <div class="overlay">
+      <!-- <div class="overlay">
         <div class="loader-container"><span class="loader"></span></div>
-      </div>
+      </div> -->
     </section>
 
     <script type="module" src="./main.js"></script>

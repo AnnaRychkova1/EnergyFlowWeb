@@ -1,6 +1,8 @@
+/* ============================================================================================================================== */
+
 /* стили Данил */
 
-/* ======================================================================================================== */
+/* ============================================================================================================================== */
 
 /* Mobile */
 
@@ -125,9 +127,11 @@
     pointer-events: none;
   }
 
-  /* ==================================================================================================== */
+  /* ============================================================================================================================== */
 
   /* Оксана адаптив */
+
+  /* ============================================================================================================================== */
 
   .favorites-list-item {
     width: 295px;
@@ -256,11 +260,11 @@
     line-height: 1.5;
     margin: 0;
   }
-
-  /* =================================================================================================== */
 }
 
-/* ==================================================================================================== */
+/* ============================================================================================================================== */
+
+/* ============================================================================================================================== */
 
 /* Tablet */
 
@@ -358,9 +362,11 @@
     pointer-events: none;
   }
 
-  /* ================================================================================================ */
+  /* ============================================================================================================================ */
 
   /* Оксана Адаптив */
+
+  /* ============================================================================================================================= */
 
   .favorites-list-item {
     height: 165px;
@@ -510,15 +516,15 @@
     line-height: 1.5;
     margin: 0;
   }
-
-  /* ================================================================================================================================= */
 }
+
+/* =================================================================================================================================== */
 
 /* =================================================================================================================================== */
 
 /* Desctop */
 
-@media screen and (min-width: 1287.98px) and (max-width: 1440px) {
+@media screen and (min-width: 1287.98px) {
   .favorites-container {
     /* width: 100%; */
     /* display: flex; */
@@ -711,7 +717,7 @@
   }
 }
 
-/* ============================================================================================ */
+/* =============================================================================================================================== */
 
 /* <!----------- PAGINATION FOR MOBILE------------------> */
 
@@ -750,9 +756,11 @@
     border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* ========================================================================================================================== */
+/* ================================================================================================================================ */
 
 /* базовые стили Оксана */
+
+/* ================================================================================================================================ */
 
 .favorites-gallery {
   list-style-type: none;
@@ -854,4 +862,193 @@
   font-size: 12px;
   line-height: 1.5;
   color: var(--text-main-color);
+}
+
+/* ================================================================================================================================== */
+
+/* FAVORITES CARDS */
+
+.favorites-list-item {
+  width: 295px;
+  height: 165px;
+  border-radius: 15px;
+  padding: 16px;
+  background-color: var(--white-color);
+  overflow: hidden;
+}
+
+.favorites-list-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.favorites-list-workout {
+  border-radius: 15px;
+  background-color: var(--base-button-color);
+  padding: 5px 8px;
+  color: var(--page-bg-color);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.favorites-list-start {
+  display: flex;
+  gap: 8px;
+  font-size: 14px;
+  line-height: 1.29;
+  color: var(--text-base-color);
+  align-self: center;
+}
+
+.favorites-arrow-icon {
+  width: 14px;
+  height: 14px;
+  fill: var(--text-base-color);
+  align-self: center;
+}
+
+.favorites-list-title {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 16px;
+  align-items: center;
+}
+
+.favorites-men-run {
+  display: flex;
+  flex-direction: row;
+  width: 24px;
+  height: 24px;
+  background-color: var(--base-button-color);
+  border-radius: 100%;
+  flex-shrink: 0;
+  padding: 4px 5px;
+}
+
+.favorites-run-icon {
+  width: 14px;
+  height: 16px;
+  fill: var(--page-bg-color);
+}
+
+.favorites-name-item {
+  font-size: 20px;
+  line-height: 1.2;
+  text-wrap: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: 0.5px;
+}
+
+.favorites-info-item {
+  font-size: 12px;
+  line-height: 1.5;
+  text-wrap: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.favorites-info-group:not(:first-child) {
+  padding-left: 16px;
+}
+
+.favorites-desc-item {
+  color: rgba(27, 27, 27, 0.4);
+}
+
+.favorites-value-item {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.favorites-head-item-wrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.icon-delete {
+  stroke: transparent;
+  fill: #1b1b1b;
+  padding: 0px;
+  width: 12px;
+  height: 13px;
+  transition-property: fill;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.favorites-delete {
+  margin-right: 109px;
+  background-color: transparent;
+  border: none;
+  margin-left: 8px;
+  padding: 0px;
+}
+
+/* ================================================================================================================================= */
+
+/* Tablet Style */
+
+@media screen and (min-width: 768px) {
+  .favorites-list-item {
+    width: 424px;
+    height: 141px;
+  }
+
+  .favorites-list-item {
+    width: 313px;
+    height: 165px;
+  }
+
+  .favorites-list-head {
+    column-gap: 14px;
+    row-gap: 20px;
+  }
+
+  .favorites-list-start {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .favorites-arrow-icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .favorites-list-title {
+    margin-bottom: 12px;
+  }
+
+  .favorites-name-item {
+    font-size: 24px;
+    line-height: 1.33;
+  }
+}
+
+/* ================================================================================================================================== */
+
+/* Desctop Style */
+
+@media screen and (min-width: 1287.98px) {
+  .favorites-list-head {
+    column-gap: 20px;
+    row-gap: 28px;
+  }
+
+  .favorites-delete {
+    margin-right: 236px;
+  }
+
+  .favorites-list-title {
+    row-gap: 28px;
+  }
+
+  .favorites-info-item {
+    gap: 10px;
+  }
 }
