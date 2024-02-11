@@ -1,5 +1,58 @@
 <section class="section">
   <div class="container">
     <h2>Recommendations</h2>
+    <img class="style-img" src="/src/img/img.jpg" alt="foto fitness women" />
+    <h3></h3>
+    <div class="container recommend-container">
+      <h2 class="visually-hidden">Recommendations</h2>
+      <picture>
+        <source
+          srcset="
+            ./img/desktop/desc-section3@1.jpg 1x,
+            ./img/desktop/desc-section3@2.jpg 2x
+          "
+          media="(min-width: 1440px)"
+        />
+        <source
+          srcset="
+            ./img/tablet/tablet-section3@1.jpg 1x,
+            ./img/tablet/tablet-section3@2.jpg 2x
+          "
+          media="(min-width: 768px)"
+        />
+        <source
+          srcset="
+            ./img/mobile/mobile-section3@1.jpg 1x,
+            ./img/mobile/mobile-section3@2.jpg 2x
+          "
+          media="(max-width: 375px)"
+        />
+        <img
+          class="recommend-img"
+          alt="foto fitness women"
+          src="./img/desktop/desc-section3@1.jpg"
+          width="335"
+          height="269"
+        />
+      </picture>
+      <div class="recommend-text-div">
+        <span class="recommend-icon-span">
+          <svg class="recommend-icon" width="20" height="20">
+            <use href="./img/icons/all icons/dumbbell-big.svg" />
+          </svg>
+        </span>
+        <div class="recommend-text">
+          <h2 class="recommend-title">110 min</h2>
+          <p class="recommend-subtitle">Daily norm of sports</p>
+          <p class="recommend-description">
+            The World Health Organization recommends at least 150 minutes of
+            moderate-intensity aerobic physical activity throughout the week for
+            adults aged 18-64. However, what happens if we adjust that number to
+            110 minutes every day?
+          </p>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
