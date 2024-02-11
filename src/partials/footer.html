@@ -91,9 +91,11 @@
             class="footer-input"
             type="email"
             name="user-e-mail"
+            pattern="^\w+(\.\w+)?@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$"
             placeholder="Email"
+            required
         /></label>
-        <button class="footer-form-button">Send</button>
+        <button type="submit" class="footer-form-button">Send</button>
       </form>
     </div>
     <div class="footer-text-container">
