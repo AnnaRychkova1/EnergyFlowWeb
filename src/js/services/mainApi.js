@@ -21,9 +21,6 @@ async function searchExerciseByFilters({ keyword, page = 1, limit }) {
   .get(`https://energyflow.b.goit.study/api/exercises`, {
     params: { 
       [filterExercise]: nameExercise,
-      .get(`${BASE_URL}/${ENDPOINT_FILTER}`, {
-        params: { 
-          [filterExercise]: nameExercise,
         keyword: keyword,
         limit,
         page,
@@ -33,4 +30,3 @@ async function searchExerciseByFilters({ keyword, page = 1, limit }) {
 }
 
 export { fetchQuoteFromServer, searchExerciseByFilters };
-
