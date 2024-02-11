@@ -21,8 +21,9 @@ async function fetchQuoteFromServer() {
 
 async function searchExerciseByFilters({ keyword, page = 1, limit }) {
   const response = await axios
-      .get(`${BASE_URL}/${END_POINT_FILTER}?${filterExercise}=${nameExercise}`, {
-        params: { 
+  .get(`https://energyflow.b.goit.study/api/exercises`, {
+    params: { 
+      [filterExercise]: nameExercise,
         keyword: keyword,
         limit,
         page,

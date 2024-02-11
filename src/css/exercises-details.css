@@ -1,11 +1,45 @@
 .exercises-details {
-    margin: 0 50px;
+    width: 335px;
+    margin: 0 auto;
 }
 
-.header-btn {
+@media only screen and (min-width: 768px) {
+    .exercises-details {
+        width: 736px;
+    }
 }
+
+@media only screen and (min-width: 1440px) {
+    .exercises-details {
+        width: 1408px;
+    }
+}
+
+.exersises-header {}
+
+.form {}
+
+.exercises-input {}
+
+.search-btn {}
 
 .filtered-cards {}
+
+.exercise-text-no-found {
+    padding-bottom: 320px;
+}
+
+@media only screen and (min-width: 768px) {
+    .exercise-text-no-found {
+        padding-bottom: 586px;
+    }
+}
+
+@media only screen and (min-width: 1440px) {
+    .exercise-text-no-found {
+        padding-bottom: 350px;
+    }
+}
 
 .filtered-card-item {}
 
@@ -15,7 +49,6 @@
 
 .filtered-workout {
     border-radius: 15px;
-    padding: 5px 8px;
     /* width: 76px; */
     height: 26px;
     text-transform: uppercase;
@@ -77,29 +110,38 @@
 
 
 
-/* ! Pagination */
+/*  Pagination */
 
-
-
-/* Чорна цифра 1 в чорному кружечку */
-.tui-pagination-btn:nth-child(1) {
-    padding: 8px 12px;
-    margin: 0 5px;
-    border-radius: 50%;
-    border: 2px solid #000;
-    /* Чорний фон */
-    color: #fff;
-    /* Білий колір тексту */
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-/* Сіра цифра 2 та 3 без кружечка */
-.tui-pagination-btn:nth-child(2),
-.tui-pagination-btn:nth-child(3) {
-    padding: 8px 12px;
-    margin: 0 5px;
-    border: none;
-    
-    /* Прозорий фон */
-    color: #808080;
-    /* Сірий колір тексту */
+.pagination-list {
+    display: flex;
+    gap: 25px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.pagination-item {
+    display: block;
+    width: 60px;
+    height: 60px;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 50%;
+    border: 1px solid red;
+    cursor: pointer;
+}
+
+.pagination-item.active {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.pagination-item:hover {
+    background-color: #f8f8f8;
 }
