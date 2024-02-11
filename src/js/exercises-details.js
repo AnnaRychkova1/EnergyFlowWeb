@@ -1,15 +1,9 @@
 
-import Pagination from 'tui-pagination'; 
-import 'tui-pagination/dist/tui-pagination.min.css';
-import axios from 'axios';
-
 //import { BASE_URL } from "./services/mainApi.js";
 const BASE_URL = 'https://energyflow.b.goit.study/api';
 import { hide, show, showLoader, hideLoader } from "./services/visibility";
 import { refs } from './templates/refs.js';
 import { searchExerciseByFilters } from "./services/mainApi.js";
-import isiToast from './services/isiToast.js';
-
 
 // https://energyflow.b.goit.study/api/exercises?bodypart=waist&muscles=abs&equipment=assisted&keyword=side&page=1&limit=10
 
@@ -60,23 +54,12 @@ const queryParams = {
 //   }
 // }
 
+
 refs.exercisesHeader.textContent = `/${nameExercise}`;
 refs.textResult.classList.add("is-hidden");
+renderExerciseByFilter();
 
-async function renderExerciseByFilter() {
-
-  show(refs.searchForm)
-  showLoader(refs.loaderModal);
-  // hide(refs.pagi);
-  
-  queryParams.page = 1;
-
-  if (!queryParams.filter) {
-    isiToast.noResults();
-    show(refs.textResult);
-    hideLoader(refs.loaderModal);
-    return
-  }
+async function renderExerciseByFilter(evt) {
 
   // searchExerciseByFilters({ filter, name });
 
@@ -84,75 +67,40 @@ async function renderExerciseByFilter() {
     const { results, totalPages } = await searchExerciseByFilters(queryParams);
     console.log(results);
     console.log(totalPages);
-
-    //! there's the same if !queryParams.filter
-    // if (!results || totalPages === 0) {
-    //   isiToast.noResults();
-    //   show(refs.textResult);
-    //   hideLoader(refs.loaderModal);
-    //   return
+    
+    // if (results.length > 0 && results.length !== totalPages) {
+    //   refs.loadMoreBtn.addEventListener('click', handleLoadMore);
+    //   buttonService.show(refs.loadMoreBtn);
+    // } else {
+    //   isiToast.endOfSearch();
+    //   buttonService.hide(refs.loadMoreBtn);
+    //   buttonService.enableBtn(refs.searchBtn);
     // }
 
-    if (totalPages > 1) {
-      createPagination(totalPages);
-      renderMoreExercises();
-      } else {
-      isiToast.endOfSearch();
-    }
+      renderItemsMarkup(results, refs.resultContainer);
+      // const lightbox = new SimpleLightbox('.filtered-cards a', {
+      //     captionsData: 'alt',
+      //     captionDelay: 250,
+      // });
 
-    // if (results.length > 0 && results.length !== totalPages)
-    renderItemsMarkup(results, refs.resultContainer);
+      // lightbox.refresh();
+      
   } catch (error) {
-    console.error('Error fetching images:', error);
-    isiToast.apiIsiToastError();
     console.error('Error fetching request:', error);
   } finally {
-    hideLoader(refs.loaderModal);
-    //! removeListener from another person
+      
   }
 }
 
-async function renderMoreExercises() {
-  // showLoader(refs.pagi)
-  // refs.pagi.addEventListener('click', renderMoreExercises);
-  showLoader(refs.loaderModal);
-  queryParams.page += 1;
 
-  try {
-    const { results, totalPages } = await searchExerciseByFilters(queryParams);
-    renderItemsMarkup(results, refs.resultContainer);
-    console.log(totalPages);
-    
-    if (totalPages > 1) {
-      createPagination(totalPages);
-    } else {
-      isiToast.endOfSearch();
-    }
 
-    // const elementHeight = document.querySelector('.gallery-item').getBoundingClientRect().height;
-    // window.scrollBy({
-    //   top: 1.7 * elementHeight,
-    //   behavior: 'smooth',
-    // })
 
-  } catch (error) {
-    console.error('Error fetching request:', error);
-    isiToast.apiIsiToastError();
-  } finally {
-    //! refs.resultContainer.innerHTML = '';  need or not
-    hideLoader(refs.loaderModal);
-    if (queryParams.page === queryParams.totalPages) {
-      isiToast.endOfSearch();  
-      // refs.pagi.removeEventListener('click', renderMoreExercises);      
-    }
 
-  }
-
-}
 
 
 refs.searchForm.addEventListener('submit', handleSearch);
 refs.resultContainer.innerHTML = '';
+
 
 async function handleSearch(event) {
   event.preventDefault();
@@ -181,15 +129,28 @@ async function handleSearch(event) {
       
 
 console.log(totalPages);
+    // if (results.length > 0 && results.length !== totalPages) {
+    //   refs.loadMoreBtn.addEventListener('click', handleLoadMore);
+    //   buttonService.show(refs.loadMoreBtn);
+    // } else {
+    //   isiToast.endOfSearch();
+    //   buttonService.hide(refs.loadMoreBtn);
+    //   buttonService.enableBtn(refs.searchBtn);
+      // }
 
       renderItemsMarkup(results, refs.resultContainer);
+      // const lightbox = new SimpleLightbox('.filtered-cards a', {
+      //     captionsData: 'alt',
+      //     captionDelay: 250,
+      // });
+
+      // lightbox.refresh();
       
   } catch (error) {
     console.error('Error fetching images:', error);
     alert('Wrong request')
   } finally {
-    refs.searchForm.reset();
-    hideLoader(refs.loaderModal);
+      refs.searchForm.reset();
   }
 }
 
@@ -231,112 +192,5 @@ function renderItemsMarkup(results, resultContainer) {
 }
 
 
-// currentPage, ul, li 
-function createPagination(totalPages) {
-  // Створіть новий екземпляр пагінації з використанням поточних налаштувань та totalPages
-  const instance = new Pagination(refs.pagi, { 
-    totalItems: totalPages, // Кількість елементів, які будуть розділені по сторінках
-    itemsPerPage: 9, // Кількість елементів на одній сторінці
-    visiblePages: 3, // Кількість видимих сторінок в пагінації
-    page: queryParams.page, // Початкова сторінка
-    centerAlign: true, // Вирівнювання пагінації по центру
-    template: {
-      page: '<a class="tui-pagination-btn">{{page}}</a>',
-      currentPage: '<strong class="tui-pagination-btn tui-pagination-active">{{page}}</strong>',
-      moveButton: '<a class="tui-pagination-btn tui-pagination-control"></a>',
-      disabledMoveButton: '<a class="tui-pagination-btn tui-pagination-control disabled"></a>',
-      moreButton: '<a class="tui-pagination-btn tui-pagination-ellipsis" aria-label="More"></a>'
-    }
-  });
-}
-
-function updatePagination(totalPages) {
-  // Створіть новий екземпляр пагінації з використанням поточних налаштувань та totalPages
-  const instance = new Pagination(refs.pagi, { 
-    totalItems: totalPages, // Кількість елементів, які будуть розділені по сторінках
-    itemsPerPage: 9, // Кількість елементів на одній сторінці
-    visiblePages: 6, // Кількість видимих сторінок в пагінації
-    page: 1, // Початкова сторінка
-    centerAlign: true, // Вирівнювання пагінації по центру
-    template: {
-      page: '<a class="tui-pagination-btn">{{page}}</a>',
-      currentPage: '<strong class="tui-pagination-btn tui-pagination-active">{{page}}</strong>',
-      moveButton: '<a class="tui-pagination-btn tui-pagination-control"></a>',
-      disabledMoveButton: '<a class="tui-pagination-btn tui-pagination-control disabled"></a>',
-      moreButton: '<a class="tui-pagination-btn tui-pagination-ellipsis" aria-label="More"></a>'
-    }
-  });
-}
-
-export { renderExerciseByFilter };
-
-renderExerciseByFilter();
-
-
-//! createModal
-// refs.toStartBtn.addEventListener('sudmit', createModal);
-  
-  //! removeListener another developer
-
-// async function createModal(evt) {
-//   try {
-//     const { results } = await renderModal();
-//     console.log(results);
-//   } catch (error) {
-//     console.error('Error fetching images:', error);
-//     alert('Wrong request')
-//   }
-// }
-
-//! Pagination
-//import Pagination from 'tui-pagination'; 
-
-// const pagi = document.getElementById('tui-pagination-container');
-// const instance = new Pagination(pagi, { 
-//   totalItems: 19, // Загальна кількість елементів, які будуть розділені по сторінках
-//   itemsPerPage: 9, // Кількість елементів на одній сторінці
-//   visiblePages: 6, // Кількість видимих сторінок в пагінації
-//   page: 1, // Початкова сторінка
-//   centerAlign: true, // Вирівнювання пагінації по центру
-//   template: {
-//     // Налаштування шаблону кнопок пагінації
-//     page: '<a class="tui-pagination-btn">{{page}}</a>',
-//     currentPage: '<strong class="tui-pagination-btn tui-pagination-active">{{page}}</strong>',
-//     moveButton:
-//       '<a class="tui-pagination-btn tui-pagination-control"></a>',
-//     disabledMoveButton:
-//       '<a class="tui-pagination-btn tui-pagination-control disabled"></a>',
-//     moreButton:
-//       '<a class="tui-pagination-btn tui-pagination-ellipsis" aria-label="More"></a>'
-//   }
-//  });
-
-// instance.getCurrentPage();
-
-//Finish pagination
-
-// async function renderExerciseByFilter() {
-
-//   try {
-//     const { results, totalPages } = await searchExerciseByFilters(queryParams);
-//     console.log(results);
-//     console.log(totalPages);
-    
-//     if (results.length > 0 && results.length !== totalPages) {
-//       createPagination(totalPages);
-//     } else {
-//       isiToast.endOfSearch();
-//     }
-
-
-//     renderItemsMarkup(results, refs.resultContainer);
-      
-//   } catch (error) {
-//     console.error('Error fetching images:', error);
-    
-//   } finally {
-      
-//   }
-// }
 
 export { filterExercise, nameExercise };
