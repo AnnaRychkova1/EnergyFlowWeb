@@ -10,23 +10,37 @@
   <body>
     <section class="section favorites-section">
       <div class="container favorites-container">
-        <blockquote class="quote-container">
-          <div class="quote-title-wrapper">
-            <div class="quote-svg-man">
-              <img
-                class="svg-man"
-                src="/img/icons/all icons/Man.svg"
-                alt="running-man icon"
-              />
+        <div class="hfasascghagsc">
+          <blockquote class="quote-container">
+            <div class="quote-title-wrapper">
+              <div class="quote-svg-man">
+                <img
+                  class="svg-man"
+                  src="/img/icons/all icons/Man.svg"
+                  alt="running-man icon"
+                />
+              </div>
+              <div class="title-quote-wrapper">
+                <h3 class="quote-title">Quote of the day</h3>
+                <img
+                  class="quote-svg-com"
+                  src="/img/icons/all icons/lapki.svg"
+                  alt="commas-icon"
+                />
+              </div>
             </div>
-            <div class="title-quote-wrapper">
-              <h3 class="quote-title">Quote of the day</h3>
-              <img
-                class="quote-svg-com"
-                src="/img/icons/all icons/lapki.svg"
-                alt="commas-icon"
-              />
+            <div class="quote-wrapper">
+              <p class="quote-text"></p>
+              <p class="quote-author"></p>
             </div>
+          </blockquote>
+          <div class="favorites-container-box">
+            <div class="favorites-info-img">
+              <img
+                class="favorites-img"
+                src="./img/desctop/desc-page-fafor-girl@1.jpg"
+                alt="women"
+                srcset="
           </div>
           <div class="quote-wrapper">
             <p class="quote-text"></p>
@@ -46,6 +60,18 @@
                     ./img/tablet/tablet-page-fafor-girl@2.jpg x2,
                     ./img/desctop/desc-page-fafor-girl@1.jpg 1x,
                     ./img/desctop/desc-page-fafor-girl@2.jpg 2x"
+
+                sizes="(min-width:1440px) 352px, (min-width: 768px) and (max-width:1440px) 368px, (max-width: 768px) 335px"
+              />
+            </div>
+            <div class="favorites-day-norma">
+              <div class="favorites-day-block">
+                <svg class="favorites-svg-day" width="20" height="20">
+                  <use href="./img/icons/symbol-defs.svg#icon-dumbbell"></use>
+                </svg>
+                <p class="favorites-day-time">110 min</p>
+                <p class="favorites-day-daily">Daily norm of sports</p>
+              </div>
               sizes="(min-width:1440px) 352px, (min-width: 768px) and (max-width:1440px) 368px, (max-width: 768px) 335px"
             /> -->
           </div>
@@ -56,6 +82,7 @@
               </svg>
               <p class="favorites-day-time">110 min</p>
               <p class="favorites-day-daily">Daily norm of sports</p>
+
             </div>
           </div>
         </div>
@@ -74,23 +101,29 @@
             </p>
           </div>
 
+
+          <!---------- Favorite Card -------------------------->
+
+          <ul class="favorites-list-item"></ul>
+
           <!---------- Favorite Card ------------>
           <ul class="favorites-gallery"></ul>
 
+
           <!----------- PAGINATION FOR MOBILE------------------>
 
-          <div class="favorites-pagination-block">
+          <!-- <div class="favorites-pagination-block is-hidden">
             <button class="active-btn" aria-label="first-page" type="button">
               1
             </button>
             <button aria-label="second-page" type="button">2</button>
             <button aria-label="third-page" type="button">3</button>
-          </div>
+          </div> -->
         </div>
       </div>
-      <div class="overlay">
+      <!-- <div class="overlay">
         <div class="loader-container"><span class="loader"></span></div>
-      </div>
+      </div> -->
     </section>
 
     <script type="module" src="./main.js"></script>
