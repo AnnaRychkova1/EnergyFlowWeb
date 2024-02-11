@@ -1,18 +1,24 @@
+
 import Pagination from 'tui-pagination'; 
 import 'tui-pagination/dist/tui-pagination.min.css';
 import axios from 'axios';
+
+//import { BASE_URL } from "./services/mainApi.js";
+const BASE_URL = 'https://energyflow.b.goit.study/api';
 import { hide, show, showLoader, hideLoader } from "./services/visibility";
 import { refs } from './templates/refs.js';
-
-import { BASE_URL } from "./services/mainApi.js";
-
 import { searchExerciseByFilters } from "./services/mainApi.js";
 import isiToast from './services/isiToast.js';
+
+
+// https://energyflow.b.goit.study/api/exercises?bodypart=waist&muscles=abs&equipment=assisted&keyword=side&page=1&limit=10
+
+// import { filterExercise, nameExercise} from './exercises';
 
 const filterExercise = 'bodypart';
 const nameExercise = 'waist';
 
-export { filterExercise, nameExercise };
+
 
 const queryParams = {
   filter: nameExercise,
@@ -20,6 +26,39 @@ const queryParams = {
   page: 1,
   limit: 9,
 };
+
+// Create modal temporarely
+
+// refs.toStartBtn.addEventListener('click', createModal);
+
+// function createModal(evt) {
+//   const idFilter = evt.target.dataset.id;
+
+//   //request by id
+// }
+
+// refs.toStartBtn.addEventListener('click', createModal);
+
+// function createModal(evt) {
+//   const idFilter = evt.target.dataset.id;
+
+//   // request by id 
+// }
+
+// async function createModal(evt) {
+  
+//   try {
+
+//     const { results } = await 
+
+//     const { results } = await cohkjjhklh
+
+//     console.log(results);
+//   } catch (error) {
+//     console.error('Error fetching images:', error);
+//     alert('Wrong request')
+//   }
+// }
 
 refs.exercisesHeader.textContent = `/${nameExercise}`;
 refs.textResult.classList.add("is-hidden");
@@ -38,6 +77,8 @@ async function renderExerciseByFilter() {
     hideLoader(refs.loaderModal);
     return
   }
+
+  // searchExerciseByFilters({ filter, name });
 
   try {
     const { results, totalPages } = await searchExerciseByFilters(queryParams);
@@ -64,6 +105,7 @@ async function renderExerciseByFilter() {
   } catch (error) {
     console.error('Error fetching images:', error);
     isiToast.apiIsiToastError();
+    console.error('Error fetching request:', error);
   } finally {
     hideLoader(refs.loaderModal);
     //! removeListener from another person
@@ -296,3 +338,5 @@ renderExerciseByFilter();
       
 //   }
 // }
+
+export { filterExercise, nameExercise };
