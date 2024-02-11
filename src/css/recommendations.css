@@ -57,6 +57,7 @@
   border-radius: 30px;
   padding: 40px 20px;
   background-color: var(--background-dark);
+  flex-grow: 1;
 }
 
 .recommend-icon-span {
@@ -147,9 +148,6 @@
   .recommend-text-div {
     width: 704px;
     height: 302px;
-  }
-  .recommend-title {
-    padding: 64px;
   }
 
   .recommend-subtitle {
