@@ -9,11 +9,16 @@ const ENDPOINT = 'filters';
 const exercisesBtnEl = document.querySelector('.exercises-btn-list');
 const exercisesGalleryEl = document.querySelector('.exercises-gallery');
 const paginationEl = document.querySelector('.exercises-pagination');
+// const exercisesGalleryItemEl = document.querySelectorAll(
+//   '.exercises-gallery-item'
+// );
 
 let filterDefault = 'Muscles';
 let currentPage = 1;
 let currentLimit = 0;
 let screenWidth = window.innerWidth;
+
+exercisesBtnEl.addEventListener('click', filterBtnExercises);
 
 if (screenWidth <= 375) {
   currentLimit = 8;
@@ -22,8 +27,6 @@ if (screenWidth <= 375) {
 } else {
   currentLimit = 12;
 }
-
-exercisesBtnEl.addEventListener('click', filterBtnExercises);
 
 async function getExercisesByFilter() {
   try {
@@ -40,22 +43,49 @@ async function getExercisesByFilter() {
   }
 }
 
+async function fetchDefaultMuscles() {
+  try {
+    getExercisesByFilter().then(data => {
+      const { results, page, totalPages } = data;
+      if (results && results.length > 0) {
+        createExercisesByFilterMarkup(results);
+        paginationEl.innerHTML = pagesPagination(page, totalPages);
+      } else {
+        console.error('No results found for this filter');
+      }
+    });
+  } catch (error) {
+    console.error('Error fetching images:', error);
+  }
+}
+
+fetchDefaultMuscles();
+
 async function filterBtnExercises(event) {
   event.preventDefault();
   const query = event.target.dataset.filter;
   exercisesGalleryEl.innerHTML = '';
+
+  filterDefault = query;
+  currentPage = 1;
+
+  // Array.from(event.currentTarget.children).map(item => {
+  //   if (item.textContent !== event.target.textContent) {
+  //     item.classList.remove('ButtonIsActive');
+  //   } else {
+  //     event.target.classList.add('ButtonIsActive');
+  //   }
+
   if (!query) {
     return;
   }
-  filterDefault = query;
-  currentPage = 1;
+
   try {
     getExercisesByFilter(query).then(data => {
       const { results, page, totalPages } = data;
       createExercisesByFilterMarkup(results);
       if (totalPages > 1) {
-        const moveButton = pagesPagination(page, totalPages);
-        paginationEl.innerHTML = moveButton;
+        paginationEl.innerHTML = pagesPagination(page, totalPages);
       } else {
         paginationEl.innerHTML = '';
       }
@@ -80,6 +110,7 @@ function createExercisesByFilterMarkup(results) {
     .join('');
   exercisesGalleryEl.insertAdjacentHTML('beforeend', markup);
 }
+
 function pagesPagination(page, totalPages) {
   let disabledMoveButton = '';
   for (let i = 1; i <= totalPages; i += 1) {
@@ -87,6 +118,8 @@ function pagesPagination(page, totalPages) {
   }
   return disabledMoveButton;
 }
+
+// ===  Функція перехід по сторінкам
 
 async function onPaginationPages(event) {
   currentPage = event.target.textContent;
