@@ -1,0 +1,2 @@
+const e=document.querySelector(".mobile-menu-wrapper"),t=document.querySelector("[data-modal-open]"),o=document.querySelector("[data-modal-close]");t.addEventListener("click",()=>{e.classList.toggle("none"),document.body.style.overflow="hidden",o.addEventListener("click",n)});const n=()=>{e.classList.toggle("none"),document.body.style.overflow="scroll",removeEventListener("click",o)};
+//# sourceMappingURL=mobile-menu-dc04c21e.js.map
