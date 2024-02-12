@@ -1,148 +1,188 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="./img/icons/dumbbell-big.svg" />
+    <link rel="stylesheet" href="./css/styles.css" />
+    <title>Favorites</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="./css/styles.css" />
-  <title>Favorites</title>
-</head>
-
-<body>
-  <load="partials/header.html" />
-  <load="partials/mobile-menu.html" />
-  <!-- Header section -->
-  <!-- <header class="header-section">
-    <div class="container container-header">
-      <div class="header-section-container">
-        <a href="./index.html" class="header-title">
-          energy.flow
-        </a>
-        <nav class="navigation-header">
-          <ul class="navigation-list">
-            <li class="navigation-item">
-              <a href="/index.html" class="navigation-links home-page" aria-label="Home page link">Home</a>
+  <body>
+    <!-- Header section -->
+    <header class="header-section">
+      <div class="container container-header">
+        <div class="header-section-container">
+          <a href="./index.html" class="header-title"> energy.flow </a>
+          <nav class="navigation-header">
+            <ul class="navigation-list">
+              <li class="navigation-item">
+                <a
+                  href="./index.html"
+                  class="navigation-links home-page"
+                  aria-label="Home page link"
+                  >Home</a
+                >
+              </li>
+              <li class="navigation-item">
+                <a
+                  href="./favorites.html"
+                  class="navigation-links favorites-page current"
+                  aria-label="Favorties page link"
+                  >Favorites</a
+                >
+              </li>
+            </ul>
+          </nav>
+          <ul class="header-social-list">
+            <li class="header-social-item instagram-animation">
+              <a
+                href="https://www.facebook.com/goITclub/"
+                class="header-social-link"
+                target="_blank"
+                title="facebook"
+              >
+                <svg class="header-social-icon" width="28" height="28">
+                  <use href="../img/icons/symbol-defs.svg#icon-facebook"></use>
+                </svg>
+              </a>
             </li>
-            <li class="navigation-item">
-              <a href="/favorites.html" class="navigation-links favorites-page current"
-                aria-label="Favorties page link">Favorites</a>
+            <li class="header-social-item facebook-animation">
+              <a
+                href="https://www.instagram.com/goitclub/"
+                class="header-social-link"
+                target="_blank"
+                title="instagram"
+              >
+                <svg class="header-social-icon" width="28" height="28">
+                  <use href="../img/icons/symbol-defs.svg#icon-instagram"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="header-social-item youtube-animation">
+              <a
+                href="https://www.youtube.com/c/GoIT"
+                class="header-social-link"
+                target="_blank"
+                title="youtube"
+              >
+                <svg class="header-social-icon" width="28" height="28">
+                  <use href="../img/icons/symbol-defs.svg#icon-youtube"></use>
+                </svg>
+              </a>
             </li>
           </ul>
-        </nav>
-        <ul class="header-social-list">
-          <li class="header-social-item instagram-animation">
-            <a href="https://www.facebook.com/goITclub/" class="header-social-link" target="_blank" title="facebook">
-              <svg class="header-social-icon" width="28" height="28">
-                <use href="../img/icons/symbol-defs.svg#icon-facebook"></use>
-              </svg>
-            </a>
-          </li>
-          <li class="header-social-item facebook-animation">
-            <a href="https://www.instagram.com/goitclub/" class="header-social-link" target="_blank" title="instagram">
-              <svg class="header-social-icon" width="28" height="28">
-                <use href="../img/icons/symbol-defs.svg#icon-instagram"></use>
-              </svg>
-            </a>
-          </li>
-          <li class="header-social-item youtube-animation">
-            <a href="https://www.youtube.com/c/GoIT" class="header-social-link" target="_blank" title="youtube">
-              <svg class="header-social-icon" width="28" height="28">
-                <use href="../img/icons/symbol-defs.svg#icon-youtube"></use>
-              </svg>
-            </a>
-          </li>
-        </ul>
-        <button class="header-mobile-open-btn" type="button" aria-label="Open mobile menu" data-modal-open>
-          <svg class="mobile-open-icon" width="32" height="16">
-            <use href="../img/icons/symbol-defs.svg#icon-mob-menu"></use>
-          </svg>
-        </button>
+          <button
+            class="header-mobile-open-btn"
+            type="button"
+            aria-label="Open mobile menu"
+            data-modal-open
+          >
+            <svg class="mobile-open-icon" width="32" height="16">
+              <use href="../img/icons/symbol-defs.svg#icon-mob-menu"></use>
+            </svg>
+          </button>
+        </div>
       </div>
-    </div>
-  </header> -->
-
-  <!-- Favorites section -->
-  <main>
-    <section class="section favorites-section">
-      <div class="container favorites-container">
-        <div class="favorites-box-container">
-          <blockquote class="quote-container">
-            <div class="quote-title-wrapper">
-              <div class="quote-svg-man">
-                <img class="svg-man" src="/img/icons/all icons/Man.svg" alt="running-man icon" />
+    </header>
+    <!-- Favorites section -->
+    <main>
+      <section class="section favorites-section">
+        <div class="container favorites-container">
+          <div class="favorites-box-container">
+            <blockquote class="quote-container">
+              <div class="quote-title-wrapper">
+                <div class="quote-svg-man">
+                  <img
+                    class="svg-man"
+                    src="/img/icons/all icons/Man.svg"
+                    alt="running-man icon"
+                  />
+                </div>
+                <div class="title-quote-wrapper">
+                  <h3 class="quote-title">Quote of the day</h3>
+                  <img
+                    class="quote-svg-com"
+                    src="/img/icons/all icons/lapki.svg"
+                    alt="commas-icon"
+                  />
+                </div>
               </div>
-              <div class="title-quote-wrapper">
-                <h3 class="quote-title">Quote of the day</h3>
-                <img class="quote-svg-com" src="/img/icons/all icons/lapki.svg" alt="commas-icon" />
+              <div class="quote-wrapper">
+                <p class="quote-text"></p>
+                <p class="quote-author"></p>
               </div>
-            </div>
-            <div class="quote-wrapper">
-              <p class="quote-text"></p>
-              <p class="quote-author"></p>
-            </div>
-          </blockquote>
-          <div class="favorites-container-box">
-            <div class="favorites-info-img">
-              <img class="favorites-img" src="./img/desctop/desc-page-fafor-girl@1.jpg" alt="women" srcset="
-                  ./img/mobile/mobile-page-fafor-girl@1.jpg 1x,
-                  ./img/mobile/mobile-page-fafor-girl@2.jpg 2x,
-                  ./img/tablet/tablet-page-fafor-girl@1.jpg 1x,
-                  ./img/tablet/tablet-page-fafor-girl@2.jpg 2x,
-                  ./img/desctop/desc-page-fafor-girl@1.jpg  1x,
-                  ./img/desctop/desc-page-fafor-girl@2.jpg  2x
-                "
-                sizes="(min-width:1440px) 352px, (min-width: 768px) and (max-width:1440px) 368px, (max-width: 768px) 335px" />
-            </div>
-            <div class="favorites-day-norma">
-              <div class="favorites-day-block">
-                <svg class="favorites-svg-day" width="20" height="20">
-                  <use href="./img/icons/symbol-defs.svg#icon-dumbbell"></use>
-                </svg>
-                <p class="favorites-day-time">110 min</p>
-                <p class="favorites-day-daily">Daily norm of sports</p>
+            </blockquote>
+            <div class="favorites-container-box">
+              <div class="favorites-info-img">
+                <img
+                  class="favorites-img"
+                  src="./img/desctop/desc-page-fafor-girl@1.jpg"
+                  alt="women"
+                  srcset="
+                    ./img/mobile/mobile-page-fafor-girl@1.jpg 1x,
+                    ./img/mobile/mobile-page-fafor-girl@2.jpg 2x,
+                    ./img/tablet/tablet-page-fafor-girl@1.jpg 1x,
+                    ./img/tablet/tablet-page-fafor-girl@2.jpg 2x,
+                    ./img/desctop/desc-page-fafor-girl@1.jpg  1x,
+                    ./img/desctop/desc-page-fafor-girl@2.jpg  2x
+                  "
+                  sizes="(min-width:1440px) 352px, (min-width: 768px) and (max-width:1440px) 368px, (max-width: 768px) 335px"
+                />
+              </div>
+              <div class="favorites-day-norma">
+                <div class="favorites-day-block">
+                  <svg class="favorites-svg-day" width="20" height="20">
+                    <use href="./img/icons/symbol-defs.svg#icon-dumbbell"></use>
+                  </svg>
+                  <p class="favorites-day-time">110 min</p>
+                  <p class="favorites-day-daily">Daily norm of sports</p>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
-    <section class="section">
-      <div class="container favorites-container">
-        <div class="favorites-box">
-          <h2 class="favorites-box-title">Favorites</h2>
-          <div class="favorites-box-block block">
-            <img class="favorites-box-img" src="./img/icons/dumbbell.png" alt="dumbbell" />
-            <p class="favorites-box-paragraf">
-              It appears that you haven't added any exercises to your favorites
-              yet. To get started, you can add exercises that you like to your
-              favorites for easier access in the future.
-            </p>
-          </div>
+      </section>
+      <section class="section">
+        <div class="container favorites-container">
+          <div class="favorites-box">
+            <h2 class="favorites-box-title">Favorites</h2>
+            <div class="favorites-box-block block">
+              <img
+                class="favorites-box-img"
+                src="./img/icons/dumbbell.png"
+                alt="dumbbell"
+              />
+              <p class="favorites-box-paragraf">
+                It appears that you haven't added any exercises to your
+                favorites yet. To get started, you can add exercises that you
+                like to your favorites for easier access in the future.
+              </p>
+            </div>
 
-          <!--------- Favorite Card ---------->
+            <!--------- Favorite Card ---------->
 
-          <ul class="favorites-gallery"></ul>
+            <ul class="favorites-gallery"></ul>
 
-          <!------ PAGINATION FOR MOBILE----->
+            <!------ PAGINATION FOR MOBILE----->
 
-          <!-- <div class="favorites-pagination-block">
-            <button class="active-btn" aria-label="first-page" type="button">
-              1
-            </button>
-            <button aria-label="second-page" type="button">2</button>
-            <button aria-label="third-page" type="button">3</button>
+            <!-- <div class="favorites-pagination-block">
+              <button class="active-btn" aria-label="first-page" type="button">
+                1
+              </button>
+              <button aria-label="second-page" type="button">2</button>
+              <button aria-label="third-page" type="button">3</button>
+            </div> -->
           </div>
         </div>
-      </div> -->
-          <!-- <div class="overlay">
+        <!-- <div class="overlay">
         <div class="loader-container"><span class="loader"></span></div>
       </div> -->
-    </section>
-  </main>
+      </section>
+    </main>
 
-  <script type="module" src="./main.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-</body>
-
+    <script type="module" src="./main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </body>
 </html>
