@@ -1,6 +1,8 @@
 export const refs = {
   //   add your refs
 
+
+  backdrop: document.querySelector('.backdrop'),
   toStartBtn: document.querySelector('.to-favorites-start'),
   loaderModal: document.querySelector('.overlay'),
   exercisesHeader: document.querySelector('.exersises-header'),
