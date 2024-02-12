@@ -7,13 +7,13 @@ const gallery = document.querySelector('.results'); // плюс название
 const backdrop = document.querySelector('.backdrop');
 const modalCard = document.querySelector('.modal');
 const favorites = document.querySelector('.ex-add-favorite');
-// const heartIcon = `
+const heartIcon = `
 // <svg class="icon-heart" width="18" height="18">
 //     <use href="${symbol-defs}#icon-heart"></use>
 // </svg>`;
 
-renderCard();
 
+renderCard();
 let storage = 'favorites';
 let storageItem = localStorage.getItem(storage);
 if (!storageItem) {
@@ -117,7 +117,7 @@ function changingButtonName(value = 'add') {
   if (value === 'add') {
     return `Add to favorites
         <svg class="icon-heart" width="18" height="18">
-          <use href="${icons}#icon-heart"></use>
+          <use href="${heartIcon}#icon-heart"></use>
         </svg>`;
   } else {
     return `Remove from
