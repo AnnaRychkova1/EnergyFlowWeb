@@ -866,7 +866,7 @@
   color: var(--background-dark-grey);
 }
 
-.favorites-start-btn {
+.favorites-arrow-icon {
   width: 61px;
   height: 24px;
   border: none;
@@ -876,15 +876,15 @@
   cursor: pointer;
 }
 
-.favorites-start-btn:hover,
-.favorites-start-btn:focus {
+.favorites-arrow-icon:hover,
+.favorites-arrow-icon:focus {
   color: var(--background-dark-grey);
 }
 
-.favorites-man-icon {
+/* .favorites-man-icon {
   height: 24px;
   width: 24px;
-}
+} */
 
 .favorites-item-title {
   font-weight: 400;
@@ -893,7 +893,7 @@
   color: var(--text-main-color);
 }
 
-.favorites-gallery-info {
+.favorites-item-desc {
   margin: auto;
   display: flex;
   flex-direction: row;
@@ -908,7 +908,7 @@
   color: rgba(27, 27, 27, 0.4);
 }
 
-.descr-span {
+.favorites-item-value {
   font-weight: 400;
   font-size: 12px;
   line-height: 1.5;

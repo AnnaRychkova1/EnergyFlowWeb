@@ -11,6 +11,7 @@ import { refs } from './templates/refs.js';
 const quoteFromLS = JSON.parse(localStorage.getItem('quoteResponse'));
 console.log(quoteFromLS);
 
+
 function displayQuoteOnPage(quoteData) {
   const quoteText = document.querySelector('.quote-text');
   const quoteAuthor = document.querySelector('.quote-author');
@@ -68,6 +69,7 @@ async function removeFromFavorites(event) {
   const elementId = element.dataset.id;
   const favorites = localStorage.getItem('favorites');
 
+async function createGalleryFromLS(LS_KEY_FAVORITES, createMarkupFavorites) {
   try {
     const storedArray = JSON.parse(favorites);
 
@@ -132,34 +134,22 @@ function createMarkupFavorites({
   let isAdded = false;
   const favorites = localStorage.getItem('favorites');
 
-  if (favorites) {
-    const favoritesFromLS = JSON.parse(favorites);
-    isAdded = favoritesFromLS.some(item => item._id === _id);
-  }
 
-  return `
-           <ul class="favorites-gallery">
-             <li class="favorites-gallery-item">
-                 <span class="workout">workout</span>
-                 <a class="favorites-remove" href="#">
-                   <button class="favorites-remove-btn" type="button">
-                     <img class="favorites-remove-icon" src="./img/icons/all icons/basket.svg" alt="remove-icon"/>
-                   </button>
-                 </a>
-                 <a class="favorites-start" href="#">
-                   <button class="favorites-start-btn" type="button">Start
-                     <img class="favorites-start-icon" src="./img/icons/all icons/line.svg" alt="start-icon"/>
-                   </button>
-                 </a>
-                 <img class="favorites-man-icon" src="../img/icons/all icons/Man.svg" alt="man-icon"/>
-                 <h3 class="favorites-item-title">${name}</h3>
-                 <ul class="favorites-gallery-info">
-                   <li class="favorites-gallery-info-item">Burned calories: <span class="descr-span">${burnedCalories} / ${time} min</span></li>
-                   <li class="favorites-gallery-info-item">Body part: <span class="descr-span">${bodyPart}</span></li>
-                   <li class="favorites-gallery-info-item">Target: <span class="descr-span">${target}</span></li>
-                 </ul>
-             </li>
-           </ul>`;
+async function removeObjectFromLocalStorage(idToRemove) {
+    try {
+        let storedArray = JSON.parse(localStorage.getItem(LS_KEY_FAVORITES));
+
+        if (!Array.isArray(storedArray) || storedArray.length === 0) {
+            console.log('Array in local storage is empty or does not exist.');
+            return;
+        }
+        storedArray = storedArray.filter(item => item._id !== idToRemove);
+        localStorage.setItem(LS_KEY_FAVORITES, JSON.stringify(storedArray));
+        console.log(`Object with ID ${idToRemove} removed from local storage.`);
+        await refreshGallery();
+    } catch (error) {
+        console.error('Error removing object from local storage:', error);
+    }
 }
 
 function scrollBy() {

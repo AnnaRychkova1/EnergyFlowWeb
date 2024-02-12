@@ -1,8 +1,8 @@
 import axios from 'axios';
-// import { exercisesParamFilter, exercisesParamName } from '../exercises';
-import { filterDefault, currentPage, currentLimit } from '../exercises';
-// import { exercisesParamFilter, exercisesParamName } from '../exercises-details';
-// import { exercisesParamFilter, exercisesParamName } from '../exercises';
+import { exercisesParamFilter, exercisesParamName } from '../exercises';
+import { exerciseId } from '../exercises-details';
+// import { filterDefault, currentPage, currentLimit } from '../exercises';
+
 
 const BASE_URL = 'https://energyflow.b.goit.study/api';
 
@@ -22,7 +22,7 @@ async function fetchQuoteFromServer() {
 
 async function searchExerciseByFilters({ keyword, page = 1, limit }) {
   const response = await axios.get(
-    `https://energyflow.b.goit.study/api/exercises`,
+    `${BASE_URL}/${ENDPOINT_FILTER}`,
     {
       params: {
         [filterDefault]: nameExercise,
@@ -52,7 +52,7 @@ async function getExercisesByFilter() {
 
 async function searchExerciseByID(id) {
   try {
-    const { data } = await axios.get(`${BASE_URL}/${ENDPOINT_FILTER}/${id}`);
+    const { data } = await axios.get(`${BASE_URL}/${ENDPOINT_FILTER}/${exerciseId}`);
     return data;
   } catch (err) {
     console.error(err);
