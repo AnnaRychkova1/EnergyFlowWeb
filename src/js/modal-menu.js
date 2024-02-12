@@ -8,13 +8,13 @@ const backdrop = document.querySelector('.backdrop');
 const modalCard = document.querySelector('.modal');
 const favorites = document.querySelector('.ex-add-favorite');
 const heartIcon = `
-<svg class="icon-heart" width="18" height="18">
-    <use href="${symbol-defs}#icon-heart"></use>
-</svg>`;
+// <svg class="icon-heart" width="18" height="18">
+//     <use href="${symbol-defs}#icon-heart"></use>
+// </svg>`;
 
-
+renderCard();
 let storage = 'favorites';
-let storageIcurrentTargettem = localStorage.getItem(storage);
+let storageItem = localStorage.getItem(storage);
 if (!storageItem) {
     storageItem = [];
 } else {
@@ -101,7 +101,7 @@ function handleEscapeKey(event) {
 // const exerciseId = '64f389465ae26083f39b17c0';
 async function getCardInfo(exerciseId) {
     try {
-        const BASE_URL = 'https://energyflow.b.goit.study/api/exercises/';
+        const BASE_URL = 'https://energyflow.b.goit.study/api';
         const ENDPOINT = 'exercises';
         const { data } = await axios.get(`${BASE_URL}/${ENDPOINT}/${exerciseId}`);
         return data;
@@ -114,7 +114,7 @@ function changingButtonName(value = 'add') {
   if (value === 'add') {
     return `Add to favorites
         <svg class="icon-heart" width="18" height="18">
-          <use href="${icons}#icon-heart"></use>
+          <use href="${heartIcon}#icon-heart"></use>
         </svg>`;
   } else {
     return `Remove from
