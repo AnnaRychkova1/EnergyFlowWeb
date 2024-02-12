@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { filterExercise, nameExercise } from '../exercises-details';
+// import { exercisesParamFilter, exercisesParamName } from '../exercises';
 import { filterDefault, currentPage, currentLimit } from '../exercises';
-import { exercisesParamFilter, exercisesParamName } from '../exercises-details';
+// import { exercisesParamFilter, exercisesParamName } from '../exercises-details';
 // import { exercisesParamFilter, exercisesParamName } from '../exercises';
 
 const BASE_URL = 'https://energyflow.b.goit.study/api';
@@ -25,7 +25,7 @@ async function searchExerciseByFilters({ keyword, page = 1, limit }) {
     `https://energyflow.b.goit.study/api/exercises`,
     {
       params: {
-        [filterExercise]: nameExercise,
+        [filterDefault]: nameExercise,
         keyword: keyword,
         limit,
         page,
