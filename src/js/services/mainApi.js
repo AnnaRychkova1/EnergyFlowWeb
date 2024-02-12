@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { filterExercise, nameExercise } from '../exercises-details';
+// import { filterExercise, nameExercise } from '../exercises-details';
 
 const BASE_URL = 'https://energyflow.b.goit.study/api';
 
@@ -32,7 +32,7 @@ async function searchExerciseByFilters({ keyword, page = 1, limit }) {
 
 async function searchExerciseByID(id) {
   try {
-    const  { data }  = await axios.get(`${BASE_URL}/${ENDPOINT_FILTER}/${id}`);
+    const  { data }  = await axios.get(`${BASE_URL}/${ENDPOINT_FILTER}?id`);
     return data;
   } catch (err) {
     console.error(err);

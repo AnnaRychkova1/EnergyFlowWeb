@@ -1,16 +1,16 @@
 import axios from "axios";
-import iziToast from 'izitoast';
-import 'izitoast/dist/css/iziToast.min.css';
+// import { apiIsiToastError } from './services/isiToast.js';
 import { searchExerciseByID } from "./services/mainApi.js";
-import { hide, show } from "./services/visibility";
+// import { hide, show } from "./services/visibility";
 import { refs } from "./templates/refs.js";
-// import { apiIsiToastError, noResults } from "./services/isiToast.js";
+
 
 
 //  Quote of Day
-
-const quoteFromLS = JSON.parse(localStorage.getItem("quoteResponse"));
+const LS_KEY_QUOTE = "quoteResponse";
+const quoteFromLS = JSON.parse(localStorage.getItem(LS_KEY_QUOTE));
 console.log(quoteFromLS);
+
 
 function displayQuoteOnPage(quoteData) {
   const quoteText = document.querySelector('.quote-text');
@@ -19,286 +19,218 @@ function displayQuoteOnPage(quoteData) {
   quoteAuthor.textContent = quoteData.author;
 }
 
-// Show Favorites Page
+/// Create Favorites page
 
-showFavoritesGallery();
+const LS_KEY_FAVORITES = "favorites";
 
-
-// Listeners
-
-refs.addToFavoritesBtn.addEventListener('click', addToFavorites);
-// refs.onRemoveBtn.addEventListener("click", removeFromFavorites);
-// refs.onStartBtn.addEventListener("click", showModal);                //TODO depends on function at modal-menu.js
-
-
-// Add favorite exersise to LS 
-
-async function addToFavorites(event) {
-  event.preventDefault();
-
-  const element = event.target.closest(".ex-add-btn");
-  const elementId = element.dataset.id;
-  const favorites = localStorage.getItem('favorites');
-
-  
-  if (favorites) {
-    const favoritesFromLS = JSON.parse(favorites);
-    const predicate = favoritesFromLS.some(({ _id }) => _id === elementId);
-    
-    if (predicate) {
-      localStorage.setItem('favorites', JSON.stringify(favoritesFromLS.filter(({ _id }) => _id !== elementId))
-      );
-      element.innerHTML = addInnerHTML();
-    
-    } else {
-      const favoritesToLS = await searchExerciseByID(elementId);
-      localStorage.setItem("favorites", JSON.stringify([...favoritesFromLS, favoritesToLS]));
-      element.innerHTML = addInnerHTML('remove');
-    
-    }
-  }
-}
-
-
-// Remove favorite exersise ftom LS
-
-async function removeFromFavorites(event) {
-  event.preventDefault();
-  show(refs.favoritesMessage);
-
-  const element = event.target.closest(".ex-add-btn");
-  const elementId = element.dataset.id;
-  const favorites = localStorage.getItem("favorites");
-
+async function createGalleryFromLS(LS_KEY_FAVORITES, createMarkupFavorites) {
   try {
-    const storedArray = JSON.parse(favorites);
+    const itemsFromLS = await JSON.parse(localStorage.getItem(LS_KEY_FAVORITES));
 
-    if (Array.isArray(storedArray) && storedArray.length > 0) {
-      localStorage.removeItem("favorites");
-      const newArray = storedArray.filter(({ _id }) => _id !== elementId);
-      localStorage.setItem("favorites", JSON.stringify(newArray));
-      
-    } else {
-      // noResults();
-        console.log('Array in localStorage is empty or does not exist');
+    if (!itemsFromLS || !Array.isArray(itemsFromLS) || itemsFromLS.length === 0) {
+      console.log('No items found in local storage or data is invalid.');
+      apiIsiToastError();
+      return;
     }
-
-  } catch (error) {
-     console.error(error);
-    //  apiIsiToastError();
+        
+    refs.favoritesGallery.innerHTML = '';
+        
+    
+    refs.favoritesGallery.appendChild(refs.galleryItem);
   
+
+  // if (itemsFromLS.length === 0) {
+  //   console.log(`There are no exercises in favorites.`);
+  //   apiIsiToastError();
+        
+  } catch (error) {
+    console.error('Error creating gallery from local storage:', error);
   } finally {
     console.log();
-    refs.favoritesGallery.reset();
-   }
+ refreshGallery();
+  }
 }
 
 
-// Show Favorites after choosing 'Favorites' at Header
-async function showFavoritesGallery() {
-  refs.favoritesGallery.innerHTML = "";
-  hide(refs.favoritesMessage);
+// Refresh the gallery by updating the displayed items
+async function refreshGallery() {
+    try {
+        const storedArray = JSON.parse(localStorage.getItem('favorites'));
+        if (!Array.isArray(storedArray) || storedArray.length === 0) {
+          console.log('Array in local storage is empty or does not exist.');
+          apiIsiToastError();
+            return;
+        }
+       
+        refs.favoritesGallery.innerHTML = '';
 
-  const favorites = localStorage.getItem("favorites");
-     
-  if (!favorites) {
-    show(refs.favoritesMessage);
-    return;
-  }
-  
-  try {
-    const favoritesFromLS = await JSON.parse(localStorage.getItem("favorites"));
-    refs.favoritesGallery.insertAdjacentHTML('afterbegin', createMarkupFavorites());
-                    
-    if (favoritesFromLS >= 9) {
-      scrollBy();
-    } else {
-      return;
-     
+        storedArray.forEach(item => {
+        const markup = createMarkupFavorites(item);
+
+        refs.favoritesGallery.insertAdjacentHTML('afterbegin', markup);
+        });
+
+        console.log('Gallery refreshed successfully.');
+    } catch (error) {
+      console.error('Error refreshing gallery:', error);
+      apiIsiToastError();
     }
-  } catch (error) {
-    console.error(error);
-    // apiIsiToastError();
-    
-  } finally {
-      console.log();
-      refs.favoritesGallery.reset();
-    }
-  }
-
-
-
-function createMarkupFavorites({_id, bodyPart, name, target, burnedCalories, time,}) {
-  let isAdded = false;
-  const favorites = localStorage.getItem('favorites');
-
-  if (favorites) {
-    const favoritesFromLS = JSON.parse(favorites);
-    isAdded = favoritesFromLS.some(item => item._id === _id);
-  }
-
-  return `
-           <ul class="favorites-gallery">
-             <li class="favorites-gallery-item">
-                 <span class="workout">workout</span>
-                 <a class="favorites-remove" href="#">
-                   <button class="favorites-remove-btn" type="button">
-                     <img class="favorites-remove-icon" src="./img/icons/all icons/basket.svg" alt="remove-icon"/>
-                   </button>
-                 </a>
-                 <a class="favorites-start" href="#">
-                   <button class="favorites-start-btn" type="button">Start
-                     <img class="favorites-start-icon" src="./img/icons/all icons/line.svg" alt="start-icon"/>
-                   </button>
-                 </a>
-                 <img class="favorites-man-icon" src="../img/icons/all icons/Man.svg" alt="man-icon"/>
-                 <h3 class="favorites-item-title">${name}</h3>
-                 <ul class="favorites-gallery-info">
-                   <li class="favorites-gallery-info-item">Burned calories: <span class="descr-span">${burnedCalories} / ${time} min</span></li>
-                   <li class="favorites-gallery-info-item">Body part: <span class="descr-span">${bodyPart}</span></li>
-                   <li class="favorites-gallery-info-item">Target: <span class="descr-span">${target}</span></li>
-                 </ul>
-             </li>
-           </ul>`;
 }
 
-function createGalleryFromLocalStorage(storageKey, galleryContainerSelector) {
-    // Retrieve array of objects from local storage
-    const itemsFromLocalStorage = JSON.parse(localStorage.getItem(storageKey));
-
-    // Check if items exist in local storage
-    if (!itemsFromLocalStorage || !Array.isArray(itemsFromLocalStorage) || itemsFromLocalStorage.length === 0) {
-        console.log('No items found in local storage or data is invalid.');
-        return;
-    }
-
-    // Select the gallery container element
-    const galleryContainer = document.querySelector(galleryContainerSelector);
-
-    // Clear existing content in the gallery container
-    galleryContainer.innerHTML = '';
-
-    // Iterate over the items and create gallery elements
-    itemsFromLocalStorage.forEach(item => {
-        // Create gallery item element
-        const galleryItem = document.createElement('div');
-        galleryItem.classList.add('gallery-item');
-        
-        // Set ID as a data attribute
-        galleryItem.dataset.id = item.id;
-        
-        // Optionally, you can add other attributes or content to the gallery item
-        
-        // Append gallery item to the gallery container
-        galleryContainer.appendChild(galleryItem);
+// Scroll for container favorites-gallery for desktop and tablet
+function scrollBy() {
+    refs.favoritesGallery.scrollTo({
+        top: refs.favoritesGallery.scrollHeight,
+        behavior: 'smooth',
     });
 }
 
-// Example usage:
-// Assuming you have a <div> with id "galleryContainer" where you want to display the gallery
-createGalleryFromLocalStorage('favorites', '#galleryContainer');
-
-
-
-
-
-
-
-// Function to remove an object from an array stored in local storage
+// Remove an exersise from an array stored in local storage
+// refs.onRemoveBtn.addEventListener('click', removeObjectFromLocalStorage);
 async function removeObjectFromLocalStorage(idToRemove) {
     try {
-        // Retrieve array of objects from local storage
-        let storedArray = JSON.parse(localStorage.getItem('galleryItems'));
+        let storedArray = JSON.parse(localStorage.getItem(LS_KEY_FAVORITES));
 
-        // Check if the array exists and is not empty
         if (!Array.isArray(storedArray) || storedArray.length === 0) {
             console.log('Array in local storage is empty or does not exist.');
             return;
         }
-
-        // Remove the object with the specified ID
-        storedArray = storedArray.filter(item => item.id !== idToRemove);
-
-        // Update the array in local storage
-        localStorage.setItem('galleryItems', JSON.stringify(storedArray));
-
+        storedArray = storedArray.filter(item => item._id !== idToRemove);
+        localStorage.setItem(LS_KEY_FAVORITES, JSON.stringify(storedArray));
         console.log(`Object with ID ${idToRemove} removed from local storage.`);
-
-        // Refresh the gallery
         await refreshGallery();
     } catch (error) {
         console.error('Error removing object from local storage:', error);
     }
 }
 
-// Function to refresh the gallery by updating the displayed items
-async function refreshGallery() {
-    try {
-        // Retrieve array of objects from local storage
-        const storedArray = JSON.parse(localStorage.getItem('galleryItems'));
 
-        // Check if the array exists and is not empty
-        if (!Array.isArray(storedArray) || storedArray.length === 0) {
-            console.log('Array in local storage is empty or does not exist.');
-            return;
+// Add to Favorites after click on button 'Add to Favotites' at Modal
+
+  
+async function addItemToFavorites(event) {
+    event.preventDefault();
+
+    const element = event.target.closest(".ex-add-btn");
+    const elementId = element.dataset.id;
+      try {
+        const exercise = await searchExerciseByID(elementId);
+        let favorites = JSON.parse(localStorage.getItem(LS_KEY_FAVORITES)) || [];
+        const isDuplicate = favorites.some(favorite => favorite._id === exercise._id);
+
+        if (!isDuplicate) {
+           favorites.push(exercise);
+           localStorage.setItem(LS_KEY_FAVORITES, JSON.stringify(favorites));
+           await refreshGallery();
+           console.log("Exercise added to favorites:", exercise);
+        } else {
+           console.log("Exercise is already in favorites.");
         }
-
-        // Logic to display the gallery with updated items
-        // This could involve clearing the existing gallery content and re-rendering with the updated items
-
-        console.log('Gallery refreshed successfully.');
     } catch (error) {
-        console.error('Error refreshing gallery:', error);
+      console.error("Error adding exercise to favorites:", error);
+      apiIsiToastError();
     }
 }
 
-// Example usage:
-const idToRemove = 123; // Replace with the ID of the object you want to remove
-removeObjectFromLocalStorage(idToRemove);
-
-// In this code:
-
-// The removeObjectFromLocalStorage function removes an object with the specified ID from the array stored in local storage. It then calls the refreshGallery function to update the displayed items in the gallery.
-// The refreshGallery function retrieves the updated array from local storage and refreshes the gallery with the updated items. You would need to implement the logic to update the gallery according to your specific requirements.
-// Both functions use async/await for asynchronous operations (such as reading from and writing to local storage), and try/catch blocks to handle errors gracefully.
+//  refs.addToFavoritesBtn.addEventListener('click', addItemToFavorites);
 
 
 
-
-
-
-
-
-
-// Scroll for container favorites-gallery for desktop and tablet
-function scrollBy() {
-    const galleryItems = document.querySelectorAll('.favorites-gallery-item');
-    let totalHeight = 0;
-
-    // Calculate the total height of all gallery items
-    galleryItems.forEach(item => {
-        totalHeight += item.getBoundingClientRect().height;
-    });
-
-    // Scroll the window by the total height
-    window.scrollBy({
-        top: totalHeight,
-        behavior: 'smooth',
-    });
+// refs.onStartBtn.addEventListener('click', handleStartButtonClick);
+// After click  "Start" arrow
+function handleStartButtonClick(event) {
+    event.preventDefault();
+    // Open the modal
+    openModal();
 }
 
-//Add to Favorites after click on button 'Add to Favotites' at Modal
-// function addItemToFavorites(event) {
-//   event.preventDefault();
-  
-//   const LS_KEY_FAVORITES = "Array of Favorites";
-//   const arrayFavorites = event.currentTarget.elements.name.value();
-  
-//   searchExerciseByID();
-//   localStorage.setItem(LS_KEY_FAVORITES, JSON.stringify(arrayFavorites));
-// }
-  
-
- 
+function openModal() {
+    const modal = document.querySelector('.modal');
+    modal.classList.add('open');
+}
 
 
+function createMarkupFavorites(data) {
+  return data
+    .map(
+      i =>
+        `
+        <li class="favorites-gallery-item" data-id="${i._id}" id="card-${i._id}">
+           <p class="favorites-item-head">
+              <span class="favorites-item-head-wrapper">
+                <span class="workout">WORKOUT</span>
+                  <button class="favorites-remove-btn">
+                    <svg class="favorites-remove-icon" width="12" height="13">
+                      <use href="${icons}#icon-trash"></use>
+                    </svg>
+                  </button>
+                  <a class="ex-item-start" href="" data-id="${i._id}">
+                    <span>Start</span>
+                     <svg class="favorites-arrow-icon" width="14" height="14">
+                      <use href="${icons}#icon-arrow-start"></use>
+                    </svg>
+                  </a>
+             </p>
+              <span class="favorites-item-title">
+                <span class="favorites-man-icon"><svg class="ex-icon-run" width="14" height="14">
+                  <use href="${icons}#icon-running_man"></use>
+                </svg>
+              </span>
+              
+            <h3 class="favorites-item-title">${
+              i.name.charAt(0).toUpperCase() + i.name.slice(1)
+            }</h3>
+            </span>
+            </span>
+            <p class="favorites-item-info">
+             <span class="ex-info-group"><span class="favorites-item-desc">Burned calories:</span> <span
+                class="favorites-item-value">${i.burnedCalories} / ${
+          i.time
+        } min</span>
+        </span>
+        <span class="favorites-info-group"><span class="favorites-item-desc">Body part:</span> <span
+                class="favorites-item-value">${
+                  i.bodyPart.charAt(0).toUpperCase() + i.bodyPart.slice(1)
+                }</span>
+        </span>
+        <span class="favorites-info-group"><span class="favorites-item-desc">Target:</span> <span
+                class="favorites-item-value">${
+                  i.target.charAt(0).toUpperCase() + i.target.slice(1)
+                }</span>
+        </span>
+    </p>
+</li>
+        `
+    )
+    .join('');
+}
+// function createMarkupFavorites({ _id, bodyPart, name, target, burnedCalories, time }) {
+//       let isAdded = false;
+//       const favorites = localStorage.getItem(LS_KEY_FAVORITES);
+
+//       if (favorites) {
+//         const favoritesFromLS = JSON.parse(favorites);
+//         isAdded = favoritesFromLS.some(item => item._id === _id);
+//       }
+//       return `
+//         <li class="favorites-gallery-item">
+//             <span class="workout">workout</span>
+//             <a class="favorites-remove" href="#">
+//                 <button class="favorites-remove-btn" type="button">
+//                     <img class="favorites-remove-icon" src="../img/icons/symbole-defs.svg#icon-line" alt="icon-basket"/>
+//                 </button>
+//             </a>
+//             <a class="favorites-start" href="#">
+//                 <button class="favorites-start-btn" type="button">Start
+//                     <img class="favorites-start-icon" src="../img/icons/symbole-defs.svg#icon-line" alt="start-icon"/>
+//                 </button>
+//             </a>
+//             <img class="favorites-man-icon" src="../img/icons/symbol-defs.svg#icon-Man" alt="man-icon"/>
+//             <h3 class="favorites-item-title">${name}</h3>
+//             <ul class="favorites-gallery-info">
+//                 <li class="favorites-gallery-info-item">Burned calories: <span class="descr-span">${burnedCalories} / ${time} min</span></li>
+//                 <li class="favorites-gallery-info-item">Body part: <span class="descr-span">${bodyPart}</span></li>
+//                 <li class="favorites-gallery-info-item">Target: <span class="descr-span">${target}</span></li>
+//             </ul>
+//         </li>`;
+//     }
