@@ -6,7 +6,7 @@ function apiIsiToastError() {
       title: '🥺 Ooops...',
       message:
         'An error occurred while fetching results. Please try again later.',
-      position: 'center',
+      position: 'bottomCenter',
     });
 }
 
@@ -32,7 +32,7 @@ function noResults() {
         title: '🥺 Ooops...',
         message:
           'Sorry, there are no results matching your search. Please try again!',
-        position: 'bottomCenter',
+        position: 'center',
       });
 }
 
