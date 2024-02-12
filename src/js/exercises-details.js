@@ -4,10 +4,11 @@ import Pagination from 'tui-pagination';
 import axios from 'axios';
 import { hide, show, showLoader, hideLoader } from "./services/visibility";
 import { refs } from './templates/refs.js';
-import { searchExerciseByFilters } from "./services/mainApi.js";
+// import { searchExerciseByFilters } from "./services/mainApi.js";
 import isiToast from './services/isiToast.js';
 // import { exercisesParamFilter, exercisesParamName } from '../exercises'; - wait for push
-import { getCardInfo, renderCard} from './modal-menu.js';
+// import { getCardInfo } from './modal-menu.js';
+
 
 // ! add listeners
 refs.searchForm.addEventListener('submit', handleSearch);
@@ -25,6 +26,30 @@ const exercisesParamName = 'waist';
 let exerciseId;
 let startButtonFavorite;
 
+
+// Я взяла з мейну
+const BASE_URL = 'https://energyflow.b.goit.study/api';
+
+const ENDPOINT_FILTER = 'exercises';
+
+
+async function searchExerciseByFilters({ keyword, page = 1, limit }) {
+  const response = await axios.get(
+    `${BASE_URL}/${ENDPOINT_FILTER}`,
+    {
+      params: {
+        [exercisesParamFilter]: exercisesParamName,
+        keyword: keyword,
+        limit,
+        page,
+      },
+    }
+  );
+  return response.data;
+}
+
+// Це кінець того, що я взяла
+
 const queryParams = {
   filter: exercisesParamName,
   keyword: '',
@@ -34,14 +59,14 @@ const queryParams = {
 };
 
 // ! work with title
-refs.exercisesHeader.textContent = `/${exercisesParamName}`;
+// refs.exercisesHeader.textContent = `/${exercisesParamName}`;
 
 // ! Function for create modal
 function handleStartExerciseByClick(evt) {
   exerciseId = evt.currentTarget.dataset.id;
   console.log(exerciseId);
   show(refs.backdrop);
-  renderCard(exerciseId);                 
+  getCardInfo(exerciseId);                 
   // startExerciseButton.removeEventListener();
 }
 
@@ -92,8 +117,26 @@ async function renderExerciseByFilter() {
     
 
     createCardsOfExercises(results, refs.resultContainer);
+
+    // Створити делегування подій на лішку
+    const buttonCljsestElemtntLi = document.querySelector('.exercises-gallery');
+    buttonCljsestElemtntLi.addEventListener('click', handleClickOnCard)
+
+//     function handleClickOnCard(event){
+//     event.preventDefault();
+//       if (event.target.closest('ul').dataset.exercises) {
+//         getCardInfo();
+//     }
+//     return;
+    // }
     
-    
+function handleClickOnCard(evt) {
+      evt.preventDefault();
+      if (evt.target.closest('ul').dataset.exercises) {
+        getCardInfo();
+    }
+    return;
+} 
     
   
   } catch (error) {
