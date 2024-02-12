@@ -98,7 +98,7 @@ function handleEscapeKey(event) {
   }
 }
 
-const exerciseId = '64f389465ae26083f39b17c0';
+// const exerciseId = '64f389465ae26083f39b17c0';
 async function getCardInfo(exerciseId) {
     try {
         const BASE_URL = 'https://energyflow.b.goit.study/api/exercises/';
