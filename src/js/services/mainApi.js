@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { exercisesParamFilter, exercisesParamName } from '../exercises';
-import { exerciseId } from '../exercises-details';
-import { filterDefault, currentPage, currentLimit } from '../exercises';
+// import { exercisesParamFilter, exercisesParamName } from '../exercises';
+// import { exerciseId } from '../exercises-details';
+// import { filterDefault, currentPage, currentLimit } from '../exercises';
 
 
 const BASE_URL = 'https://energyflow.b.goit.study/api';
