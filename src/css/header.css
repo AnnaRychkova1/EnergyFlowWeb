@@ -47,9 +47,7 @@
 .navigation-header {
   display: none;
 }
-button:hover {
-  background-color: transparent;
-}
+
 .mobile-open-icon {
   stroke: #7e847f;
 }
