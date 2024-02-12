@@ -17,6 +17,7 @@ const queryParams = {
 };
 
 refs.exercisesBtnEl.addEventListener('click', filterBtnExercises);
+refs.paginationEl.addEventListener('click', onPaginationPages);
 
 if (screenWidth <= 375) {
   currentLimit = 8;
@@ -120,7 +121,6 @@ async function onPaginationPages(event) {
     console.log(error);
   }
 }
-refs.paginationEl.addEventListener('click', onPaginationPages);
 
 // function handleExercisesItemClick(event) {
 //   exercisesParamFilter = event.target.dataset.filter;
