@@ -95,7 +95,7 @@ async function removeFromFavorites(event) {
 
 
 // Show Favorites after choosing 'Favorites' at Header
-async function showFavoritesGallery(event) {
+async function showFavoritesGallery() {
   refs.favoritesGallery.innerHTML = "";
   hide(refs.favoritesMessage);
 
@@ -162,12 +162,128 @@ function createMarkupFavorites({_id, bodyPart, name, target, burnedCalories, tim
            </ul>`;
 }
 
+function createGalleryFromLocalStorage(storageKey, galleryContainerSelector) {
+    // Retrieve array of objects from local storage
+    const itemsFromLocalStorage = JSON.parse(localStorage.getItem(storageKey));
+
+    // Check if items exist in local storage
+    if (!itemsFromLocalStorage || !Array.isArray(itemsFromLocalStorage) || itemsFromLocalStorage.length === 0) {
+        console.log('No items found in local storage or data is invalid.');
+        return;
+    }
+
+    // Select the gallery container element
+    const galleryContainer = document.querySelector(galleryContainerSelector);
+
+    // Clear existing content in the gallery container
+    galleryContainer.innerHTML = '';
+
+    // Iterate over the items and create gallery elements
+    itemsFromLocalStorage.forEach(item => {
+        // Create gallery item element
+        const galleryItem = document.createElement('div');
+        galleryItem.classList.add('gallery-item');
+        
+        // Set ID as a data attribute
+        galleryItem.dataset.id = item.id;
+        
+        // Optionally, you can add other attributes or content to the gallery item
+        
+        // Append gallery item to the gallery container
+        galleryContainer.appendChild(galleryItem);
+    });
+}
+
+// Example usage:
+// Assuming you have a <div> with id "galleryContainer" where you want to display the gallery
+createGalleryFromLocalStorage('favorites', '#galleryContainer');
+
+
+
+
+
+
+
+// Function to remove an object from an array stored in local storage
+async function removeObjectFromLocalStorage(idToRemove) {
+    try {
+        // Retrieve array of objects from local storage
+        let storedArray = JSON.parse(localStorage.getItem('galleryItems'));
+
+        // Check if the array exists and is not empty
+        if (!Array.isArray(storedArray) || storedArray.length === 0) {
+            console.log('Array in local storage is empty or does not exist.');
+            return;
+        }
+
+        // Remove the object with the specified ID
+        storedArray = storedArray.filter(item => item.id !== idToRemove);
+
+        // Update the array in local storage
+        localStorage.setItem('galleryItems', JSON.stringify(storedArray));
+
+        console.log(`Object with ID ${idToRemove} removed from local storage.`);
+
+        // Refresh the gallery
+        await refreshGallery();
+    } catch (error) {
+        console.error('Error removing object from local storage:', error);
+    }
+}
+
+// Function to refresh the gallery by updating the displayed items
+async function refreshGallery() {
+    try {
+        // Retrieve array of objects from local storage
+        const storedArray = JSON.parse(localStorage.getItem('galleryItems'));
+
+        // Check if the array exists and is not empty
+        if (!Array.isArray(storedArray) || storedArray.length === 0) {
+            console.log('Array in local storage is empty or does not exist.');
+            return;
+        }
+
+        // Logic to display the gallery with updated items
+        // This could involve clearing the existing gallery content and re-rendering with the updated items
+
+        console.log('Gallery refreshed successfully.');
+    } catch (error) {
+        console.error('Error refreshing gallery:', error);
+    }
+}
+
+// Example usage:
+const idToRemove = 123; // Replace with the ID of the object you want to remove
+removeObjectFromLocalStorage(idToRemove);
+
+// In this code:
+
+// The removeObjectFromLocalStorage function removes an object with the specified ID from the array stored in local storage. It then calls the refreshGallery function to update the displayed items in the gallery.
+// The refreshGallery function retrieves the updated array from local storage and refreshes the gallery with the updated items. You would need to implement the logic to update the gallery according to your specific requirements.
+// Both functions use async/await for asynchronous operations (such as reading from and writing to local storage), and try/catch blocks to handle errors gracefully.
+
+
+
+
+
+
+
+
+
+// Scroll for container favorites-gallery for desktop and tablet
 function scrollBy() {
+    const galleryItems = document.querySelectorAll('.favorites-gallery-item');
+    let totalHeight = 0;
+
+    // Calculate the total height of all gallery items
+    galleryItems.forEach(item => {
+        totalHeight += item.getBoundingClientRect().height;
+    });
+
+    // Scroll the window by the total height
     window.scrollBy({
-      top:
-        2 *
-        document.querySelector('.favorites-gallery-item').getBoundingClientRect().height,
-      behavior: 'smooth',
+        top: totalHeight,
+        behavior: 'smooth',
     });
 }
 
