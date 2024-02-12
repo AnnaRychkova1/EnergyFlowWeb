@@ -26,8 +26,7 @@
   line-height: 1.5;
   font-weight: 500;
   color: var(--text-main-color);
-  background-color: aquamarine;
-  /* background-color: var(--background-main); */
+  background-color: var(--background-main);
 
   --text-main-color: #1b1b1b;
   --text-light-color: #f6f6f6;
