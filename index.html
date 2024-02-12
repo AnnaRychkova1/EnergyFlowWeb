@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Energy Flow</title>
     
-    <script type="module" crossorigin src="/EnergyFlowWeb/assets/main-a07de2cb.js"></script>
+    <script type="module" crossorigin src="/EnergyFlowWeb/assets/main-024f401e.js"></script>
     <link rel="stylesheet" href="/EnergyFlowWeb/assets/main-88a336b0.css">
     <link rel="stylesheet" href="/EnergyFlowWeb/assets/index-1daa2172.css">
   </head>
@@ -273,9 +273,11 @@
             class="footer-input"
             type="email"
             name="user-e-mail"
+            pattern="^\w+(\.\w+)?@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$"
             placeholder="Email"
+            required
         /></label>
-        <button class="footer-form-button">Send</button>
+        <button type="submit" class="footer-form-button">Send</button>
       </form>
     </div>
     <div class="footer-text-container">
