@@ -1,2 +1,0 @@
-const e=Object.freeze(Object.defineProperty({__proto__:null},Symbol.toStringTag,{value:"Module"})),t=Object.freeze(Object.defineProperty({__proto__:null},Symbol.toStringTag,{value:"Module"})),o=Object.freeze(Object.defineProperty({__proto__:null},Symbol.toStringTag,{value:"Module"})),r=Object.freeze(Object.defineProperty({__proto__:null},Symbol.toStringTag,{value:"Module"}));export{t as a,o as f,e as h,r as t};
-//# sourceMappingURL=tui-pagination-e1177602.js.map
