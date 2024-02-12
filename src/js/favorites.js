@@ -22,21 +22,61 @@ function displayQuoteOnPage(quoteData) {
 
 const LS_KEY_FAVORITES = "favorites";
 
-async function createGalleryFromLS(LS_KEY_FAVORITES, createMarkupFavorites) {
+async function createGalleryFromLS(event) {
+  event.preventDefault();
+  refs.favoritesGallery.innerHTML = '';
+  refs.favoritesMessage.style.display = 'none';
+  
   try {
     const itemsFromLS = await JSON.parse(localStorage.getItem(LS_KEY_FAVORITES));
 
     if (!itemsFromLS || !Array.isArray(itemsFromLS) || itemsFromLS.length === 0) {
       console.log('No items found in local storage or data is invalid.');
-      apiIsiToastError();
+      refs.favoritesMessage.style.display = 'block';
       return;
     }
-        
-    refs.favoritesGallery.innerHTML = '';
-        
     
-    refs.favoritesGallery.appendChild(refs.galleryItem);
-  
+    function createMarkupFavorites(hits) {
+      const markup = hits.map(
+        ({ _id, bodyPart, name, target, burnedCalories, time }) => `
+        <li class="favorites-gallery-item" data-id="${_id}" id="card-${_id}">
+           <div class="favorites-item">
+              <div class="favorites-item-wrapper">
+                <span class="workout">WORKOUT</span>
+                <button class="favorites-remove-btn">
+                  <svg class="favorites-remove-icon" width="12" height="13">
+                    <use href="${icons}#icon-basket"></use>
+                  </svg>
+                </button>
+                <a class="favorites-start" href="" data-id="${_id}">
+                  <span>Start</span>
+                  <svg class="favorites-start-icon" width="14" height="14">
+                    <use href="${icons}#icon-line"></use>
+                  </svg>
+                </a>
+              </div>
+              <div class="favorites-item-info">
+                <div class="favorites-man-icon">
+                  <svg class="icon-Man" width="14" height="14">
+                    <use href="${icons}#icon-Man"></use>
+                  </svg>
+                  <h3 class="favorites-item-title">${name.charAt(0).toUpperCase() + name.slice(1)}</h3>
+                </div>
+              </div>
+              <div class="favorites-item-info-wrapper">
+                <ul class="favorites-gallery-info">
+                  <li class="favorites-gallery-info-item">Burned calories: <span class="descr-span">${burnedCalories} / ${time} min</span></li>
+                  <li class="favorites-gallery-info-item">Body part: <span class="descr-span">${bodyPart.charAt(0).toUpperCase() + bodyPart.slice(1)}</span></li>
+                  <li class="favorites-gallery-info-item">Target: <span class="descr-span">${target.charAt(0).toUpperCase() + target.slice(1)}</span></li>
+                </ul>
+              </div>
+           </div>
+        </li>`)
+        .join('');
+      refs.favoritesGallery.insertAdjacentHTML("afterbegin", markup);
+      // refs.favoritesGallery.appendChild(refs.galleryItem);?
+}
+    
 
   // if (itemsFromLS.length === 0) {
   //   console.log(`There are no exercises in favorites.`);
@@ -53,11 +93,13 @@ async function createGalleryFromLS(LS_KEY_FAVORITES, createMarkupFavorites) {
 
 // Refresh the gallery by updating the displayed items
 async function refreshGallery() {
-    try {
+  refs.favoritesMessage.style.display = 'none';
+  try {
+      
         const storedArray = JSON.parse(localStorage.getItem('favorites'));
         if (!Array.isArray(storedArray) || storedArray.length === 0) {
           console.log('Array in local storage is empty or does not exist.');
-          apiIsiToastError();
+          // apiIsiToastError();
             return;
         }
        
@@ -149,60 +191,7 @@ function openModal() {
 }
 
 
-function createMarkupFavorites(data) {
-  return data
-    .map(
-      i =>
-        `
-        <li class="favorites-gallery-item" data-id="${i._id}" id="card-${i._id}">
-           <p class="favorites-item-head">
-              <span class="favorites-item-head-wrapper">
-                <span class="workout">WORKOUT</span>
-                  <button class="favorites-remove-btn">
-                    <svg class="favorites-remove-icon" width="12" height="13">
-                      <use href="${icons}#icon-basket"></use>
-                    </svg>
-                  </button>
-                  <a class="ex-item-start" href="" data-id="${i._id}">
-                    <span>Start</span>
-                     <svg class="favorites-arrow-icon" width="14" height="14">
-                      <use href="${icons}#icon-line"></use>
-                    </svg>
-                  </a>
-             </p>
-              <span class="favorites-item-title">
-                <span class="favorites-man-icon"><svg class="ex-icon-run" width="14" height="14">
-                  <use href="${icons}#icon-Man"></use>
-                </svg>
-              </span>
-              
-            <h3 class="favorites-item-title">${
-              i.name.charAt(0).toUpperCase() + i.name.slice(1)
-            }</h3>
-            </span>
-            </span>
-            <p class="favorites-item-info">
-             <span class="ex-info-group"><span class="favorites-item-desc">Burned calories:</span> <span
-                class="favorites-item-value">${i.burnedCalories} / ${
-          i.time
-        } min</span>
-        </span>
-        <span class="favorites-info-group"><span class="favorites-item-desc">Body part:</span> <span
-                class="favorites-item-value">${
-                  i.bodyPart.charAt(0).toUpperCase() + i.bodyPart.slice(1)
-                }</span>
-        </span>
-        <span class="favorites-info-group"><span class="favorites-item-desc">Target:</span> <span
-                class="favorites-item-value">${
-                  i.target.charAt(0).toUpperCase() + i.target.slice(1)
-                }</span>
-        </span>
-    </p>
-</li>
-        `
-    )
-    .join('');
-}
+
 // function createMarkupFavorites({ _id, bodyPart, name, target, burnedCalories, time }) {
 //       let isAdded = false;
 //       const favorites = localStorage.getItem(LS_KEY_FAVORITES);
