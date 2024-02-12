@@ -1,8 +1,7 @@
 export const refs = {
   //   add your refs
 
-
-  pagi: document.getElementById('tui-pagination-container'),
+  toStartBtn: document.querySelector('.to-favorites-start'),
   loaderModal: document.querySelector('.overlay'),
   exercisesHeader: document.querySelector('.exersises-header'),
   resultContainer: document.querySelector('.filtered-cards'),
