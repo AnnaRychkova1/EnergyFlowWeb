@@ -1,0 +1,221 @@
+.container-header {
+  max-width: 375px;
+  width: 100%;
+  padding: 0 20px;
+  margin: 0 auto;
+  height: auto;
+  background-color: transparent;
+  /* outline: 2px solid red;
+  outline-offset: -2px; */
+}
+
+.header-section {
+  margin-top: 20px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 111;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.header-section-container {
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.header-title {
+  font-size: 16px;
+  margin-right: auto;
+  font-weight: 700;
+  line-height: 112.5%; /* 18px/16 */
+  letter-spacing: 0.02em;
+}
+
+.header-mobile-open-btn {
+  margin-left: auto;
+  line-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background-color: transparent;
+  padding: 0;
+}
+
+.navigation-header {
+  display: none;
+}
+button:hover {
+  background-color: transparent;
+}
+.mobile-open-icon {
+  stroke: #7e847f;
+}
+.header-social-list {
+  display: none;
+}
+
+/* ===================TABLET============== */
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 768px;
+    padding: 0 16px;
+  }
+  .section {
+    padding: 16px 0;
+  }
+
+  .header-section {
+    margin-top: 16px;
+  }
+
+  .header-section-container {
+    padding: 32px 32px 0 32px;
+  }
+  .header-title {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 100%; /* 28px/28 */
+  }
+
+  .navigation-header {
+    display: flex;
+    --animate-duration: 1500ms;
+  }
+
+  .navigation-list {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    padding: 8px 16px;
+
+    border-radius: 60px;
+    background-color: #7e847f;
+    height: 52px;
+  }
+
+  .navigation-links {
+    font-weight: 400;
+    color: #f6f6f6;
+    font-size: 16px;
+    line-height: 150%; /* 24px/16 */
+    transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .navigation-links:hover,
+  .navigation-links:focus {
+    color: #b4b0b0;
+  }
+
+  .home-page {
+    padding: 6px 26px;
+  }
+  .favorites-page {
+    padding: 6px 14px;
+  }
+
+  .header-social-list {
+    margin-left: auto;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .instagram-animation {
+    --animate-duration: 1600ms;
+  }
+  .facebook-animation {
+    --animate-duration: 1700ms;
+  }
+  .youtube-animation {
+    --animate-duration: 1800ms;
+  }
+
+  .header-social-link {
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    border: 1px solid rgba(126, 132, 127, 0.2);
+    transition: all var(--timing-function);
+  }
+
+  .header-social-link:hover,
+  .header-social-link:focus {
+    border-color: #5f6560;
+    animation: 1.2s ease-in-out 0s normal none infinite running
+      trambling-animation;
+  }
+
+  @keyframes trambling-animation {
+    0%,
+    50%,
+    100% {
+      transform: rotate(0deg);
+    }
+    10%,
+    30% {
+      transform: rotate(-15deg);
+    }
+    20%,
+    40% {
+      transform: rotate(15deg);
+    }
+  }
+  .header-social-icon {
+    opacity: 0.8;
+    fill: #7e847f;
+    transition: all var(--timing-function);
+  }
+
+  .header-social-link:hover .header-social-icon,
+  .header-social-link:focus .header-social-icon {
+    fill: #5f6560;
+  }
+  .header-mobile-open-btn {
+    display: none;
+  }
+}
+
+/* =====================DESKTOP============== */
+@media screen and (min-width: 1440px) {
+  @media (min-width: 1440px) {
+    .container {
+      max-width: 1440px;
+    }
+  }
+  .header-section {
+    margin-top: 24px;
+  }
+
+  .header-section-container {
+    padding: 24px 48px;
+  }
+  .header-title {
+    font-size: 28px;
+  }
+}
+
+/* .active-page {
+  background-color: #ffffff;
+  color: #1b1b1b;
+  border-radius: 30px;
+  transition: all var(----anim);
+}
+.active-page:hover,
+.active-page:focus {
+  color: #7e847f;
+}
+
+.header-section-favorites {
+  position: static;
+} */
+.current {
+  background-color: #ffffff;
+  color: #1b1b1b;
+  border-radius: 30px;
+  transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
