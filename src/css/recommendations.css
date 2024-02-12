@@ -135,9 +135,9 @@
 }
 
 @media (min-width: 1440px) {
-  .recommend-container {
+  /* .recommend-container {
     display: flex;
-  }
+  } */
 
   .recommend-img {
     width: 704px;
