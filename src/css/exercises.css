@@ -33,7 +33,7 @@
   gap: 6px;
 }
 
-.exercises-btn-list button {
+.exercises-btn-item {
   font-family: 'DM Sans', sans-serif;
   border-radius: 30px;
   height: 32px;
@@ -47,16 +47,16 @@
   transition: all var(----anim);
 }
 
-.exercises-btn-list button.active {
+.active {
   color: var(--text-light-color);
   background-color: var(--text-color-accent);
 }
 
-.exercises-btn:hover,
+/* .exercises-btn:hover,
 .exercises-btn:focus {
   background-color: var(--background-dark-grey);
   color: var(--background-main);
-}
+} */
 
 /* === Exercises-gallery === */
 
@@ -132,7 +132,7 @@
   padding: 0px;
 }
 
-.button-pagination {
+.exercises-pagination button {
   width: 31px;
   height: 32px;
   display: flex;
@@ -141,25 +141,20 @@
   border-radius: 18px;
   padding: 0px 12px;
   color: rgba(27, 27, 27, 0.4);
-  border: none;
-  background-color: var(--background-light-grey);
-}
-
-.button-pagination button {
-  border: none;
-  background-color: var(--background-light-grey);
-}
-
-.button-pagination button.active {
+  /* border: none; */
   background-color: var(--background-light-grey);
   border: 1px solid var(--text-main-color);
+}
+
+.exercises-pagination button.active {
+  background-color: var(--background-light-grey);
+  /* border: 1px solid var(--text-main-color); */
   color: var(--text-main-color);
 }
 
-.button-pagination:hover,
-.button-pagination:focus {
+.exercises-pagination:hover,
+.exercises-pagination:focus {
   background-color: var(--background-light-grey);
-  border: 1px solid var(--text-main-color);
   color: var(--text-main-color);
 }
 
@@ -200,7 +195,7 @@
     gap: 8px;
   }
 
-  .exercises-btn-list button {
+  .exercises-btn-item {
     height: 44px;
     padding: 10px 20px;
     font-size: 15px;
@@ -238,7 +233,6 @@
 
   .exercises-gallery {
     display: flex;
-    justify-content: space-between;
     flex-wrap: wrap;
     gap: 40px 20px;
   }

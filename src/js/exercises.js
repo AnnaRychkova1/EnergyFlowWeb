@@ -1,24 +1,22 @@
-import iziToast from 'izitoast';
-import 'izitoast/dist/css/iziToast.min.css';
+import { getExercisesByFilter } from './services/mainApi';
 
-import axios from 'axios';
-
-const BASE_URL = 'https://energyflow.b.goit.study/api';
-const ENDPOINT = 'filters';
-
-const exercisesBtnEl = document.querySelector('.exercises-btn-list');
-const exercisesGalleryEl = document.querySelector('.exercises-gallery');
-const paginationEl = document.querySelector('.exercises-pagination');
-// const exercisesGalleryItemEl = document.querySelectorAll(
-//   '.exercises-gallery-item'
-// );
+import { refs } from './templates/refs.js';
+import { renderExerciseByFilter } from './exercises-details';
 
 let filterDefault = 'Muscles';
 let currentPage = 1;
 let currentLimit = 0;
 let screenWidth = window.innerWidth;
+let exercisesParamFilter;
+let exercisesParamName;
 
-exercisesBtnEl.addEventListener('click', filterBtnExercises);
+const queryParams = {
+  filter: filterDefault,
+  page: currentPage,
+  limit: currentLimit,
+};
+
+refs.exercisesBtnEl.addEventListener('click', filterBtnExercises);
 
 if (screenWidth <= 375) {
   currentLimit = 8;
@@ -28,34 +26,19 @@ if (screenWidth <= 375) {
   currentLimit = 12;
 }
 
-async function getExercisesByFilter() {
-  try {
-    const response = await axios.get(`${BASE_URL}/${ENDPOINT}`, {
-      params: {
-        filter: filterDefault,
-        page: currentPage,
-        limit: currentLimit,
-      },
-    });
-    return response.data;
-  } catch (error) {
-    console.error(error);
-  }
-}
-
 async function fetchDefaultMuscles() {
   try {
-    getExercisesByFilter().then(data => {
-      const { results, page, totalPages } = data;
-      if (results && results.length > 0) {
-        createExercisesByFilterMarkup(results);
-        paginationEl.innerHTML = pagesPagination(page, totalPages);
-      } else {
-        console.error('No results found for this filter');
-      }
-    });
+    const { results, page, totalPages } = await getExercisesByFilter(
+      queryParams
+    );
+    if (results && results.length > 0) {
+      createExercisesByFilterMarkup(results);
+      refs.paginationEl.innerHTML = pagesPagination(page, totalPages);
+    } else {
+      console.error('No results found for this filter');
+    }
   } catch (error) {
-    console.error('Error fetching images:', error);
+    console.log('Error fetching images:', error);
   }
 }
 
@@ -63,33 +46,28 @@ fetchDefaultMuscles();
 
 async function filterBtnExercises(event) {
   event.preventDefault();
-  const query = event.target.dataset.filter;
-  exercisesGalleryEl.innerHTML = '';
 
+  const query = event.target.dataset.filter;
+  refs.exercisesGalleryEl.innerHTML = '';
+  console.log(query);
   filterDefault = query;
   currentPage = 1;
 
-  // Array.from(event.currentTarget.children).map(item => {
-  //   if (item.textContent !== event.target.textContent) {
-  //     item.classList.remove('ButtonIsActive');
-  //   } else {
-  //     event.target.classList.add('ButtonIsActive');
-  //   }
-
-  if (!query) {
+  if (event.target === event.currentTarget) {
     return;
   }
 
   try {
-    getExercisesByFilter(query).then(data => {
-      const { results, page, totalPages } = data;
-      createExercisesByFilterMarkup(results);
-      if (totalPages > 1) {
-        paginationEl.innerHTML = pagesPagination(page, totalPages);
-      } else {
-        paginationEl.innerHTML = '';
-      }
-    });
+    const { results, page, totalPages } = await getExercisesByFilter(
+      queryParams
+    );
+    createExercisesByFilterMarkup(results);
+
+    if (totalPages > 1) {
+      refs.paginationEl.innerHTML = pagesPagination(page, totalPages);
+    } else {
+      refs.paginationEl.innerHTML = '';
+    }
   } catch (error) {
     console.log(error);
   }
@@ -108,12 +86,16 @@ function createExercisesByFilterMarkup(results) {
         </li>`
     )
     .join('');
-  exercisesGalleryEl.insertAdjacentHTML('beforeend', markup);
+  refs.exercisesGalleryEl.insertAdjacentHTML('beforeend', markup);
+  // const exercisesGalleryItem = document.querySelectorAll(
+  //   '.exercises-gallery-item'
+  // );
+  // exercisesGalleryItem.addEventListener('click', handleExercisesItemClick());
 }
 
 function pagesPagination(page, totalPages) {
   let disabledMoveButton = '';
-  for (let i = 1; i <= totalPages; i += 1) {
+  for (let i = 1; i <= totalPages; i++) {
     disabledMoveButton += `<button class="button-pagination" type="button">${i}</button>`;
   }
   return disabledMoveButton;
@@ -123,9 +105,11 @@ function pagesPagination(page, totalPages) {
 
 async function onPaginationPages(event) {
   currentPage = event.target.textContent;
-  exercisesGalleryEl.innerHTML = '';
+  refs.exercisesGalleryEl.innerHTML = '';
   try {
-    const { results, page, totalPages } = await getExercisesByFilter();
+    const { results, page, totalPages } = await getExercisesByFilter(
+      queryParams
+    );
     const filter = results[0].filter;
 
     if (page === totalPages) {
@@ -136,4 +120,14 @@ async function onPaginationPages(event) {
     console.log(error);
   }
 }
-paginationEl.addEventListener('click', onPaginationPages);
+refs.paginationEl.addEventListener('click', onPaginationPages);
+
+// function handleExercisesItemClick(event) {
+//   exercisesParamFilter = event.target.dataset.filter;
+//   console.log(exercisesParamFilter);
+//   renderExerciseByFilter();
+//   // вимнути слухач!!!!
+// }
+
+export { filterDefault, currentPage, currentLimit };
+export { exercisesParamFilter, exercisesParamName };
