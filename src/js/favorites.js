@@ -1,184 +1,165 @@
-function createMarkupFavorites(hits) {
-  return hits
-    .map(
-      ({ _id, bodyPart, name, target, burnedCalories, time }) =>
-        `
-          <ul class=""favorites-gallery">
-            < class="favorites-gallery-item">
-               <h4 class="workout">WORKOUT</h4>
-               <a class="favorites-remove" href="#"> <img class="favorites-icon-bin" src="#" alt="icon-bin"/></a>
-                <a class="favorites-start" href="#">Start
-                    <span>
-                    <img class="favorites-icon-arrow" src="#" alt="icon-arrow"/>
-                    </span>
-                </a>
-               <img class="favorites-icon-runner" src="#" alt="icon-runner"/>
-            <h3>${name}</h3>
-            <ul class="favorites-gallery-info">
-              <li class="favorites-gallery-info-item">Burned calories: <span class="descr-span">${burnedCalories} / ${time} min</span></li>
-              <li class="favorites-gallery-info-item">Body part: <span class="descr-span">${bodyPart}</span></li>
-              <li class="favorites-gallery-info-item">Target: <span class="descr-span">${target}</span></li>
-            </ul>
-          <a class="favorites-gallery-link" href="#">Start
-            <span>
-              <img class="favorites-icon-arrow" src="#" alt="icon-arrow"/>
-            </span>
-          </a>`
-    )
-    .join('');
-}
-
 import axios from 'axios';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
-import { getQuoteOffTheDay } from './quotes';
+import { searchExerciseByID } from './services/mainApi.js';
+import { hide, show } from './services/visibility';
+import { refs } from './templates/refs.js';
+// import { apiIsiToastError, noResults } from "./services/isiToast.js";
 
-// async function getFavorites(resFavorites) {
-//     const BASE_URL_FAVORITES = 'https://energyflow.b.goit.study/api';
-//     const ENDPOINT_FAVORITES = 'exercises';
-//     const resFavorites = await axios.get(`${BASE_URL_FAVORITES}/${ENDPOINT_FAVORITES}`, {
-//         params: {
-//         name: [],
-//             page: 1,
-//             perPage: 9,
-//       },
-//     });
-//     return resFavorites.data;
-// }
+//  Quote of Day
 
-const favoritesGallery = document.querySelector('.favorites-gallery');
-const favoritesMessage = document.querySelector('.favorites-box-block');
+const quoteFromLS = JSON.parse(localStorage.getItem('quoteResponse'));
+console.log(quoteFromLS);
 
-// const addToFavorites = document.querySelector(".modal-btn");
-const onRemoveBtn = document.querySelector('.favorites-remove-btn');
-const onStartBtn = document.querySelector('.favorites-start-btn');
-// const onFavoritesBtn = document.querySelector(".favorites-btn");
+function displayQuoteOnPage(quoteData) {
+  const quoteText = document.querySelector('.quote-text');
+  const quoteAuthor = document.querySelector('.quote-author');
+  quoteText.textContent = quoteData.quote;
+  quoteAuthor.textContent = quoteData.author;
+}
 
-const queryParams = {
-  name: '',
-  page: 1,
-  perPage: 9,
-};
-addToFavorites.addEventListener('click', addToFavorites);
-onFavoritesBtn.addEventListener('click', showFavorites);
-onStartBtn.addEventListener('click', showModal);
-onRemoveBtn.addEventListener('click', removeItemFromFavorites);
+// Show Favorites Page
 
-//Add to Favorites after click on button 'Add to Favotites' at Modal
-function addToFavorites(event) {
+showFavoritesGallery();
+
+// Listeners
+
+refs.addToFavoritesBtn.addEventListener('click', addToFavorites);
+// refs.onRemoveBtn.addEventListener("click", removeFromFavorites);
+// refs.onStartBtn.addEventListener("click", showModal);                //TODO depends on function at modal-menu.js
+
+// Add favorite exersise to LS
+
+async function addToFavorites(event) {
   event.preventDefault();
 
-  // getFavorites();
+  const element = event.target.closest('.ex-add-btn');
+  const elementId = element.dataset.id;
+  const favorites = localStorage.getItem('favorites');
 
-  queryParams.name = event.currentTarget.elements.name.value();
-  localStorage.setItem(LS_KEY_FAVORITES, JSON.stringify(queryParams.name));
+  if (favorites) {
+    const favoritesFromLS = JSON.parse(favorites);
+    const predicate = favoritesFromLS.some(({ _id }) => _id === elementId);
+
+    if (predicate) {
+      localStorage.setItem(
+        'favorites',
+        JSON.stringify(favoritesFromLS.filter(({ _id }) => _id !== elementId))
+      );
+      element.innerHTML = addInnerHTML();
+    } else {
+      const favoritesToLS = await searchExerciseByID(elementId);
+      localStorage.setItem(
+        'favorites',
+        JSON.stringify([...favoritesFromLS, favoritesToLS])
+      );
+      element.innerHTML = addInnerHTML('remove');
+    }
+  }
+}
+
+// Remove favorite exersise ftom LS
+
+async function removeFromFavorites(event) {
+  event.preventDefault();
+  show(refs.favoritesMessage);
+
+  const element = event.target.closest('.ex-add-btn');
+  const elementId = element.dataset.id;
+  const favorites = localStorage.getItem('favorites');
+
+  try {
+    const storedArray = JSON.parse(favorites);
+
+    if (Array.isArray(storedArray) && storedArray.length > 0) {
+      localStorage.removeItem('favorites');
+      const newArray = storedArray.filter(({ _id }) => _id !== elementId);
+      localStorage.setItem('favorites', JSON.stringify(newArray));
+    } else {
+      // noResults();
+      console.log('Array in localStorage is empty or does not exist');
+    }
+  } catch (error) {
+    console.error(error);
+    //  apiIsiToastError();
+  } finally {
+    console.log();
+    refs.favoritesGallery.reset();
+  }
 }
 
 // Show Favorites after choosing 'Favorites' at Header
-async function showFavorites(event) {
-  event.preventDefault();
-  queryParams.page = 1;
+async function showFavoritesGallery(event) {
+  refs.favoritesGallery.innerHTML = '';
+  hide(refs.favoritesMessage);
 
-  const LS_KEY_FAVORITES = 'Array of Favorites';
-  const names = event.currentTarget.elements.name.value();
+  const favorites = localStorage.getItem('favorites');
 
-  if (!names) {
-    showMessage();
+  if (!favorites) {
+    show(refs.favoritesMessage);
     return;
   }
 
-  function showMessage() {
-    favoritesMessage.style.display = 'block';
-  }
-
   try {
-    const itemsFromLS = await JSON.parse(
-      localStorage.getItem(LS_KEY_FAVORITES)
-    );
-    createMarkupFavorites(results, favoritesGallery);
-    favoritesGallery.insertAdjacentHTML(
+    const favoritesFromLS = await JSON.parse(localStorage.getItem('favorites'));
+    refs.favoritesGallery.insertAdjacentHTML(
       'afterbegin',
-      createMarkup(results, itemsFromLS)
+      createMarkupFavorites()
     );
 
-    if (results >= 9) {
+    if (favoritesFromLS >= 9) {
       scrollBy();
     } else {
       return;
     }
   } catch (error) {
-    createMessage('Sorry, there is a problem with connection with the server');
+    console.error(error);
+    // apiIsiToastError();
   } finally {
     console.log();
+    refs.favoritesGallery.reset();
   }
 }
 
-//  Show modal with favorite item after click on 'Start'
-function showModal(event) {
-  //Have a look at  modal-section
-}
+function createMarkupFavorites({
+  _id,
+  bodyPart,
+  name,
+  target,
+  burnedCalories,
+  time,
+}) {
+  let isAdded = false;
+  const favorites = localStorage.getItem('favorites');
 
-//Remove from Favorites after click on basket-button at Favorites
-async function removeItemFromFavorites(event) {
-  event.preventDefault();
-
-  try {
-    localStorage.removeItem(LS_KEY_FAVORITES);
-    showFavorites();
-  } catch (error) {
-    createMessage('Sorry, there is a problem with connection with the server');
-  } finally {
-    console.log();
+  if (favorites) {
+    const favoritesFromLS = JSON.parse(favorites);
+    isAdded = favoritesFromLS.some(item => item._id === _id);
   }
-  favoritesGallery.reset();
-}
 
-function createMarkupFavorites(results) {
-  return results
-    .map(
-      ({ bodyPart, name, target, burnedCalories, time }) =>
-        `
-          <ul class="favorites-gallery">
-            <li class="favorites-gallery-item">
-                <span class="workout">workout</span>
-                <a class="favorites-remove" href="#">
-                  <button class="favorites-remove-btn" type="button"> 
-                    <img class="favorites-remove-icon" src="../img/icons/all icons/basket.svg" alt="remove-icon"/>
-                  </button>
-                </a>
-                <a class="favorites-start" href="#">
-                  <button class="favorites-start-btn" type="button">Start 
-                    <img class="favorites-start-icon" src="../img/icons/all icons/line.svg" alt="start-icon"/>
-                  </button>
-                </a>
-                <img class="favorites-man-icon" src="../img/icons/all icons/Man.svg" alt="man-icon"/>
-                <h3 class="favorites-item-title">${name}</h3>
-                <ul class="favorites-gallery-info">
-                  <li class="favorites-gallery-info-item">Burned calories: <span class="descr-span">${burnedCalories} / ${time} min</span></li>
-                  <li class="favorites-gallery-info-item">Body part: <span class="descr-span">${bodyPart}</span></li>
-                  <li class="favorites-gallery-info-item">Target: <span class="descr-span">${target}</span></li>
-                </ul> 
-            </li>
-          </ul>`
-    )
-    .join('');
-}
-
-function createMessage(message) {
-  iziToast.show({
-    class: 'error-svg',
-    position: 'topRight',
-    icon: 'error-svg',
-    message: message,
-    maxWidth: '432',
-    messageColor: '#fff',
-    messageSize: '16px',
-    backgroundColor: '#4e75ff',
-    close: false,
-    closeOnClick: true,
-    fontfamily: 'Montserrat',
-    fontsize: '16px',
-  });
+  return `
+           <ul class="favorites-gallery">
+             <li class="favorites-gallery-item">
+                 <span class="workout">workout</span>
+                 <a class="favorites-remove" href="#">
+                   <button class="favorites-remove-btn" type="button">
+                     <img class="favorites-remove-icon" src="./img/icons/all icons/basket.svg" alt="remove-icon"/>
+                   </button>
+                 </a>
+                 <a class="favorites-start" href="#">
+                   <button class="favorites-start-btn" type="button">Start
+                     <img class="favorites-start-icon" src="./img/icons/all icons/line.svg" alt="start-icon"/>
+                   </button>
+                 </a>
+                 <img class="favorites-man-icon" src="../img/icons/all icons/Man.svg" alt="man-icon"/>
+                 <h3 class="favorites-item-title">${name}</h3>
+                 <ul class="favorites-gallery-info">
+                   <li class="favorites-gallery-info-item">Burned calories: <span class="descr-span">${burnedCalories} / ${time} min</span></li>
+                   <li class="favorites-gallery-info-item">Body part: <span class="descr-span">${bodyPart}</span></li>
+                   <li class="favorites-gallery-info-item">Target: <span class="descr-span">${target}</span></li>
+                 </ul>
+             </li>
+           </ul>`;
 }
 
 function scrollBy() {
@@ -191,3 +172,13 @@ function scrollBy() {
   });
 }
 
+//Add to Favorites after click on button 'Add to Favotites' at Modal
+// function addItemToFavorites(event) {
+//   event.preventDefault();
+
+//   const LS_KEY_FAVORITES = "Array of Favorites";
+//   const arrayFavorites = event.currentTarget.elements.name.value();
+
+//   searchExerciseByID();
+//   localStorage.setItem(LS_KEY_FAVORITES, JSON.stringify(arrayFavorites));
+// }
