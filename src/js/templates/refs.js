@@ -1,13 +1,14 @@
 export const refs = {
   //   add your refs
-  pagi: document.getElementById('tui-pagination-container'),
+  // pagi: document.getElementById('tui-pagination-container'),
+  containerFilteredCards: document.querySelector('.exercises-deteils'),
 
-  toStartBtn: document.querySelector('.to-favorites-start'),
+  // toStartBtn: document.querySelector('.to-favorites-start'),
   loaderModal: document.querySelector('.overlay'),
-  exercisesHeader: document.querySelector('.exersises-header'),
+  // exercisesHeader: document.querySelector('.exersises-header'),
   resultContainer: document.querySelector('.filtered-cards'),
   searchForm: document.querySelector('.form'),
-  searchBtn: document.querySelector('.search-btn'),
+  // searchBtn: document.querySelector('.search-btn'),
   textResult: document.querySelector('.exercise-text-no-found'),
   exercisesBtnEl: document.querySelector('.exercises-btn-list'),
   exercisesGalleryEl: document.querySelector('.exercises-gallery'),
@@ -18,5 +19,4 @@ export const refs = {
   onStartBtn: document.querySelector(".favorites-start-btn"),
   addToFavoritesBtn: document.querySelector('.ex-add-btn'),
   galleryItem: document.querySelector('.favorites-gallery-item'),
-  
 };
