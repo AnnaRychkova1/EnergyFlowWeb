@@ -7,7 +7,7 @@ import { refs } from './templates/refs.js';
 import { searchExerciseByFilters } from "./services/mainApi.js";
 import isiToast from './services/isiToast.js';
 // import { exercisesParamFilter, exercisesParamName } from '../exercises'; - wait for push
-// import function, which makes Modal
+import { getCardInfo, renderCard} from './modal-menu.js';
 
 // ! add listeners
 refs.searchForm.addEventListener('submit', handleSearch);
@@ -40,7 +40,8 @@ refs.exercisesHeader.textContent = `/${exercisesParamName}`;
 function handleStartExerciseByClick(evt) {
   exerciseId = evt.currentTarget.dataset.id;
   console.log(exerciseId);
-  // createModal();                       - Maria will give me this name
+  show(refs.backdrop);
+  renderCard(exerciseId);                 
   // startExerciseButton.removeEventListener();
 }
 

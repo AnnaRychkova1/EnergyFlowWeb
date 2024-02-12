@@ -1,43 +1,44 @@
-import { exerciseId } from './exercises-details'
+import { exerciseId } from './exercises-details';
 import axios from 'axios';
-import { hideLoader, getLoader } from './services/visibility';
+import { hideLoader } from './services/visibility';
 
-
+// , getLoader
 const gallery = document.querySelector('.results'); // плюс название содержимого карточки //
 const backdrop = document.querySelector('.backdrop');
 const modalCard = document.querySelector('.modal');
 const favorites = document.querySelector('.ex-add-favorite');
-const heartIcon = `
-<svg class="icon-heart" width="18" height="18">
-    <use href="${symbol-defs}#icon-heart"></use>
-</svg>`;
+// const heartIcon = `
+// <svg class="icon-heart" width="18" height="18">
+//     <use href="${symbol-defs}#icon-heart"></use>
+// </svg>`;
 
+renderCard();
 
 let storage = 'favorites';
-let storageIcurrentTargettem = localStorage.getItem(storage);
+let storageItem = localStorage.getItem(storage);
 if (!storageItem) {
     storageItem = [];
 } else {
     storageItem = JSON.parse(storageItem);
 }
 
-gallery.addEventListener('click', onClickCardContent);
-async function onClickCardContent(event) {
-    if (event.target === event.currentTarget) {
-        return;
-    }
-    const element = event.target.closest('.favorites-start'); // название li элемента содержимого карточки //
-    if (element === null) {
-        return;
-    }
-    getLoader();
-    const elementId = element.dataset.id;
-    const exercisesInfo = await getCardInfo(elementId);
+// gallery.addEventListener('click', onClickCardContent);
+// async function onClickCardContent(event) {
+//     if (event.target === event.currentTarget) {
+//         return;
+//     }
+//     const element = event.target.closest('.favorites-start'); // название li элемента содержимого карточки //
+//     if (element === null) {
+//         return;
+//     }
+//     getLoader();
+//     const elementId = element.dataset.id;
+//     const exercisesInfo = await getCardInfo(elementId);
 
-    backdrop.classList.remove('is-hidden');
-  modalCard.innerHTML = '';
-  hideLoader();
-}
+//     backdrop.classList.remove('is-hidden');
+//   modalCard.innerHTML = '';
+//   hideLoader();
+// }
   const addToFavoriteBtn = document.querySelector('.ex-add-favorite');
   addToFavoriteBtn.addEventListener('click', addToFavoriteOnClick);
 
@@ -101,7 +102,7 @@ function handleEscapeKey(event) {
 // const exerciseId = '64f389465ae26083f39b17c0';
 async function getCardInfo(exerciseId) {
     try {
-        const BASE_URL = 'https://energyflow.b.goit.study/api/exercises/';
+        const BASE_URL = 'https://energyflow.b.goit.study/api';
         const ENDPOINT = 'exercises';
         const { data } = await axios.get(`${BASE_URL}/${ENDPOINT}/${exerciseId}`);
         return data;
@@ -109,6 +110,8 @@ async function getCardInfo(exerciseId) {
         console.error(err);
     }
 }
+
+
 
 function changingButtonName(value = 'add') {
   if (value === 'add') {
@@ -232,6 +235,9 @@ function renderStars(rating) {
     const emptyStars = emptyStar.repeat(5 - rating);
     return filledStars + emptyStars;
 }
+
+
+export { getCardInfo, renderCard }
 
 
 
