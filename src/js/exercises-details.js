@@ -4,7 +4,6 @@ import Pagination from 'tui-pagination';
 import axios from 'axios';
 import { hide, show, showLoader, hideLoader } from "./services/visibility";
 import { refs } from './templates/refs.js';
-import { BASE_URL } from "./services/mainApi.js";
 import { searchExerciseByFilters } from "./services/mainApi.js";
 import isiToast from './services/isiToast.js';
 // import { exercisesParamFilter, exercisesParamName } from '../exercises'; - wait for push
@@ -198,8 +197,7 @@ async function handleSearch(event) {
     console.error('Error fetching images:', error);
     isiToast.apiIsiToastError();
   } finally {
-    refs.searchForm.reset();
-    hideLoader(refs.loaderModal);
+      refs.searchForm.reset();
   }
 }
 
