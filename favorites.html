@@ -7,13 +7,108 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Favorites</title>
-  <script type="module" crossorigin src="/EnergyFlowWeb/assets/main-bb98a4c4.js"></script>
-  <link rel="stylesheet" href="/EnergyFlowWeb/assets/main-14f17b3f.css">
+  <script type="module" crossorigin src="/EnergyFlowWeb/assets/main-487fe555.js"></script>
+  <link rel="stylesheet" href="/EnergyFlowWeb/assets/main-5663dfbd.css">
 </head>
 
 <body>
-  <!-- Header section -->
   <header class="header-section">
+  <div class="container container-header">
+    <div class="header-section-container">
+      <a href="./index.html" class="header-title">
+        energy.flow
+      </a>
+      <h2></h2>
+      <nav class="navigation-header">
+        <ul class="navigation-list">
+          <li class="navigation-item">
+            <a href="/index.html" class="navigation-links home-page">Home</a>
+          </li>
+          <li class="navigation-item">
+            <a href="/favorites.html" class="navigation-links favorites-page">Favorites</a>
+          </li>
+        </ul>
+      </nav>
+      <ul class="header-social-list">
+        <li class="header-social-item instagram-animation">
+          <a href="https://www.facebook.com/goITclub/" class="header-social-link" target="_blank" title="facebook">
+            <svg class="header-social-icon" width="28" height="28">
+              <use href="../img/icons/symbol-defs.svg#icon-facebook"></use>
+            </svg>
+          </a>
+        </li>
+        <li class="header-social-item facebook-animation">
+          <a href="https://www.instagram.com/goitclub/" class="header-social-link" target="_blank" title="instagram">
+            <svg class="header-social-icon" width="28" height="28">
+              <use href="../img/icons/symbol-defs.svg#icon-instagram"></use>
+            </svg>
+          </a>
+        </li>
+        <li class="header-social-item youtube-animation">
+          <a href="https://www.youtube.com/c/GoIT" class="header-social-link" target="_blank" title="youtube">
+            <svg class="header-social-icon" width="28" height="28">
+              <use href="../img/icons/symbol-defs.svg#icon-youtube"></use>
+            </svg>
+          </a>
+        </li>
+      </ul>
+      <button class="header-mobile-open-btn" type="button" aria-label="Open mobile menu" data-modal-open>
+        <svg class="mobile-open-icon" width="32" height="16">
+          <use href="../img/icons/symbol-defs.svg#icon-mob-menu"></use>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+  <div class="mobile-menu-wrapper none">
+  <div class="mobile-menu-container">
+    <div class="mobile-menu-header">
+      <a class="mobile-menu-logo" href="./index.html" aria-label="Home page link">energy.flow</a>
+      <button class="button mobile-menu-cls-btn" type="button" aria-label="Close mobile menu" data-modal-close>
+        <svg class="modal-svg-btn" width="15" height="15">
+          <use href="../img/icons/symbol-defs.svg#icon-x"></use>
+        </svg>
+      </button>
+    </div>
+    <div class="mobile-menu-body">
+      <ul class="mobile-navigation-list">
+        <li>
+          <a class="mobile-navigation-item home-mobile-page navigation-links" href="/index.html">Home</a>
+        </li>
+        <li>
+          <a class="mobile-navigation-item favorites-mobile-page navigation-links" href="/favorites.html">Favorites</a>
+        </li>
+      </ul>
+    </div>
+    <div class="mobile-menu-footer">
+      <ul class="mobile-menu-social-list">
+        <li class="mobile-menu-social-item">
+          <a class="mobile-menu-social-links" title="Facebook" href="https://www.facebook.com/goITclub/"
+            target="_blank"><svg class="social-links-svg" width="25" height="25">
+              <use href="../img/icons/symbol-defs.svg#icon-facebook"></use>
+            </svg></a>
+        </li>
+        <li class="mobile-menu-social-item">
+          <a class="mobile-menu-social-links" title="Instagram" href="https://www.instagram.com/goitclub/"
+            target="_blank">
+            <svg class="social-links-svg" width="25" height="25">
+              <use href="../img/icons/symbol-defs.svg#icon-instagram"></use>
+            </svg>
+          </a>
+        </li>
+        <li class="mobile-menu-social-item">
+          <a class="mobile-menu-social-links" title="YouTube" href="https://www.youtube.com/c/GoIT" target="_blank">
+            <svg class="social-links-svg" width="25" height="25">
+              <use href="../img/icons/symbol-defs.svg#icon-youtube"></use>
+            </svg>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+  <!-- Header section -->
+  <!-- <header class="header-section">
     <div class="container container-header">
       <div class="header-section-container">
         <a href="./index.html" class="header-title">
@@ -22,10 +117,10 @@
         <nav class="navigation-header">
           <ul class="navigation-list">
             <li class="navigation-item">
-              <a href="./index.html" class="navigation-links home-page" aria-label="Home page link">Home</a>
+              <a href="/index.html" class="navigation-links home-page" aria-label="Home page link">Home</a>
             </li>
             <li class="navigation-item">
-              <a href="./favorites.html" class="navigation-links favorites-page current"
+              <a href="/favorites.html" class="navigation-links favorites-page current"
                 aria-label="Favorties page link">Favorites</a>
             </li>
           </ul>
@@ -60,7 +155,8 @@
         </button>
       </div>
     </div>
-  </header>
+  </header> -->
+
   <!-- Favorites section -->
   <main>
     <section class="section favorites-section">
