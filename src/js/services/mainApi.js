@@ -1,4 +1,6 @@
 import axios from 'axios';
+import { filterExercise, nameExercise } from '../exercises-details';
+import { filterDefault, currentPage, currentLimit } from '../exercises';
 import { exercisesParamFilter, exercisesParamName } from '../exercises-details';
 // import { exercisesParamFilter, exercisesParamName } from '../exercises';
 
@@ -6,6 +8,7 @@ const BASE_URL = 'https://energyflow.b.goit.study/api';
 
 const ENDPOINT_QUOTE = 'quote';
 const ENDPOINT_FILTER = 'exercises';
+const ENDPOINT_EXERCISES = 'filters';
 
 async function fetchQuoteFromServer() {
   try {
@@ -18,27 +21,47 @@ async function fetchQuoteFromServer() {
 }
 
 async function searchExerciseByFilters({ keyword, page = 1, limit }) {
-  const response = await axios
-  .get(`https://energyflow.b.goit.study/api/exercises`, {
-    params: { 
-      [exercisesParamFilter]: exercisesParamName,
+  const response = await axios.get(
+    `https://energyflow.b.goit.study/api/exercises`,
+    {
+      params: {
+        [filterExercise]: nameExercise,
         keyword: keyword,
         limit,
         page,
-          },
-      })
+      },
+    }
+  );
   return response.data;
+}
+
+async function getExercisesByFilter({ results, page, totalPages }) {
+  try {
+    const response = await axios.get(`${BASE_URL}/${ENDPOINT_EXERCISES}`, {
+      params: {
+        filter: filterDefault,
+        page: currentPage,
+        limit: currentLimit,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 async function searchExerciseByID(id) {
   try {
-    const  { data }  = await axios.get(`${BASE_URL}/${ENDPOINT_FILTER}/${id}`);
+    const { data } = await axios.get(`${BASE_URL}/${ENDPOINT_FILTER}/${id}`);
     return data;
   } catch (err) {
     console.error(err);
   }
 }
 
-export { fetchQuoteFromServer, searchExerciseByFilters, searchExerciseByID };
-
-
+export {
+  fetchQuoteFromServer,
+  searchExerciseByFilters,
+  searchExerciseByID,
+  getExercisesByFilter,
+};
