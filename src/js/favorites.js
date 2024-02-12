@@ -3,8 +3,7 @@ import axios from "axios";
 import { searchExerciseByID } from "./services/mainApi.js";
 // import { hide, show } from "./services/visibility";
 import { refs } from "./templates/refs.js";
-
-
+// import { icons } from "../img/icons/symbol-defs.svg";
 
 //  Quote of Day
 const LS_KEY_QUOTE = "quoteResponse";
@@ -86,7 +85,9 @@ function scrollBy() {
 }
 
 // Remove an exersise from an array stored in local storage
-// refs.onRemoveBtn.addEventListener('click', removeObjectFromLocalStorage);
+
+refs.onRemoveBtn.addEventListener('click', removeObjectFromLocalStorage);
+
 async function removeObjectFromLocalStorage(idToRemove) {
     try {
         let storedArray = JSON.parse(localStorage.getItem(LS_KEY_FAVORITES));
@@ -107,36 +108,34 @@ async function removeObjectFromLocalStorage(idToRemove) {
 
 // Add to Favorites after click on button 'Add to Favotites' at Modal
 
-  
-async function addItemToFavorites(event) {
-    event.preventDefault();
-
-    const element = event.target.closest(".ex-add-btn");
-    const elementId = element.dataset.id;
-      try {
-        const exercise = await searchExerciseByID(elementId);
-        let favorites = JSON.parse(localStorage.getItem(LS_KEY_FAVORITES)) || [];
-        const isDuplicate = favorites.some(favorite => favorite._id === exercise._id);
-
-        if (!isDuplicate) {
-           favorites.push(exercise);
-           localStorage.setItem(LS_KEY_FAVORITES, JSON.stringify(favorites));
-           await refreshGallery();
-           console.log("Exercise added to favorites:", exercise);
-        } else {
-           console.log("Exercise is already in favorites.");
-        }
-    } catch (error) {
-      console.error("Error adding exercise to favorites:", error);
-      apiIsiToastError();
-    }
-}
-
 //  refs.addToFavoritesBtn.addEventListener('click', addItemToFavorites);
 
+//   async function addItemToFavorites(event) {
+//     event.preventDefault();
+
+//     const element = event.target.closest(".ex-add-btn");
+//     const elementId = element.dataset.id;
+//       try {
+//         const exercise = await searchExerciseByID(elementId);
+//         let favorites = JSON.parse(localStorage.getItem(LS_KEY_FAVORITES)) || [];
+//         const isDuplicate = favorites.some(favorite => favorite._id === exercise._id);
+
+//         if (!isDuplicate) {
+//            favorites.push(exercise);
+//            localStorage.setItem(LS_KEY_FAVORITES, JSON.stringify(favorites));
+//            await refreshGallery();
+//            console.log("Exercise added to favorites:", exercise);
+//         } else {
+//            console.log("Exercise is already in favorites.");
+//         }
+//     } catch (error) {
+//       console.error("Error adding exercise to favorites:", error);
+//       apiIsiToastError();
+//     }
+// }
 
 
-// refs.onStartBtn.addEventListener('click', handleStartButtonClick);
+refs.onStartBtn.addEventListener('click', handleStartButtonClick);
 // After click  "Start" arrow
 function handleStartButtonClick(event) {
     event.preventDefault();
@@ -161,19 +160,19 @@ function createMarkupFavorites(data) {
                 <span class="workout">WORKOUT</span>
                   <button class="favorites-remove-btn">
                     <svg class="favorites-remove-icon" width="12" height="13">
-                      <use href="${icons}#icon-trash"></use>
+                      <use href="${icons}#icon-basket"></use>
                     </svg>
                   </button>
                   <a class="ex-item-start" href="" data-id="${i._id}">
                     <span>Start</span>
                      <svg class="favorites-arrow-icon" width="14" height="14">
-                      <use href="${icons}#icon-arrow-start"></use>
+                      <use href="${icons}#icon-line"></use>
                     </svg>
                   </a>
              </p>
               <span class="favorites-item-title">
                 <span class="favorites-man-icon"><svg class="ex-icon-run" width="14" height="14">
-                  <use href="${icons}#icon-running_man"></use>
+                  <use href="${icons}#icon-Man"></use>
                 </svg>
               </span>
               
@@ -217,7 +216,7 @@ function createMarkupFavorites(data) {
 //             <span class="workout">workout</span>
 //             <a class="favorites-remove" href="#">
 //                 <button class="favorites-remove-btn" type="button">
-//                     <img class="favorites-remove-icon" src="../img/icons/symbole-defs.svg#icon-line" alt="icon-basket"/>
+//                     <img class="favorites-remove-icon" src="../img/icons/symbole-defs.svg#icon-basket" alt="icon-basket"/>
 //                 </button>
 //             </a>
 //             <a class="favorites-start" href="#">
