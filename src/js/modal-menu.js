@@ -6,14 +6,15 @@ import { hideLoader, getLoader } from './services/visibility';
 const gallery = document.querySelector('.results'); // плюс название содержимого карточки //
 const backdrop = document.querySelector('.backdrop');
 const modalCard = document.querySelector('.modal');
-const favorites = document.querySelector('.ex-add-icon');
-const heartIcon = `<svg class="heart-svg width="18 height="18" stroke="#F6F6F6" fill="transparent>
-   <use href="../img/icons/all icons/heart.svg"></use>
+const favorites = document.querySelector('.ex-add-favorite');
+const heartIcon = `
+<svg class="icon-heart" width="18" height="18">
+    <use href="${symbol-defs}#icon-heart"></use>
 </svg>`;
 
 
 let storage = 'favorites';
-let storageItem = localStorage.getItem(storage);
+let storageIcurrentTargettem = localStorage.getItem(storage);
 if (!storageItem) {
     storageItem = [];
 } else {
@@ -22,7 +23,7 @@ if (!storageItem) {
 
 gallery.addEventListener('click', onClickCardContent);
 async function onClickCardContent(event) {
-    if (event.target === event.curentTarget) {
+    if (event.target === event.currentTarget) {
         return;
     }
     const element = event.target.closest('.favorites-start'); // название li элемента содержимого карточки //
@@ -37,7 +38,7 @@ async function onClickCardContent(event) {
   modalCard.innerHTML = '';
   hideLoader();
 }
-  const addToFavoriteBtn = document.querySelector('.ex-add-btn');
+  const addToFavoriteBtn = document.querySelector('.ex-add-favorite');
   addToFavoriteBtn.addEventListener('click', addToFavoriteOnClick);
 
   const closeBtn = document.querySelector('.modal-close-btn');
@@ -45,43 +46,34 @@ async function onClickCardContent(event) {
   backdrop.addEventListener('click', handleBackdropClick);
   document.addEventListener('keydown', handleEscapeKey);
  
-  
- async function addToFavoriteOnClick(event) {
-  const element = event.target.closest('.ex-add-btn');
-  const elementId = element.dataset.id;
-  const favorites = localStorage.getItem('favorites');// the name of the KEY from LS//
-if (favorites) {
-    const favoriteList = JSON.parse(favorites);
-    const condition = favoriteList.some(({ _id }) => _id === elementId);
+async function addToFavoriteOnClick(event) {
+  const element = event.target.closest('.ex-add-favorite');
+  if (!element) return;
 
-    if (condition) {
-      localStorage.setItem(
-        'favorites',
-        JSON.stringify(favoriteList.filter(({ _id }) => _id !== elementId))
-      );
-      element.innerHTML = addInnerHTML();
-    } else {
-      const exercisesCardInfo = await getCardInfo(elementId);
-      localStorage.setItem(
-        'favorites',
-        JSON.stringify([...favoriteList, exercisesCardInfo])
-      );
-      element.innerHTML = addInnerHTML('remove');
-    }
+  const elementId = element.dataset.id;
+  const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+
+  const isFavorite = favorites.some(item => item._id === elementId);
+
+  if (isFavorite) {
+    const updatedFavorites = favorites.filter(item => item._id !== elementId);
+    localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+    element.classList.remove('is-favorite');
+    element.innerHTML = changingButtonName('add');
   } else {
     const exercisesCardInfo = await getCardInfo(elementId);
-    localStorage.setItem('favorites', JSON.stringify([exercisesCardInfo]));
-    element.innerHTML = addInnerHTML('remove');
+    localStorage.setItem('favorites', JSON.stringify([...favorites, exercisesCardInfo]));
+    element.classList.add('is-favorite');
+    element.innerHTML = changingButtonName('remove');
   }
 }
-
 function onCloseModal() {
   modalCard.classList.add('is-hidden');
   backdrop.classList.add('is-hidden');
   modalCard.innerHTML = '';
 
-  document.removeEventListener('keydown', onEscape);
-  backdrop.removeEventListener('click', backdropOnClick);
+  document.removeEventListener('keydown', handleEscapeKey);
+  backdrop.removeEventListener('click', handleBackdropClick);
 }
 function handleBackdropClick(event) {
   if (event.target.closest('.modal')) {
@@ -91,8 +83,8 @@ function handleBackdropClick(event) {
   backdrop.classList.add('is-hidden');
   modalCard.innerHTML = '';
 
-  document.removeEventListener('keydown', onEscape);
-  backdrop.removeEventListener('click', backdropOnClick);
+  document.removeEventListener('keydown', handleEscapeKey);
+  backdrop.removeEventListener('click', handleBackdropClick);
 }
 function handleEscapeKey(event) {
   event.preventDefault();
@@ -101,8 +93,8 @@ function handleEscapeKey(event) {
     backdrop.classList.add('is-hidden');
     modalCard.innerHTML = '';
 
-    document.removeEventListener('keydown', onEscape);
-    backdrop.removeEventListener('click', backdropOnClick);
+    document.removeEventListener('keydown', handleEscapeKey);
+    backdrop.removeEventListener('click', handleBackdropClick);
   }
 }
 
@@ -117,31 +109,20 @@ async function getCardInfo(exerciseId) {
         console.error(err);
     }
 }
-favorites.addEventListener('click', element => {
-    if (favorites.textContent.trim() == 'Add to favorities') {
-      storageItem.push({
-        id: _id,
-        gifUrl: gif.src,
-        name: name.textContent,
-        rating: rating.textContent,
-        target: target.textContent,
-        popular: popular.textContent,
-        bodyPart: bodyPart.textContent,
-        equipment: equipment.textContent,
-        burnedCalories: burnedCalories.textContent,
-        description: description.textContent,
-      });
-      localStorage.setItem(storage, JSON.stringify(storageItem));
-      favorites.textContent = `Remove from`;
-      favorites.innerHTML = `Remove from` ;
-    } else {
-      const index = storageItem.findIndex(item => item.id == id);
-      storageItem.splice(index, 1);
-      localStorage.setItem(storage, JSON.stringify(storageItem));
-      favorites.textContent = `Add to favorities `;
-      favorites.innerHTML = `Add to favorities ${heartIcon}`;
-    }
-  });
+
+function changingButtonName(value = 'add') {
+  if (value === 'add') {
+    return `Add to favorites
+        <svg class="icon-heart" width="18" height="18">
+          <use href="${icons}#icon-heart"></use>
+        </svg>`;
+  } else {
+    return `Remove from
+        <svg class="icon-heart" width="18" height="18">
+          <use href="${heartIcon}#icon-heart"></use>
+        </svg>`;
+  }
+}
 
 async function renderCard() {
     try {

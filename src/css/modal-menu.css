@@ -38,29 +38,29 @@
 
 .modal-close-btn {
     position: absolute;
-    display: flex;
+    /* display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center; */
     top: 14px;
-    right: 14px;
+    right: 10px;
     background-color: transparent;
     border: none;
     color:rgba(27, 27, 27, 1);
     margin-bottom: 2px;
 }
 .modal-close-icon {
-    width: 24px;
-    height: 24px;
+    stroke: transparent;
     stroke: var(--text-main-color);
     transition: stroke 0.2s var(--anim);
 
 }
-.ex-add-btn {
+.ex-add-btn-container {
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
+    justify-content: center;
     gap: 9px;
 }
-.ex-add-icon {
+.ex-add-favorite {
     border: none;
     color: var(--text-light-color);
     border-radius: 30px;
@@ -76,8 +76,8 @@
     transition: background-color 0.25s var(--anim);
 }
 
-.ex-add-icon:hover,
-.ex-add-icon:focus {
+.ex-add-favorite:hover, 
+.ex-add-favorite:focus {
     background-color: var(--background-btn-hover);
 }
 .add-btn-icon {
@@ -88,16 +88,17 @@
 .ex-rating-button {
     background-color: transparent;
     border-radius: 30px;
-    border: 1px solid var(--black-color);
+    color: var(--text-main-color);
+    border: 1px solid var(--text-main-color);
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
-    gap: 8px;
 }
 .ex-rating-button:focus,
 .ex-rating-button:hover {
-    border: 1px solid var(--background-light-grey);
-    color: var(--background-light-grey);
+    border-color: 1px solid var(--background-dark-grey);
+    color: var(--background-dark-grey);
+    background-color: transparent;
 }
 .exercise-gif {
     display: flex;
@@ -135,7 +136,6 @@
     font-size: 18px;
     top: 0;
     left: 0;
-
     width: 0%;
     overflow: hidden;
 }
@@ -193,16 +193,11 @@
         margin-bottom: 40px;
     }
 
-    .ex-add-btn {
+    .ex-add-btn-container {
         display: flex;
         flex-direction: column;
         gap: 9px;
     }
-
-    .add-btn-icon {
-        padding: 12px 83px 12px 83px;
-    }
-
 }
 
 @media screen and (min-width: 768px) {
@@ -214,8 +209,8 @@
     }
 
     .modal-close-btn {
-        top: 16px;
-        right: 16px;
+        top: 14px;
+        right: 10px;
     }
 
     .exercise-gif {
@@ -228,12 +223,14 @@
         flex: 1;
     }
 
-    .ex-add-btn {
+    .ex-add-btn-container {
         gap: 7px;
         display: flex;
         justify-content: flex-start;
     }
-
+    .ex-add-favorite {
+     padding: 12px 24px;
+    }
     .exrcises-description {
         margin-bottom: 32px;
         font-size: 24px;
@@ -241,7 +238,7 @@
     }
     .add-btn-icon{
         padding: 12px 24px;
-        font-size: 14px;
+        font-size: 16px;
         line-height: 24px;
     }
 
@@ -264,7 +261,7 @@
         margin-right: 40px;
     }
 
-    .ex-add-btn {
+    .ex-add-btn-container {
         justify-content: flex-start;
     }
 }
