@@ -1,4 +1,3 @@
-
 .hero-section{
     display: flex;
     flex-direction: row;
@@ -186,3 +185,7 @@ line-height: 24px; /* 150% */
 }
 
 /* min: 1287.98  */
+
+.hero{
+    background-color: transparent;
+}
