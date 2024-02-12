@@ -35,7 +35,7 @@ async function searchExerciseByFilters({ keyword, page = 1, limit }) {
   return response.data;
 }
 
-async function getExercisesByFilter({ results, page, totalPages }) {
+async function getExercisesByFilter() {
   try {
     const response = await axios.get(`${BASE_URL}/${ENDPOINT_EXERCISES}`, {
       params: {
