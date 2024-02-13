@@ -59,9 +59,9 @@
 //   }
 // }
 
-// export {
-//   fetchQuoteFromServer,
-//   searchExerciseByFilters,
-//   searchExerciseByID,
-//   getExercisesByFilter,
-// };
+export {
+  fetchQuoteFromServer,
+  searchExerciseByFilters,
+  searchExerciseByID,
+  getExercisesByFilter,
+};
