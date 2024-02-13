@@ -438,7 +438,7 @@ function renderStars(rating) {
 //                     height="258"
 //                     alt="${name}"
 //                   />
-//               </picture>   
+//               </picture>
 //             </div>
 //             <div class="ex-content-container">
 //                 <h3 class="exercise-name">${name}</h3>
@@ -692,3 +692,6 @@ function renderStars(rating) {
 //     console.error(err);
 //   }
 // }
+
+
+export { getCardInfo };

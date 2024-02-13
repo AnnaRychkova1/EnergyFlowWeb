@@ -3,8 +3,8 @@ import axios from 'axios';
 import { hide, show, showLoader, hideLoader } from './services/visibility';
 import { refs } from './templates/refs.js';
 import isiToast from './services/isiToast.js';
-// import { exercisesParamFilter, exercisesParamName } from '../exercises'; - wait for push
-// import { getCardInfo } from './modal-menu.js';
+//import { exercisesParamFilter, exercisesParamName } from '../exercises'; - wait for push
+import { getCardInfo } from './modal-menu.js';
 
 const BASE_URL = 'https://energyflow.b.goit.study/api';
 const ENDPOINT_EXERCISES = 'exercises';
@@ -39,7 +39,7 @@ async function renderExerciseByFilterName() {
 
     show(refs.containerFilteredCards);
     show(refs.searchForm);
-    showLoader(refs.loaderModal);
+    // showLoader(refs.loaderModal);
 
     // ! має появитися частинка заголовка, але не я, а Василина
     // ! need or not
