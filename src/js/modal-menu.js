@@ -258,6 +258,7 @@ function renderStars(rating) {
     const emptyStars = emptyStar.repeat(5 - Math.ceil(rating));
     return filledStars + halfStar + emptyStars;
 }
+
 export { getCardInfo };
 
 // // const heartIcon = `
@@ -710,5 +711,3 @@ export { getCardInfo };
 // //   }
 // // }
 
-
-export { getCardInfo };
