@@ -1,6 +1,6 @@
 import axios from 'axios';
 const BASE_URL = 'https://energyflow.b.goit.study/api';
-import { apiIsiToastError } from './services/isiToast.js';
+//import { apiIsiToastError } from './services/isiToast.js';
 // import { searchExerciseByID } from './services/mainApi.js';
 import { hide, show } from "./services/visibility";
 import { refs } from './templates/refs.js';
