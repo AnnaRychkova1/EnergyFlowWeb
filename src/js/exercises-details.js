@@ -16,12 +16,12 @@ refs.searchForm.addEventListener('submit', handleSearch); // спочатку в
 refs.resultContainer.addEventListener('click', handleClickOnCardStart)
 
 
-// ! temporarely consts
-const exercisesParamFilter = "bodypart";
-// const exercisesParamFilter = "muscles";
-// const exercisesParamFilter = "equipment";
-const exercisesParamName = 'waist';
-// const exercisesParamName = 'barbell';
+// // ! temporarely consts
+// const exercisesParamFilter = "bodypart";
+// // const exercisesParamFilter = "muscles";
+// // const exercisesParamFilter = "equipment";
+// const exercisesParamName = 'waist';
+// // const exercisesParamName = 'barbell';
 
 const queryParams = {
   filter: exercisesParamName,
@@ -123,9 +123,8 @@ async function handleSearch(event) {
   event.preventDefault();
   refs.resultContainer.innerHTML = '';
 
-  const formQuery = event.currentTarget;
-  queryParams.keyword = formQuery.elements.query.value.trim();
-  console.log(queryParams.keyword);
+// //   try {
+// //     const { results, totalPages } = await searchExerciseByFilters(queryParams);
 
   if (!queryParams.keyword) {
     isiToast.noResults();
@@ -138,7 +137,7 @@ async function handleSearch(event) {
     console.log(queryParams);
     const { results } = await searchExerciseByFilters(queryParams);
     
-    console.log(results);
+// //     if (page !== totalPages) {
 
     // ! create markup for the first time or once
 

@@ -10,7 +10,7 @@
   </head>
 
   <body>
-    <!-- Header section -->
+    <!-- Header section 
     <header class="header-section">
       <div class="container container-header">
         <div class="header-section-container">
@@ -85,33 +85,21 @@
           </button>
         </div>
       </div>
-    </header>
+    </div>
+  </header> -->
     <!-- Favorites section -->
     <main>
-      <section class="section favorites-section">
-        <div class="container favorites-container">
-          <div class="favorites-box-container">
-            <blockquote class="quote-container">
-              <div class="quote-title-wrapper">
-                <div class="quote-svg-man">
-                  <img
-                    class="svg-man"
-                    src="/img/icons/all icons/Man.svg"
-                    alt="running-man icon"
-                  />
-                </div>
-                <div class="title-quote-wrapper">
-                  <h3 class="quote-title">Quote of the day</h3>
-                  <img
-                    class="quote-svg-com"
-                    src="/img/icons/all icons/lapki.svg"
-                    alt="commas-icon"
-                  />
-                </div>
+      <!-- <section class="section favorites-section">
+      <div class="container favorites-container">
+        <div class="favorites-box-container">
+          <blockquote class="quote-container">
+            <div class="quote-title-wrapper">
+              <div class="quote-svg-man">
+                <img class="svg-man" src="./img/icons/symbol-defs.svg#icon-Man" alt="running-man icon" />
               </div>
-              <div class="quote-wrapper">
-                <p class="quote-text"></p>
-                <p class="quote-author"></p>
+              <div class="title-quote-wrapper">
+                <h3 class="quote-title">Quote of the day</h3>
+                <img class="quote-svg-com" src="./img/icons/symbol-defs.svg#icon-lapki.svg" alt="commas-icon" />
               </div>
             </blockquote>
             <div class="favorites-container-box">
@@ -143,7 +131,11 @@
             </div>
           </div>
         </div>
-      </section>
+      </div> -->
+    </section>
+      <load ="partials/header.html" />
+      <div class="gap-container"></div>
+      <load ="partials/quotes.html" />
       <section class="section">
         <div class="container favorites-container">
           <div class="favorites-box">
@@ -160,10 +152,19 @@
                 like to your favorites for easier access in the future.
               </p>
             </div>
-
-            <!--------- Favorite Card ---------->
-
+           
             <ul class="favorites-gallery"></ul>
+
+            <load ="partials/modal-menu.html" />
+            <load ="partials/scrollUp.html" />
+
+            <!-- Loader -->
+            
+            <div class="overlay">
+              <div class="loader-container">
+                <span class="loader"></span>
+              </div>
+            </div>
 
             <!------ PAGINATION FOR MOBILE----->
 
@@ -176,9 +177,6 @@
             </div> -->
           </div>
         </div>
-        <!-- <div class="overlay">
-        <div class="loader-container"><span class="loader"></span></div>
-      </div> -->
       </section>
     </main>
 
