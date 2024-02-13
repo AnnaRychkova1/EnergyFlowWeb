@@ -62,7 +62,7 @@
 }
 
 .recommend-icon-span {
-  background-color: var(--background-btn-hover);
+  background-color: rgba(246, 246, 246, 0.1);
   padding: 6px;
   border-radius: 50%;
   height: 32px;
@@ -136,9 +136,9 @@
 }
 
 @media (min-width: 1440px) {
-  .recommend-container {
+  /* .recommend-container {
     display: flex;
-  }
+  } */
 
   .recommend-img {
     width: 704px;

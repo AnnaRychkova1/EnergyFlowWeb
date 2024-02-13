@@ -1,5 +1,60 @@
-<section class="section">
-  <div class="container">
-    <h2>Exercises-1</h2>
+<section class="section first-exercises-section">
+  <div class="container exercises-container">
+    <h2 class="exercises-title">
+      Exercises<span class="exercises-title-span is-hidden">/</span>
+    </h2>
+    <div class="exercises-active">
+      <div class="exercises-btn-container">
+        <ul class="exercises-btn-list">
+          <li>
+            <button
+              class="exercises-btn-item"
+              title="button"
+              data-filter="Muscles"
+            >
+              Muscles
+            </button>
+          </li>
+          <li>
+            <button
+              class="exercises-btn-item"
+              type="button"
+              data-filter="Body parts"
+            >
+              Body parts
+            </button>
+          </li>
+          <li>
+            <button
+              class="exercises-btn-item"
+              type="button"
+              data-filter="Equipment"
+            >
+              Equipment
+            </button>
+          </li>
+        </ul>
+      </div>
+      <form class="form is-hidden">
+        <input
+          class="exercises-input"
+          type="text"
+          name="query"
+          placeholder="Search images..."
+        />
+        <button class="search-btn" type="submit">Search</button>
+      </form>
+    </div>
+    <ul class="exercises-gallery"></ul>
+    <div class="exercises-deteils is-hidden">
+      <ul class="filtered-cards"></ul>
+      <p class="exercise-text-no-found is-hidden">
+        hi Unfortunately, <span class="exercise-no-found">no results</span> were
+        found. You may want to consider other search options to find the
+        exercise you are looking for. Our range is wide and you have the
+        opportunity to find more options that suit your needs.
+      </p>
+    </div>
+    <div class="exercises-pagination"></div>
   </div>
 </section>
