@@ -291,7 +291,9 @@ async function handlePagination(event) {
 
     // ! Function for create modal  Створити делегування подій на лішку
     
-    function handleClickOnCardStart(evt) {
+function handleClickOnCardStart(evt) {
+      
+  console.log(evt);
   console.log(evt.target.closest('ul').dataset.id);
   
 //       exerciseId = evt.currentTarget.dataset.id;
