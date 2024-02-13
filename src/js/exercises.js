@@ -17,11 +17,12 @@ const queryParams = {
   limit: currentLimit,
 };
 
-const exercisesGalleryItemEl = document.querySelectorAll(
-  '.exercises-gallery-item'
-);
+// const exercisesGalleryItemEl = document.querySelectorAll(
+//   '.exercises-gallery-item'
+// );
 
 refs.exercisesBtnEl.addEventListener('click', filterBtnExercises);
+refs.exercisesGalleryEl.addEventListener('click', filterCartsExercises);
 refs.paginationEl.addEventListener('click', onPaginationPages);
 
 if (screenWidth <= 375) {
@@ -88,12 +89,6 @@ async function filterBtnExercises(event) {
     );
     createExercisesByFilterMarkup(results);
 
-    // const get = results.map(result => result.name);
-    // get.forEach(element => {
-    //   exercisesParamName = element;
-    //   console.log(exercisesParamName);
-    // });
-
     if (totalPages > 1) {
       refs.paginationEl.innerHTML = pagesPagination(page, totalPages);
     } else {
@@ -111,8 +106,8 @@ function createExercisesByFilterMarkup(results) {
         `<li class="exercises-gallery-item" data-filter>
         <img class="exercises-gallery-img" src="${imgUrl}" alt="${filter}">
         <div class="exercises-gallery-text">
-          <h3 class="exercises-gallery-title" data-part>${name}</h3>
-          <p class="exercises-gallery-filter" data-method>${filter}</p>
+          <h3 class="exercises-gallery-title">${name}</h3>
+          <p class="exercises-gallery-filter">${filter}</p>
         </div>
         </li>`
     )
@@ -137,9 +132,13 @@ async function onPaginationPages(event) {
     const { results, page, totalPages } = await getExercisesByFilter(
       queryParams
     );
+    createExercisesByFilterMarkup(results);
   } catch (error) {
     console.log(error);
   }
 }
 
-export { exercisesParamFilter, exercisesParamName };
+function filterCartsExercises(event) {
+  exercisesParamFilter = event.target;
+  console.log(exercisesParamFilter);
+}
