@@ -15,7 +15,13 @@
     }
 }
 
-.exersises-header {}
+.exercises-subtitle {
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 1.33;
+    letter-spacing: -0.02em;
+    color: rgba(27, 27, 27, 0.5);
+}
 
 .form {}
 
