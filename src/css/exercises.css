@@ -3,6 +3,7 @@
 }
 
 .exercises-container {
+  background-color: var(--background-light-grey);
   display: flex;
   justify-content: space-between;
   flex-direction: column;
@@ -176,7 +177,7 @@
   }
 
   .exercises-container {
-    width: 768px;
+    /* width: 768px; */
     padding: 64px 48px;
   }
 
