@@ -2,7 +2,7 @@ import axios from 'axios';
 import { refs } from './templates/refs.js';
 import { renderExerciseByFilterName } from './exercises-details.js';
 
-import { hide } from './services/visibility';
+import { hide, hideLoader } from './services/visibility';
 
 const BASE_URL = 'https://energyflow.b.goit.study/api';
 
@@ -148,8 +148,11 @@ function filterCartsExercises(event) {
     exercisesParamName = name;
     exercisesParamFilter = filter;
   }
-  console.log(exercisesParamFilter);
-  console.log(exercisesParamName);
-  renderExerciseByFilterName(exercisesParamFilter, exercisesParamName);
+
+  refs.exercisesGalleryEl.innerHTML = '';
+  refs.paginationEl.innerHTML = "";
+  hide(refs.paginationEl);
   hide(refs.exercisesGalleryEl);
+  renderExerciseByFilterName(exercisesParamFilter, exercisesParamName);
+
 }
