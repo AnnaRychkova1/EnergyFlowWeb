@@ -1,8 +1,0 @@
-import{refs as i}from"./refs-326154d5.js";let f="Muscles",n=1,a=0,g=window.innerWidth,E,m;const c={filter:f,page:n,limit:a};i.exercisesBtnEl.addEventListener("click",p);i.paginationEl.addEventListener("click",x);g<=375?a=8:(g<=768,a=12);async function y(){try{const{results:e,page:t,totalPages:r}=await getExercisesByFilter(c);e&&e.length>0?(o(e),i.paginationEl.innerHTML=u(t,r)):console.error("No results found for this filter")}catch(e){console.log("Error fetching images:",e)}}y();async function p(e){e.preventDefault();const t=e.target.dataset.filter;if(i.exercisesGalleryEl.innerHTML="",console.log(t),f=t,n=1,e.target!==e.currentTarget)try{const{results:r,page:s,totalPages:l}=await getExercisesByFilter(c);o(r),l>1?i.paginationEl.innerHTML=u(s,l):i.paginationEl.innerHTML=""}catch(r){console.log(r)}}function o(e){const t=e.map(({name:r,filter:s,imgUrl:l})=>`<li class="exercises-gallery-item" data-filter>
-        <img class="exercises-gallery-img" src="${l}" alt="${s}">
-        <div class="exercises-gallery-text">
-          <h3 class="exercises-gallery-title">${r}</h3>
-          <p class="exercises-gallery-filter">${s}</p>
-        </div>
-        </li>`).join("");i.exercisesGalleryEl.insertAdjacentHTML("beforeend",t)}function u(e,t){let r="";for(let s=1;s<=t;s++)r+=`<button class="button-pagination" type="button">${s}</button>`;return r}async function x(e){n=e.target.textContent,i.exercisesGalleryEl.innerHTML="";try{const{results:t,page:r,totalPages:s}=await getExercisesByFilter(c),l=t[0].filter;if(r===s)return;o(t)}catch(t){console.log(t)}}export{a as currentLimit,n as currentPage,E as exercisesParamFilter,m as exercisesParamName,f as filterDefault};
-//# sourceMappingURL=exercises-65484a72.js.map
