@@ -1,3 +1,15 @@
+.footer {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+@media screen and (min-width: 768px) {
+  .footer {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
 .footer-container {
   position: relative;
   display: flex;
@@ -52,7 +64,7 @@
   }
 }
 
-@media screen and (min-width: 1158px) {
+@media screen and (min-width: 1440px) {
   .footer-container {
     background-image: linear-gradient(
         rgba(27, 27, 27, 0.7),
@@ -62,9 +74,9 @@
   }
 }
 
-@media screen and (min-device-pixel-ratio: 2) and (min-width: 1158px),
-  screen and (min-resolution: 192dpi) and (min-width: 1158px),
-  screen and (min-resolution: 2dppx) and (min-width: 1158px) {
+@media screen and (min-device-pixel-ratio: 2) and (min-width: 1440px),
+  screen and (min-resolution: 192dpi) and (min-width: 1440px),
+  screen and (min-resolution: 2dppx) and (min-width: 1440px) {
   .footer-container {
     background-image: linear-gradient(
         rgba(27, 27, 27, 0.7),
@@ -87,7 +99,7 @@
   }
 }
 
-@media screen and (min-width: 1158px) {
+@media screen and (min-width: 1440px) {
   .footer-container {
     flex-wrap: nowrap;
     height: 454px;
@@ -203,7 +215,7 @@
   }
 }
 
-@media screen and (min-width: 1158px) {
+@media screen and (min-width: 1440px) {
   .footer-title {
     font-size: 64px;
     line-height: 0.97em;
@@ -230,7 +242,7 @@
   }
 }
 
-@media screen and (min-width: 1158px) {
+@media screen and (min-width: 1440px) {
   .footer-accent {
     font-size: 64px;
     line-height: 0.97em;
