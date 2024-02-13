@@ -1,15 +1,20 @@
-import { exerciseId } from './exercises-details';
+// import { exerciseId } from './exercises-details'
 import axios from 'axios';
-import { hideLoader } from './services/visibility';
+import { hide, show, showLoader, hideLoader} from './services/visibility';
+import icons from '../img/icons/symbol-defs.svg'
+const BASE_URL = 'https://energyflow.b.goit.study/api';
+
 
 // , getLoader
 const gallery = document.querySelector('.results'); // плюс название содержимого карточки //
 const backdrop = document.querySelector('.backdrop');
 const modalCard = document.querySelector('.modal');
 const favorites = document.querySelector('.ex-add-favorite');
+const exerciseId = '64f389465ae26083f39b17c0';
+
 const heartIcon = `
 // <svg class="icon-heart" width="18" height="18">
-//     <use href="${symbol-defs}#icon-heart"></use>
+//     <use href="${icons}#icon-heart"></use>
 // </svg>`;
 
 
@@ -27,8 +32,8 @@ if (!storageItem) {
 //     if (event.target === event.currentTarget) {
 //         return;
 //     }
-//     const element = event.target.closest('.favorites-start'); // название li элемента содержимого карточки //
-//     if (element === null) {
+//   const element = event.target.closest('.to-favorites-start');
+//   if (element === null) {
 //         return;
 //     }
 //     getLoader();
@@ -39,6 +44,7 @@ if (!storageItem) {
 //   modalCard.innerHTML = '';
 //   hideLoader();
 // }
+
   const addToFavoriteBtn = document.querySelector('.ex-add-favorite');
   addToFavoriteBtn.addEventListener('click', addToFavoriteOnClick);
 
@@ -112,133 +118,144 @@ async function getCardInfo(exerciseId) {
 }
 
 
+// function changingButtonName(value = 'add') {
+//   if (value === 'add') {
+//     return `Add to favorites
+//         <svg class="icon-heart" width="18" height="18">
+//           <use href="${heartIcon}#icon-heart"></use>
+//         </svg>`;
+//   } else {
+//     return `Remove from
+//         <svg class="icon-heart" width="18" height="18">
+//           <use href="${heartIcon}#icon-heart"></use>
+//         </svg>`;
 
-function changingButtonName(value = 'add') {
-  if (value === 'add') {
-    return `Add to favorites
-        <svg class="icon-heart" width="18" height="18">
-          <use href="${heartIcon}#icon-heart"></use>
-        </svg>`;
-  } else {
-    return `Remove from
-        <svg class="icon-heart" width="18" height="18">
-          <use href="${heartIcon}#icon-heart"></use>
-        </svg>`;
-  }
-}
 
 async function renderCard() {
     try {
-        const results = await getCardInfo(exerciseId);
-        modalWindowMarkup(results);
+      const { results } = await getCardInfo(exerciseId);
+      modalWindowMarkup(results);
+      console.log(results)
     } catch (error) {
         console.error(error.message);
+    } finally {
+
     }
 }
 
-function modalWindowMarkup(results) {
-    const markup = results
-        .map(({
-            _id,
-            bodyPart,
-            equipment,
-            gifUrl,
-            name,
-            target,
-            description,
-            rating,
-            burnedCalories,
-            time,
-            popularity,
-        }) =>
-            `<div class="modal">
-      <button class="modal-close-btn">
-        <svg
-          class="modal-close-icon"
-          width="24"
-          height="24"
-          aria-label="close icon"
-        >
-          <use
-            class="ex-close-btn-icon-use"
-            href="../img/icons/all icons/x.svg"
-          ></use>
-        </svg>
-      </button>
-      <div class="exercise-gif">
-        <img
-          src="${gifUrl}"
-          class="gif-ex"
-          width="295"
-          height="258"
-          alt="show exercise"
-        />
-      </div>
-      <div class="ex-content-container">
-        <h2 class="exercise-name">${name}</h2>
-        <p class="ex-current-rating">${rating}</p>
-        <ul class="exercise-stars-list">
-          ${renderStars(rating)}
-        </ul>
-
-        <div class="exercise-information">
-          <div class="ex-block">
-            <span class="exercise-value">Targer</span>
-            <span class="exercise-label ex-target">${target}</span>
-          </div>
-          <div class="ex-block">
-            <span class="exercise-value">Body part</span>
-            <span class="exercise-label ex-body-part">${bodyPart}</span>
-          </div>
-          <div class="ex-block">
-            <span class="exercise-value">Equipment</span>
-            <span class="exercise-label ex-equipment">${equipment}</span>
-          </div>
-          <div class="ex-block">
-            <span class="exercise-value">Popular</span>
-            <span class="exercise-label ex-popular">${popularity}</span>
-          </div>
-          <div class="ex-block">
-            <span class="exercise-value">Burned calories</span>
-            <span class="exercise-label ex-burned-calories">${burnedCalories}/3 min</span>
-          </div>
-
-          <p class="exercise-description">
-            ${description}
-          </p>
-
-          <div class="ex-add-btn">
-            <button class="add-btn-icon">
-              Add to favorites
-              <svg
-                class="heart-svg"
-                width="18"
-                height="18"
-                aria-label="favorites icon"
-              >
-                <use href="../img/icons/all icons/heart.svg"></use>
-              </svg>
+// modalCard.innerHTML = modalWindowMarkup(results);
+function modalWindowMarkup(results = {}) {
+   const {
+    _id,
+    bodyPart,
+    equipment,
+    time,
+    target,
+    burnedCalories,
+    gifUrl,
+    name,
+    popularity,
+    rating,
+    description,
+  } = results;
+     const markup =
+         `<div class="modal">
+            <button class="modal-close-btn">
+                <svg
+                    class="modal-close-icon"
+                    width="24"
+                    height="24">
+                    <use href="${icons}#icon-x"></use>
+                </svg>
             </button>
-          </div>
+            <div class="exercise-gif">
+              <picture>
+                <source
+                  media="(max-width:767.98px)"
+                  type="gif"
+                  width="295"
+                  height="258"
+                  />
+                <source
+                  media="(min-width:768px)"
+                  type="gif"
+                  width="270"
+                  height="259"
+                  />
+                  <img
+                    class="gif-ex"
+                    src="${gifUrl}"
+                    width="295"
+                    height="258"
+                    alt="${name}"
+                  />
+              </picture>   
+            </div>
+            <div class="ex-content-container">
+                <h3 class="exercise-name">${name}</h3>
+                <p class="ex-current-rating">${rating}</p>
+                <ul class="exercise-stars-list">
+                    ${renderStars(popularity)}
+                </ul>
+
+                <div class="exercise-information">
+                    <div class="ex-block">
+                        <span class="exercise-value">Target</span>
+                        <span class="exercise-label">${target}</span>
+                    </div>
+                    <div class="ex-block">
+                        <span class="exercise-value">Body part</span>
+                        <span class="exercise-label">${bodyPart}</span>
+                    </div>
+                    <div class="ex-block">
+                        <span class="exercise-value">Equipment</span>
+                        <span class="exercise-label">${equipment}</span>
+                    </div>
+                    <div class="ex-block">
+                        <span class="exercise-value">Popular</span>
+                        <span class="exercise-label">${popularity}</span>
+                    </div>
+                    <div class="ex-block">
+                        <span class="exercise-value">Burned calories</span>
+                        <span class="exercise-label">${burnedCalories}/3 min</span>
+                    </div>
+
+                    <p class="exercise-description">
+                        ${description}
+                    </p>
+
+                    <div class="ex-add-btn">
+                        <button data-id="${_id}" class="add-btn-icon">
+                            Add to favorites
+                            <svg
+                                class="heart-svg"
+                                width="18"
+                                height="18">
+                                <use href="use href="${icons}#icon-heart"></use>
+                            </svg>
+                        </button>
+                         <button data-id="${_id}" class="ex-rating-button">
+                           Give a rating
+                         </button>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>`
-        )
-        .join('');
-    modalCard.innerHTML = markup;
+    `;
+   return modalCard.innerHTML = markup;
 }
 
 function renderStars(rating) {
-    const filledStar = '<svg class="ex-rate-icon" width="18" height="18" aria-label="rating icon"><use href="../img/icons/all_icons/Star 1.svg"></use></svg>';
-    const emptyStar = '<svg class="ex-rate-icon" width="18" height="18" aria-label="rating icon"><use href="../img/icons/all_icons/Star 2.svg"></use></svg>';
-    const filledStars = filledStar.repeat(rating);
-    const emptyStars = emptyStar.repeat(5 - rating);
-    return filledStars + emptyStars;
+    const filledStar = '<span class="star">&#9733;</span>';
+    const emptyStar = '<span class="star">&#9734;</span>';
+    const filledStars = filledStar.repeat(Math.floor(rating));
+    const halfStar = rating % 1 !== 0 ? '<span class="star">&#9733;</span>' : '';
+    const emptyStars = emptyStar.repeat(5 - Math.ceil(rating));
+    return filledStars + halfStar + emptyStars;
 }
 
 
 export { getCardInfo, renderCard }
-
 
 
 

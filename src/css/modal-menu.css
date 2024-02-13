@@ -110,8 +110,11 @@
   margin-bottom: 20px;
 }
 .gif-ex {
-  border-radius: 12px;
-}
+    border-radius: 12px;
+    margin-bottom: 20px;
+    width: 295px;
+    height: 258px;
+
 
 .exercise-name {
   font-weight: 500;
