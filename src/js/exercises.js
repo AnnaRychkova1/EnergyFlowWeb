@@ -18,7 +18,7 @@ async function getExercisesByFilter() {
   }
 }
 
-import { getExercisesByFilter } from './services/mainApi';
+// import { getExercisesByFilter } from './services/mainApi';
 
 import { refs } from './templates/refs.js';
 import { renderExerciseByFilter } from './exercises-details';
