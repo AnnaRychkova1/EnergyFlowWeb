@@ -73,9 +73,7 @@ async function filterBtnExercises(event) {
   const query = event.target.dataset.filter;
   refs.exercisesGalleryEl.innerHTML = '';
   filterDefault = query;
-  exercisesParamFilter = filterDefault;
   currentPage = 1;
-  exercisesParamFilter = filterDefault;
   console.log(exercisesParamFilter);
   if (event.target === event.currentTarget) {
     return;
@@ -137,6 +135,7 @@ async function onPaginationPages(event) {
 }
 
 function filterCartsExercises(event) {
+  hide(refs.exercisesGalleryEl);
   const exerciseElement = event.target.closest('.exercises-gallery-item');
   if (exerciseElement) {
     const name = exerciseElement.querySelector(
@@ -151,5 +150,4 @@ function filterCartsExercises(event) {
   console.log(exercisesParamFilter);
   console.log(exercisesParamName);
   renderExerciseByFilterName(exercisesParamFilter, exercisesParamName);
-  hide(refs.exercisesGalleryEl);
 }
