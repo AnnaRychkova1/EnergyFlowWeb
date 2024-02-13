@@ -1,7 +1,10 @@
-import { getExercisesByFilter } from './services/mainApi';
-
+import axios from 'axios';
 import { refs } from './templates/refs.js';
-import { renderExerciseByFilter } from './exercises-details';
+import { renderExerciseByFilterName } from './exercises-details.js';
+
+import { hide, hideLoader } from './services/visibility';
+
+const BASE_URL = 'https://energyflow.b.goit.study/api';
 
 let filterDefault = 'Muscles';
 let currentPage = 1;
@@ -17,6 +20,7 @@ const queryParams = {
 };
 
 refs.exercisesBtnEl.addEventListener('click', filterBtnExercises);
+refs.exercisesGalleryEl.addEventListener('click', filterCartsExercises);
 refs.paginationEl.addEventListener('click', onPaginationPages);
 
 if (screenWidth <= 375) {
@@ -27,11 +31,27 @@ if (screenWidth <= 375) {
   currentLimit = 12;
 }
 
+async function getExercisesByFilter() {
+  try {
+    const response = await axios.get(`${BASE_URL}/filters`, {
+      params: {
+        filter: filterDefault,
+        page: currentPage,
+        limit: currentLimit,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 async function fetchDefaultMuscles() {
   try {
     const { results, page, totalPages } = await getExercisesByFilter(
       queryParams
     );
+
     if (results && results.length > 0) {
       createExercisesByFilterMarkup(results);
       refs.paginationEl.innerHTML = pagesPagination(page, totalPages);
@@ -45,15 +65,18 @@ async function fetchDefaultMuscles() {
 
 fetchDefaultMuscles();
 
+// .classList.add('active');
+
 async function filterBtnExercises(event) {
   event.preventDefault();
 
   const query = event.target.dataset.filter;
   refs.exercisesGalleryEl.innerHTML = '';
-  console.log(query);
   filterDefault = query;
+  exercisesParamFilter = filterDefault;
   currentPage = 1;
-
+  exercisesParamFilter = filterDefault;
+  console.log(exercisesParamFilter);
   if (event.target === event.currentTarget) {
     return;
   }
@@ -88,10 +111,6 @@ function createExercisesByFilterMarkup(results) {
     )
     .join('');
   refs.exercisesGalleryEl.insertAdjacentHTML('beforeend', markup);
-  // const exercisesGalleryItem = document.querySelectorAll(
-  //   '.exercises-gallery-item'
-  // );
-  // exercisesGalleryItem.addEventListener('click', handleExercisesItemClick());
 }
 
 function pagesPagination(page, totalPages) {
@@ -111,23 +130,29 @@ async function onPaginationPages(event) {
     const { results, page, totalPages } = await getExercisesByFilter(
       queryParams
     );
-    const filter = results[0].filter;
-
-    if (page === totalPages) {
-      return;
-    }
     createExercisesByFilterMarkup(results);
   } catch (error) {
     console.log(error);
   }
 }
 
-// function handleExercisesItemClick(event) {
-//   exercisesParamFilter = event.target.dataset.filter;
-//   console.log(exercisesParamFilter);
-//   renderExerciseByFilter();
-//   // вимнути слухач!!!!
-// }
+function filterCartsExercises(event) {
+  const exerciseElement = event.target.closest('.exercises-gallery-item');
+  if (exerciseElement) {
+    const name = exerciseElement.querySelector(
+      '.exercises-gallery-title'
+    ).textContent;
+    const filter = exerciseElement.querySelector(
+      '.exercises-gallery-filter'
+    ).textContent;
+    exercisesParamName = name;
+    exercisesParamFilter = filter;
+  }
 
-export { filterDefault, currentPage, currentLimit };
-export { exercisesParamFilter, exercisesParamName };
+  refs.exercisesGalleryEl.innerHTML = '';
+  refs.paginationEl.innerHTML = "";
+  hide(refs.paginationEl);
+  hide(refs.exercisesGalleryEl);
+  renderExerciseByFilterName(exercisesParamFilter, exercisesParamName);
+
+}
