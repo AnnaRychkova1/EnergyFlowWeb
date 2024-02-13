@@ -17,11 +17,8 @@ const queryParams = {
   limit: currentLimit,
 };
 
-const exercisesGalleryItemEl = document.querySelectorAll(
-  '.exercises-gallery-item'
-);
-
 refs.exercisesBtnEl.addEventListener('click', filterBtnExercises);
+refs.exercisesGalleryEl.addEventListener('click', filterCartsExercises);
 refs.paginationEl.addEventListener('click', onPaginationPages);
 
 if (screenWidth <= 375) {
@@ -142,4 +139,18 @@ async function onPaginationPages(event) {
   }
 }
 
-export { exercisesParamFilter, exercisesParamName };
+function filterCartsExercises(event) {
+  const exerciseElement = event.target.closest('.exercises-gallery-item');
+  if (exerciseElement) {
+    const name = exerciseElement.querySelector(
+      '.exercises-gallery-title'
+    ).textContent;
+    const filter = exerciseElement.querySelector(
+      '.exercises-gallery-filter'
+    ).textContent;
+    exercisesParamName = name;
+    exercisesParamFilter = filter;
+  }
+  console.log(exercisesParamFilter);
+  console.log(exercisesParamName);
+}
