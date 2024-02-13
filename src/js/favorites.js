@@ -4,7 +4,7 @@ import { refs } from './templates/refs.js';
 // import { onClickCardContent } from './modal-menu.js';
 
 
-//  Quote of the Day
+//  Quote of the Day if quote is not part of Favorites page
 const LS_KEY_QUOTE = 'quoteResponse';
 const quoteFromLS = JSON.parse(localStorage.getItem(LS_KEY_QUOTE));
 console.log(quoteFromLS);
