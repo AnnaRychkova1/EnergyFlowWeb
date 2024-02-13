@@ -3,9 +3,9 @@ const BASE_URL = 'https://energyflow.b.goit.study/api';
 const ENDPOINT_FILTER = 'filters';
 
 
-async function getExercisesByFilter() {
+async function getExercisesByFilterName() {
   try {
-    const response = await axios.get(`${BASE_URL}/${ENDPOINT_EXERCISES}`, {
+    const response = await axios.get(`${BASE_URL}/${ENDPOINT_FILTER}`, {
       params: {
         filter: filterDefault,
         page: currentPage,
@@ -18,10 +18,10 @@ async function getExercisesByFilter() {
   }
 }
 
-// import { getExercisesByFilter } from './services/mainApi';
+//import { getExercisesByFilter } from './services/mainApi';
 
 import { refs } from './templates/refs.js';
-import { renderExerciseByFilter } from './exercises-details';
+//import { renderExerciseByFilterName } from 'exercises-details';
 
 let filterDefault = 'Muscles';
 let currentPage = 1;
