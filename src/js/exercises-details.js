@@ -2,7 +2,7 @@
 import axios from 'axios';
 const BASE_URL = 'https://energyflow.b.goit.study/api';
 const ENDPOINT_EXERCISES = 'exercises';
-import { hide, show, showLoader, hideLoader } from "./services/visibility";
+import { hide, show, showLoader, hideLoader } from './services/visibility';
 import { refs } from './templates/refs.js';
 import isiToast from './services/isiToast.js';
 // import { exercisesParamFilter, exercisesParamName } from '../exercises'; - wait for push
@@ -61,6 +61,7 @@ async function renderExerciseByFilterName() {
   // ! має появитися частинка заголовка, але не я, а Василина
   // ! need or not
   // refs.resultContainer.innerHTML = '';
+  // refs.resultContainer.innerHTML = '';
 
   // const getParams = {
   //   [exercisesParamFilter]: exercisesParamName,
@@ -74,7 +75,7 @@ async function renderExerciseByFilterName() {
     isiToast.noResults();
     show(refs.textResult);
     hideLoader(refs.loaderModal);
-    return
+    return;
   }
 
   try {
@@ -86,7 +87,7 @@ async function renderExerciseByFilterName() {
       isiToast.noResults();
       show(refs.textResult);
       hideLoader(refs.loaderModal);
-      return
+      return;
     }
 
     // ! create markup for the first time or once
@@ -116,6 +117,7 @@ async function renderExerciseByFilterName() {
     // ! I have to removeListener from another person or not
   }
 }
+
 
 // ! Works with search button
 
@@ -162,7 +164,7 @@ async function handleSearch(evt) {
     }
   }
 
-// ! Create markup
+  // ! Create markup
 
 function createCardsOfExercises({ _id, rating, name, burnedCalories, time, bodyPart, target }) {
   return `<li class="filtered-card-item">
@@ -193,7 +195,7 @@ function createCardsOfExercises({ _id, rating, name, burnedCalories, time, bodyP
         </ul>  
   </li>
   `;
-}
+  }
 
 // function createCardsOfExercises(results, resultContainer) {
 //   const markup = results
@@ -273,12 +275,12 @@ function createCardsOfExercises({ _id, rating, name, burnedCalories, time, bodyP
 //         try {
 //             const { results, totalPages } = await searchExerciseByFilters(getParams);
 
-//             if (!results || totalPages === 0) {
-//                 isiToast.noResults();
-//                 show(refs.textResult);
-//                 hideLoader(refs.loaderModal);
-//                 return;
-//             }
+  //             if (!results || totalPages === 0) {
+  //                 isiToast.noResults();
+  //                 show(refs.textResult);
+  //                 hideLoader(refs.loaderModal);
+  //                 return;
+  //             }
 
 //             //refs.resultContainer.innerHTML = '';
 //             createCardsOfExercises(results, refs.resultContainer);

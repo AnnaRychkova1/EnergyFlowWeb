@@ -34,7 +34,7 @@ async function searchExerciseByID({ id}) {
 
 /// Create the Favorites page
 
-const LS_KEY_FAVORITES = "favorites";
+const LS_KEY_FAVORITES = 'favorites';
 
 
 async function createGalleryFromLS(event) {
@@ -127,11 +127,14 @@ async function removeObjectFromLocalStorage(idToRemove) {
              
         await refreshGallery();
     
-    } catch (error) {
-        console.error('Error removing object from local storage:', error);
-    }
+    storedArray = storedArray.filter(item => item._id !== idToRemove);
+    localStorage.setItem(LS_KEY_FAVORITES, JSON.stringify(storedArray));
+    console.log(`Object with ID ${idToRemove} removed from local storage.`);
+    await refreshGallery();
+  } catch (error) {
+    console.error('Error removing object from local storage:', error);
+  }
 }
-
 
 // Add to Favorites after click on button 'Add to Favotites' at Modal
 

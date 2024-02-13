@@ -1,27 +1,8 @@
 import axios from 'axios';
-const BASE_URL = 'https://energyflow.b.goit.study/api';
-const ENDPOINT_FILTER = 'filters';
-
-
-async function getExercisesByFilterName() {
-  try {
-    const response = await axios.get(`${BASE_URL}/${ENDPOINT_FILTER}`, {
-      params: {
-        filter: filterDefault,
-        page: currentPage,
-        limit: currentLimit,
-      },
-    });
-    return response.data;
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-//import { getExercisesByFilter } from './services/mainApi';
-
 import { refs } from './templates/refs.js';
-//import { renderExerciseByFilterName } from 'exercises-details';
+// import { hide } from './services/visibility';
+
+const BASE_URL = 'https://energyflow.b.goit.study/api';
 
 let filterDefault = 'Muscles';
 let currentPage = 1;
@@ -36,6 +17,10 @@ const queryParams = {
   limit: currentLimit,
 };
 
+const exercisesGalleryItemEl = document.querySelectorAll(
+  '.exercises-gallery-item'
+);
+
 refs.exercisesBtnEl.addEventListener('click', filterBtnExercises);
 refs.paginationEl.addEventListener('click', onPaginationPages);
 
@@ -47,11 +32,27 @@ if (screenWidth <= 375) {
   currentLimit = 12;
 }
 
+async function getExercisesByFilter() {
+  try {
+    const response = await axios.get(`${BASE_URL}/filters`, {
+      params: {
+        filter: filterDefault,
+        page: currentPage,
+        limit: currentLimit,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 async function fetchDefaultMuscles() {
   try {
     const { results, page, totalPages } = await getExercisesByFilter(
       queryParams
     );
+
     if (results && results.length > 0) {
       createExercisesByFilterMarkup(results);
       refs.paginationEl.innerHTML = pagesPagination(page, totalPages);
@@ -65,15 +66,18 @@ async function fetchDefaultMuscles() {
 
 fetchDefaultMuscles();
 
+// .classList.add('active');
+
 async function filterBtnExercises(event) {
   event.preventDefault();
 
   const query = event.target.dataset.filter;
   refs.exercisesGalleryEl.innerHTML = '';
-  console.log(query);
   filterDefault = query;
+  exercisesParamFilter = filterDefault;
   currentPage = 1;
-
+  exercisesParamFilter = filterDefault;
+  console.log(exercisesParamFilter);
   if (event.target === event.currentTarget) {
     return;
   }
@@ -83,6 +87,12 @@ async function filterBtnExercises(event) {
       queryParams
     );
     createExercisesByFilterMarkup(results);
+
+    // const get = results.map(result => result.name);
+    // get.forEach(element => {
+    //   exercisesParamName = element;
+    //   console.log(exercisesParamName);
+    // });
 
     if (totalPages > 1) {
       refs.paginationEl.innerHTML = pagesPagination(page, totalPages);
@@ -101,17 +111,13 @@ function createExercisesByFilterMarkup(results) {
         `<li class="exercises-gallery-item" data-filter>
         <img class="exercises-gallery-img" src="${imgUrl}" alt="${filter}">
         <div class="exercises-gallery-text">
-          <h3 class="exercises-gallery-title">${name}</h3>
-          <p class="exercises-gallery-filter">${filter}</p>
+          <h3 class="exercises-gallery-title" data-part>${name}</h3>
+          <p class="exercises-gallery-filter" data-method>${filter}</p>
         </div>
         </li>`
     )
     .join('');
   refs.exercisesGalleryEl.insertAdjacentHTML('beforeend', markup);
-  // const exercisesGalleryItem = document.querySelectorAll(
-  //   '.exercises-gallery-item'
-  // );
-  // exercisesGalleryItem.addEventListener('click', handleExercisesItemClick());
 }
 
 function pagesPagination(page, totalPages) {
@@ -131,23 +137,9 @@ async function onPaginationPages(event) {
     const { results, page, totalPages } = await getExercisesByFilter(
       queryParams
     );
-    const filter = results[0].filter;
-
-    if (page === totalPages) {
-      return;
-    }
-    createExercisesByFilterMarkup(results);
   } catch (error) {
     console.log(error);
   }
 }
 
-// function handleExercisesItemClick(event) {
-//   exercisesParamFilter = event.target.dataset.filter;
-//   console.log(exercisesParamFilter);
-//   renderExerciseByFilter();
-//   // вимнути слухач!!!!
-// }
-
-export { filterDefault, currentPage, currentLimit };
 export { exercisesParamFilter, exercisesParamName };
