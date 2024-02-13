@@ -10,7 +10,7 @@ const BASE_URL = 'https://energyflow.b.goit.study/api';
 const ENDPOINT_EXERCISES = 'exercises';
 
 // ! add listeners
-refs.searchForm.addEventListener('submit', handleSearch); // спочатку відкрити, потім закрити, по днфолту в нього має бути клас хіден
+//refs.searchForm.addEventListener('submit', handleSearch); // спочатку відкрити, потім закрити, по днфолту в нього має бути клас хіден
 // refs.containerFilteredCards // mine div for all exept form - спочатку відкрити, потім закрити, по днфолту в нього має бути клас хіден
 refs.resultContainer.addEventListener('click', handleClickOnCardStart)
 
@@ -22,7 +22,7 @@ refs.resultContainer.addEventListener('click', handleClickOnCardStart)
 // const exercisesParamName = 'barbell';
 
 // const getParams = {
-//     filter: exercisesParamName,
+//     filter: name,
 //     keyword: '',
 //     page: 1,
 //     limit: 9,
@@ -35,7 +35,14 @@ refs.resultContainer.addEventListener('click', handleClickOnCardStart)
 // renderExerciseByFilterName(exercisesParamFilter, exercisesParamName);
 // renderExerciseByFilterName();
 
-async function renderExerciseByFilterName() {
+async function renderExerciseByFilterName(filter, name) {
+    //hide(refs.exercisesGalleryEl);
+    const getParams = {
+        [filter]: name,
+        keyword: '',
+        page: 1,
+        limit: 9,
+    }
 
     show(refs.containerFilteredCards);
     show(refs.searchForm);
@@ -43,10 +50,10 @@ async function renderExerciseByFilterName() {
 
     // ! має появитися частинка заголовка, але не я, а Василина
     // ! need or not
-    // refs.resultContainer.innerHTML = '';
+    refs.resultContainer.innerHTML = '';
 
     // ! need or not
-    if (!exercisesParamFilter || !exercisesParamName) {
+    if (!filter || !name) {
         isiToast.noResults();
         show(refs.textResult);
         hideLoader(refs.loaderModal);
@@ -89,12 +96,11 @@ async function renderExerciseByFilterName() {
         // hide(paginationContainer);
         // ! I have to removeListener from another person or not
     }
-}
 
-
-// ! Works with search button
-
-async function handleSearch(evt) {
+    // ! Works with search button
+    refs.searchForm.addEventListener('submit', handleSearch);
+    
+    async function handleSearch(evt) {
 
     evt.preventDefault();
     refs.resultContainer.innerHTML = '';
@@ -132,6 +138,8 @@ async function handleSearch(evt) {
     }
 }
 
+}
+
 // ! Create markup
 
 function createCardsOfExercises({ _id, rating, name, burnedCalories, time, bodyPart, target }) {
@@ -167,7 +175,6 @@ function createCardsOfExercises({ _id, rating, name, burnedCalories, time, bodyP
 
 // ! Function for create modal  Створити делегування подій на лішку
 
-
 function handleClickOnCardStart(evt) {
     showLoader(refs.loaderModal);
     const exerciseId = evt.target.dataset.id;
@@ -176,12 +183,12 @@ function handleClickOnCardStart(evt) {
 
 // ! Api Function
 
-async function searchExerciseByFilters({ keyword, limit,page }) {
+async function searchExerciseByFilters({filter, name, keyword, limit, page}) {
     const response = await axios.get(
         `${BASE_URL}/${ENDPOINT_EXERCISES}`,
         {
             params: {
-                [exercisesParamFilter]: exercisesParamName,
+                [filter]: name,
                 keyword: keyword,
                 limit,
                 page
