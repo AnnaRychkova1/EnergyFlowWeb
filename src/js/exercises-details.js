@@ -160,7 +160,7 @@ function createCardsOfExercises({ _id, rating, name, burnedCalories, time, bodyP
           <li class="filtered-descr-item">
             <p class="filtered-descr-title">Target: <spam class="filtered-descr-value">${target}</spam></p>
           </li>
-        </ul>  
+        </ul>
   </li>
   `;
 }

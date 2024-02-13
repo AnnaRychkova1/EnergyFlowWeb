@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { refs } from './templates/refs.js';
-// import { hide } from './services/visibility';
+import { renderExerciseByFilterName } from './exercises-details.js';
+
+import { hide } from './services/visibility';
 
 const BASE_URL = 'https://energyflow.b.goit.study/api';
 
@@ -16,10 +18,6 @@ const queryParams = {
   page: currentPage,
   limit: currentLimit,
 };
-
-// const exercisesGalleryItemEl = document.querySelectorAll(
-//   '.exercises-gallery-item'
-// );
 
 refs.exercisesBtnEl.addEventListener('click', filterBtnExercises);
 refs.exercisesGalleryEl.addEventListener('click', filterCartsExercises);
@@ -139,6 +137,19 @@ async function onPaginationPages(event) {
 }
 
 function filterCartsExercises(event) {
-  exercisesParamFilter = event.target;
+  const exerciseElement = event.target.closest('.exercises-gallery-item');
+  if (exerciseElement) {
+    const name = exerciseElement.querySelector(
+      '.exercises-gallery-title'
+    ).textContent;
+    const filter = exerciseElement.querySelector(
+      '.exercises-gallery-filter'
+    ).textContent;
+    exercisesParamName = name;
+    exercisesParamFilter = filter;
+  }
   console.log(exercisesParamFilter);
+  console.log(exercisesParamName);
+  renderExerciseByFilterName(exercisesParamFilter, exercisesParamName);
+  hide(refs.exercisesGalleryEl);
 }
