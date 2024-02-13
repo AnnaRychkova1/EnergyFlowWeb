@@ -1,27 +1,104 @@
 .exercises-details {
-    margin: 0 50px;
+    width: 335px;
+    margin: 0 auto;
 }
 
-.header-btn {
+@media only screen and (min-width: 768px) {
+    .exercises-details {
+        width: 736px;
+    }
 }
 
-.filtered-cards {}
+@media only screen and (min-width: 1440px) {
+    .exercises-details {
+        width: 1408px;
+    }
+}
 
-.filtered-card-item {}
+.exersises-header {}
 
-.card-box-workout {}
+.form {}
 
-.card-box-info {}
+.exercises-input {}
+
+.search-btn {}
+
+.exercise-text-no-found {
+    padding-bottom: 320px;
+}
+
+@media only screen and (min-width: 768px) {
+    .exercise-text-no-found {
+        padding-bottom: 586px;
+    }
+}
+
+@media only screen and (min-width: 1440px) {
+    .exercise-text-no-found {
+        padding-bottom: 350px;
+    }
+}
+
+.filtered-cards {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+@media only screen and (min-width: 768px) {
+    .filtered-cards {
+        gap: 20px 14px;   
+    }
+}
+
+@media only screen and (min-width: 1440px) {
+    .filtered-cards {
+        gap: 28px 20px;
+    }
+}
+
+.filtered-card-item {
+    border: 1px solid red;
+    border-radius: 15px;
+    width: 295px;
+    padding: 16px;
+}
+
+@media only screen and (min-width: 768px) {
+    .filtered-card-item {
+        width: 313px;
+    }
+}
+
+@media only screen and (min-width: 1440px) {
+    .filtered-card-item {
+        width: 424px;
+    }
+}
+
+.card-box-workout {
+    display: flex;
+    flex-direction: row;
+}
+
+.card-box-info {
+    display: flex;
+    flex-direction: row;
+}
 
 .filtered-workout {
     border-radius: 15px;
-    padding: 5px 8px;
     /* width: 76px; */
     height: 26px;
     text-transform: uppercase;
 }
 
-.card-box-rating {}
+.card-box-rating {
+display: flex;
+flex-direction: row;
+}
 
 .filtered-rating {}
 
@@ -39,7 +116,8 @@
     background-color: aqua;
 }
 
-.card-box-title {}
+.card-box-title {
+}
 
 .filteered-athlete {}
 
@@ -54,3 +132,39 @@
 .filtered-descr-value {}
 
 
+
+
+/*  Pagination */
+
+.tui-pagination {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    justify-content: center;
+}
+
+.tui-pagination-btn {
+    margin: 0 5px;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    color: #333;
+    text-decoration: none;
+}
+
+.tui-pagination-btn:hover {
+    background-color: #f0f0f0;
+}
+
+.tui-pagination-active {
+    font-weight: bold;
+    border: 2px solid #000;
+}
+
+.tui-pagination-btn:first-child {
+    margin-left: 0;
+}
+
+.tui-pagination-btn:last-child {
+    margin-right: 0;
+}
