@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { refs } from './templates/refs.js';
-// import { hide } from './services/visibility';
+import { renderExerciseByFilterName } from './exercises-details.js';
+
+import { hide } from './services/visibility';
 
 const BASE_URL = 'https://energyflow.b.goit.study/api';
 
@@ -148,4 +150,6 @@ function filterCartsExercises(event) {
   }
   console.log(exercisesParamFilter);
   console.log(exercisesParamName);
+  renderExerciseByFilterName(exercisesParamFilter, exercisesParamName);
+  hide(refs.exercisesGalleryEl);
 }
