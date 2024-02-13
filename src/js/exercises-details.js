@@ -1,5 +1,5 @@
 // ! imports
-import Pagination from 'tui-pagination'; 
+//import Pagination from 'tui-pagination'; 
 // import 'tui-pagination/dist/tui-pagination.min.css';
 import axios from 'axios';
 const BASE_URL = 'https://energyflow.b.goit.study/api';
@@ -103,7 +103,7 @@ async function renderExerciseByFilterName() {
       console.log(total);
 
       // ! Pagination start
-      createPagination(total);
+      //createPagination(total);
     } else {
       isiToast.endOfSearchIsiToast();
     }
@@ -229,8 +229,8 @@ function createCardsOfExercises({ _id, rating, name, burnedCalories, time, bodyP
 
 
 //! Pagination
-const paginationContainer = document.getElementById('pagination-container');
-function createPagination(totalPages, total) {
+//const paginationContainer = document.getElementById('pagination-container');
+//function createPagination(totalPages, total) {
     
     
     // Перевірка на те, чи потрібно створювати пагінацію
@@ -255,35 +255,35 @@ function createPagination(totalPages, total) {
         // Якщо сторінка одна, пагінація не потрібна
       paginationContainer.innerHTML = ''; // Очищуємо контейнер
     }
-}
+//}
 
-async function handlePagination(event) {
-    if (event.target.tagName === 'A' && event.target.classList.contains('tui-pagination-btn')) {
-        const pageNum = parseInt(event.target.textContent);
-        console.log(pageNum);
+// async function handlePagination(event) {
+//     if (event.target.tagName === 'A' && event.target.classList.contains('tui-pagination-btn')) {
+//         const pageNum = parseInt(event.target.textContent);
+//         console.log(pageNum);
         
-        queryParams.page = pageNum;
+//         queryParams.page = pageNum;
 
-        try {
-            const { results, totalPages } = await searchExerciseByFilters(queryParams);
+//         try {
+//             const { results, totalPages } = await searchExerciseByFilters(queryParams);
 
-            if (!results || totalPages === 0) {
-                isiToast.noResults();
-                show(refs.textResult);
-                hideLoader(refs.loaderModal);
-                return;
-            }
+//             if (!results || totalPages === 0) {
+//                 isiToast.noResults();
+//                 show(refs.textResult);
+//                 hideLoader(refs.loaderModal);
+//                 return;
+//             }
 
-            //refs.resultContainer.innerHTML = '';
-            createCardsOfExercises(results, refs.resultContainer);
-        } catch (error) {
-            console.error('Error fetching images:', error);
-            isiToast.apiIsiToastError();
-        } finally {
-            hideLoader(refs.loaderModal);
-        }
-    }
-}
+//             //refs.resultContainer.innerHTML = '';
+//             createCardsOfExercises(results, refs.resultContainer);
+//         } catch (error) {
+//             console.error('Error fetching images:', error);
+//             isiToast.apiIsiToastError();
+//         } finally {
+//             hideLoader(refs.loaderModal);
+//         }
+//     }
+// }
 
 
 
