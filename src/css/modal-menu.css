@@ -49,6 +49,7 @@
     border: none;
     color:rgba(27, 27, 27, 1);
     margin-bottom: 2px;
+    padding-right: 14px;
 }
 .modal-close-icon {
     stroke: transparent;
@@ -139,7 +140,7 @@
     justify-content: flex-start;
     font-size: 12px;
     line-height: 18px;
-    
+    gap: 2px;
 }
 .exercise-stars-item {
     position: absolute;

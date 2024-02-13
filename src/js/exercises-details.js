@@ -2,7 +2,7 @@ import axios from 'axios';
 import { hide, show, showLoader, hideLoader } from './services/visibility';
 import { refs } from './templates/refs.js';
 import isiToast from './services/isiToast.js';
-//import { getCardInfo } from './modal-menu.js';
+import { getCardInfo } from './modal-menu.js';
 
 const BASE_URL = 'https://energyflow.b.goit.study/api';
 const ENDPOINT_EXERCISES = 'exercises';
@@ -115,7 +115,7 @@ async function renderExerciseByFilterName(exeptedFilter, name) {
                 limit: getParams.limit,
                 page: getParams.page
             });
-// ! Correct
+// Correct
             if (!getParams.keyword) {
                 isiToast.noQuery();
                 show(refs.textResult);
