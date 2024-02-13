@@ -17,32 +17,34 @@ const heartIcon = `
 // </svg>`;
 
 
-renderCard();
-let storage = 'favorites';
-let storageItem = localStorage.getItem(storage);
-if (!storageItem) {
-    storageItem = [];
-} else {
-    storageItem = JSON.parse(storageItem);
-}
-
-// gallery.addEventListener('click', onClickCardContent);
-// async function onClickCardContent(event) {
-//     if (event.target === event.currentTarget) {
-//         return;
-//     }
-//   const element = event.target.closest('.to-favorites-start');
-//   if (element === null) {
-//         return;
-//     }
-//     getLoader();
-//     const elementId = element.dataset.id;
-//     const exercisesInfo = await getCardInfo(elementId);
-
-//     backdrop.classList.remove('is-hidden');
-//   modalCard.innerHTML = '';
-//   hideLoader();
+// renderCard();
+// modalCard.innerHTML = modalWindowMarkup(results);
+// let storage = 'favorites';
+// let storageItem = localStorage.getItem(storage);
+// if (!storageItem) {
+//     storageItem = [];
+// } else {
+//     storageItem = JSON.parse(storageItem);
 // }
+
+gallery.addEventListener('click', onClickCardContent);
+async function onClickCardContent(event) {
+    if (event.target === event.currentTarget) {
+        return;
+    }
+  const element = event.target.closest('.to-favorites-start');
+  if (element === null) {
+        return;
+    }
+    getLoader();
+    const elementId = element.dataset.id;
+    const exercisesInfo = await getCardInfo(elementId);
+
+  backdrop.classList.remove('is-hidden');
+  const modalExercisesCard = modalWindowMarkup(exercisesInfo)
+  modalCard.innerHTML = modalExercisesCard;
+  hideLoader();
+}
 
   const addToFavoriteBtn = document.querySelector('.ex-add-favorite');
   addToFavoriteBtn.addEventListener('click', addToFavoriteOnClick);
@@ -117,17 +119,17 @@ async function getCardInfo(exerciseId) {
 }
 
 
-async function renderCard() {
-    try {
-      const { results } = await getCardInfo(exerciseId);
-      modalWindowMarkup(results);
-      console.log(results)
-    } catch (error) {
-        console.error(error.message);
-    } finally {
+// async function renderCard() {
+//     try {
+//       const { results } = await getCardInfo(exerciseId);
+//       modalWindowMarkup(results);
+//       console.log(results)
+//     } catch (error) {
+//         console.error(error.message);
+//     } finally {
 
-    }
-}
+//     }
+// }
 
 // modalCard.innerHTML = modalWindowMarkup(results);
 function modalWindowMarkup(results = {}) {
@@ -175,15 +177,16 @@ function modalWindowMarkup(results = {}) {
                     height="258"
                     alt="${name}"
                   />
-              </picture>   
+              </picture>
             </div>
             <div class="ex-content-container">
                 <h3 class="exercise-name">${name}</h3>
+               <div class="rating-container">
                 <p class="ex-current-rating">${rating}</p>
                 <ul class="exercise-stars-list">
                     ${renderStars(popularity)}
                 </ul>
-
+                </div>
                 <div class="exercise-information">
                     <div class="ex-block">
                         <span class="exercise-value">Target</span>
@@ -210,8 +213,8 @@ function modalWindowMarkup(results = {}) {
                         ${description}
                     </p>
 
-                    <div class="ex-add-btn">
-                        <button data-id="${_id}" class="add-btn-icon">
+                    <div class="ex-add-btn-container">
+                        <button data-id="${_id}" class="ex-add-favorite">
                             Add to favorites
                             <svg
                                 class="heart-svg"

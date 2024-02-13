@@ -18,8 +18,8 @@
     visibility 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .backdrop.is-open {
-    /* opacity: 1;
-    visibility: hidden; */
+    opacity: 1;
+    visibility: visible;
     pointer-events: auto;
 }
 .modal {
@@ -27,7 +27,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    /* min-width: 320px; */
+    min-width: 320px;
     /* width: 100%; */
     padding: 40px 20px;
     transform: translate(-50%, -50%) scale(1);
@@ -123,13 +123,18 @@
 .exercise-name::first-letter {
     text-transform: uppercase;
 }
+.rating-container {
+    display: flex;
+    gap: 2px;
+}
 .ex-current-rating {
-    position: relative;
     display: inline-block;
     font-size: 12px;
     line-height: 18px;
 }
 .exercise-stars-list {
+    display: flex;
+    justify-content: flex-start;
     font-size: 12px;
     line-height: 18px;
     
@@ -199,6 +204,7 @@
     .ex-add-btn-container {
         display: flex;
         flex-direction: column;
+        justify-content: center;
         gap: 9px;
     }
 }
