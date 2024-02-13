@@ -2,6 +2,8 @@
 import Pagination from 'tui-pagination'; 
 // import 'tui-pagination/dist/tui-pagination.min.css';
 import axios from 'axios';
+const BASE_URL = 'https://energyflow.b.goit.study/api';
+const ENDPOINT_EXERCISES = 'exercises';
 import { hide, show, showLoader, hideLoader } from "./services/visibility";
 import { refs } from './templates/refs.js';
 import isiToast from './services/isiToast.js';
@@ -32,13 +34,12 @@ const queryParams = {
 let exerciseId;
 
 // Я взяла з мейнApi
-const BASE_URL = 'https://energyflow.b.goit.study/api';
 
 const ENDPOINT_FILTER = 'exercises';
 
 async function searchExerciseByFilters({ keyword}) {
   const response = await axios.get(
-    `${BASE_URL}/${ENDPOINT_FILTER}`,
+    `${BASE_URL}/${ENDPOINT_EXERCISES}`,
     {
       params: {
         [exercisesParamFilter]: exercisesParamName,
@@ -290,7 +291,9 @@ async function handlePagination(event) {
 
     // ! Function for create modal  Створити делегування подій на лішку
     
-    function handleClickOnCardStart(evt) {
+function handleClickOnCardStart(evt) {
+      
+  console.log(evt);
   console.log(evt.target.closest('ul').dataset.id);
   
 //       exerciseId = evt.currentTarget.dataset.id;
