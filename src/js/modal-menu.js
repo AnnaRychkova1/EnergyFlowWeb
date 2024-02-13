@@ -90,8 +90,8 @@ if (!storageItem) {
     element.innerHTML = changingButtonName('add');
   } else {
     const exercisesCardInfo = await getCardInfo(elementId);
-    localStorage.setItem('favorites', JSON.stringify([...favorites, exercisesCardInfo]));
-    element.classList.add('is-favorite');
+    // localStorage.setItem('favorites', JSON.stringify([...favorites, exercisesCardInfo]));
+    // element.classList.add('is-favorite');
     element.innerHTML = changingButtonName('remove');
   }
 
