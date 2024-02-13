@@ -1,4 +1,4 @@
-! imports
+// ! imports
 import axios from 'axios';
 import { hide, show, showLoader, hideLoader } from './services/visibility';
 import { refs } from './templates/refs.js';
@@ -15,44 +15,25 @@ refs.searchForm.addEventListener('submit', handleSearch); // спочатку в
 refs.resultContainer.addEventListener('click', handleClickOnCardStart)
 
 // ! temporarely consts
-const exercisesParamFilter = "bodypart";
+// const exercisesParamFilter = "bodypart";
 // const exercisesParamFilter = "muscles";
 // const exercisesParamFilter = "equipment";
-const exercisesParamName = 'waist';
+// const exercisesParamName = 'waist';
 // const exercisesParamName = 'barbell';
 
-const getParams = {
-    filter: exercisesParamName,
-    keyword: '',
-    page: 1,
-    limit: 9,
-    // totalItems: 0,
-};
-
-
-// ! need or not
-let exerciseId;
-
-// ! Ця ф-я є внизу
-// async function searchExerciseByFilters({ keyword}) {
-//   const response = await axios.get(
-//     `${BASE_URL}/${ENDPOINT_EXERCISES}`,
-//     {
-//       params: {
-//         [exercisesParamFilter]: exercisesParamName,
-//         keyword: keyword, 
-//       },
-//     }
-//   );
-//   return response.data;
-// }
+// const getParams = {
+//     filter: exercisesParamName,
+//     keyword: '',
+//     page: 1,
+//     limit: 9,
+// };
 
 // ! work with title Vasilina
 // refs.exercisesHeader.textContent = `/${exercisesParamName}`;
 
 // ! Василина викликає мою функцію renderExerciseByFilterName();
-// renderExerciseByFilterName(exercisesParamFilter, exercisesParamName);
-renderExerciseByFilterName();
+renderExerciseByFilterName(exercisesParamFilter, exercisesParamName);
+// renderExerciseByFilterName();
 
 async function renderExerciseByFilterName() {
 
@@ -63,13 +44,6 @@ async function renderExerciseByFilterName() {
     // ! має появитися частинка заголовка, але не я, а Василина
     // ! need or not
     // refs.resultContainer.innerHTML = '';
-
-    // const getParams = {
-    //   [exercisesParamFilter]: exercisesParamName,
-    //   keyword: '',
-    //   page: 1,
-    //   limit: 9,
-    // };
 
     // ! need or not
     if (!exercisesParamFilter || !exercisesParamName) {
