@@ -255,7 +255,7 @@ function renderStars(rating) {
     return filledStars + halfStar + emptyStars;
 }
 
-export { getCardInfo };
+// export { getCardInfo };
 
 // // const heartIcon = `
 // // // <svg class="icon-heart" width="18" height="18">
