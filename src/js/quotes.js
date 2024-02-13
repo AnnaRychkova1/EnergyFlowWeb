@@ -42,13 +42,13 @@ export async function getQuoteOffTheDay() {
 }
 getQuoteOffTheDay();
 
-async function fetchQuoteFromServer() {
-  try {
-    const response = await axios.get(`${BASE_URL}/${ENDPOINT_QUOTE}`);
-    return response.data;
-  } catch (error) {
-    console.log(error);
-    throw error;
-  }
-}
+// async function fetchQuoteFromServer() {
+//   try {
+//     const response = await axios.get(`${BASE_URL}/${ENDPOINT_QUOTE}`);
+//     return response.data;
+//   } catch (error) {
+//     console.log(error);
+//     throw error;
+//   }
+// }
 
