@@ -11,6 +11,4 @@ import('./js/modal-menu.js');
 import('./js/templates/localStorage.js');
 import('./js/templates/refs.js');
 import('./js/services/isiToast.js');
-import('./js/services/notify.js');
-import('./js/services/tui-pagination.js');
 import('./js/services/visibility.js');
