@@ -124,8 +124,7 @@ async function renderExerciseByFilterName(exeptedFilter, name) {
             }
 
             // ! check fot the wrong query 
-            if ()
-
+           
 
             // ! create markup for the first time or once
 
