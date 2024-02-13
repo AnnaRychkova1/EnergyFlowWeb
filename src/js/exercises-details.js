@@ -113,7 +113,7 @@ async function renderExerciseByFilterName() {
     isiToast.apiIsiToastError();
   } finally {
     hideLoader(refs.loaderModal);
-    hide(paginationContainer);
+    // hide(paginationContainer);
     // ! I have to removeListener from another person
   }
 }
@@ -234,27 +234,27 @@ function createCardsOfExercises({ _id, rating, name, burnedCalories, time, bodyP
     
     
     // Перевірка на те, чи потрібно створювати пагінацію
-    if (totalPages > 1) {
-        // Створюємо новий екземпляр пагінації
-        const pagination = new Pagination(paginationContainer, {
-            totalItems: total, // Загальна кількість елементів, які будуть розділені по сторінках
-            itemsPerPage: 1, // Кількість елементів на одній сторінці
-            visiblePages: 3, // Кількість видимих сторінок в пагінації
-            page: 1, // Початкова сторінка
-            centerAlign: true, // Вирівнювання пагінації по центру
-            template: {
-                // Налаштування шаблону кнопок пагінації
-                page: '<a class="tui-pagination-btn">{{page}}</a>',
-                currentPage: '<strong class="tui-pagination-btn tui-pagination-active">{{page}}</strong>',
-                moveButton: '<a class="tui-pagination-btn tui-pagination-control"></a>',
-                disabledMoveButton: '<a class="tui-pagination-btn tui-pagination-control disabled"></a>',
-                moreButton: '<a class="tui-pagination-btn tui-pagination-ellipsis" aria-label="More"></a>'
-            }
-        });
-    } else {
-        // Якщо сторінка одна, пагінація не потрібна
-      paginationContainer.innerHTML = ''; // Очищуємо контейнер
-    }
+    // if (totalPages > 1) {
+    //     // Створюємо новий екземпляр пагінації
+    //     const pagination = new Pagination(paginationContainer, {
+    //         totalItems: total, // Загальна кількість елементів, які будуть розділені по сторінках
+    //         itemsPerPage: 1, // Кількість елементів на одній сторінці
+    //         visiblePages: 3, // Кількість видимих сторінок в пагінації
+    //         page: 1, // Початкова сторінка
+    //         centerAlign: true, // Вирівнювання пагінації по центру
+    //         template: {
+    //             // Налаштування шаблону кнопок пагінації
+    //             page: '<a class="tui-pagination-btn">{{page}}</a>',
+    //             currentPage: '<strong class="tui-pagination-btn tui-pagination-active">{{page}}</strong>',
+    //             moveButton: '<a class="tui-pagination-btn tui-pagination-control"></a>',
+    //             disabledMoveButton: '<a class="tui-pagination-btn tui-pagination-control disabled"></a>',
+    //             moreButton: '<a class="tui-pagination-btn tui-pagination-ellipsis" aria-label="More"></a>'
+    //         }
+    //     });
+    // } else {
+    //     // Якщо сторінка одна, пагінація не потрібна
+    //   paginationContainer.innerHTML = ''; // Очищуємо контейнер
+    // }
 //}
 
 // async function handlePagination(event) {
