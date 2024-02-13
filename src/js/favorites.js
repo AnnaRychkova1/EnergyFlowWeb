@@ -5,6 +5,7 @@ import axios from "axios";
 import { refs } from "./templates/refs.js";
 // import { icons } from "../img/icons/symbol-defs.svg";
 
+
 //  Quote of Day
 const LS_KEY_QUOTE = "quoteResponse";
 const quoteFromLS = JSON.parse(localStorage.getItem(LS_KEY_QUOTE));
@@ -18,15 +19,11 @@ function displayQuoteOnPage(quoteData) {
   quoteAuthor.textContent = quoteData.author;
 }
 
-const BASE_URL = 'https://energyflow.b.goit.study/api';
-
-const ENDPOINT_QUOTE = 'quote';
-const ENDPOINT_FILTER = 'exercises';
-const ENDPOINT_EXERCISES = 'filters';
+const BASE_URL_FAVORITES = 'https://energyflow.b.goit.study/api/exersises/id';
 
 async function searchExerciseByID(id) {
   try {
-    const { data } = await axios.get(`${BASE_URL}/${ENDPOINT_FILTER}?id`);
+    const { data } = await axios.get(`${BASE_URL_FAVORITES}`);
     return data;
   } catch (err) {
     console.error(err);

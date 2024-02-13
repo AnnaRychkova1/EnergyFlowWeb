@@ -1103,3 +1103,8 @@
     gap: 10px;
   }
 }
+
+/* Gap between header and quote sections */
+.gap-container {
+  height: 128px;
+}
