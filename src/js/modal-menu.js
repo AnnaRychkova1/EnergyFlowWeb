@@ -5,6 +5,7 @@ import icons from '../img/icons/symbol-defs.svg'
 const BASE_URL = 'https://energyflow.b.goit.study/api';
 
 
+// , getLoader
 const gallery = document.querySelector('.results'); // плюс название содержимого карточки //
 const backdrop = document.querySelector('.backdrop');
 const modalCard = document.querySelector('.modal');
@@ -115,6 +116,19 @@ async function getCardInfo(exerciseId) {
         console.error(err);
     }
 }
+
+
+// function changingButtonName(value = 'add') {
+//   if (value === 'add') {
+//     return `Add to favorites
+//         <svg class="icon-heart" width="18" height="18">
+//           <use href="${heartIcon}#icon-heart"></use>
+//         </svg>`;
+//   } else {
+//     return `Remove from
+//         <svg class="icon-heart" width="18" height="18">
+//           <use href="${heartIcon}#icon-heart"></use>
+//         </svg>`;
 
 
 async function renderCard() {
@@ -239,6 +253,9 @@ function renderStars(rating) {
     const emptyStars = emptyStar.repeat(5 - Math.ceil(rating));
     return filledStars + halfStar + emptyStars;
 }
+
+
+export { getCardInfo, renderCard }
 
 
 
