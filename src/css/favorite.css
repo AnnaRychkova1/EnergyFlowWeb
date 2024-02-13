@@ -345,6 +345,18 @@
 
   .container-quote {
     margin-top: 20px;
+<<<<<<< Updated upstream
+=======
+  }
+
+  /* ================================================================================================================================== */
+
+  /* 
+  .favorites-svg-run {
+    width: 32px;
+    height: 32px;
+    background-color: var(--background-main);
+>>>>>>> Stashed changes
   }
 
   .favorites-container-box {
