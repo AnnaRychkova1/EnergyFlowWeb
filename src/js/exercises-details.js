@@ -17,10 +17,10 @@ refs.resultContainer.addEventListener('click', handleClickOnCardStart)
 
 
 // // ! temporarely consts
-// const exercisesParamFilter = "bodypart";
+const exercisesParamFilter = "bodypart";
 // // const exercisesParamFilter = "muscles";
 // // const exercisesParamFilter = "equipment";
-// const exercisesParamName = 'waist';
+const exercisesParamName = 'waist';
 // // const exercisesParamName = 'barbell';
 
 const queryParams = {
