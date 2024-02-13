@@ -33,7 +33,7 @@
           </li>
         </ul>
       </div>
-      <form class="form">
+      <form class="form is-hidden">
         <input
           class="exercises-input"
           type="text"
@@ -43,13 +43,9 @@
         <button class="search-btn" type="submit">Search</button>
       </form>
     </div>
-    <div class="exercises-gallery-container">
-      <ul class="exercises-gallery"></ul>
-    </div>
-    <div class="exercises-pagination"></div>
-    <div class="exercises-deteils">
+    <ul class="exercises-gallery filtered-cards"></ul>
+    <div class="exercises-deteils is hidden">
       <ul class="filtered-cards"></ul>
-      <div id="pagination-container" class="tui-pagination"></div>
       <p class="exercise-text-no-found is-hidden">
         hi Unfortunately, <span class="exercise-no-found">no results</span> were
         found. You may want to consider other search options to find the
@@ -57,5 +53,6 @@
         opportunity to find more options that suit your needs.
       </p>
     </div>
+    <div class="exercises-pagination"></div>
   </div>
 </section>

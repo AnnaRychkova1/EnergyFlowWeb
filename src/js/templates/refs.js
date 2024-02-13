@@ -1,7 +1,7 @@
 export const refs = {
   //   add your refs
 
-  
+  blockOfRenderedCards: document.querySelector('.exercises-gallery-container'),
   containerFilteredCards: document.querySelector('.exercises-deteils'),
   loaderModal: document.querySelector('.overlay'),
   resultContainer: document.querySelector('.filtered-cards'),
