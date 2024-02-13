@@ -1,10 +1,10 @@
 // ! imports
-//import Pagination from 'tui-pagination'; 
+//import Pagination from 'tui-pagination';
 // import 'tui-pagination/dist/tui-pagination.min.css';
 import axios from 'axios';
 const BASE_URL = 'https://energyflow.b.goit.study/api';
 const ENDPOINT_EXERCISES = 'exercises';
-import { hide, show, showLoader, hideLoader } from "./services/visibility";
+import { hide, show, showLoader, hideLoader } from './services/visibility';
 import { refs } from './templates/refs.js';
 import isiToast from './services/isiToast.js';
 // import { exercisesParamFilter, exercisesParamName } from '../exercises'; - wait for push
@@ -13,14 +13,13 @@ import isiToast from './services/isiToast.js';
 // ! add listeners
 refs.searchForm.addEventListener('submit', handleSearch); // спочатку відкрити, потім закрити, по днфолту в нього має бути клас хіден
 // refs.containerFilteredCards // mine div for all exept form - спочатку відкрити, потім закрити, по днфолту в нього має бути клас хіден
-refs.resultContainer.addEventListener('click', handleClickOnCardStart)
-
+refs.resultContainer.addEventListener('click', handleClickOnCardStart);
 
 // // ! temporarely consts
-// const exercisesParamFilter = "bodypart";
+const exercisesParamFilter = 'bodypart';
 // // const exercisesParamFilter = "muscles";
 // // const exercisesParamFilter = "equipment";
-// const exercisesParamName = 'waist';
+const exercisesParamName = 'waist';
 // // const exercisesParamName = 'barbell';
 
 const queryParams = {
@@ -37,16 +36,13 @@ let exerciseId;
 
 const ENDPOINT_FILTER = 'exercises';
 
-async function searchExerciseByFilters({ keyword}) {
-  const response = await axios.get(
-    `${BASE_URL}/${ENDPOINT_EXERCISES}`,
-    {
-      params: {
-        [exercisesParamFilter]: exercisesParamName,
-        keyword: keyword, 
-      },
-    }
-  );
+async function searchExerciseByFilters({ keyword }) {
+  const response = await axios.get(`${BASE_URL}/${ENDPOINT_EXERCISES}`, {
+    params: {
+      [exercisesParamFilter]: exercisesParamName,
+      keyword: keyword,
+    },
+  });
   return response.data;
 }
 
@@ -58,20 +54,19 @@ async function searchExerciseByFilters({ keyword}) {
 // ! Василина викликає мою функцію renderExerciseByFilterName();
 renderExerciseByFilterName();
 async function renderExerciseByFilterName() {
-
   // here need to create mine container
 
   // ! need or not
-  // refs.resultContainer.innerHTML = ''; 
+  // refs.resultContainer.innerHTML = '';
 
-  show(refs.searchForm)
+  show(refs.searchForm);
   showLoader(refs.loaderModal);
 
-  if (!exercisesParamFilter || !exercisesParamName ) {
+  if (!exercisesParamFilter || !exercisesParamName) {
     isiToast.noResults();
     show(refs.textResult);
     hideLoader(refs.loaderModal);
-    return
+    return;
   }
 
   try {
@@ -84,7 +79,7 @@ async function renderExerciseByFilterName() {
       isiToast.noResults();
       show(refs.textResult);
       hideLoader(refs.loaderModal);
-      return
+      return;
     }
 
     //! має появитися частинка заголовка, але не я, а Василина
@@ -96,10 +91,10 @@ async function renderExerciseByFilterName() {
       markup += createCardsOfExercises(result);
     }
     refs.resultContainer.innerHTML = markup;
-    
+
     if (totalPages > 1) {
       const total = queryParams.limit * totalPages;
-      queryParams.page += 1
+      queryParams.page += 1;
       console.log(total);
 
       // ! Pagination start
@@ -107,13 +102,12 @@ async function renderExerciseByFilterName() {
     } else {
       isiToast.endOfSearchIsiToast();
     }
-  
   } catch (error) {
     console.error('Error fetching images:', error);
     isiToast.apiIsiToastError();
   } finally {
     hideLoader(refs.loaderModal);
-    hide(paginationContainer);
+    // hide(paginationContainer);
     // ! I have to removeListener from another person
   }
 }
@@ -123,21 +117,21 @@ async function handleSearch(event) {
   event.preventDefault();
   refs.resultContainer.innerHTML = '';
 
-// //   try {
-// //     const { results, totalPages } = await searchExerciseByFilters(queryParams);
+  // //   try {
+  // //     const { results, totalPages } = await searchExerciseByFilters(queryParams);
 
   if (!queryParams.keyword) {
     isiToast.noResults();
     show(refs.textResult);
     hideLoader(refs.loaderModal);
-    return
+    return;
   }
 
   try {
     console.log(queryParams);
     const { results } = await searchExerciseByFilters(queryParams);
-    
-// //     if (page !== totalPages) {
+
+    // //     if (page !== totalPages) {
 
     // ! create markup for the first time or once
 
@@ -146,7 +140,6 @@ async function handleSearch(event) {
       markupFilteredCards += createCardsOfExercises(result);
     }
     refs.resultContainer.innerHTML = markupFilteredCards;
-      
   } catch (error) {
     console.error('Error fetching images:', error);
     isiToast.apiIsiToastError();
@@ -158,7 +151,15 @@ async function handleSearch(event) {
 
 // ! Create markup
 
-function createCardsOfExercises({ _id, rating, name, burnedCalories, time, bodyPart, target }) {
+function createCardsOfExercises({
+  _id,
+  rating,
+  name,
+  burnedCalories,
+  time,
+  bodyPart,
+  target,
+}) {
   return `<li class="filtered-card-item">
         <div class="card-box-workout">
           <div class="card-box-info">
@@ -217,51 +218,49 @@ function createCardsOfExercises({ _id, rating, name, burnedCalories, time, bodyP
 //           <li class="filtered-descr-item">
 //             <p class="filtered-descr-title">Target: <spam class="filtered-descr-value">${target}</spam></p>
 //           </li>
-//         </ul>  
+//         </ul>
 //   </li>
 //   `
 //     )
 //     .join('');
 
 //   resultContainer.insertAdjacentHTML('beforeend', markup);
-  
-// }
 
+// }
 
 //! Pagination
 //const paginationContainer = document.getElementById('pagination-container');
 //function createPagination(totalPages, total) {
-    
-    
-    // Перевірка на те, чи потрібно створювати пагінацію
-    if (totalPages > 1) {
-        // Створюємо новий екземпляр пагінації
-        const pagination = new Pagination(paginationContainer, {
-            totalItems: total, // Загальна кількість елементів, які будуть розділені по сторінках
-            itemsPerPage: 1, // Кількість елементів на одній сторінці
-            visiblePages: 3, // Кількість видимих сторінок в пагінації
-            page: 1, // Початкова сторінка
-            centerAlign: true, // Вирівнювання пагінації по центру
-            template: {
-                // Налаштування шаблону кнопок пагінації
-                page: '<a class="tui-pagination-btn">{{page}}</a>',
-                currentPage: '<strong class="tui-pagination-btn tui-pagination-active">{{page}}</strong>',
-                moveButton: '<a class="tui-pagination-btn tui-pagination-control"></a>',
-                disabledMoveButton: '<a class="tui-pagination-btn tui-pagination-control disabled"></a>',
-                moreButton: '<a class="tui-pagination-btn tui-pagination-ellipsis" aria-label="More"></a>'
-            }
-        });
-    } else {
-        // Якщо сторінка одна, пагінація не потрібна
-      paginationContainer.innerHTML = ''; // Очищуємо контейнер
-    }
+
+// Перевірка на те, чи потрібно створювати пагінацію
+// if (totalPages > 1) {
+//     // Створюємо новий екземпляр пагінації
+//     const pagination = new Pagination(paginationContainer, {
+//         totalItems: total, // Загальна кількість елементів, які будуть розділені по сторінках
+//         itemsPerPage: 1, // Кількість елементів на одній сторінці
+//         visiblePages: 3, // Кількість видимих сторінок в пагінації
+//         page: 1, // Початкова сторінка
+//         centerAlign: true, // Вирівнювання пагінації по центру
+//         template: {
+//             // Налаштування шаблону кнопок пагінації
+//             page: '<a class="tui-pagination-btn">{{page}}</a>',
+//             currentPage: '<strong class="tui-pagination-btn tui-pagination-active">{{page}}</strong>',
+//             moveButton: '<a class="tui-pagination-btn tui-pagination-control"></a>',
+//             disabledMoveButton: '<a class="tui-pagination-btn tui-pagination-control disabled"></a>',
+//             moreButton: '<a class="tui-pagination-btn tui-pagination-ellipsis" aria-label="More"></a>'
+//         }
+//     });
+// } else {
+//     // Якщо сторінка одна, пагінація не потрібна
+//   paginationContainer.innerHTML = ''; // Очищуємо контейнер
+// }
 //}
 
 // async function handlePagination(event) {
 //     if (event.target.tagName === 'A' && event.target.classList.contains('tui-pagination-btn')) {
 //         const pageNum = parseInt(event.target.textContent);
 //         console.log(pageNum);
-        
+
 //         queryParams.page = pageNum;
 
 //         try {
@@ -285,34 +284,26 @@ function createCardsOfExercises({ _id, rating, name, burnedCalories, time, bodyP
 //     }
 // }
 
+// ! Function for create modal  Створити делегування подій на лішку
 
-
-
-
-    // ! Function for create modal  Створити делегування подій на лішку
-    
 function handleClickOnCardStart(evt) {
-      
   console.log(evt);
   console.log(evt.target.closest('ul').dataset.id);
-  
-//       exerciseId = evt.currentTarget.dataset.id;
-//       console.log(exerciseId);
-//   evt.preventDefault();
-// console.log('hi');
-//   console.log(evt.tarlet.dataset.id);
-  
+
+  //       exerciseId = evt.currentTarget.dataset.id;
+  //       console.log(exerciseId);
+  //   evt.preventDefault();
+  // console.log('hi');
+  //   console.log(evt.tarlet.dataset.id);
+
   // console.log(evt.target.closest('ul').dataset.exercises);
   //     if (evt.target.closest('ul').dataset.exercises) {
   //       getCardInfo();
   //   }
-    
-} 
-
-
+}
 
 export { renderExerciseByFilterName };
 export { exerciseId };
-  
+
 // ! will delete in future
 // export {exercisesParamFilter, exercisesParamName }
