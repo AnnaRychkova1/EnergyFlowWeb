@@ -1,7 +1,8 @@
 import axios from 'axios';
-// import { apiIsiToastError } from './services/isiToast.js';
-import { searchExerciseByID } from './services/mainApi.js';
-// import { hide, show } from "./services/visibility";
+const BASE_URL = 'https://energyflow.b.goit.study/api';
+import { apiIsiToastError } from './services/isiToast.js';
+// import { searchExerciseByID } from './services/mainApi.js';
+import { hide, show } from "./services/visibility";
 import { refs } from './templates/refs.js';
 // import { icons } from "../img/icons/symbol-defs.svg";
 

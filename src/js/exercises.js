@@ -1,3 +1,23 @@
+import axios from 'axios';
+const BASE_URL = 'https://energyflow.b.goit.study/api';
+const ENDPOINT_FILTER = 'filters';
+
+
+async function getExercisesByFilter() {
+  try {
+    const response = await axios.get(`${BASE_URL}/${ENDPOINT_EXERCISES}`, {
+      params: {
+        filter: filterDefault,
+        page: currentPage,
+        limit: currentLimit,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 import { getExercisesByFilter } from './services/mainApi';
 
 import { refs } from './templates/refs.js';

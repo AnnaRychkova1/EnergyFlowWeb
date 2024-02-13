@@ -3,6 +3,7 @@ import axios from 'axios';
 import { hide, show, showLoader, hideLoader} from './services/visibility';
 import icons from '../img/icons/symbol-defs.svg'
 const BASE_URL = 'https://energyflow.b.goit.study/api';
+const ENDPOINT_EXERCISES = 'exercises';
 
 
 // , getLoader
@@ -108,9 +109,7 @@ function handleEscapeKey(event) {
 // const exerciseId = '64f389465ae26083f39b17c0';
 async function getCardInfo(exerciseId) {
     try {
-        const BASE_URL = 'https://energyflow.b.goit.study/api';
-        const ENDPOINT = 'exercises';
-        const { data } = await axios.get(`${BASE_URL}/${ENDPOINT}/${exerciseId}`);
+        const { data } = await axios.get(`${BASE_URL}/${ENDPOINT_EXERCISES}/${exerciseId}`);
         return data;
     } catch (err) {
         console.error(err);
@@ -380,3 +379,13 @@ export { getCardInfo, renderCard }
 
 //   modalEl.innerHTML = markup;
 // }
+
+
+async function searchExerciseByID(id) {
+  try {
+    const { data } = await axios.get(`${BASE_URL}/${ENDPOINT_FILTER}/${exerciseId}`);
+    return data;
+  } catch (err) {
+    console.error(err);
+  }
+}
