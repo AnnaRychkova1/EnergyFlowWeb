@@ -4,7 +4,7 @@ import { hide, show, showLoader, hideLoader } from './services/visibility';
 import { refs } from './templates/refs.js';
 import isiToast from './services/isiToast.js';
 //import { exercisesParamFilter, exercisesParamName } from '../exercises'; - wait for push
-import { getCardInfo } from './modal-menu.js';
+//import { getCardInfo } from './modal-menu.js';
 
 const BASE_URL = 'https://energyflow.b.goit.study/api';
 const ENDPOINT_EXERCISES = 'exercises';
@@ -32,7 +32,7 @@ refs.resultContainer.addEventListener('click', handleClickOnCardStart)
 // refs.exercisesHeader.textContent = `/${exercisesParamName}`;
 
 // ! Василина викликає мою функцію renderExerciseByFilterName();
-renderExerciseByFilterName(exercisesParamFilter, exercisesParamName);
+// renderExerciseByFilterName(exercisesParamFilter, exercisesParamName);
 // renderExerciseByFilterName();
 
 async function renderExerciseByFilterName() {
@@ -176,7 +176,7 @@ function handleClickOnCardStart(evt) {
 
 // ! Api Function
 
-async function searchExerciseByFilters({ keyword, limit }) {
+async function searchExerciseByFilters({ keyword, limit,page }) {
     const response = await axios.get(
         `${BASE_URL}/${ENDPOINT_EXERCISES}`,
         {
@@ -184,6 +184,7 @@ async function searchExerciseByFilters({ keyword, limit }) {
                 [exercisesParamFilter]: exercisesParamName,
                 keyword: keyword,
                 limit,
+                page
             },
         }
     );
