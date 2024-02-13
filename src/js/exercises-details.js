@@ -44,7 +44,6 @@ async function renderExerciseByFilterName(filter, name) {
         limit: 9,
     }
 
-
     show(refs.containerFilteredCards);
     show(refs.searchForm);
     // showLoader(refs.loaderModal);
