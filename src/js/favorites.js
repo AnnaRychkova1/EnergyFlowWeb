@@ -1,16 +1,15 @@
-import axios from "axios";
+import axios from 'axios';
 // import { apiIsiToastError } from './services/isiToast.js';
 // import { searchExerciseByFilters } from "./services/mainApi.js";
 // import { hide, show } from "./services/visibility";
-import { refs } from "./templates/refs.js";
+import { refs } from './templates/refs.js';
 // import { icons } from "../img/icons/symbol-defs.svg";
 
 
 //  Quote of Day
-const LS_KEY_QUOTE = "quoteResponse";
+const LS_KEY_QUOTE = 'quoteResponse';
 const quoteFromLS = JSON.parse(localStorage.getItem(LS_KEY_QUOTE));
 console.log(quoteFromLS);
-
 
 function displayQuoteOnPage(quoteData) {
   const quoteText = document.querySelector('.quote-text');
@@ -78,9 +77,15 @@ async function createGalleryFromLS(event) {
   refs.favoritesMessage.style.display = 'none';
   
   try {
-    const itemsFromLS = await JSON.parse(localStorage.getItem(LS_KEY_FAVORITES));
+    const itemsFromLS = await JSON.parse(
+      localStorage.getItem(LS_KEY_FAVORITES)
+    );
 
-    if (!itemsFromLS || !Array.isArray(itemsFromLS) || itemsFromLS.length === 0) {
+    if (
+      !itemsFromLS ||
+      !Array.isArray(itemsFromLS) ||
+      itemsFromLS.length === 0
+    ) {
       console.log('No items found in local storage or data is invalid.');
       refs.favoritesMessage.style.display = 'block';
       return;
@@ -139,8 +144,8 @@ async function createGalleryFromLS(event) {
 
 
 async function removeObjectFromLocalStorage(idToRemove) {
-    try {
-        let storedArray = JSON.parse(localStorage.getItem(LS_KEY_FAVORITES));
+  try {
+    let storedArray = JSON.parse(localStorage.getItem(LS_KEY_FAVORITES));
 
         if (!Array.isArray(storedArray) || storedArray.length === 0) {
           console.log('Array in local storage is empty or does not exist.');
@@ -154,8 +159,14 @@ async function removeObjectFromLocalStorage(idToRemove) {
     } catch (error) {
         console.error('Error removing object from local storage:', error);
     }
+    storedArray = storedArray.filter(item => item._id !== idToRemove);
+    localStorage.setItem(LS_KEY_FAVORITES, JSON.stringify(storedArray));
+    console.log(`Object with ID ${idToRemove} removed from local storage.`);
+    await refreshGallery();
+  } catch (error) {
+    console.error('Error removing object from local storage:', error);
+  }
 }
-
 
 // Add to Favorites after click on button 'Add to Favotites' at Modal
 
@@ -189,14 +200,14 @@ async function removeObjectFromLocalStorage(idToRemove) {
 
 // After click  "Start" arrow
 function handleStartButtonClick(event) {
-    event.preventDefault();
-    // Open the modal
-    openModal();
+  event.preventDefault();
+  // Open the modal
+  openModal();
 }
 
 function openModal() {
-    const modal = document.querySelector('.modal');
-    modal.classList.add('open');
+  const modal = document.querySelector('.modal');
+  modal.classList.add('open');
 }
 
 
