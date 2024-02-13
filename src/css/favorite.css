@@ -18,13 +18,26 @@
     display: none !important;
   }
 
-  .favorites-container {
+  .section {
+    margin-top: 20px;
+    padding: 0;
+  }
+
+  .container .favorites-container {
     width: 335px;
-    min-height: 450px;
+    height: 450px;
+  }
+
+  .favorites-container {
     border-radius: 30px;
     background-color: var(--background-light-grey);
     padding: 40px 20px;
     margin: 0 auto;
+    position: relative;
+  }
+
+  .quote-container {
+    margin-top: 38px;
   }
 
   .favorites-day-norma {
@@ -73,6 +86,11 @@
     justify-content: flex-start;
     flex-shrink: 0;
     position: relative;
+    font-family: 'DM Sans';
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 20px;
+    letter-spacing: 0px;
   }
 
   .favorites-day-daily {
@@ -84,7 +102,7 @@
     position: relative;
     color: rgba(27, 27, 27, 0.6);
     font-family: sans-serif, 'DM Sans';
-    font-size: 11px;
+    font-size: 14px;
     font-weight: 400;
     line-height: 18px;
     letter-spacing: 0.02px;
@@ -99,10 +117,29 @@
     border-radius: 30px;
     margin-top: 20px;
     /* border: #ff0000 1px solid; */
-    position: relative;
     height: 450px;
     margin-left: 0;
     padding-left: 0;
+  }
+
+  .favorites-box-title {
+    color: var(--text-main-color);
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: 0.02em;
+    padding-bottom: 80px;
+    position: absolute;
+    left: 20px;
+    right: 187px;
+    top: 40px;
+    bottom: 378px;
+    text-align: left;
+    font-family: sans-serif, 'DM Sans';
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 32px;
+    letter-spacing: 0.02em;
   }
 
   .favorites-box-block {
@@ -118,20 +155,6 @@
     bottom: 128px;
   }
 
-  .favorites-box-title {
-    color: var(--text-main-color);
-    font-size: 32px;
-    font-weight: 400;
-    line-height: 1;
-    letter-spacing: 0.02em;
-    padding-bottom: 80px;
-    position: absolute;
-    left: 20px;
-    right: 187px;
-    top: 40px;
-    bottom: 378px;
-  }
-
   .favorites-box-img {
     width: 85px;
     height: 52px;
@@ -145,7 +168,9 @@
     text-align: center;
     font-size: 14px;
     font-weight: 400;
-    line-height: 1.28;
+    font-family: sans-serif, 'DM Sans';
+    line-height: 18px;
+    letter-spacing: 0px;
   }
 
   .favorites-list {
@@ -312,6 +337,15 @@
     height: 100%;
   }
 
+  .section {
+    margin-top: 16px;
+    padding: 0;
+  }
+
+  .quote-container {
+    margin-top: 160px;
+  }
+
   .favorites-container-box {
     width: 100%;
     display: flex;
@@ -368,11 +402,14 @@
   .favorites-box-paragraf {
     width: 554px;
     height: 72px;
-    font-family: DM Sans;
     color: var(--text-main-color);
     text-align: center;
-    font-size: 18px;
     line-height: 1.33;
+    font-family: sans-serif, 'DM Sans';
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0px;
   }
 
   .favorites-box-title {
@@ -383,6 +420,11 @@
     letter-spacing: 0.02em;
     padding-top: 40px;
     padding-left: 20px;
+    font-family: sans-serif, 'DM Sans';
+    font-size: 44px;
+    font-weight: 400;
+    line-height: 48px;
+    letter-spacing: 0.02em;
   }
 
   .section-favorites-box {
@@ -574,14 +616,20 @@
 /* Desctop */
 
 @media screen and (min-width: 1440px) {
+  .section {
+    /* margin-top: 16px; */
+    padding: 0;
+  }
+
   .favorites-container {
-    /* width: 100%; */
+    width: 100%;
     /* display: flex; */
     /* gap: 0; */
     /* flex-direction: row; */
     /* justify-content: center; */
-    max-width: 1408px;
-    padding: 0;
+    /* max-width: 1408px; */
+    padding-top: 16px;
+    padding-bottom: 0;
   }
 
   .favorites-box-container {
@@ -589,6 +637,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    margin-top: 156px;
   }
 
   .quote-container {
@@ -662,7 +711,7 @@
     flex-direction: row;
     align-items: center;
     flex-wrap: wrap;
-    padding: 16px 0;
+    /* padding: 16px 0; */
     margin: 0 auto;
   }
 
@@ -692,7 +741,7 @@
   .favorites-svg-day {
     width: 20px;
     height: 20px;
-    margin-bottom: 15px;
+    /* margin-bottom: 15px; */
   }
 
   .favorites-day-time {
@@ -730,6 +779,11 @@
     letter-spacing: 0.02em;
     padding-top: 64px;
     padding-left: 48px;
+    font-family: sans-serif, 'DM Sans';
+    font-size: 44px;
+    font-weight: 400;
+    line-height: 48px;
+    letter-spacing: 0.02em;
   }
 
   .is-hidden {
@@ -761,6 +815,11 @@
     text-align: center;
     font-size: 18px;
     line-height: 1.33;
+    font-family: sans-serif, 'DM Sans';
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0px;
   }
 
   .favorites-list-button {
@@ -1101,5 +1160,13 @@
 
   .favorites-info-item {
     gap: 10px;
+  }
+}
+
+/* Gap between header and quote sections */
+
+@media screen and (min-width: 1440px) {
+  .gap-container {
+    height: 128px;
   }
 }
