@@ -12,7 +12,6 @@ const heartIcon = `
 //     <use href="${symbol-defs}#icon-heart"></use>
 // </svg>`;
 
-
 renderCard();
 let storage = 'favorites';
 let storageItem = localStorage.getItem(storage);
@@ -46,7 +45,7 @@ if (!storageItem) {
   closeBtn.addEventListener('click', onCloseModal);
   backdrop.addEventListener('click', handleBackdropClick);
   document.addEventListener('keydown', handleEscapeKey);
- 
+
 async function addToFavoriteOnClick(event) {
   const element = event.target.closest('.ex-add-favorite');
   if (!element) return;
@@ -110,8 +109,6 @@ async function getCardInfo(exerciseId) {
         console.error(err);
     }
 }
-
-
 
 function changingButtonName(value = 'add') {
   if (value === 'add') {
@@ -236,23 +233,8 @@ function renderStars(rating) {
     return filledStars + emptyStars;
 }
 
-
 export { getCardInfo, renderCard }
 
-
-
-
-
-
-
-
-
-
-    
-    
-    
-    
-    
 // }
 // const startBtn = document.querySelector('.start-btn');
 // const modalEl = document.querySelector('.modal-backdrop');
@@ -336,7 +318,7 @@ export { getCardInfo, renderCard }
 //                   <p class="exercise-param-name">Burned calories</p>
 //                   <p class="exercise-param-value exercise-param-popularuty">${burnedCalories}/${time} m</p></li>
 //                 </ul>
-                
+
 //               </div>
 //               <p class="exercise-descr">${description}</p>
 //               <div class="exercise-buttons">

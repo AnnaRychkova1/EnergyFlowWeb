@@ -1,15 +1,14 @@
-import axios from "axios";
+import axios from 'axios';
 // import { apiIsiToastError } from './services/isiToast.js';
-import { searchExerciseByID } from "./services/mainApi.js";
+import { searchExerciseByID } from './services/mainApi.js';
 // import { hide, show } from "./services/visibility";
-import { refs } from "./templates/refs.js";
+import { refs } from './templates/refs.js';
 // import { icons } from "../img/icons/symbol-defs.svg";
 
 //  Quote of Day
-const LS_KEY_QUOTE = "quoteResponse";
+const LS_KEY_QUOTE = 'quoteResponse';
 const quoteFromLS = JSON.parse(localStorage.getItem(LS_KEY_QUOTE));
 console.log(quoteFromLS);
-
 
 function displayQuoteOnPage(quoteData) {
   const quoteText = document.querySelector('.quote-text');
@@ -20,68 +19,70 @@ function displayQuoteOnPage(quoteData) {
 
 /// Create Favorites page
 
-const LS_KEY_FAVORITES = "favorites";
+const LS_KEY_FAVORITES = 'favorites';
 
 async function createGalleryFromLS(LS_KEY_FAVORITES, createMarkupFavorites) {
   try {
-    const itemsFromLS = await JSON.parse(localStorage.getItem(LS_KEY_FAVORITES));
+    const itemsFromLS = await JSON.parse(
+      localStorage.getItem(LS_KEY_FAVORITES)
+    );
 
-    if (!itemsFromLS || !Array.isArray(itemsFromLS) || itemsFromLS.length === 0) {
+    if (
+      !itemsFromLS ||
+      !Array.isArray(itemsFromLS) ||
+      itemsFromLS.length === 0
+    ) {
       console.log('No items found in local storage or data is invalid.');
       apiIsiToastError();
       return;
     }
-        
-    refs.favoritesGallery.innerHTML = '';
-        
-    
-    refs.favoritesGallery.appendChild(refs.galleryItem);
-  
 
-  // if (itemsFromLS.length === 0) {
-  //   console.log(`There are no exercises in favorites.`);
-  //   apiIsiToastError();
-        
+    refs.favoritesGallery.innerHTML = '';
+
+    refs.favoritesGallery.appendChild(refs.galleryItem);
+
+    // if (itemsFromLS.length === 0) {
+    //   console.log(`There are no exercises in favorites.`);
+    //   apiIsiToastError();
   } catch (error) {
     console.error('Error creating gallery from local storage:', error);
   } finally {
     console.log();
- refreshGallery();
+    refreshGallery();
   }
 }
 
-
 // Refresh the gallery by updating the displayed items
 async function refreshGallery() {
-    try {
-        const storedArray = JSON.parse(localStorage.getItem('favorites'));
-        if (!Array.isArray(storedArray) || storedArray.length === 0) {
-          console.log('Array in local storage is empty or does not exist.');
-          apiIsiToastError();
-            return;
-        }
-       
-        refs.favoritesGallery.innerHTML = '';
-
-        storedArray.forEach(item => {
-        const markup = createMarkupFavorites(item);
-
-        refs.favoritesGallery.insertAdjacentHTML('afterbegin', markup);
-        });
-
-        console.log('Gallery refreshed successfully.');
-    } catch (error) {
-      console.error('Error refreshing gallery:', error);
+  try {
+    const storedArray = JSON.parse(localStorage.getItem('favorites'));
+    if (!Array.isArray(storedArray) || storedArray.length === 0) {
+      console.log('Array in local storage is empty or does not exist.');
       apiIsiToastError();
+      return;
     }
+
+    refs.favoritesGallery.innerHTML = '';
+
+    storedArray.forEach(item => {
+      const markup = createMarkupFavorites(item);
+
+      refs.favoritesGallery.insertAdjacentHTML('afterbegin', markup);
+    });
+
+    console.log('Gallery refreshed successfully.');
+  } catch (error) {
+    console.error('Error refreshing gallery:', error);
+    apiIsiToastError();
+  }
 }
 
 // Scroll for container favorites-gallery for desktop and tablet
 function scrollBy() {
-    refs.favoritesGallery.scrollTo({
-        top: refs.favoritesGallery.scrollHeight,
-        behavior: 'smooth',
-    });
+  refs.favoritesGallery.scrollTo({
+    top: refs.favoritesGallery.scrollHeight,
+    behavior: 'smooth',
+  });
 }
 
 // Remove an exersise from an array stored in local storage
@@ -89,22 +90,21 @@ function scrollBy() {
 refs.onRemoveBtn.addEventListener('click', removeObjectFromLocalStorage);
 
 async function removeObjectFromLocalStorage(idToRemove) {
-    try {
-        let storedArray = JSON.parse(localStorage.getItem(LS_KEY_FAVORITES));
+  try {
+    let storedArray = JSON.parse(localStorage.getItem(LS_KEY_FAVORITES));
 
-        if (!Array.isArray(storedArray) || storedArray.length === 0) {
-            console.log('Array in local storage is empty or does not exist.');
-            return;
-        }
-        storedArray = storedArray.filter(item => item._id !== idToRemove);
-        localStorage.setItem(LS_KEY_FAVORITES, JSON.stringify(storedArray));
-        console.log(`Object with ID ${idToRemove} removed from local storage.`);
-        await refreshGallery();
-    } catch (error) {
-        console.error('Error removing object from local storage:', error);
+    if (!Array.isArray(storedArray) || storedArray.length === 0) {
+      console.log('Array in local storage is empty or does not exist.');
+      return;
     }
+    storedArray = storedArray.filter(item => item._id !== idToRemove);
+    localStorage.setItem(LS_KEY_FAVORITES, JSON.stringify(storedArray));
+    console.log(`Object with ID ${idToRemove} removed from local storage.`);
+    await refreshGallery();
+  } catch (error) {
+    console.error('Error removing object from local storage:', error);
+  }
 }
-
 
 // Add to Favorites after click on button 'Add to Favotites' at Modal
 
@@ -134,27 +134,27 @@ async function removeObjectFromLocalStorage(idToRemove) {
 //     }
 // }
 
-
 refs.onStartBtn.addEventListener('click', handleStartButtonClick);
 // After click  "Start" arrow
 function handleStartButtonClick(event) {
-    event.preventDefault();
-    // Open the modal
-    openModal();
+  event.preventDefault();
+  // Open the modal
+  openModal();
 }
 
 function openModal() {
-    const modal = document.querySelector('.modal');
-    modal.classList.add('open');
+  const modal = document.querySelector('.modal');
+  modal.classList.add('open');
 }
-
 
 function createMarkupFavorites(data) {
   return data
     .map(
       i =>
         `
-        <li class="favorites-gallery-item" data-id="${i._id}" id="card-${i._id}">
+        <li class="favorites-gallery-item" data-id="${i._id}" id="card-${
+          i._id
+        }">
            <p class="favorites-item-head">
               <span class="favorites-item-head-wrapper">
                 <span class="workout">WORKOUT</span>
@@ -233,4 +233,3 @@ function createMarkupFavorites(data) {
 //             </ul>
 //         </li>`;
 //     }
-
