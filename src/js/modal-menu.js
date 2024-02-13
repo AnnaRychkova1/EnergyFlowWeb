@@ -84,9 +84,9 @@ function onCloseModal() {
   backdrop.removeEventListener('click', handleBackdropClick);
 }
 function handleBackdropClick(event) {
-  if (event.target.closest('.modal')) {
-    return;
-  }
+  // if (event.target.closest('.modal')) {
+  //   return;
+  // }
   modalCard.classList.add('is-hidden');
   backdrop.classList.add('is-hidden');
   modalCard.innerHTML = '';
