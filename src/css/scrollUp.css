@@ -1,0 +1,48 @@
+.scroll-up-btn {
+  position: fixed;
+  border-radius: 50%;
+  height: 66px;
+  width: 66px;
+  visibility: hidden;
+  justify-content: center;
+  align-items: center;
+  bottom: -100px;
+  right: 35px;
+  border: #7e847f;
+  background-color: #e8e8e8;
+  opacity: 0;
+  transition: opacity 0.3s ease, bottom 0.3s ease, visibility 0.3s ease;
+}
+
+.scroll-up-btn--show {
+  bottom: 60px;
+  opacity: 0;
+  visibility: visible;
+}
+
+.scroll-up-btn:hover,
+.scroll-up-btn:active {
+  background-color: #ffffff;
+  opacity: 1;
+}
+
+.scroll-up-arrow {
+  width: 100px;
+  height: 100px;
+  fill: #7e847f;
+  stroke-width: 0.3px;
+  stroke: #7e847f;
+  transform: rotate(-90deg);
+}
+
+@media screen and (max-width: 767px) {
+  .scroll-up-btn {
+    width: 40px;
+    height: 40px;
+  }
+
+  .scroll-up-arrow {
+    width: 13.2px;
+    height: 13.2px;
+  }
+}

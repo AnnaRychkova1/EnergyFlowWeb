@@ -1162,3 +1162,11 @@
     gap: 10px;
   }
 }
+
+/* Gap between header and quote sections */
+
+@media screen and (min-width: 1440px) {
+  .gap-container {
+    height: 128px;
+  }
+}
