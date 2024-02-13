@@ -23,7 +23,7 @@ import{a as u}from"./vendor-8cce9181.js";import{show as a,hideLoader as c,hide a
           <li class="filtered-descr-item">
             <p class="filtered-descr-title">Target: <spam class="filtered-descr-value">${f}</spam></p>
           </li>
-        </ul>  
+        </ul>
   </li>
   `}function E(r){g(e.loaderModal);const t=r.target.dataset.id;h(t)}async function m({keyword:r,limit:t}){return(await u.get(`${x}/${y}`,{params:{[exercisesParamFilter]:exercisesParamName,keyword:r,limit:t}})).data}export{v as renderExerciseByFilterName};
-//# sourceMappingURL=exercises-details-072babb8.js.map
+//# sourceMappingURL=exercises-details-008253d1.js.map
