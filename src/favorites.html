@@ -88,14 +88,16 @@
     </div>
   </header> -->
     <!-- Favorites section -->
-    <main>
-      <!-- <section class="section favorites-section">
+      <main>
+      <load ="partials/header.html" />
+      <!-- <load ="partials/quotes.html" /> -->
+      <section class="section favorites-section">
       <div class="container favorites-container">
         <div class="favorites-box-container">
           <blockquote class="quote-container">
             <div class="quote-title-wrapper">
               <div class="quote-svg-man">
-                <img class="svg-man" src="./img/icons/symbol-defs.svg#icon-Man" alt="running-man icon" />
+                <img class="svg-man" src="./img/icons/symbol-defs.svg#icon-Man" alt="running-man-icon" />
               </div>
               <div class="title-quote-wrapper">
                 <h3 class="quote-title">Quote of the day</h3>
@@ -131,10 +133,7 @@
             </div>
           </div>
         </div>
-      </div> -->
-      <load ="partials/header.html" />
-      <div class="gap-container"></div>
-      <load ="partials/quotes.html" />
+      </section>
       <section class="section">
         <div class="container favorites-container">
           <div class="favorites-box">
@@ -151,9 +150,43 @@
                 like to your favorites for easier access in the future.
               </p>
             </div>
+            <!-- <ul class="favorites-gallery">
+
+            <li class="favorites-gallery-item" data-id="${_id}" id="card-${_id}">
+           <div class="favorites-item">
+              <div class="favorites-item-wrapper">
+                <span class="workout">WORKOUT</span>
+                <button class="favorites-remove-btn">
+                  <svg class="favorites-remove-icon" width="12" height="13">
+                    <use href="./img/tresh-bin.svg"></use>
+                  </svg>
+                </button>
+                <a class="favorites-start" href="" data-id="${_id}">
+                  <span class="favorites-start-button">Start</span>
+                  <svg class="favorites-start-icon" width="14" height="14">
+                    <use href="../img/icons/symbole-defs.svg#icon-line"></use>
+                  </svg>
+                </a>
+              </div>
+              <div class="favorites-item-info">
+                <div class="favorites-man-icon">
+                  <svg class="icon-Man" width="14" height="14">
+                    <use href="../img/icons/symbol-defs.svg#icon-Man"></use>
+                  </svg>
+                  <h3 class="favorites-item-title">${name.charAt(0).toUpperCase() + name.slice(1)}</h3>
+                </div>
+              </div>
+              <div class="favorites-item-info-wrapper">
+                <ul class="favorites-gallery-info">
+                  <li class="favorites-gallery-info-item">Burned calories: <span class="descr-span">${burnedCalories} / ${time} min</span></li>
+                  <li class="favorites-gallery-info-item">Body part: <span class="descr-span">${bodyPart.charAt(0).toUpperCase() + bodyPart.slice(1)}</span></li>
+                  <li class="favorites-gallery-info-item">Target: <span class="descr-span">${target.charAt(0).toUpperCase() + target.slice(1)}</span></li>
+                </ul>
+              </div>
           </div>
-           
-            <ul class="favorites-gallery"></ul>
+        </li>
+      </ul> -->
+          </div>
 
             <load ="partials/modal-menu.html" />
             <load ="partials/scrollUp.html" />
