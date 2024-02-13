@@ -236,11 +236,15 @@ function modalWindowMarkup(results = {}) {
     `;
    return modalCard.innerHTML = markup;
 }
-const activeColor = '#eea10c';
-const noActiveColor = '#e8e8e8';
+
+const activeColor = '#EEA10C';
+const noActiveColor = '#E8E8E8';
 const stars = document.querySelectorAll('.ex-rate-icon');
 stars.forEach((star, index) => {
-  if (index < ratingStar) {
+  const rating = Number(star.getAttribute('data-rating'));
+  const starHTML = renderStars(rating);
+  const filledStarsCount = (starHTML.match(/&#9733;/g) || []).length;
+  if (index < filledStarsCount) {
     star.style.fill = activeColor;
   } else {
     star.style.fill = noActiveColor;
@@ -254,8 +258,7 @@ function renderStars(rating) {
     const emptyStars = emptyStar.repeat(5 - Math.ceil(rating));
     return filledStars + halfStar + emptyStars;
 }
-
-// export { getCardInfo };
+export { getCardInfo };
 
 // // const heartIcon = `
 // // // <svg class="icon-heart" width="18" height="18">
