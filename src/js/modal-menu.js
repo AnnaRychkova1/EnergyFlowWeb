@@ -94,7 +94,7 @@ if (!storageItem) {
     element.classList.add('is-favorite');
     element.innerHTML = changingButtonName('remove');
   }
-}
+
 function onCloseModal() {
   modalCard.classList.add('is-hidden');
   backdrop.classList.add('is-hidden');
