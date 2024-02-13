@@ -1164,6 +1164,9 @@
 }
 
 /* Gap between header and quote sections */
-.gap-container {
-  height: 128px;
+
+@media screen and (min-width: 1440px) {
+  .gap-container {
+    height: 128px;
+  }
 }

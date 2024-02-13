@@ -10,7 +10,7 @@
   </head>
 
   <body>
-    <!-- Header section -->
+    <!-- Header section 
     <header class="header-section">
       <div class="container container-header">
         <div class="header-section-container">
@@ -87,9 +87,9 @@
       </div>
     </div>
   </header> -->
-  <!-- Favorites section -->
-  <main>
-    <!-- <section class="section favorites-section">
+    <!-- Favorites section -->
+    <main>
+      <!-- <section class="section favorites-section">
       <div class="container favorites-container">
         <div class="favorites-box-container">
           <blockquote class="quote-container">
@@ -131,68 +131,59 @@
             </div>
           </div>
         </div>
-      </div>
-    </section> -->
-    <load="partials/header.html" />
-    <div class="gap-container"></div>
-    <load="partials/quotes.html" />
-    <section class="section">
-      <div class="container favorites-container">
-        <div class="favorites-box">
-          <h2 class="favorites-box-title">Favorites</h2>
-          <div class="favorites-box-block block">
-            <img class="favorites-box-img" src="./img/icons/dumbbell.png" alt="dumbbell" />
-            <p class="favorites-box-paragraf">
-              It appears that you haven't added any exercises to your favorites
-              yet. To get started, you can add exercises that you like to your
-              favorites for easier access in the future.
-            </p>
+      </div> -->
+    </section>
+      <load ="partials/header.html" />
+      <div class="gap-container"></div>
+      <load ="partials/quotes.html" />
+      <section class="section">
+        <div class="container favorites-container">
+          <div class="favorites-box">
+            <h2 class="favorites-box-title">Favorites</h2>
+            <div class="favorites-box-block block">
+              <img
+                class="favorites-box-img"
+                src="./img/icons/dumbbell.png"
+                alt="dumbbell"
+              />
+              <p class="favorites-box-paragraf">
+                It appears that you haven't added any exercises to your
+                favorites yet. To get started, you can add exercises that you
+                like to your favorites for easier access in the future.
+              </p>
+            </div>
+           
+            <ul class="favorites-gallery"></ul>
 
-          </div>
-          <div class="modal-buttons-container">
-          <button  class="add-favorite-btn">
-            Add to favorite
-            <svg class="icon-heart" width="18" height="18">
-              <use href="./img/icons/symbol-defs.svg#icon-heart"></use>
-            </svg>
-          </button>
-          <button  class="remove-from-LS-btn">
-            Remove from 
-          </button>
-        </div>
+            <load ="partials/modal-menu.html" />
+            <load ="partials/scrollUp.html" />
 
-        <ul class="favorites-gallery"></ul>
-          
-          
-          <load="partials/modal-menu.html" />
-          <load ="partials/scrollUp.html" />
-      
-          <!-- Loader -->
-        <div class="overlay">
-          <div class="loader-container">
-            <span class="loader"></span>
-          </div>
-        </div>
-  
-          <!------ PAGINATION FOR MOBILE----->
+            <!-- Loader -->
+            
+            <div class="overlay">
+              <div class="loader-container">
+                <span class="loader"></span>
+              </div>
+            </div>
 
-            <!-- <div class="favorites-pagination-block">
+            <!------ PAGINATION FOR MOBILE----->
+
+            <div class="favorites-pagination-block">
               <button class="active-btn" aria-label="first-page" type="button">
                 1
               </button>
               <button aria-label="second-page" type="button">2</button>
               <button aria-label="third-page" type="button">3</button>
-            </div> -->
+            </div>
           </div>
         </div>
-        <!-- <div class="overlay">
+        <div class="overlay">
         <div class="loader-container"><span class="loader"></span></div>
-      </div> -->
+      </div>
       </section>
     </main>
 
     <script type="module" src="./main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   </body>
-
 </html>
