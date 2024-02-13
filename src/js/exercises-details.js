@@ -21,12 +21,12 @@ refs.resultContainer.addEventListener('click', handleClickOnCardStart)
 // const exercisesParamName = 'waist';
 // const exercisesParamName = 'barbell';
 
-// const getParams = {
-//     filter: exercisesParamName,
-//     keyword: '',
-//     page: 1,
-//     limit: 9,
-// };
+const getParams = {
+    filter: exercisesParamName,
+    keyword: '',
+    page: 1,
+    limit: 9,
+};
 
 // ! work with title Vasilina
 // refs.exercisesHeader.textContent = `/${exercisesParamName}`;
@@ -36,6 +36,11 @@ refs.resultContainer.addEventListener('click', handleClickOnCardStart)
 // renderExerciseByFilterName();
 
 async function renderExerciseByFilterName() {
+//     filter: exercisesParamName,
+//     keyword: '',
+//     page: 1,
+//     limit: 9,
+//) {
 
     show(refs.containerFilteredCards);
     show(refs.searchForm);
