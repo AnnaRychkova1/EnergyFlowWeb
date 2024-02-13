@@ -1,6 +1,6 @@
 import axios from "axios";
 // import { apiIsiToastError } from './services/isiToast.js';
-import { searchExerciseByID } from "./services/mainApi.js";
+// import { searchExerciseByFilters } from "./services/mainApi.js";
 // import { hide, show } from "./services/visibility";
 import { refs } from "./templates/refs.js";
 // import { icons } from "../img/icons/symbol-defs.svg";
@@ -18,12 +18,65 @@ function displayQuoteOnPage(quoteData) {
   quoteAuthor.textContent = quoteData.author;
 }
 
-/// Create Favorites page
+const BASE_URL = 'https://energyflow.b.goit.study/api';
 
+const ENDPOINT_QUOTE = 'quote';
+const ENDPOINT_FILTER = 'exercises';
+const ENDPOINT_EXERCISES = 'filters';
+
+async function searchExerciseByID(id) {
+  try {
+    const { data } = await axios.get(`${BASE_URL}/${ENDPOINT_FILTER}?id`);
+    return data;
+  } catch (err) {
+    console.error(err);
+  }
+}
+/// Create Favorites page
+let exerciseId;
 const LS_KEY_FAVORITES = "favorites";
+// const names = {
+//   "_id": "64f389465ae26083f39b17a1",
+//   "bodyPart": "waist",
+//   "equipment": "body weight",
+//   "gifUrl": "https://ftp.goit.study/img/power-pulse/gifs/0003.gif",
+//   "name": "air bike",
+//   "target": "abs",
+//   "description": "This refers to your core muscles, which include the rectus abdominis, obliques, and transverse abdominis. They're essential for maintaining posture, stability, and generating force in many movements. Exercises that target the abs include crunches, leg raises, and planks.",
+//   "rating": 4.33,
+//   "burnedCalories": 312,
+//   "time": 3,
+//   "popularity": 4
+// };
+searchExerciseByID();
+// console.log(names);
+console.log(searchExerciseByID());
+
+const addToBtn = document.querySelector(".add-favorite-btn");
+const removeBtn = document.querySelector(".remove-from-LS-btn");
+
+addToBtn.addEventListener("click", onAddToBtn);
+function onAddToBtn(event) {
+  const message = event.target.value;
+  localStorage.setItem(LS_KEY_FAVORITES, JSON.stringify())
+}
+  
+removeBtn.addEventListener("click", onRemoveBtn);
+function onRemoveBtn() {
+   localStorage.removeItem(LS_KEY_FAVORITES)
+}
+
+
+// function getArray(hits) {
+//   arrayToLS = hits.map(hits =>console.log(hits._id))
+// }
+
+//   searchExerciseByID();
+//   console.log(searchExerciseByID())
 
 async function createGalleryFromLS(event) {
   event.preventDefault();
+  console.log(event)
   refs.favoritesGallery.innerHTML = '';
   refs.favoritesMessage.style.display = 'none';
   
@@ -36,49 +89,44 @@ async function createGalleryFromLS(event) {
       return;
     }
     createMarkupFavorites();
-    
-      // refs.favoritesGallery.appendChild(refs.galleryItem);?
-  
-      if (itemsFromLS.length === 0) {
-        refs.favoritesMessage.style.display = 'none';
-        console.log(`There are no exercises in favorites.`);
-        
-        
-      } catch (error) {
-        console.error('Error creating gallery from local storage:', error);
-      } finally {
-        console.log();
-        refreshGallery();
-      }
+    refs.onRemoveBtn.addEventListener('click', removeObjectFromLocalStorage);      
+    refs.onStartBtn.addEventListener('click', handleStartButtonClick);
+    } catch (error) {
+      console.error('Error creating gallery from local storage:', error);
+    } finally {
+      console.log();
+      refreshGallery();
     }
+  }
 
 
     // Refresh the gallery by updating the displayed items
     async function refreshGallery() {
-      refs.favoritesMessage.style.display = 'none';
-      try {
+    refs.favoritesMessage.style.display = 'none';
+    try {
       
-        const storedArray = JSON.parse(localStorage.getItem('favorites'));
-        if (!Array.isArray(storedArray) || storedArray.length === 0) {
-          console.log('Array in local storage is empty or does not exist.');
-          // apiIsiToastError();
-          return;
-        }
-       
-        refs.favoritesGallery.innerHTML = '';
-
-        storedArray.forEach(item => {
-          const markup = createMarkupFavorites(item);
-
-          refs.favoritesGallery.insertAdjacentHTML('afterbegin', markup);
-        });
-
-        console.log('Gallery refreshed successfully.');
-      } catch (error) {
-        console.error('Error refreshing gallery:', error);
-        // apiIsiToastError();
+      const storedArray = JSON.parse(localStorage.getItem('favorites'));
+      if (!Array.isArray(storedArray) || storedArray.length === 0) {
+        console.log('Array in local storage is empty or does not exist.');
+        refs.favoritesMessage.style.display = 'block';
+        return;
       }
+       
+      refs.favoritesGallery.innerHTML = '';
+
+      storedArray.forEach(hits => {
+        const markup = createMarkupFavorites(hits);
+        refs.onRemoveBtn.addEventListener('click', removeObjectFromLocalStorage);      
+        refs.onStartBtn.addEventListener('click', handleStartButtonClick);
+        refs.favoritesGallery.insertAdjacentHTML('afterbegin', markup);
+      });
+
+      console.log('Gallery refreshed successfully.');
+    } catch (error) {
+      console.error('Error refreshing gallery:', error);
+      // apiIsiToastError();
     }
+  }
 
     // Scroll for container favorites-gallery for desktop and tablet
     function scrollBy() {
@@ -87,18 +135,19 @@ async function createGalleryFromLS(event) {
         behavior: 'smooth',
       });
     }
-  }
+  
 
 // Remove an exersise from an array stored in local storage
 
-refs.onRemoveBtn.addEventListener('click', removeObjectFromLocalStorage);
+
 
 async function removeObjectFromLocalStorage(idToRemove) {
     try {
         let storedArray = JSON.parse(localStorage.getItem(LS_KEY_FAVORITES));
 
         if (!Array.isArray(storedArray) || storedArray.length === 0) {
-            console.log('Array in local storage is empty or does not exist.');
+          console.log('Array in local storage is empty or does not exist.');
+          
             return;
         }
         storedArray = storedArray.filter(item => item._id !== idToRemove);
@@ -140,7 +189,7 @@ async function removeObjectFromLocalStorage(idToRemove) {
 // }
 
 
-refs.onStartBtn.addEventListener('click', handleStartButtonClick);
+
 // After click  "Start" arrow
 function handleStartButtonClick(event) {
     event.preventDefault();
