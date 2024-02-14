@@ -17,6 +17,16 @@ const heartIcon = `
 //     <use href="${icons}#icon-heart"></use>
 // </svg>`;
 
+// ! Something like this
+async function createModalMenu(expectedId) {
+  backdrop.classList.remove('is-hidden');
+  try {
+    const responseIdObject = await getCardInfo(expectedId);
+    const resultModal = modalWindowMarkup(responseIdObject);
+  } catch (error) {
+      console.error('Error fetching images:', error);
+  } 
+}
 
 // renderCard();
 // modalCard.innerHTML = modalWindowMarkup(results);
@@ -263,7 +273,8 @@ function renderStars(rating) {
 }
 
 
-export { getCardInfo };
+export{createModalMenu}
+
 
 // // const heartIcon = `
 // // // <svg class="icon-heart" width="18" height="18">
