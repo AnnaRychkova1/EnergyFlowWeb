@@ -14,9 +14,11 @@ const heartIcon = `
 //     <use href="${icons}#icon-heart"></use>
 // </svg>`;
 
-// ! Something like this
-async function createModalMenu(expectedId) {
 
+let expectedId;
+// ! Something like this
+async function createModalMenu(expectedExercisesId) {
+  expectedId = expectedExercisesId;
   try {
    const responseIdObject = await getCardInfo(expectedId);
     console.log(responseIdObject);
@@ -71,6 +73,9 @@ async function getCardInfo(exerciseId) {
 }
 
 
+
+
+// ! тут після <p class="ex-current-rating">${rating}</p> <ul class="exercise-stars-list"></ul> я видалила поки що // ${renderStars(popularity)}
 function modalWindowMarkup({
   _id,
   bodyPart,
