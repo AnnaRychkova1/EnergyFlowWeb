@@ -19,10 +19,18 @@ const heartIcon = `
 
 // ! Something like this
 async function createModalMenu(expectedId) {
-  backdrop.classList.remove('is-hidden');
+  // console.log(expectedId);
+  
   try {
+    
     const responseIdObject = await getCardInfo(expectedId);
+    console.log(responseIdObject);
     const resultModal = modalWindowMarkup(responseIdObject);
+     const addToFavoriteBtn = document.querySelector('.ex-add-favorite');
+    addToFavoriteBtn.addEventListener('click', addToFavoriteOnClick);
+    const closeBtn = document.querySelector('.modal-close-btn');
+  closeBtn.addEventListener('click', onCloseModal);
+    backdrop.classList.remove('is-hidden');
   } catch (error) {
       console.error('Error fetching images:', error);
   } 
@@ -57,11 +65,11 @@ async function createModalMenu(expectedId) {
 //   hideLoader();
 // }
 
-  const addToFavoriteBtn = document.querySelector('.ex-add-favorite');
-  addToFavoriteBtn.addEventListener('click', addToFavoriteOnClick);
+  // const addToFavoriteBtn = document.querySelector('.ex-add-favorite');
+  // addToFavoriteBtn.addEventListener('click', addToFavoriteOnClick);
 
-  const closeBtn = document.querySelector('.modal-close-btn');
-  closeBtn.addEventListener('click', onCloseModal);
+  // const closeBtn = document.querySelector('.modal-close-btn');
+  // closeBtn.addEventListener('click', onCloseModal);
   backdrop.addEventListener('click', handleBackdropClick);
   document.addEventListener('keydown', handleEscapeKey);
  
@@ -143,22 +151,21 @@ async function getCardInfo(exerciseId) {
 // }
 
 // modalCard.innerHTML = modalWindowMarkup(results);
-function modalWindowMarkup(results = {}) {
-   const {
-    _id,
-    bodyPart,
-    equipment,
-    time,
-    target,
-    burnedCalories,
-    gifUrl,
-    name,
-    popularity,
-    rating,
-    description,
-  } = results;
-     const markup =
-         `<div class="modal">
+function modalWindowMarkup({
+  _id,
+  bodyPart,
+  equipment,
+  time,
+  target,
+  burnedCalories,
+  gifUrl,
+  name,
+  popularity,
+  rating,
+  description,
+}) 
+  { const markup =
+    `<div>
             <button class="modal-close-btn">
                 <svg
                     class="modal-close-icon"
@@ -195,7 +202,7 @@ function modalWindowMarkup(results = {}) {
                <div class="rating-container">
                 <p class="ex-current-rating">${rating}</p>
                 <ul class="exercise-stars-list">
-                    ${renderStars(popularity)}
+                     
                 </ul>
                 </div>
                 <div class="exercise-information">
@@ -242,7 +249,9 @@ function modalWindowMarkup(results = {}) {
             </div>
         </div>
     `;
-   return modalCard.innerHTML = markup;
+  
+    modalCard.innerHTML = markup;
+  
 }
 
 // getCardInfo(id);

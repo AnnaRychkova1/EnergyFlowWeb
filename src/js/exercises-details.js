@@ -203,3 +203,6 @@ async function searchExerciseByFilters({filter, name, keyword, limit, page}) {
 }
 
 export { renderExerciseByFilterName };
+
+
+// ${renderStars(popularity)}
