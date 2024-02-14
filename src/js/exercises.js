@@ -2,7 +2,7 @@ import axios from 'axios';
 import { refs } from './templates/refs.js';
 import { renderExerciseByFilterName } from './exercises-details.js';
 
-import { hide, hideLoader } from './services/visibility';
+import { hide, show, showLoader, hideLoader } from './services/visibility';
 
 const BASE_URL = 'https://energyflow.b.goit.study/api';
 
@@ -32,6 +32,7 @@ if (screenWidth <= 375) {
 }
 
 async function getExercisesByFilter() {
+  showLoader(refs.loaderModal);
   try {
     const response = await axios.get(`${BASE_URL}/filters`, {
       params: {
@@ -55,6 +56,7 @@ async function fetchDefaultMuscles() {
     if (results && results.length > 0) {
       createExercisesByFilterMarkup(results);
       refs.paginationEl.innerHTML = pagesPagination(page, totalPages);
+      hideLoader(refs.loaderModal);
     } else {
       console.error('No results found for this filter');
     }
@@ -65,8 +67,6 @@ async function fetchDefaultMuscles() {
 
 fetchDefaultMuscles();
 
-// .classList.add('active');
-
 async function filterBtnExercises(event) {
   event.preventDefault();
 
@@ -74,7 +74,8 @@ async function filterBtnExercises(event) {
   refs.exercisesGalleryEl.innerHTML = '';
   filterDefault = query;
   currentPage = 1;
-  console.log(exercisesParamFilter);
+  showLoader(refs.loaderModal);
+
   if (event.target === event.currentTarget) {
     return;
   }
@@ -84,12 +85,14 @@ async function filterBtnExercises(event) {
       queryParams
     );
     createExercisesByFilterMarkup(results);
+    hideLoader(refs.loaderModal);
 
     if (totalPages > 1) {
       refs.paginationEl.innerHTML = pagesPagination(page, totalPages);
     } else {
       refs.paginationEl.innerHTML = '';
     }
+    scrollToExerciseGallery();
   } catch (error) {
     console.log(error);
   }
@@ -109,17 +112,19 @@ function createExercisesByFilterMarkup(results) {
     )
     .join('');
   refs.exercisesGalleryEl.insertAdjacentHTML('beforeend', markup);
+  hideLoader(refs.loaderModal);
 }
 
 function pagesPagination(page, totalPages) {
   let disabledMoveButton = '';
+  showLoader(refs.loaderModal);
   for (let i = 1; i <= totalPages; i++) {
     disabledMoveButton += `<button class="button-pagination" type="button">${i}</button>`;
+    hideLoader(refs.loaderModal);
   }
+
   return disabledMoveButton;
 }
-
-// ===  Функція перехід по сторінкам
 
 async function onPaginationPages(event) {
   currentPage = event.target.textContent;
@@ -129,13 +134,13 @@ async function onPaginationPages(event) {
       queryParams
     );
     createExercisesByFilterMarkup(results);
+    scrollToExerciseGallery();
   } catch (error) {
     console.log(error);
   }
 }
 
 function filterCartsExercises(event) {
-  hide(refs.exercisesGalleryEl);
   const exerciseElement = event.target.closest('.exercises-gallery-item');
   if (exerciseElement) {
     const name = exerciseElement.querySelector(
@@ -147,10 +152,17 @@ function filterCartsExercises(event) {
     exercisesParamName = name;
     exercisesParamFilter = filter;
   }
-
+  showLoader(refs.loaderModal);
   refs.exercisesGalleryEl.innerHTML = '';
   refs.paginationEl.innerHTML = '';
-  hide(refs.paginationEl);
-  hide(refs.exercisesGalleryEl);
   renderExerciseByFilterName(exercisesParamFilter, exercisesParamName);
+  scrollToExerciseGallery();
 }
+
+function scrollToExerciseGallery() {
+  refs.exercisesContainerEl.scrollIntoView({
+    behavior: 'smooth',
+    block: 'start',
+  });
+}
+export { scrollToExerciseGallery };

@@ -5,9 +5,7 @@
   flex-direction: column;
   position: relative;
   padding: 40px 20px;
-  /* min-height: 760px;
-  width: 375px;
-  width: 100%; */
+  min-height: 760px;
 }
 
 .exercises-title {
@@ -21,10 +19,6 @@
 
 /* === Exercises-btn === */
 
-.exercises-btn-container {
-  margin-bottom: 40px;
-}
-
 .exercises-btn-list {
   display: flex;
   gap: 6px;
@@ -36,26 +30,23 @@
   height: 32px;
   padding: 7px 14px;
   border: none;
-  background-color: var(--background-main);
-  color: var(--text-main-color);
   font-weight: 400;
   font-size: 13px;
   line-height: 1.29;
-  transition: all var(----anim);
+  background-color: var(--background-main);
+  color: var(--text-main-color);
 }
 
-.active {
-  color: var(--text-light-color);
+.btn-item-active {
   background-color: var(--text-color-accent);
+  color: var(--text-light-color);
 }
-
-/* .exercises-btn:hover,
-.exercises-btn:focus {
-  background-color: var(--background-dark-grey);
-  color: var(--background-main);
-} */
 
 /* === Exercises-gallery === */
+
+.exercises-gallery {
+  margin-top: 40px;
+}
 
 .exercises-gallery-item {
   position: relative;
@@ -145,25 +136,15 @@
 
 .exercises-pagination button.active {
   background-color: var(--background-light-grey);
-  /* border: 1px solid var(--text-main-color); */
+  border: 1px solid var(--text-main-color);
   color: var(--text-main-color);
 }
 
-.exercises-pagination:hover,
+/* .exercises-pagination:hover,
 .exercises-pagination:focus {
   background-color: var(--background-light-grey);
   color: var(--text-main-color);
-}
-
-/*  ======== Media ======== */
-
-/* === Mobile === */
-
-@media only screen and (min-width: 375px) {
-  /* .exercises-gallery-item {
-    max-width: 295px;
-  } */
-}
+} */
 
 /* ==== Tablet ==== */
 
@@ -180,7 +161,7 @@
   }
 
   .exercises-btn-container {
-    margin-bottom: 32px;
+    margin-bottom: 0;
   }
 
   .exercises-btn-list {
@@ -196,7 +177,7 @@
   }
 
   .exercises-gallery {
-    margin-bottom: 32px;
+    margin-top: 32px;
     display: flex;
     flex-wrap: wrap;
     gap: 14px;
@@ -215,15 +196,15 @@
   .exercises-gallery-title {
     font-size: 24px;
   }
+
+  .exercises-pagination {
+    margin-top: 32px;
+  }
 }
 
 /* ==== Desktop ==== */
 
 @media only screen and (min-width: 1440px) {
-  /* .exercises-container {
-    max-width: 1440px;
-  } */
-
   .exercises-gallery {
     display: flex;
     flex-wrap: wrap;
