@@ -7,9 +7,6 @@ import isiToast from './services/isiToast.js';
 const BASE_URL = 'https://energyflow.b.goit.study/api';
 const ENDPOINT_EXERCISES = 'exercises';
 
-let currentPage = 1;
-let currentLimit = 0;
-
 refs.resultContainer.addEventListener('click', handleClickOnCardStart)
 
 const getParams = {
@@ -32,6 +29,9 @@ async function renderExerciseByFilterName(exeptedFilter, name) {
         filter = 'equipment'
     }
 
+    if (refs.exercisesGalleryEl) {
+       hide(refs.containerFilteredCards)
+    }
     refs.exercisesSubtitle.textContent = `${name}`;
     show(refs.containerFilteredCards);
     show(refs.searchForm);
