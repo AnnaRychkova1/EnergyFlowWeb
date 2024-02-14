@@ -178,6 +178,7 @@ function createCardsOfExercises({ _id, rating, name, burnedCalories, time, bodyP
 function handleClickOnCardStart(evt) {
     // showLoader(refs.loaderModal);
     const exerciseId = evt.target.dataset.id;
+    console.log(exerciseId);
     getCardInfo(exerciseId);
 }
 

@@ -15,7 +15,7 @@
   }
 }
 
-.exersises-header {
+.exersises-subheader {
 }
 
 .form {
@@ -149,39 +149,4 @@
 }
 
 .filtered-descr-value {
-}
-
-/*  Pagination */
-
-.tui-pagination {
-  display: flex;
-  list-style: none;
-  padding: 0;
-  justify-content: center;
-}
-
-.tui-pagination-btn {
-  margin: 0 5px;
-  padding: 5px 10px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-  color: #333;
-  text-decoration: none;
-}
-
-.tui-pagination-btn:hover {
-  background-color: #f0f0f0;
-}
-
-.tui-pagination-active {
-  font-weight: bold;
-  border: 2px solid #000;
-}
-
-.tui-pagination-btn:first-child {
-  margin-left: 0;
-}
-
-.tui-pagination-btn:last-child {
-  margin-right: 0;
 }
