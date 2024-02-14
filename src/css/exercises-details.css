@@ -15,18 +15,35 @@
   }
 }
 
-.exercises-subtitle {
-    font-weight: 400;
-    font-size: 24px;
-    line-height: 1.33;
-    letter-spacing: -0.02em;
-    color: rgba(27, 27, 27, 0.5);
-}
-
 .exersises-header {
 }
 
+@media only screen and (min-width: 768px) {
+  .exercises-active {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
 .form {
+  margin-top: 20px;
+}
+
+@media only screen and (min-width: 768px) {
+  .form {
+    margin-top: 0;
+  }
+}
+
+.exercises-subtitle {
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 1.33;
+  letter-spacing: -0.02em;
+  color: rgba(27, 27, 27, 0.5);
+}
+
+.exersises-header {
 }
 
 .exercises-input {
@@ -48,6 +65,18 @@
 @media only screen and (min-width: 1440px) {
   .exercise-text-no-found {
     padding-bottom: 350px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .exercises-deteils {
+    margin-top: 23px;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .exercises-deteils {
+    margin-top: 0;
   }
 }
 

@@ -1,8 +1,7 @@
 // import { exerciseId } from './exercises-details'
 import axios from 'axios';
-import { hide, show, showLoader, hideLoader} from './services/visibility';
-import icons from '../img/icons/symbol-defs.svg'
-
+import { hide, show, showLoader, hideLoader } from './services/visibility';
+import icons from '../img/icons/symbol-defs.svg';
 
 const BASE_URL = 'https://energyflow.b.goit.study/api';
 
@@ -24,8 +23,8 @@ async function createModalMenu(expectedId) {
     const responseIdObject = await getCardInfo(expectedId);
     const resultModal = modalWindowMarkup(responseIdObject);
   } catch (error) {
-      console.error('Error fetching images:', error);
-  } 
+    console.error('Error fetching images:', error);
+  }
 }
 
 // renderCard();
@@ -57,14 +56,14 @@ async function createModalMenu(expectedId) {
 //   hideLoader();
 // }
 
-  const addToFavoriteBtn = document.querySelector('.ex-add-favorite');
-  addToFavoriteBtn.addEventListener('click', addToFavoriteOnClick);
+const addToFavoriteBtn = document.querySelector('.ex-add-favorite');
+addToFavoriteBtn.addEventListener('click', addToFavoriteOnClick);
 
-  const closeBtn = document.querySelector('.modal-close-btn');
-  closeBtn.addEventListener('click', onCloseModal);
-  backdrop.addEventListener('click', handleBackdropClick);
-  document.addEventListener('keydown', handleEscapeKey);
- 
+const closeBtn = document.querySelector('.modal-close-btn');
+closeBtn.addEventListener('click', onCloseModal);
+backdrop.addEventListener('click', handleBackdropClick);
+document.addEventListener('keydown', handleEscapeKey);
+
 async function addToFavoriteOnClick(event) {
   const element = event.target.closest('.ex-add-favorite');
   if (!element) return;
@@ -81,7 +80,10 @@ async function addToFavoriteOnClick(event) {
     element.innerHTML = changingButtonName('add');
   } else {
     const exercisesCardInfo = await getCardInfo(elementId);
-    localStorage.setItem('favorites', JSON.stringify([...favorites, exercisesCardInfo]));
+    localStorage.setItem(
+      'favorites',
+      JSON.stringify([...favorites, exercisesCardInfo])
+    );
     element.classList.add('is-favorite');
     element.innerHTML = changingButtonName('remove');
   }
@@ -119,16 +121,15 @@ function handleEscapeKey(event) {
 
 // const exerciseId = '64f389465ae26083f39b17c0';
 async function getCardInfo(exerciseId) {
-    try {
-        const BASE_URL = 'https://energyflow.b.goit.study/api';
-        const ENDPOINT = 'exercises';
-        const { data } = await axios.get(`${BASE_URL}/${ENDPOINT}/${exerciseId}`);
-        return data;
-    } catch (err) {
-        console.error(err);
-    }
+  try {
+    const BASE_URL = 'https://energyflow.b.goit.study/api';
+    const ENDPOINT = 'exercises';
+    const { data } = await axios.get(`${BASE_URL}/${ENDPOINT}/${exerciseId}`);
+    return data;
+  } catch (err) {
+    console.error(err);
+  }
 }
-
 
 // async function renderCard() {
 //     try {
@@ -144,7 +145,7 @@ async function getCardInfo(exerciseId) {
 
 // modalCard.innerHTML = modalWindowMarkup(results);
 function modalWindowMarkup(results = {}) {
-   const {
+  const {
     _id,
     bodyPart,
     equipment,
@@ -157,8 +158,7 @@ function modalWindowMarkup(results = {}) {
     rating,
     description,
   } = results;
-     const markup =
-         `<div class="modal">
+  const markup = `<div class="modal">
             <button class="modal-close-btn">
                 <svg
                     class="modal-close-icon"
@@ -242,11 +242,10 @@ function modalWindowMarkup(results = {}) {
             </div>
         </div>
     `;
-   return modalCard.innerHTML = markup;
+  return (modalCard.innerHTML = markup);
 }
 
 // getCardInfo(id);
-
 
 const activeColor = '#eea10c';
 const noActiveColor = '#e8e8e8';
@@ -264,23 +263,20 @@ stars.forEach((star, index) => {
 });
 
 function renderStars(rating) {
-    const filledStar = '<span class="star">&#9733;</span>';
-    const emptyStar = '<span class="star">&#9734;</span>';
-    const filledStars = filledStar.repeat(Math.floor(rating));
-    const halfStar = rating % 1 !== 0 ? '<span class="star">&#9733;</span>' : '';
-    const emptyStars = emptyStar.repeat(5 - Math.ceil(rating));
-    return filledStars + halfStar + emptyStars;
+  const filledStar = '<span class="star">&#9733;</span>';
+  const emptyStar = '<span class="star">&#9734;</span>';
+  const filledStars = filledStar.repeat(Math.floor(rating));
+  const halfStar = rating % 1 !== 0 ? '<span class="star">&#9733;</span>' : '';
+  const emptyStars = emptyStar.repeat(5 - Math.ceil(rating));
+  return filledStars + halfStar + emptyStars;
 }
 
-
-export{createModalMenu}
-
+export { createModalMenu };
 
 // // const heartIcon = `
 // // // <svg class="icon-heart" width="18" height="18">
 // // //     <use href="${icons}#icon-heart"></use>
 // // // </svg>`;
-
 
 // // renderCard();
 // // let storage = 'favorites';
@@ -336,7 +332,7 @@ export{createModalMenu}
 // // //   closeBtn.addEventListener('click', onCloseModal);
 // // //   backdrop.addEventListener('click', handleBackdropClick);
 // // //   document.addEventListener('keydown', handleEscapeKey);
- 
+
 // // // async function addToFavoriteOnClick(event) {
 // // //   const element = event.target.closest('.ex-add-favorite');
 // // //   if (!element) return;
@@ -399,7 +395,6 @@ export{createModalMenu}
 // //     }
 // // }
 
-
 // // // function changingButtonName(value = 'add') {
 // // //   if (value === 'add') {
 // // //     return `Add to favorites
@@ -411,7 +406,6 @@ export{createModalMenu}
 // // //         <svg class="icon-heart" width="18" height="18">
 // // //           <use href="${heartIcon}#icon-heart"></use>
 // // //         </svg>`;
-
 
 // // async function renderCard() {
 // //     try {
@@ -536,22 +530,8 @@ export{createModalMenu}
 // //     return filledStars + halfStar + emptyStars;
 // // }
 
-
 // // export { getCardInfo, renderCard }
 
-
-
-
-
-
-
-
-
-    
-    
-    
-    
-    
 // // // }
 // // // function onCloseModal() {
 // // //   modalCard.classList.add('is-hidden');
@@ -595,8 +575,6 @@ export{createModalMenu}
 // // //         console.error(err);
 // // //     }
 // // // }
-
-
 
 // // // function changingButtonName(value = 'add') {
 // // //   if (value === 'add') {
@@ -716,7 +694,6 @@ export{createModalMenu}
 // // //   modalEl.innerHTML = markup;
 // // // }
 
-
 // // async function searchExerciseByID(id) {
 // //   try {
 // //     const { data } = await axios.get(`${BASE_URL}/${ENDPOINT_FILTER}/${exerciseId}`);
@@ -725,4 +702,3 @@ export{createModalMenu}
 // //     console.error(err);
 // //   }
 // // }
-
