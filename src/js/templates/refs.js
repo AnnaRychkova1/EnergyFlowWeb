@@ -13,6 +13,7 @@ export const refs = {
   resultContainer: document.querySelector('.filtered-cards'),
   searchForm: document.querySelector('.form'),
   textResult: document.querySelector('.exercise-text-no-found'),
+  exercisesSubtitle: document.querySelector('.exercises-subtitle'),
   
   // Oksana
   favoritesGallery: document.querySelector(".favorites-gallery"),
