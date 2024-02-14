@@ -1,161 +1,96 @@
-// import { exerciseId } from './exercises-details'
 import axios from 'axios';
-import { hide, show, showLoader, hideLoader} from './services/visibility';
-import icons from '../img/icons/symbol-defs.svg'
-const BASE_URL = 'https://energyflow.b.goit.study/api';
+import { hide, show, showLoader, hideLoader } from './services/visibility';
+import icons from '../img/icons/symbol-defs.svg';
 
+const BASE_URL = 'https://energyflow.b.goit.study/api';
 
 const gallery = document.querySelector('.results'); // плюс название содержимого карточки //
 const backdrop = document.querySelector('.backdrop');
 const modalCard = document.querySelector('.modal');
 const favorites = document.querySelector('.ex-add-favorite');
-const exerciseId = '64f389465ae26083f39b17c0';
 
 const heartIcon = `
 // <svg class="icon-heart" width="18" height="18">
 //     <use href="${icons}#icon-heart"></use>
 // </svg>`;
 
-// renderCard();
-// modalCard.innerHTML = modalWindowMarkup(results);
-// let storage = 'favorites';
-// let storageItem = localStorage.getItem(storage);
-// if (!storageItem) {
-//     storageItem = [];
-// } else {
-//     storageItem = JSON.parse(storageItem);
-// }
 
-// gallery.addEventListener('click', onClickCardContent);
-// async function onClickCardContent(event) {
-//     if (event.target === event.currentTarget) {
-//         return;
-//     }
-//   const element = event.target.closest('.to-favorites-start');
-//   if (element === null) {
-//         return;
-//     }
-//     getLoader();
-//
-//    const elementId = element.dataset.id;
-
-
-// backdrop.classList.remove('is-hidden');
-
-// const exercisesInfo = await getCardInfo(elementId);
-// const modalExercisesMarkup = modalWindowMarkup(exercisesInfo);
-
-//   backdrop.classList.remove('is-hidden');
-//   const modalExercisesCard = modalWindowMarkup(exercisesInfo)
-//   modalCard.innerHTML = modalExercisesCard;
-//   hideLoader();
-// }
-
-  const addToFavoriteBtn = document.querySelector('.ex-add-favorite');
-  addToFavoriteBtn.addEventListener('click', addToFavoriteOnClick);
-
-  const closeBtn = document.querySelector('.modal-close-btn');
+let expectedId;
+// ! Something like this
+async function createModalMenu(expectedExercisesId) {
+  expectedId = expectedExercisesId;
+  try {
+   const responseIdObject = await getCardInfo(expectedId);
+    console.log(responseIdObject);
+    modalWindowMarkup(responseIdObject);
+     const addToFavoriteBtn = document.querySelector('.ex-add-favorite');
+    addToFavoriteBtn.addEventListener('click', addToFavoriteOnClick);
+    const closeBtn = document.querySelector('.modal-close-btn');
   closeBtn.addEventListener('click', onCloseModal);
-  backdrop.addEventListener('click', handleBackdropClick);
-  document.addEventListener('keydown', handleEscapeKey);
- 
-async function addToFavoriteOnClick(event) {
-  const element = event.target.closest('.ex-add-favorite');
-  if (!element) return;
-
-  const elementId = element.dataset.id;
+    backdrop.classList.remove('is-hidden');
+    console.log(expectedId);
+    
+  function addToFavoriteOnClick(event) {
   const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-
-  const isFavorite = favorites.some(item => item._id === elementId);
+console.log(favorites);
+  const isFavorite = favorites.some(item => item._id === expectedId);
 
   if (isFavorite) {
-    const updatedFavorites = favorites.filter(item => item._id !== elementId);
+    const updatedFavorites = favorites.filter(item => item._id !== expectedId);
     localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
     element.classList.remove('is-favorite');
     element.innerHTML = changingButtonName('add');
   } else {
-    const exercisesCardInfo = await getCardInfo(elementId);
-    localStorage.setItem('favorites', JSON.stringify([...favorites, exercisesCardInfo]));
+    
+    // const exercisesCardInfo = await getCardInfo(expectedId);
+    localStorage.setItem(
+      'favorites',
+      JSON.stringify([...favorites, responseIdObject])
+    );
+
+    // there must be event.target
     element.classList.add('is-favorite');
     element.innerHTML = changingButtonName('remove');
   }
-}
-function onCloseModal() {
-  modalCard.classList.add('is-hidden');
-  backdrop.classList.add('is-hidden');
-  modalCard.innerHTML = '';
-
-  document.removeEventListener('keydown', handleEscapeKey);
-  backdrop.removeEventListener('click', handleBackdropClick);
-}
-function handleBackdropClick(event) {
-  if (event.target.closest('.modal')) {
-    return;
-  }
-  modalCard.classList.add('is-hidden');
-  backdrop.classList.add('is-hidden');
-  modalCard.innerHTML = '';
-
-  document.removeEventListener('keydown', handleEscapeKey);
-  backdrop.removeEventListener('click', handleBackdropClick);
-}
-function handleEscapeKey(event) {
-  event.preventDefault();
-  if (event.key === 'Escape') {
-    modalCard.classList.add('is-hidden');
-    backdrop.classList.add('is-hidden');
-    modalCard.innerHTML = '';
-
-    document.removeEventListener('keydown', handleEscapeKey);
-    backdrop.removeEventListener('click', handleBackdropClick);
-  }
-}
-
-// const exerciseId = '64f389465ae26083f39b17c0';
-async function getCardInfo(exerciseId) {
-    try {
-        const BASE_URL = 'https://energyflow.b.goit.study/api';
-        const ENDPOINT = 'exercises';
-        const { data } = await axios.get(`${BASE_URL}/${ENDPOINT}/${exerciseId}`);
-        return data;
-    } catch (err) {
-        console.error(err);
     }
+    
+  } catch (error) {
+    console.error('Error fetching images:', error);
+  }
+}
+
+
+async function getCardInfo(exerciseId) {
+  console.log(exerciseId);
+  try {
+    const BASE_URL = 'https://energyflow.b.goit.study/api';
+    const ENDPOINT = 'exercises';
+    const { data } = await axios.get(`${BASE_URL}/${ENDPOINT}/${exerciseId}`);
+    return data;
+  } catch (err) {
+    console.error(err);
+  }
 }
 
 
 
 
-
-// async function renderCard() {
-//     try {
-//       const { results } = await getCardInfo(exerciseId);
-//       modalWindowMarkup(results);
-//       console.log(results)
-//     } catch (error) {
-//         console.error(error.message);
-//     } finally {
-
-//     }
-// }
-
-// modalCard.innerHTML = modalWindowMarkup(results);
-function modalWindowMarkup(results = {}) {
-   const {
-    _id,
-    bodyPart,
-    equipment,
-    time,
-    target,
-    burnedCalories,
-    gifUrl,
-    name,
-    popularity,
-    rating,
-    description,
-  } = results;
-     const markup =
-         `<div class="modal">
+// ! тут після <p class="ex-current-rating">${rating}</p> <ul class="exercise-stars-list"></ul> я видалила поки що // ${renderStars(popularity)}
+function modalWindowMarkup({
+  _id,
+  bodyPart,
+  equipment,
+  time,
+  target,
+  burnedCalories,
+  gifUrl,
+  name,
+  popularity,
+  rating,
+  description,
+}) 
+  { const markup =
+    `<div>
             <button class="modal-close-btn">
                 <svg
                     class="modal-close-icon"
@@ -192,7 +127,7 @@ function modalWindowMarkup(results = {}) {
                <div class="rating-container">
                 <p class="ex-current-rating">${rating}</p>
                 <ul class="exercise-stars-list">
-                    ${renderStars(popularity)}
+                     
                 </ul>
                 </div>
                 <div class="exercise-information">
@@ -239,12 +174,105 @@ function modalWindowMarkup(results = {}) {
             </div>
         </div>
     `;
-   return modalCard.innerHTML = markup;
+  
+    modalCard.innerHTML = markup;
+  
 }
 
-const activeColor = '#EEA10C';
-const noActiveColor = '#E8E8E8';
+
+
+// renderCard();
+// modalCard.innerHTML = modalWindowMarkup(results);
+// let storage = 'favorites';
+// let storageItem = localStorage.getItem(storage);
+// if (!storageItem) {
+//     storageItem = [];
+// } else {
+//     storageItem = JSON.parse(storageItem);
+// }
+
+// gallery.addEventListener('click', onClickCardContent);
+// async function onClickCardContent(event) {
+//     if (event.target === event.currentTarget) {
+//         return;
+//     }
+//   const element = event.target.closest('.to-favorites-start');
+//   if (element === null) {
+//         return;
+//     }
+//     getLoader();
+//     const elementId = element.dataset.id;
+//     const exercisesInfo = await getCardInfo(elementId);
+
+//   backdrop.classList.remove('is-hidden');
+//   const modalExercisesCard = modalWindowMarkup(exercisesInfo)
+//   modalCard.innerHTML = modalExercisesCard;
+//   hideLoader();
+// }
+
+  // const addToFavoriteBtn = document.querySelector('.ex-add-favorite');
+  // addToFavoriteBtn.addEventListener('click', addToFavoriteOnClick);
+
+  // const closeBtn = document.querySelector('.modal-close-btn');
+  // closeBtn.addEventListener('click', onCloseModal);
+  backdrop.addEventListener('click', handleBackdropClick);
+  document.addEventListener('keydown', handleEscapeKey);
+ 
+function onCloseModal() {
+  modalCard.classList.add('is-hidden');
+  backdrop.classList.add('is-hidden');
+  modalCard.innerHTML = '';
+
+  document.removeEventListener('keydown', handleEscapeKey);
+  backdrop.removeEventListener('click', handleBackdropClick);
+}
+function handleBackdropClick(event) {
+  if (event.target.closest('.modal')) {
+    return;
+  }
+  modalCard.classList.add('is-hidden');
+  backdrop.classList.add('is-hidden');
+  modalCard.innerHTML = '';
+
+  document.removeEventListener('keydown', handleEscapeKey);
+  backdrop.removeEventListener('click', handleBackdropClick);
+}
+function handleEscapeKey(event) {
+  event.preventDefault();
+  if (event.key === 'Escape') {
+    modalCard.classList.add('is-hidden');
+    backdrop.classList.add('is-hidden');
+    modalCard.innerHTML = '';
+
+    document.removeEventListener('keydown', handleEscapeKey);
+    backdrop.removeEventListener('click', handleBackdropClick);
+  }
+}
+
+// const exerciseId = '64f389465ae26083f39b17c0';
+
+
+// async function renderCard() {
+//     try {
+//       const { results } = await getCardInfo(exerciseId);
+//       modalWindowMarkup(results);
+//       console.log(results)
+//     } catch (error) {
+//         console.error(error.message);
+//     } finally {
+
+//     }
+// }
+
+// modalCard.innerHTML = modalWindowMarkup(results);
+
+
+// getCardInfo(id);
+
+const activeColor = '#eea10c';
+const noActiveColor = '#e8e8e8';
 const stars = document.querySelectorAll('.ex-rate-icon');
+
 stars.forEach((star, index) => {
   const rating = Number(star.getAttribute('data-rating'));
   const starHTML = renderStars(rating);
@@ -255,23 +283,24 @@ stars.forEach((star, index) => {
     star.style.fill = noActiveColor;
   }
 });
+
 function renderStars(rating) {
-    const filledStar = '<span class="star">&#9733;</span>';
-    const emptyStar = '<span class="star">&#9734;</span>';
-    const filledStars = filledStar.repeat(Math.floor(rating));
-    const halfStar = rating % 1 !== 0 ? '<span class="star">&#9733;</span>' : '';
-    const emptyStars = emptyStar.repeat(5 - Math.ceil(rating));
-    return filledStars + halfStar + emptyStars;
+  const filledStar = '<span class="star">&#9733;</span>';
+  const emptyStar = '<span class="star">&#9734;</span>';
+  const filledStars = filledStar.repeat(Math.floor(rating));
+  const halfStar = rating % 1 !== 0 ? '<span class="star">&#9733;</span>' : '';
+  const emptyStars = emptyStar.repeat(5 - Math.ceil(rating));
+  return filledStars + halfStar + emptyStars;
 }
 
-export { modalExercisesMarkup };
-    
+export { createModalMenu };
+  
+  
 
 // // const heartIcon = `
 // // // <svg class="icon-heart" width="18" height="18">
 // // //     <use href="${icons}#icon-heart"></use>
 // // // </svg>`;
-
 
 // // renderCard();
 // // let storage = 'favorites';
@@ -327,7 +356,7 @@ export { modalExercisesMarkup };
 // // //   closeBtn.addEventListener('click', onCloseModal);
 // // //   backdrop.addEventListener('click', handleBackdropClick);
 // // //   document.addEventListener('keydown', handleEscapeKey);
- 
+
 // // // async function addToFavoriteOnClick(event) {
 // // //   const element = event.target.closest('.ex-add-favorite');
 // // //   if (!element) return;
@@ -390,7 +419,6 @@ export { modalExercisesMarkup };
 // //     }
 // // }
 
-
 // // // function changingButtonName(value = 'add') {
 // // //   if (value === 'add') {
 // // //     return `Add to favorites
@@ -402,7 +430,6 @@ export { modalExercisesMarkup };
 // // //         <svg class="icon-heart" width="18" height="18">
 // // //           <use href="${heartIcon}#icon-heart"></use>
 // // //         </svg>`;
-
 
 // // async function renderCard() {
 // //     try {
@@ -527,22 +554,8 @@ export { modalExercisesMarkup };
 // //     return filledStars + halfStar + emptyStars;
 // // }
 
-
 // // export { getCardInfo, renderCard }
 
-
-
-
-
-
-
-
-
-    
-    
-    
-    
-    
 // // // }
 // // // function onCloseModal() {
 // // //   modalCard.classList.add('is-hidden');
@@ -586,8 +599,6 @@ export { modalExercisesMarkup };
 // // //         console.error(err);
 // // //     }
 // // // }
-
-
 
 // // // function changingButtonName(value = 'add') {
 // // //   if (value === 'add') {
@@ -707,7 +718,6 @@ export { modalExercisesMarkup };
 // // //   modalEl.innerHTML = markup;
 // // // }
 
-
 // // async function searchExerciseByID(id) {
 // //   try {
 // //     const { data } = await axios.get(`${BASE_URL}/${ENDPOINT_FILTER}/${exerciseId}`);
@@ -716,4 +726,3 @@ export { modalExercisesMarkup };
 // //     console.error(err);
 // //   }
 // // }
-

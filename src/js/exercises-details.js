@@ -2,7 +2,7 @@ import axios from 'axios';
 import { hide, show, showLoader, hideLoader } from './services/visibility';
 import { refs } from './templates/refs.js';
 import isiToast from './services/isiToast.js';
-//import { modalExercisesMarkup } from './modal-menu.js';
+import { createModalMenu } from './modal-menu.js';
 
 const BASE_URL = 'https://energyflow.b.goit.study/api';
 const ENDPOINT_EXERCISES = 'exercises';
@@ -35,6 +35,9 @@ async function renderExerciseByFilterName(expectedFilter, name) {
         filter = 'equipment'
     }
 
+    if (refs.exercisesGalleryEl) {
+        hide(refs.containerFilteredCards);
+    }
     refs.exercisesSubtitle.textContent = `${name}`;
     show(refs.containerFilteredCards);
     show(refs.searchForm);
@@ -44,7 +47,6 @@ async function renderExerciseByFilterName(expectedFilter, name) {
 
     refs.resultContainer.innerHTML = '';
 
-    // ! need or not
     if (!filter || !name) {
         isiToast.noResults();
         show(refs.textResult);
@@ -196,11 +198,13 @@ function createCardsOfExercises({ _id, rating, name, burnedCalories, time, bodyP
 // Function for create modal  Створити делегування подій на лішку
 
 function handleClickOnCardStart(evt) {
-    if (evt.target.classList.contains('to-favorites-start')) {
-        const exerciseId = evt.target.dataset.id;
-        console.log(exerciseId);
-        //modalExercisesMarkup();
+    if (!evt.target.dataset.id) {
+        return
     }
+    // showLoader(refs.loaderModal);
+    const exerciseId = evt.target.dataset.id;
+    //console.log(exerciseId);
+    createModalMenu(exerciseId);
 }
 
 // Api Function
@@ -222,31 +226,5 @@ async function searchExerciseByFilters({filter, name, keyword, limit, page}) {
 
 export { renderExerciseByFilterName };
 
-// Pagination
 
-// let currentPage = 1;
-
-//// Функція для створення пагінації
-// function createPagination(totalPages) {
-//     const paginationContainer = document.querySelector('.exercises-pagination');
-
-//     // Очистити попередні кнопки пагінації
-//     paginationContainer.innerHTML = '';
-
-//     // Створити кнопки для кожної сторінки
-//     for (let i = 1; i <= totalPages; i++) {
-//         const button = document.createElement('button');
-//         button.textContent = i;
-//         button.addEventListener('click', () => handlePageChange(i));
-//         paginationContainer.appendChild(button);
-//     }
-// }
-
-// // Функція для обробки зміни сторінки при кліку на кнопці пагінації
-// function handlePageChange(pageNumber) {
-//     // Оновити значення поточної сторінки
-//     currentPage = pageNumber;
-
-//     // Викликати функцію для завантаження даних з нової сторінки (наприклад, функцію renderExerciseByFilterName)
-//     // Передайте поточну сторінку як аргумент, якщо потрібно
-// }
+// ${renderStars(popularity)}
