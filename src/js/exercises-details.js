@@ -2,12 +2,11 @@ import axios from 'axios';
 import { hide, show, showLoader, hideLoader } from './services/visibility';
 import { refs } from './templates/refs.js';
 import isiToast from './services/isiToast.js';
-//import {modalExercisesMarkup } from './modal-menu.js';
+//import { modalExercisesMarkup } from './modal-menu.js';
 
 const BASE_URL = 'https://energyflow.b.goit.study/api';
 const ENDPOINT_EXERCISES = 'exercises';
 
-// ! add listeners
 refs.resultContainer.addEventListener('click', handleClickOnCardStart)
 
 const getParams = {
