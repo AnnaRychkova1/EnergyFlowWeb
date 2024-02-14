@@ -22,12 +22,17 @@
     height: 450px;
   }
 
+  .quote-container {
+    margin-top: 75px;
+  }
+
   .favorites-container {
     border-radius: 30px;
     background-color: var(--background-light-grey);
     padding: 40px 20px;
     margin: 0 auto;
     position: relative;
+    width: 335px;
   }
   .favorites-day-norma {
     width: 100%;
@@ -326,6 +331,10 @@
     height: 100%;
   }
 
+  .quote-fav-container {
+    margin-top: 170px;
+  }
+
   .favorites-container-box {
     width: 100%;
     display: flex;
@@ -599,7 +608,7 @@
     /* flex-direction: row; */
     /* justify-content: center; */
     /* max-width: 1408px; */
-    padding-top: 16px;
+    /* padding-top: 16px; */
     padding-bottom: 0;
   }
 
