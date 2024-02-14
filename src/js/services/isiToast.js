@@ -6,7 +6,8 @@ function apiIsiToastError() {
       title: '🥺 Ooops...',
       message:
         'An error occurred while fetching results. Please try again later.',
-      position: 'bottomCenter',
+       position: 'bottomCenter',
+       color: 'rgba(152, 151, 151, 0.979)',
     });
 }
 
@@ -16,6 +17,7 @@ function endOfSearchIsiToast() {
         message:
           "We're sorry, but you've reached the end of search results.",
         position: 'bottomCenter',
+        color: 'rgba(152, 151, 151, 0.979)',
       });
 }
 
@@ -23,7 +25,8 @@ function noQuery() {
     iziToast.error({
       title: '🥺 Ooops...',
       message: 'Please, input query!',
-      position: 'center',
+      position: 'bottomCenter',
+      color: 'rgba(152, 151, 151, 0.979)',
     });
 }
 
@@ -32,7 +35,8 @@ function noResults() {
         title: '🥺 Ooops...',
         message:
           'Sorry, there are no results matching your search. Please try again!',
-        position: 'center',
+       position: 'bottomCenter',
+       color: 'rgba(152, 151, 151, 0.979)',
       });
 }
 
