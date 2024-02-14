@@ -2,17 +2,15 @@ import axios from 'axios';
 import { hide, show, showLoader, hideLoader } from './services/visibility';
 import { refs } from './templates/refs.js';
 import isiToast from './services/isiToast.js';
-import { getCardInfo } from './modal-menu.js';
+// import { } from './modal-menu.js';
 
 const BASE_URL = 'https://energyflow.b.goit.study/api';
 const ENDPOINT_EXERCISES = 'exercises';
 
-// ! add listeners
-//refs.searchForm.addEventListener('submit', handleSearch); // спочатку відкрити, потім закрити, по днфолту в нього має бути клас хіден
-// refs.containerFilteredCards // mine div for all exept form - спочатку відкрити, потім закрити, по днфолту в нього має бути клас хіден
-refs.resultContainer.addEventListener('click', handleClickOnCardStart)
+let currentPage = 1;
+let currentLimit = 0;
 
-// ! Василина викликає мою функцію renderExerciseByFilterName();
+refs.resultContainer.addEventListener('click', handleClickOnCardStart)
 
 const getParams = {
     filter: name,
@@ -39,10 +37,10 @@ async function renderExerciseByFilterName(exeptedFilter, name) {
     show(refs.searchForm);
     showLoader(refs.loaderModal);
 
-    // ! need or not
+    // ! need to check for the first ul. is there or not
+
     refs.resultContainer.innerHTML = '';
 
-    // ! need or not
     if (!filter || !name) {
         isiToast.noResults();
         show(refs.textResult);
