@@ -16,7 +16,6 @@ const heartIcon = `
 //     <use href="${icons}#icon-heart"></use>
 // </svg>`;
 
-
 // renderCard();
 // modalCard.innerHTML = modalWindowMarkup(results);
 // let storage = 'favorites';
@@ -37,8 +36,14 @@ const heartIcon = `
 //         return;
 //     }
 //     getLoader();
-//     const elementId = element.dataset.id;
-//     const exercisesInfo = await getCardInfo(elementId);
+//
+//    const elementId = element.dataset.id;
+
+
+// backdrop.classList.remove('is-hidden');
+
+// const exercisesInfo = await getCardInfo(elementId);
+// const modalExercisesMarkup = modalWindowMarkup(exercisesInfo);
 
 //   backdrop.classList.remove('is-hidden');
 //   const modalExercisesCard = modalWindowMarkup(exercisesInfo)
@@ -259,7 +264,8 @@ function renderStars(rating) {
     return filledStars + halfStar + emptyStars;
 }
 
-export { getCardInfo };
+export { modalExercisesMarkup };
+    
 
 // // const heartIcon = `
 // // // <svg class="icon-heart" width="18" height="18">

@@ -14,6 +14,7 @@ export const refs = {
   searchForm: document.querySelector('.form'),
   textResult: document.querySelector('.exercise-text-no-found'),
   exercisesSubtitle: document.querySelector('.exercises-subtitle'),
+  exercisesPagination: document.querySelector('.pagination-container-exercise'),
   
   // Oksana
   favoritesGallery: document.querySelector(".favorites-gallery"),

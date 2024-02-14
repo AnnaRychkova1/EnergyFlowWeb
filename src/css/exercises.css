@@ -126,14 +126,14 @@
 
 /* === Exercises-pagination ==== */
 
-.exercises-pagination {
+ .exercises-pagination {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 0px;
 }
 
-.exercises-pagination button {
+ .exercises-pagination button {
   width: 31px;
   height: 32px;
   display: flex;
@@ -142,8 +142,6 @@
   border-radius: 18px;
   padding: 0px 12px;
   color: rgba(27, 27, 27, 0.4);
-  /* border: none; */
-  background-color: var(--background-light-grey);
   border: 1px solid var(--text-main-color);
 }
 

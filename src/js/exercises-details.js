@@ -2,35 +2,37 @@ import axios from 'axios';
 import { hide, show, showLoader, hideLoader } from './services/visibility';
 import { refs } from './templates/refs.js';
 import isiToast from './services/isiToast.js';
-import { getCardInfo } from './modal-menu.js';
+//import {modalExercisesMarkup } from './modal-menu.js';
 
 const BASE_URL = 'https://energyflow.b.goit.study/api';
 const ENDPOINT_EXERCISES = 'exercises';
 
 // ! add listeners
-//refs.searchForm.addEventListener('submit', handleSearch); // спочатку відкрити, потім закрити, по днфолту в нього має бути клас хіден
-// refs.containerFilteredCards // mine div for all exept form - спочатку відкрити, потім закрити, по днфолту в нього має бути клас хіден
 refs.resultContainer.addEventListener('click', handleClickOnCardStart)
 
-// ! Василина викликає мою функцію renderExerciseByFilterName();
-
 const getParams = {
-    filter: name,
+    filter: '',
     keyword: '',
     page: 1,
     limit: 9,
 }
 
-async function renderExerciseByFilterName(exeptedFilter, name) {
+if (window.innerWidth <= 768) {
+    getParams.limit = 8;
+} else {
+    getParams.limit = 9;
+}
+
+async function renderExerciseByFilterName(expectedFilter, name) {
     let filter;
 
-    if (exeptedFilter === 'Body parts') {
+    if (expectedFilter === 'Body parts') {
         filter = 'bodypart'
     }
-    if (exeptedFilter === 'Muscles') {
+    if (expectedFilter === 'Muscles') {
         filter = 'muscles'
     }
-    if (exeptedFilter === 'Equipment') {
+    if (expectedFilter === 'Equipment') {
         filter = 'equipment'
     }
 
@@ -39,7 +41,8 @@ async function renderExerciseByFilterName(exeptedFilter, name) {
     show(refs.searchForm);
     showLoader(refs.loaderModal);
 
-    // ! need or not
+    // ! need to check for the first ul. is there or not
+
     refs.resultContainer.innerHTML = '';
 
     // ! need or not
@@ -61,6 +64,18 @@ async function renderExerciseByFilterName(exeptedFilter, name) {
         console.log(results);
         console.log(totalPages);
 
+        if (totalPages > 2) {
+//            show(refs.exercisesPagination); 
+//           createPagination(totalPages);
+        }
+
+        if (totalPages === 0) {
+            isiToast.noResults();
+            show(refs.textResult);
+            hideLoader(refs.loaderModal);
+            return;
+        }
+
         if (!results || totalPages === 0) {
             isiToast.noResults();
             show(refs.textResult);
@@ -68,40 +83,35 @@ async function renderExerciseByFilterName(exeptedFilter, name) {
             return;
         }
 
-        // ! create markup for the first time or once
+        //  create markup for the first time or once
 
         let markup = '';
         for (const result of results) {
             markup += createCardsOfExercises(result);
         }
+
         refs.resultContainer.innerHTML = markup;
 
-        // !  change number of pages
-        getParams.page += 1
-
-        if (totalPages > 1) {
-            // ! Pagination start
-            // createPagination();
-        }
+        getParams.page += 1;
+//        handlePageChange(getParams.page);
 
     } catch (error) {
         console.error('Error fetching images:', error);
         isiToast.apiIsiToastError();
     } finally {
         hideLoader(refs.loaderModal);
-        // hide(paginationContainer);
-        // ! I have to removeListener from another person or not
+ //       hide(refs.exercisesPagination);
     }
 
 
-    // ! Works with search button
+    //  Works with search button
     refs.searchForm.addEventListener('submit', handleSearch);
 
     async function handleSearch(evt) {
 
         evt.preventDefault();
         refs.resultContainer.innerHTML = '';
-        getParams.page = 1;
+        getParams.page += 1;
 
         const inputKeyword = evt.currentTarget;
         getParams.keyword = inputKeyword.elements.query.value.trim();
@@ -115,37 +125,43 @@ async function renderExerciseByFilterName(exeptedFilter, name) {
                 limit: getParams.limit,
                 page: getParams.page
             });
-// Correct
-            if (!getParams.keyword) {
+
+            if (getParams.keyword.trim() === '') {
                 isiToast.noQuery();
                 show(refs.textResult);
                 hideLoader(refs.loaderModal);
                 return
             }
 
-            // ! check fot the wrong query 
-           
+            // ! check fot the wrong query
 
-            // ! create markup for the first time or once
+            if (totalPages > 2) {
+ //                show(refs.exercisesPagination);
+ //               createPagination(totalPages);
+            }
+            
+            //  create markup for the first time or once
 
             let markupFilteredCards = '';
             for (const result of results) {
                 markupFilteredCards += createCardsOfExercises(result);
             }
             refs.resultContainer.innerHTML = markupFilteredCards;
+            getParams.page += 1;
+ //           handlePageChange(getParams.page);
 
         } catch (error) {
             console.error('Error fetching images:', error);
             isiToast.apiIsiToastError();
         } finally {
             refs.searchForm.reset();
-            //hide(paginationContainer);
+ //           hide(refs.exercisesPagination);
         }
     }
 }
 
 
-// ! Create markup
+// Create markup
 
 function createCardsOfExercises({ _id, rating, name, burnedCalories, time, bodyPart, target }) {
     return `<li class="filtered-card-item">
@@ -178,16 +194,17 @@ function createCardsOfExercises({ _id, rating, name, burnedCalories, time, bodyP
   `;
 }
 
-// ! Function for create modal  Створити делегування подій на лішку
+// Function for create modal  Створити делегування подій на лішку
 
 function handleClickOnCardStart(evt) {
-    // showLoader(refs.loaderModal);
-    const exerciseId = evt.target.dataset.id;
-    console.log(exerciseId);
-    getCardInfo(exerciseId);
+    if (evt.target.classList.contains('to-favorites-start')) {
+        const exerciseId = evt.target.dataset.id;
+        console.log(exerciseId);
+        //modalExercisesMarkup();
+    }
 }
 
-// ! Api Function
+// Api Function
 
 async function searchExerciseByFilters({filter, name, keyword, limit, page}) {
     const response = await axios.get(
@@ -205,3 +222,32 @@ async function searchExerciseByFilters({filter, name, keyword, limit, page}) {
 }
 
 export { renderExerciseByFilterName };
+
+// Pagination
+
+// let currentPage = 1;
+
+//// Функція для створення пагінації
+// function createPagination(totalPages) {
+//     const paginationContainer = document.querySelector('.exercises-pagination');
+
+//     // Очистити попередні кнопки пагінації
+//     paginationContainer.innerHTML = '';
+
+//     // Створити кнопки для кожної сторінки
+//     for (let i = 1; i <= totalPages; i++) {
+//         const button = document.createElement('button');
+//         button.textContent = i;
+//         button.addEventListener('click', () => handlePageChange(i));
+//         paginationContainer.appendChild(button);
+//     }
+// }
+
+// // Функція для обробки зміни сторінки при кліку на кнопці пагінації
+// function handlePageChange(pageNumber) {
+//     // Оновити значення поточної сторінки
+//     currentPage = pageNumber;
+
+//     // Викликати функцію для завантаження даних з нової сторінки (наприклад, функцію renderExerciseByFilterName)
+//     // Передайте поточну сторінку як аргумент, якщо потрібно
+// }
