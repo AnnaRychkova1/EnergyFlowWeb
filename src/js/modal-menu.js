@@ -2,8 +2,9 @@
 import axios from 'axios';
 import { hide, show, showLoader, hideLoader} from './services/visibility';
 import icons from '../img/icons/symbol-defs.svg'
-const BASE_URL = 'https://energyflow.b.goit.study/api';
 
+
+const BASE_URL = 'https://energyflow.b.goit.study/api';
 
 const gallery = document.querySelector('.results'); // плюс название содержимого карточки //
 const backdrop = document.querySelector('.backdrop');
@@ -117,9 +118,6 @@ async function getCardInfo(exerciseId) {
         console.error(err);
     }
 }
-
-
-
 
 
 // async function renderCard() {
@@ -236,16 +234,24 @@ function modalWindowMarkup(results = {}) {
     `;
    return modalCard.innerHTML = markup;
 }
+// getCardInfo(id);
+
+
 const activeColor = '#eea10c';
 const noActiveColor = '#e8e8e8';
 const stars = document.querySelectorAll('.ex-rate-icon');
+
 stars.forEach((star, index) => {
-  if (index < ratingStar) {
+  const rating = Number(star.getAttribute('data-rating'));
+  const starHTML = renderStars(rating); 
+  const filledStarsCount = (starHTML.match(/&#9733;/g) || []).length;
+  if (index < filledStarsCount) {
     star.style.fill = activeColor;
   } else {
     star.style.fill = noActiveColor;
   }
 });
+
 function renderStars(rating) {
     const filledStar = '<span class="star">&#9733;</span>';
     const emptyStar = '<span class="star">&#9734;</span>';
@@ -254,6 +260,33 @@ function renderStars(rating) {
     const emptyStars = emptyStar.repeat(5 - Math.ceil(rating));
     return filledStars + halfStar + emptyStars;
 }
+
+
+
+export { getCardInfo };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // // const heartIcon = `
 // // // <svg class="icon-heart" width="18" height="18">
