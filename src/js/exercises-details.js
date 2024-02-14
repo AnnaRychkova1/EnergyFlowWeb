@@ -179,9 +179,12 @@ function createCardsOfExercises({ _id, rating, name, burnedCalories, time, bodyP
 // ! Function for create modal  Створити делегування подій на лішку
 
 function handleClickOnCardStart(evt) {
+    if (!evt.target.dataset.id) {
+        return
+    }
     // showLoader(refs.loaderModal);
     const exerciseId = evt.target.dataset.id;
-    console.log(exerciseId);
+    //console.log(exerciseId);
     createModalMenu(exerciseId);
 }
 
