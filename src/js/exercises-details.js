@@ -1,58 +1,46 @@
-// ! imports
 import axios from 'axios';
 import { hide, show, showLoader, hideLoader } from './services/visibility';
 import { refs } from './templates/refs.js';
 import isiToast from './services/isiToast.js';
-//import { exercisesParamFilter, exercisesParamName } from '../exercises'; - wait for push
-//import { getCardInfo } from './modal-menu.js';
+import { createModalMenu } from './modal-menu.js';
 
 const BASE_URL = 'https://energyflow.b.goit.study/api';
 const ENDPOINT_EXERCISES = 'exercises';
 
-// ! add listeners
-//refs.searchForm.addEventListener('submit', handleSearch); // спочатку відкрити, потім закрити, по днфолту в нього має бути клас хіден
-// refs.containerFilteredCards // mine div for all exept form - спочатку відкрити, потім закрити, по днфолту в нього має бути клас хіден
 refs.resultContainer.addEventListener('click', handleClickOnCardStart)
 
-// ! temporarely consts
-// const exercisesParamFilter = "bodypart";
-// const exercisesParamFilter = "muscles";
-// const exercisesParamFilter = "equipment";
-// const exercisesParamName = 'waist';
-// const exercisesParamName = 'barbell';
+const getParams = {
+    filter: name,
+    keyword: '',
+    page: 1,
+    limit: 9,
+}
 
-// const getParams = {
-//     filter: name,
-//     keyword: '',
-//     page: 1,
-//     limit: 9,
-// };
+async function renderExerciseByFilterName(exeptedFilter, name) {
+    let filter;
 
-// ! work with title Vasilina
-// refs.exercisesHeader.textContent = `/${exercisesParamName}`;
-
-// ! Василина викликає мою функцію renderExerciseByFilterName();
-// renderExerciseByFilterName(exercisesParamFilter, exercisesParamName);
-// renderExerciseByFilterName();
-
-async function renderExerciseByFilterName(filter, name) {
-    //hide(refs.exercisesGalleryEl);
-    const getParams = {
-        [filter]: name,
-        keyword: '',
-        page: 1,
-        limit: 9,
+    if (exeptedFilter === 'Body parts') {
+        filter = 'bodypart'
+    }
+    if (exeptedFilter === 'Muscles') {
+        filter = 'muscles'
+    }
+    if (exeptedFilter === 'Equipment') {
+        filter = 'equipment'
     }
 
+    if (refs.exercisesGalleryEl) {
+        hide(refs.containerFilteredCards);
+    }
+    refs.exercisesSubtitle.textContent = `${name}`;
     show(refs.containerFilteredCards);
     show(refs.searchForm);
-    // showLoader(refs.loaderModal);
+    showLoader(refs.loaderModal);
 
-    // ! має появитися частинка заголовка, але не я, а Василина
-    // ! need or not
+    // ! need to check for the first ul. is there or not
+
     refs.resultContainer.innerHTML = '';
 
-    // ! need or not
     if (!filter || !name) {
         isiToast.noResults();
         show(refs.textResult);
@@ -61,7 +49,13 @@ async function renderExerciseByFilterName(filter, name) {
     }
 
     try {
-        const { results, totalPages } = await searchExerciseByFilters(getParams);
+        const { results, totalPages } = await searchExerciseByFilters({
+            filter: filter,
+            name: name,
+            keyword: getParams.keyword,
+            limit: getParams.limit,
+            page: getParams.page
+        });
         console.log(results);
         console.log(totalPages);
 
@@ -97,48 +91,57 @@ async function renderExerciseByFilterName(filter, name) {
         // ! I have to removeListener from another person or not
     }
 
+
     // ! Works with search button
     refs.searchForm.addEventListener('submit', handleSearch);
-    
+
     async function handleSearch(evt) {
 
-    evt.preventDefault();
-    refs.resultContainer.innerHTML = '';
-    getParams.page = 1;
+        evt.preventDefault();
+        refs.resultContainer.innerHTML = '';
+        getParams.page = 1;
 
-    const inputKeyword = evt.currentTarget;
-    getParams.keyword = inputKeyword.elements.exercise.value.trim();
-    console.log(getParams.keyword)
+        const inputKeyword = evt.currentTarget;
+        getParams.keyword = inputKeyword.elements.query.value.trim();
+        console.log(getParams.keyword)
 
-    try {
-        const { results, totalPages } = await searchExerciseByFilters(getParams);
+        try {
+            const { results, totalPages } = await searchExerciseByFilters({
+                filter: filter,
+                name: name,
+                keyword: getParams.keyword,
+                limit: getParams.limit,
+                page: getParams.page
+            });
+// Correct
+            if (!getParams.keyword) {
+                isiToast.noQuery();
+                show(refs.textResult);
+                hideLoader(refs.loaderModal);
+                return
+            }
 
-        if (!getParams.keyword) {
-            isiToast.noResults();
-            show(refs.textResult);
-            hideLoader(refs.loaderModal);
-            return
+            // ! check fot the wrong query 
+           
+
+            // ! create markup for the first time or once
+
+            let markupFilteredCards = '';
+            for (const result of results) {
+                markupFilteredCards += createCardsOfExercises(result);
+            }
+            refs.resultContainer.innerHTML = markupFilteredCards;
+
+        } catch (error) {
+            console.error('Error fetching images:', error);
+            isiToast.apiIsiToastError();
+        } finally {
+            refs.searchForm.reset();
+            //hide(paginationContainer);
         }
-
-
-        // ! create markup for the first time or once
-
-        let markupFilteredCards = '';
-        for (const result of results) {
-            markupFilteredCards += createCardsOfExercises(result);
-        }
-        refs.resultContainer.innerHTML = markupFilteredCards;
-
-    } catch (error) {
-        console.error('Error fetching images:', error);
-        isiToast.apiIsiToastError();
-    } finally {
-        refs.searchForm.reset();
-        hide(paginationContainer);
     }
 }
 
-}
 
 // ! Create markup
 
@@ -176,9 +179,10 @@ function createCardsOfExercises({ _id, rating, name, burnedCalories, time, bodyP
 // ! Function for create modal  Створити делегування подій на лішку
 
 function handleClickOnCardStart(evt) {
-    showLoader(refs.loaderModal);
+    // showLoader(refs.loaderModal);
     const exerciseId = evt.target.dataset.id;
-    getCardInfo(exerciseId);
+    console.log(exerciseId);
+    createModalMenu(exerciseId);
 }
 
 // ! Api Function
@@ -190,8 +194,8 @@ async function searchExerciseByFilters({filter, name, keyword, limit, page}) {
             params: {
                 [filter]: name,
                 keyword: keyword,
-                limit,
-                page
+                limit: limit,
+                page: page
             },
         }
     );
@@ -199,9 +203,3 @@ async function searchExerciseByFilters({filter, name, keyword, limit, page}) {
 }
 
 export { renderExerciseByFilterName };
-// export { exerciseId };
-
-// ! will delete in future
-// export {exercisesParamFilter, exercisesParamName }
-
-

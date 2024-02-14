@@ -35,6 +35,17 @@
   }
 }
 
+.exercises-subtitle {
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 1.33;
+  letter-spacing: -0.02em;
+  color: rgba(27, 27, 27, 0.5);
+}
+
+.exersises-header {
+}
+
 .exercises-input {
 }
 
@@ -90,15 +101,18 @@
 }
 
 .filtered-card-item {
-  border: 1px solid red;
-  border-radius: 15px;
   width: 295px;
+  height: 165px;
+  border-radius: 15px;
   padding: 16px;
+  background-color: var(--background-white);
+  overflow: hidden;
 }
 
 @media only screen and (min-width: 768px) {
   .filtered-card-item {
     width: 313px;
+    height: 165px;
   }
 }
 
@@ -110,7 +124,9 @@
 
 .card-box-workout {
   display: flex;
-  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
 }
 
 .card-box-info {
@@ -120,9 +136,12 @@
 
 .filtered-workout {
   border-radius: 15px;
-  /* width: 76px; */
-  height: 26px;
-  text-transform: uppercase;
+  background-color: var(--background-dark-grey);
+  padding: 5px, 8px;
+  color: var(--background-white);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.5;
 }
 
 .card-box-rating {
@@ -167,39 +186,4 @@
 }
 
 .filtered-descr-value {
-}
-
-/*  Pagination */
-
-.tui-pagination {
-  display: flex;
-  list-style: none;
-  padding: 0;
-  justify-content: center;
-}
-
-.tui-pagination-btn {
-  margin: 0 5px;
-  padding: 5px 10px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-  color: #333;
-  text-decoration: none;
-}
-
-.tui-pagination-btn:hover {
-  background-color: #f0f0f0;
-}
-
-.tui-pagination-active {
-  font-weight: bold;
-  border: 2px solid #000;
-}
-
-.tui-pagination-btn:first-child {
-  margin-left: 0;
-}
-
-.tui-pagination-btn:last-child {
-  margin-right: 0;
 }
