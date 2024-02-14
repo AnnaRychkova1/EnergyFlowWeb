@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="./img/icons/dumbbell-big.svg" />
-    <link rel="stylesheet" href="./css/styles.css" />
-    <title>Favorites</title>
-  </head>
 
-  <body>
-    <!-- Header section 
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./css/styles.css" />
+  <title>Favorites</title>
+</head>
+
+<body>
+  <!-- Header section 
     <header class="header-section">
       <div class="container container-header">
         <div class="header-section-container">
@@ -87,9 +87,9 @@
       </div>
     </div>
   </header> -->
-    <!-- Favorites section -->
-    <main>
-      <!-- <section class="section favorites-section">
+  <!-- Favorites section -->
+  <main>
+    <!-- <section class="section favorites-section">
       <div class="container favorites-container">
         <div class="favorites-box-container">
           <blockquote class="quote-container">
@@ -132,55 +132,53 @@
           </div>
         </div>
       </div> -->
-      <load ="partials/header.html" />
-      <div class="gap-container"></div>
-      <load ="partials/quote-fav.html" />
-      <section class="section">
-        <div class="container favorites-container">
-          <div class="favorites-box">
-            <h2 class="favorites-box-title">Favorites</h2>
-            <div class="favorites-box-block block">
-              <img
-                class="favorites-box-img"
-                src="./img/icons/dumbbell.png"
-                alt="dumbbell"
-              />
-              <p class="favorites-box-paragraf">
-                It appears that you haven't added any exercises to your
-                favorites yet. To get started, you can add exercises that you
-                like to your favorites for easier access in the future.
-              </p>
-            </div>
+    <load="partials/header.html" />
+    <div class="gap-container"></div>
+    <load="partials/quote-fav.html" />
+    <section class="section">
+      <div class="container favorites-container">
+        <div class="favorites-box">
+          <h2 class="favorites-box-title">Favorites</h2>
+          <div class="favorites-box-block block">
+            <img class="favorites-box-img" src="./img/icons/dumbbell.png" alt="dumbbell" />
+            <p class="favorites-box-paragraf">
+              It appears that you haven't added any exercises to your
+              favorites yet. To get started, you can add exercises that you
+              like to your favorites for easier access in the future.
+            </p>
           </div>
-           
-            <ul class="favorites-gallery"></ul>
+        </div>
+      </div>
 
-            <load ="partials/modal-menu.html" />
-            <load ="partials/scrollUp.html" />
+      <ul class="favorites-gallery"></ul>
 
-            <!-- Loader -->
-            
-            <div class="overlay">
-              <div class="loader-container">
-                <span class="loader"></span>
-              </div>
-            </div>
+      <load="partials /modal-menu.html" />
+      <load="partials /scrollUp.html" />
 
-            <!------ PAGINATION FOR MOBILE----->
+      <!-- Loader -->
 
-            <!-- <div class="favorites-pagination-block">
+      <div class="overlay">
+        <div class="loader-container">
+          <span class="loader"></span>
+        </div>
+      </div>
+
+      <!------ PAGINATION FOR MOBILE----->
+
+      <!-- <div class="favorites-pagination-block">
               <button class="active-btn" aria-label="first-page" type="button">
                 1
               </button>
               <button aria-label="second-page" type="button">2</button>
               <button aria-label="third-page" type="button">3</button>
             </div> -->
-          </div>
-        </div>
-      </section>
-    </main>
+      </div>
+      </div>
+    </section>
+  </main>
 
-    <script type="module" src="./main.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  </body>
+  <script type="module" src="./main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</body>
+
 </html>
