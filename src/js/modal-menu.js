@@ -234,6 +234,7 @@ function modalWindowMarkup(results = {}) {
     `;
    return modalCard.innerHTML = markup;
 }
+
 // getCardInfo(id);
 
 
@@ -243,7 +244,7 @@ const stars = document.querySelectorAll('.ex-rate-icon');
 
 stars.forEach((star, index) => {
   const rating = Number(star.getAttribute('data-rating'));
-  const starHTML = renderStars(rating); 
+  const starHTML = renderStars(rating);
   const filledStarsCount = (starHTML.match(/&#9733;/g) || []).length;
   if (index < filledStarsCount) {
     star.style.fill = activeColor;
@@ -262,31 +263,7 @@ function renderStars(rating) {
 }
 
 
-
 export { getCardInfo };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // // const heartIcon = `
 // // // <svg class="icon-heart" width="18" height="18">
@@ -738,5 +715,3 @@ export { getCardInfo };
 // //   }
 // // }
 
-
-// // export { getCardInfo };

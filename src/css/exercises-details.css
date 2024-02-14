@@ -1,170 +1,160 @@
 .exercises-details {
-    width: 335px;
-    margin: 0 auto;
+  width: 335px;
+  margin: 0 auto;
 }
 
 @media only screen and (min-width: 768px) {
-    .exercises-details {
-        width: 736px;
-    }
+  .exercises-details {
+    width: 736px;
+  }
 }
 
 @media only screen and (min-width: 1440px) {
-    .exercises-details {
-        width: 1408px;
-    }
+  .exercises-details {
+    width: 1408px;
+  }
 }
 
-.exersises-header {}
+.exercises-subtitle {
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 1.33;
+    letter-spacing: -0.02em;
+    color: rgba(27, 27, 27, 0.5);
+}
 
-.form {}
+.exersises-header {
+}
 
-.exercises-input {}
+.form {
+}
 
-.search-btn {}
+.exercises-input {
+}
+
+.search-btn {
+}
 
 .exercise-text-no-found {
-    padding-bottom: 320px;
+  padding-bottom: 320px;
 }
 
 @media only screen and (min-width: 768px) {
-    .exercise-text-no-found {
-        padding-bottom: 586px;
-    }
+  .exercise-text-no-found {
+    padding-bottom: 586px;
+  }
 }
 
 @media only screen and (min-width: 1440px) {
-    .exercise-text-no-found {
-        padding-bottom: 350px;
-    }
+  .exercise-text-no-found {
+    padding-bottom: 350px;
+  }
 }
 
 .filtered-cards {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 
 @media only screen and (min-width: 768px) {
-    .filtered-cards {
-        gap: 20px 14px;   
-    }
+  .filtered-cards {
+    gap: 20px 14px;
+  }
 }
 
 @media only screen and (min-width: 1440px) {
-    .filtered-cards {
-        gap: 28px 20px;
-    }
+  .filtered-cards {
+    gap: 28px 20px;
+  }
 }
 
 .filtered-card-item {
-    border: 1px solid red;
-    border-radius: 15px;
-    width: 295px;
-    padding: 16px;
+  width: 295px;
+  height: 165px;
+  border-radius: 15px;
+  padding: 16px;
+  background-color: var(--background-white);
+  overflow: hidden;
 }
 
 @media only screen and (min-width: 768px) {
-    .filtered-card-item {
-        width: 313px;
-    }
+  .filtered-card-item {
+    width: 313px;
+    height: 165px;
+  }
 }
 
 @media only screen and (min-width: 1440px) {
-    .filtered-card-item {
-        width: 424px;
-    }
+  .filtered-card-item {
+    width: 424px;
+  }
 }
 
 .card-box-workout {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
 }
 
 .card-box-info {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
 .filtered-workout {
-    border-radius: 15px;
-    /* width: 76px; */
-    height: 26px;
-    text-transform: uppercase;
+  border-radius: 15px;
+  background-color: var(--background-dark-grey);
+  padding: 5px, 8px;
+  color: var(--background-white);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.5;
 }
 
 .card-box-rating {
-display: flex;
-flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
-.filtered-rating {}
+.filtered-rating {
+}
 
-.filtered-star {}
+.filtered-star {
+}
 
 .to-favorites-start {
-    padding: 5px;
-    height: 28px;
-    color: black;
-    background-color:antiquewhite;
-    border-radius: 0;
+  padding: 5px;
+  height: 28px;
+  color: black;
+  background-color: antiquewhite;
+  border-radius: 0;
 }
 
 .to-favorites-start:hover {
-    background-color: aqua;
+  background-color: aqua;
 }
 
 .card-box-title {
 }
 
-.filteered-athlete {}
-
-.filteered-title {}
-
-.filtered-description {}
-
-.filtered-descr-item {}
-
-.filtered-descr-title {}
-
-.filtered-descr-value {}
-
-
-
-
-/*  Pagination */
-
-.tui-pagination {
-    display: flex;
-    list-style: none;
-    padding: 0;
-    justify-content: center;
+.filteered-athlete {
 }
 
-.tui-pagination-btn {
-    margin: 0 5px;
-    padding: 5px 10px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    color: #333;
-    text-decoration: none;
+.filteered-title {
 }
 
-.tui-pagination-btn:hover {
-    background-color: #f0f0f0;
+.filtered-description {
 }
 
-.tui-pagination-active {
-    font-weight: bold;
-    border: 2px solid #000;
+.filtered-descr-item {
 }
 
-.tui-pagination-btn:first-child {
-    margin-left: 0;
+.filtered-descr-title {
 }
 
-.tui-pagination-btn:last-child {
-    margin-right: 0;
+.filtered-descr-value {
 }
