@@ -89,14 +89,12 @@
   top: 5px;
   left: 6px;
 }
-/*  Media  ======================================== */
 
 @media screen and (max-width: 375px) {
   .quote-wrapper {
     max-width: 294px;
   }
 }
-
 @media screen and (min-width: 768px) {
   .quote-section {
     padding: 8px 0;
@@ -109,6 +107,7 @@
   .quote-container {
     padding: 64px 80px;
     min-height: 302px;
+    border-radius: 50px;
   }
   .quote-wrapper {
     margin-left: 50px;
@@ -191,5 +190,93 @@
   .quote-img-container {
     background-image: url(/img/desctop/desc-section2@2.jpg);
     background-size: 704px;
+  }
+}
+
+.quote-fav-container {
+  padding: 0 20px;
+  margin: 0 auto;
+}
+.quote-fav-img {
+  width: 100%;
+  min-height: 272px;
+  border-radius: 30px;
+  background-repeat: no-repeat;
+  background-image: url(/img/mobile/mobile-page-fafor-girl@1.jpg);
+}
+.quote-fav-motivation {
+  background-color: #fff;
+  height: 272px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.quote-fav-motivation-inner {
+  width: 132px;
+  height: 80px;
+  display: flex;
+  flex-direction: column;
+}
+.quote-fav-text {
+  font-weight: 400;
+  font-size: 14px;
+  color: rgba(27, 27, 27, 0.6);
+}
+.quote-fav-span {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 100%;
+  color: #1b1b1b;
+  margin-bottom: 6px;
+}
+@media screen and (min-width: 768px) {
+  .quote-fav-container {
+    padding: 0 16px;
+  }
+  .quote-fav-wrapper {
+    max-width: 736px;
+    display: flex;
+  }
+  .quote-fav-img {
+    max-width: 368px;
+    min-height: 302px;
+    background-size: 368px;
+    border-radius: 50px;
+  }
+  .quote-fav-motivation {
+    width: 368px;
+    border-radius: 50px;
+    min-height: 302px;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .quote-fav-container {
+    display: flex;
+  }
+  .quote-fav-img {
+    width: 352px;
+    height: 100%;
+  }
+  .quote-fav-motivation {
+    width: 352px;
+    height: 100%;
+  }
+}
+@media screen and (min-resolution: 192dpi) {
+  .quote-fav-img {
+    background-image: url(/img/mobile/mobile-page-fafor-girl@2.jpg);
+    background-size: 335px;
+  }
+}
+@media screen and (min-width: 768px) and (min-resolution: 192dpi) {
+  .quote-fav-img {
+    background-image: url(/img/mobile/mobile-page-fafor-girl@2.jpg);
+    background-size: 368px;
+  }
+}
+@media screen and (min-width: 1280px) and (min-resolution: 192dpi) {
+  .quote-img-container {
+    background-image: url(/img/mobile/mobile-page-fafor-girl@2.jpg);
   }
 }
