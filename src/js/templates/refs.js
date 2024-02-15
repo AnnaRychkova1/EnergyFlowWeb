@@ -11,6 +11,7 @@ export const refs = {
   exercisesGalleryEl: document.querySelector('.exercises-gallery'),
   paginationEl: document.querySelector('.exercises-pagination'),
   exercisesContainerEl: document.querySelector('.exercises-container'),
+  exercisesTitleSpan: document.querySelector('.exercises-title-span'),
 
   //  Anna
   containerFilteredCards: document.querySelector('.exercises-deteils'),
@@ -18,7 +19,7 @@ export const refs = {
   searchForm: document.querySelector('.form'),
   textResult: document.querySelector('.exercise-text-no-found'),
   exercisesSubtitle: document.querySelector('.exercises-subtitle'),
-  
+
   // Oksana
   favoritesGallery: document.querySelector('.favorites-gallery'),
   favoritesMessage: document.querySelector('.favorites-box-block'),

@@ -14,51 +14,49 @@ const heartIcon = `
 //     <use href="${icons}#icon-heart"></use>
 // </svg>`;
 
-
 let expectedId;
 // ! Something like this
 async function createModalMenu(expectedExercisesId) {
   expectedId = expectedExercisesId;
   try {
-   const responseIdObject = await getCardInfo(expectedId);
+    const responseIdObject = await getCardInfo(expectedId);
     console.log(responseIdObject);
     modalWindowMarkup(responseIdObject);
-     const addToFavoriteBtn = document.querySelector('.ex-add-favorite');
+    const addToFavoriteBtn = document.querySelector('.ex-add-favorite');
     addToFavoriteBtn.addEventListener('click', addToFavoriteOnClick);
     const closeBtn = document.querySelector('.modal-close-btn');
-  closeBtn.addEventListener('click', onCloseModal);
+    closeBtn.addEventListener('click', onCloseModal);
     backdrop.classList.remove('is-hidden');
     console.log(expectedId);
-    
-  function addToFavoriteOnClick(event) {
-  const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-console.log(favorites);
-  const isFavorite = favorites.some(item => item._id === expectedId);
 
-  if (isFavorite) {
-    const updatedFavorites = favorites.filter(item => item._id !== expectedId);
-    localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
-    element.classList.remove('is-favorite');
-    element.innerHTML = changingButtonName('add');
-  } else {
-    
-    // const exercisesCardInfo = await getCardInfo(expectedId);
-    localStorage.setItem(
-      'favorites',
-      JSON.stringify([...favorites, responseIdObject])
-    );
+    function addToFavoriteOnClick(event) {
+      const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+      console.log(favorites);
+      const isFavorite = favorites.some(item => item._id === expectedId);
 
-    // there must be event.target
-    element.classList.add('is-favorite');
-    element.innerHTML = changingButtonName('remove');
-  }
+      if (isFavorite) {
+        const updatedFavorites = favorites.filter(
+          item => item._id !== expectedId
+        );
+        localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+        element.classList.remove('is-favorite');
+        element.innerHTML = changingButtonName('add');
+      } else {
+        // const exercisesCardInfo = await getCardInfo(expectedId);
+        localStorage.setItem(
+          'favorites',
+          JSON.stringify([...favorites, responseIdObject])
+        );
+
+        // there must be event.target
+        element.classList.add('is-favorite');
+        element.innerHTML = changingButtonName('remove');
+      }
     }
-    
   } catch (error) {
     console.error('Error fetching images:', error);
   }
 }
-
 
 async function getCardInfo(exerciseId) {
   console.log(exerciseId);
@@ -71,9 +69,6 @@ async function getCardInfo(exerciseId) {
     console.error(err);
   }
 }
-
-
-
 
 // ! тут після <p class="ex-current-rating">${rating}</p> <ul class="exercise-stars-list"></ul> я видалила поки що // ${renderStars(popularity)}
 function modalWindowMarkup({
@@ -88,9 +83,8 @@ function modalWindowMarkup({
   popularity,
   rating,
   description,
-}) 
-  { const markup =
-    `<div>
+}) {
+  const markup = `<div>
             <button class="modal-close-btn">
                 <svg
                     class="modal-close-icon"
@@ -174,12 +168,9 @@ function modalWindowMarkup({
             </div>
         </div>
     `;
-  
-    modalCard.innerHTML = markup;
-  
+
+  modalCard.innerHTML = markup;
 }
-
-
 
 // renderCard();
 // modalCard.innerHTML = modalWindowMarkup(results);
@@ -210,14 +201,14 @@ function modalWindowMarkup({
 //   hideLoader();
 // }
 
-  // const addToFavoriteBtn = document.querySelector('.ex-add-favorite');
-  // addToFavoriteBtn.addEventListener('click', addToFavoriteOnClick);
+// const addToFavoriteBtn = document.querySelector('.ex-add-favorite');
+// addToFavoriteBtn.addEventListener('click', addToFavoriteOnClick);
 
-  // const closeBtn = document.querySelector('.modal-close-btn');
-  // closeBtn.addEventListener('click', onCloseModal);
-  backdrop.addEventListener('click', handleBackdropClick);
-  document.addEventListener('keydown', handleEscapeKey);
- 
+// const closeBtn = document.querySelector('.modal-close-btn');
+// closeBtn.addEventListener('click', onCloseModal);
+backdrop.addEventListener('click', handleBackdropClick);
+document.addEventListener('keydown', handleEscapeKey);
+
 function onCloseModal() {
   modalCard.classList.add('is-hidden');
   backdrop.classList.add('is-hidden');
@@ -251,7 +242,6 @@ function handleEscapeKey(event) {
 
 // const exerciseId = '64f389465ae26083f39b17c0';
 
-
 // async function renderCard() {
 //     try {
 //       const { results } = await getCardInfo(exerciseId);
@@ -265,7 +255,6 @@ function handleEscapeKey(event) {
 // }
 
 // modalCard.innerHTML = modalWindowMarkup(results);
-
 
 // getCardInfo(id);
 
@@ -294,8 +283,6 @@ function renderStars(rating) {
 }
 
 export { createModalMenu };
-  
-  
 
 // // const heartIcon = `
 // // // <svg class="icon-heart" width="18" height="18">

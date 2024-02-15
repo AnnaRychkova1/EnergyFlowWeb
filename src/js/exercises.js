@@ -68,7 +68,13 @@ async function fetchDefaultMuscles() {
 fetchDefaultMuscles();
 
 async function filterBtnExercises(event) {
+  console.log(event.target);
+  const activeButten = event.target;
+  activeButten.classList.remove('btn-item-active');
   event.preventDefault();
+  hide(refs.containerFilteredCards);
+  hide(refs.searchForm);
+  refs.exercisesSubtitle.innerHTML = '';
 
   const query = event.target.dataset.filter;
   refs.exercisesGalleryEl.innerHTML = '';
@@ -155,6 +161,7 @@ function filterCartsExercises(event) {
   showLoader(refs.loaderModal);
   refs.exercisesGalleryEl.innerHTML = '';
   refs.paginationEl.innerHTML = '';
+  show(refs.exercisesTitleSpan);
   renderExerciseByFilterName(exercisesParamFilter, exercisesParamName);
   scrollToExerciseGallery();
 }
