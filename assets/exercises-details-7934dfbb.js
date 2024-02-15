@@ -8,7 +8,7 @@ e.subexercisesSearchForm.addEventListener("submit",l);async function l(r){r.prev
               <img class="filteered-star" href="#" alt="star" height="35"></img>
             </div>
           </div>
-          <button class="to-favorites-start" type="submit" data-id=${s} class="to-favorites-start"><a>Start</a></button>
+          <button class="to-favorites-start" type="submit" data-id=${s}>Start</button>
         </div>
         <div class="card-box-title">
           <img class="filtered-athlete" href="#" alt="athlete" height="35"></img>
@@ -26,4 +26,4 @@ e.subexercisesSearchForm.addEventListener("submit",l);async function l(r){r.prev
           </li>
         </ul>
   </li>`}function h(s,t){e.subExercisesPaginationContainer.innerHTML="";let i=Math.max(1,t-1),l=Math.min(s,i+2);console.log(t);for(let r=i;r<=l;r++){const a=document.createElement("button");a.textContent=r,a.classList.add("subexercises-pagination-button"),r===t&&a.classList.add("active"),a.addEventListener("click",()=>k(r)),e.subExercisesPaginationContainer.appendChild(a)}console.log(e.subExercisesPaginationContainer)}function k(s){o.page=s,console.log(s),w()}export{w as renderExerciseByFilterName};
-//# sourceMappingURL=exercises-details-bd33c473.js.map
+//# sourceMappingURL=exercises-details-7934dfbb.js.map
