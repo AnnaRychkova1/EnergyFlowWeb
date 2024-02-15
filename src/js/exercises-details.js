@@ -210,7 +210,7 @@ function createCard({ _id, rating, name, burnedCalories, time, bodyPart, target 
               <img class="filteered-star" href="#" alt="star" height="35"></img>
             </div>
           </div>
-          <button class="to-favorites-start" type="submit" data-id=${_id} class="to-favorites-start"><a>Start</a></button>
+          <button class="to-favorites-start" type="submit" data-id=${_id}>Start</button>
         </div>
         <div class="card-box-title">
           <img class="filtered-athlete" href="#" alt="athlete" height="35"></img>
