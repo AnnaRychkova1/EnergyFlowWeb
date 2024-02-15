@@ -11,17 +11,28 @@ export const refs = {
   exercisesGalleryEl: document.querySelector('.exercises-gallery'),
   paginationEl: document.querySelector('.exercises-pagination'),
   exercisesContainerEl: document.querySelector('.exercises-container'),
+  exercisesTitleSpan: document.querySelector('.exercises-title-span'),
 
   //  Anna
-  subexercisesDetailsContainer: document.querySelector('.subexercises-deteils-container'),
-  subexercisesFilteredCards: document.querySelector('.subexercises-filtered-cards'),
+  subexercisesDetailsContainer: document.querySelector(
+    '.subexercises-deteils-container'
+  ),
+  subexercisesFilteredCards: document.querySelector(
+    '.subexercises-filtered-cards'
+  ),
   subexercisesSearchForm: document.querySelector('.subexercises-search-form'),
   subexercisesSearchBtn: document.querySelector('.subexercises-search-btn'),
-  subexercisesTextNoFound: document.querySelector('.subexercises-text-no-found'),
+  subexercisesTextNoFound: document.querySelector(
+    '.subexercises-text-no-found'
+  ),
   exercisesSubtitle: document.querySelector('.exercises-subtitle'),
-  subExercisesPaginationContainer: document.querySelector('.subexercises-pagination-container'),
-  subexercisesPaginationButton: document.querySelector('.subexercises-pagination-button'),
-  
+  subExercisesPaginationContainer: document.querySelector(
+    '.subexercises-pagination-container'
+  ),
+  subexercisesPaginationButton: document.querySelector(
+    '.subexercises-pagination-button'
+  ),
+
   // Oksana
   favoritesGallery: document.querySelector('.favorites-gallery'),
   favoritesMessage: document.querySelector('.favorites-box-block'),
