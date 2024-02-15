@@ -22,7 +22,7 @@ const resultList = [];
 // Creating gallery of favorite exersises
 
 if (itemsFromLS === null) {
-  showMessageBlock();
+  // showMessageBlock();
   // } else if (itemsFromLS !== null && itemsFromLS.length === 0) {
   //   showMessageBlock();
 } else if (itemsFromLS.length > 0) {
