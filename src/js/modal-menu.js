@@ -84,8 +84,7 @@ function modalWindowMarkup({
   rating,
   description,
 }) {
-  const markup =
-    `<div class="modal-container">
+  const markup = `<div class="modal-container">
             <button class="modal-close-btn">
                 <svg
                     class="modal-close-icon"
@@ -169,12 +168,15 @@ function modalWindowMarkup({
             </div>
         </div>
     `;
-  
+
   modalCard.innerHTML = markup;
-  
 }
 
-
+function onCloseModal() {
+  modalCard.classList.add('is-hidden');
+  backdrop.classList.add('is-hidden');
+  modalCard.innerHTML = '';
+}
 //   const addToFavoriteBtn = document.querySelector('.ex-add-favorite');
 //   addToFavoriteBtn.addEventListener('click', addToFavoriteOnClick);
 
@@ -182,7 +184,7 @@ function modalWindowMarkup({
 //   closeBtn.addEventListener('click', onCloseModal);
 //   backdrop.addEventListener('click', handleBackdropClick);
 //   document.addEventListener('keydown', handleEscapeKey);
- 
+
 // function onCloseModal() {
 //   modalCard.classList.add('is-hidden');
 //   backdrop.classList.add('is-hidden');
@@ -217,7 +219,6 @@ function modalWindowMarkup({
 // const noActiveColor = '#e8e8e8';
 // const stars = document.querySelectorAll('.exercise-stars-list li');
 
-
 const stars = document.querySelectorAll('.ex-rate-icon');
 const activeColor = '#eea10c';
 const noActiveColor = '#e8e8e8';
@@ -245,8 +246,6 @@ const noActiveColor = '#e8e8e8';
 
 export { createModalMenu };
 
-
-
 //   function changingButtonName(value = 'add') {
 //     if (value === 'add') {
 //       return `Add to favorites
@@ -260,4 +259,3 @@ export { createModalMenu };
 //         </svg>`;
 //     }
 //   }
-

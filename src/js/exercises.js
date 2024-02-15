@@ -70,11 +70,13 @@ fetchDefaultMuscles();
 async function filterBtnExercises(event) {
   console.log(event.target);
   const activeButten = event.target;
-  activeButten.classList.remove('btn-item-active');
+  // activeButten.classList.remove('btn-item-active');
   event.preventDefault();
-  hide(refs.containerFilteredCards);
-  hide(refs.searchForm);
+  hide(refs.subexercisesDetailsContainer);
+  hide(refs.subexercisesSearchForm);
+  hide(refs.exercisesTitleSpan);
   refs.exercisesSubtitle.innerHTML = '';
+  // refs.subexercisesDetailsContainer.innerHTML = '';
 
   const query = event.target.dataset.filter;
   refs.exercisesGalleryEl.innerHTML = '';
