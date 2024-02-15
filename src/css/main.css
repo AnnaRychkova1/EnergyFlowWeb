@@ -39,14 +39,14 @@ button {
   padding: 12px 24px;
   width: auto;
   height: 48px;
-  background-color: var(--text-light-color);
+  background-color: var(--background-dark-grey);
   color: var(--text-light-color);
   /* font-weight: 700; */
   transition: all var(----anim);
 }
 
 button:hover {
-  background-color: var(--text-color-accent);
+  background-color: var(--background-btn-hover);
   color: var(--text-light-color);
 }
 
