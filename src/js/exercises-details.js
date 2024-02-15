@@ -173,7 +173,7 @@ function handleClickOnCardStart(evt) {
     }
     // showLoader(refs.loaderModal);
     const exerciseId = evt.target.dataset.id;
-    hide(refs.subexercisesDetailsContainer)
+    hide(refs.subexercisesDetailsContainer);
     //console.log(exerciseId);
     createModalMenu(exerciseId);
 }
@@ -210,7 +210,7 @@ function createCard({ _id, rating, name, burnedCalories, time, bodyPart, target 
               <img class="filteered-star" href="#" alt="star" height="35"></img>
             </div>
           </div>
-          <a><button class="to-favorites-start" type="submit" data-id=${_id} class="to-favorites-start">Start</button><a/>
+          <button class="to-favorites-start" type="submit" data-id=${_id} class="to-favorites-start"><a>Start</a></button>
         </div>
         <div class="card-box-title">
           <img class="filtered-athlete" href="#" alt="athlete" height="35"></img>
