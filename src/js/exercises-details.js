@@ -54,6 +54,12 @@ async function renderExerciseByFilterName(expectedFilter, name) {
         return;
     }
 
+    // ! Робити інер, тобто очищати список перед кожним трай
+     // ! Очищувати список вправ
+        // ! Очищувати мій дів
+    // ! Очищувати форму
+        
+
     try {
         const { results, totalPages } = await searchExerciseByFilters({
             filter: filter,
@@ -119,6 +125,12 @@ async function renderExerciseByFilterName(expectedFilter, name) {
                 hideLoader(refs.loaderModal);
                 return
         }
+
+    // ! Очищувати список вправ
+        // ! Очищувати мій дів
+    // ! Очищувати форму
+        
+
        
         try {
             const { results, totalPages } = await searchExerciseByFilters({

@@ -24,19 +24,80 @@ async function createModalMenu(expectedExercisesId) {
     const responseIdObject = await getCardInfo(expectedId);
     console.log(responseIdObject);
     modalWindowMarkup(responseIdObject);
+
     console.log(expectedId);
     const addToFavoriteBtn = document.querySelector('.ex-add-favorite');
     addToFavoriteBtn.addEventListener('click', addToFavoriteOnClick);
-    //     const closeBtn = document.querySelector('.modal-close-btn');
-    backdrop.classList.remove('is-hidden');
-    
-    function addToFavoriteOnClick(event) { 
-      console.log(event);
-      
-      
-      
-      console.log(expectedId);
+
+
+    function addToFavoriteOnClick(event) {
+      // Отримання id вправи з кнопки або з даних модального вікна
+      const exerciseId = event.target.dataset.id || expectedId;
+      // Отримання даних про вправу з модального вікна
+      const exerciseName = document.querySelector('.exercise-name').textContent;
+      const exerciseBodyPart = document.querySelector('.exercise-information .ex-block:nth-child(1) .exercise-label').textContent;
+      const exerciseEquipment = document.querySelector('.exercise-information .ex-block:nth-child(2) .exercise-label').textContent;
+      const exerciseTime = document.querySelector('.exercise-information .ex-block:nth-child(3) .exercise-label').textContent;
+      const exerciseTarget = document.querySelector('.exercise-information .ex-block:nth-child(4) .exercise-label').textContent;
+      const exerciseBurnedCalories = document.querySelector('.exercise-information .ex-block:nth-child(5) .exercise-label').textContent;
+      const exerciseGifUrl = document.querySelector('.exercise-gif img').src;
+      // Отримання існуючих обраних з localStorage (або ініціалізація пустого масиву)
+      let favorites = JSON.parse(localStorage.getItem('exerciseFavorites')) || [];
+      // Перевірка, чи вправа вже є в обраних
+      const isFavorite = favorites.some((favorite) => favorite._id === exerciseId);
+      // Оновлення тексту кнопки
+      if (isFavorite) {
+        event.target.textContent = 'Remove from favorites';
+      } else {
+        event.target.textContent = 'Add to favorites';
+      }
+      // Зміна логіки залежно від того, чи є вправа в обраних
+      if (isFavorite) {
+        // Видалення вправи з обраних
+        favorites = favorites.filter((favorite) => favorite._id !== exerciseId);
+        // Оновлення localStorage новим списком обраних
+        localStorage.setItem('exerciseFavorites', JSON.stringify(favorites));
+        // Візуальний відгук (необов'язково)
+        event.target.textContent = 'Removed from favorites!';
+        // Або використовуйте інший механізм зворотного зв'язку (наприклад, зміна піктограми, спливаюче повідомлення)
+      } else {
+        // Додавання нової вправи до масиву обраних
+        const newExercise = {
+          _id: exerciseId,
+          name: exerciseName,
+          bodyPart: exerciseBodyPart,
+          equipment: exerciseEquipment,
+          time: exerciseTime,
+          target: exerciseTarget,
+          burnedCalories: exerciseBurnedCalories,
+          gifUrl: exerciseGifUrl,
+        };
+        favorites.push(newExercise);
+        // Оновлення localStorage новим списком обраних
+        localStorage.setItem('exerciseFavorites', JSON.stringify(favorites));
+        // Або використовуйте інший механізм зворотного зв'язку (наприклад, зміна піктограми, спливаюче повідомлення)
+      }
     }
+
+     } catch (error) {
+    console.error('Error fetching images:', error);
+  }
+}
+   
+
+    // function addToFavoriteOnClick(event) {
+    //   console.log(event);
+    //   console.log(expectedId);
+        
+    //   // const element = event.target.closest('.add-favorite-btn');
+      
+    //   // const elementId = element.dataset.id;
+    //   // const favorites = localStorage.getItem('favorites');
+    
+      
+    //   // console.log(elementId);
+    //   // console.log(expectedId);
+    // }
   
 
 
@@ -56,10 +117,7 @@ async function createModalMenu(expectedExercisesId) {
     //     element.innerHTML = changingButtonName('add');
     //   } else {
     
-  } catch (error) {
-    console.error('Error fetching images:', error);
-  }
-}
+ 
   //     function addToFavoriteOnClick(event) {
   
 
