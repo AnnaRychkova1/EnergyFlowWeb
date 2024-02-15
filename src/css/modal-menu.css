@@ -23,7 +23,9 @@
     visibility: visible;
     pointer-events: auto;
 }
+.modal-container {
 
+}
 .modal {
     position: relative;
     position: absolute;
@@ -201,34 +203,34 @@
   }
 
     .ex-add-btn-container {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        gap: 9px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 9px;
     }
 }
 
 @media screen and (min-width: 768px) {
     .modal {
         width: 716px;
-        height: auto;
-        display: flex;
+        /* height: auto;
+        display: flex; */
         padding: 40px;
     }
-
+    .modal-container{
+        display: flex;
+        justify-content: center;
+        gap: 24px;
+    }
     .modal-close-btn {
         top: 14px;
         right: 10px;
     }
 
     .exercise-gif {
+        flex-shrink: 0;
         width: 270px;
         height: 259px;
-        margin-right: 24px;
-    }
-
-    .ex-content-container {
-        flex: 1;
     }
 
     .ex-add-btn-container {
