@@ -1,86 +1,54 @@
-.exercises-details {
-  width: 335px;
-  margin: 0 auto;
+.exercises-subtitle {font-weight: 400;
+font-size: 24px;
+line-height: 1.33;
+letter-spacing: -0.02em;
+color: rgba(27, 27, 27, 0.5);
+}
+
+.subexercises-search-form {
+  margin-top: 20px;
 }
 
 @media only screen and (min-width: 768px) {
-  .exercises-details {
+  .subexercises-search-form {
+    margin-top: 0;
+  }
+}
+
+.subexercises-input {
+}
+
+.subexercises-search-btn {
+}
+
+.subexercises-search-delete {
+
+}
+
+.subexercises-deteils-container {
+  list-style-type: none;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: auto;
+  margin-right: auto;
+  gap: 20px;
+}
+
+@media only screen and (min-width: 768px) {
+  .subexercises-deteils-container {
     width: 736px;
   }
 }
 
 @media only screen and (min-width: 1440px) {
-  .exercises-details {
+  .subexercises-deteils-container {
     width: 1408px;
   }
 }
 
-.exersises-header {
-}
-
-@media only screen and (min-width: 768px) {
-  .exercises-active {
-    display: flex;
-    justify-content: space-between;
-  }
-}
-
-.form {
-  margin-top: 20px;
-}
-
-@media only screen and (min-width: 768px) {
-  .form {
-    margin-top: 0;
-  }
-}
-
-.exercises-subtitle {
-  font-weight: 400;
-  font-size: 24px;
-  line-height: 1.33;
-  letter-spacing: -0.02em;
-  color: rgba(27, 27, 27, 0.5);
-}
-
-.exersises-header {
-}
-
-.exercises-input {
-}
-
-.search-btn {
-}
-
-.exercise-text-no-found {
-  padding-bottom: 320px;
-}
-
-@media only screen and (min-width: 768px) {
-  .exercise-text-no-found {
-    padding-bottom: 586px;
-  }
-}
-
-@media only screen and (min-width: 1440px) {
-  .exercise-text-no-found {
-    padding-bottom: 350px;
-  }
-}
-
-@media only screen and (min-width: 768px) {
-  .exercises-deteils {
-    margin-top: 23px;
-  }
-}
-
-@media only screen and (min-width: 1440px) {
-  .exercises-deteils {
-    margin-top: 0;
-  }
-}
-
-.filtered-cards {
+.subexercises-filtered-cards {
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
@@ -89,15 +57,32 @@
 }
 
 @media only screen and (min-width: 768px) {
-  .filtered-cards {
+  .subexercises-filtered-cards {
     gap: 20px 14px;
   }
 }
 
 @media only screen and (min-width: 1440px) {
-  .filtered-cards {
+  .subexercises-filtered-cards {
     gap: 28px 20px;
   }
+}
+
+.subexercises-text-no-found {
+}
+
+@media only screen and (min-width: 768px) {
+  .subexercise-text-no-found {
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .subexercise-text-no-found {
+  }
+}
+
+.exercise-no-found {
+
 }
 
 .filtered-card-item {
@@ -170,7 +155,7 @@
 .card-box-title {
 }
 
-.filteered-athlete {
+.filtered-athlete {
 }
 
 .filteered-title {
@@ -186,4 +171,11 @@
 }
 
 .filtered-descr-value {
+}
+
+
+/* Pagination */
+
+.subexercises-pagination-container {
+
 }
