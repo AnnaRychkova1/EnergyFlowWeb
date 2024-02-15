@@ -186,7 +186,7 @@
     background-size: 736px;
   }
 }
-@media screen and (min-width: 1280px) and (min-resolution: 192dpi) {
+@media screen and (min-width: 1440px) and (min-resolution: 192dpi) {
   .quote-img-container {
     background-image: url(/img/desctop/desc-section2@2.jpg);
     background-size: 704px;
@@ -275,8 +275,8 @@
     background-size: 368px;
   }
 }
-@media screen and (min-width: 1280px) and (min-resolution: 192dpi) {
-  .quote-img-container {
+@media screen and (min-width: 1440px) and (min-resolution: 192dpi) {
+  .quote-fav-img {
     background-image: url(/img/mobile/mobile-page-fafor-girl@2.jpg);
   }
 }
