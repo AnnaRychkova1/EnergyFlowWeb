@@ -19,45 +19,118 @@ let expectedId;
 // ! Something like this
 async function createModalMenu(expectedExercisesId) {
   expectedId = expectedExercisesId;
+
   try {
-   const responseIdObject = await getCardInfo(expectedId);
+    const responseIdObject = await getCardInfo(expectedId);
     console.log(responseIdObject);
     modalWindowMarkup(responseIdObject);
-     const addToFavoriteBtn = document.querySelector('.ex-add-favorite');
-    addToFavoriteBtn.addEventListener('click', addToFavoriteOnClick);
-    const closeBtn = document.querySelector('.modal-close-btn');
-  closeBtn.addEventListener('click', onCloseModal);
-    backdrop.classList.remove('is-hidden');
     console.log(expectedId);
+    const addToFavoriteBtn = document.querySelector('.ex-add-favorite');
+    addToFavoriteBtn.addEventListener('click', addToFavoriteOnClick);
+    //     const closeBtn = document.querySelector('.modal-close-btn');
+    backdrop.classList.remove('is-hidden');
     
-  function addToFavoriteOnClick(event) {
-  const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-console.log(favorites);
-  const isFavorite = favorites.some(item => item._id === expectedId);
-
-  if (isFavorite) {
-    const updatedFavorites = favorites.filter(item => item._id !== expectedId);
-    localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
-    element.classList.remove('is-favorite');
-    element.innerHTML = changingButtonName('add');
-  } else {
-    
-    // const exercisesCardInfo = await getCardInfo(expectedId);
-    localStorage.setItem(
-      'favorites',
-      JSON.stringify([...favorites, responseIdObject])
-    );
-
-    // there must be event.target
-    element.classList.add('is-favorite');
-    element.innerHTML = changingButtonName('remove');
-  }
+    function addToFavoriteOnClick(event) { 
+      console.log(event);
+      
+      
+      
+      console.log(expectedId);
     }
+  
+
+
+    //   const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    //   console.log(expectedId);
+
+    // console.log(event.target);
+
+
+    // console.log(favorites);
+    //   const isFavorite = favorites.some(item => item._id === expectedId);
+
+    //   if (isFavorite) {
+    //     const updatedFavorites = favorites.filter(item => item._id !== expectedId);
+    //     localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+    //     element.classList.remove('is-favorite');
+    //     element.innerHTML = changingButtonName('add');
+    //   } else {
     
   } catch (error) {
     console.error('Error fetching images:', error);
   }
 }
+  //     function addToFavoriteOnClick(event) {
+  
+
+
+  //   const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+  //   console.log(expectedId);
+
+  // console.log(event.target);
+
+
+  // console.log(favorites);
+  //   const isFavorite = favorites.some(item => item._id === expectedId);
+
+  //   if (isFavorite) {
+  //     const updatedFavorites = favorites.filter(item => item._id !== expectedId);
+  //     localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+  //     element.classList.remove('is-favorite');
+  //     element.innerHTML = changingButtonName('add');
+  //   } else {
+    
+  //     // const exercisesCardInfo = await getCardInfo(expectedId);
+  //     localStorage.setItem(
+  //       'favorites',
+  //       JSON.stringify([...favorites, responseIdObject])
+  //     );
+
+  //     // there must be event.target
+  //     element.classList.add('is-favorite');
+  //     element.innerHTML = changingButtonName('remove');
+  //   }
+  //     }
+    
+
+    
+
+
+
+
+
+    
+    
+    
+    
+    
+    
+    //closeBtn.addEventListener('click', onCloseModal);
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
 
 
 async function getCardInfo(exerciseId) {
@@ -73,7 +146,7 @@ async function getCardInfo(exerciseId) {
 }
 
 
-// ! тут після <p class="ex-current-rating">${rating}</p> <ul class="exercise-stars-list"></ul> я видалила поки що // ${renderStars(popularity)}
+// ! Good тут після <p class="ex-current-rating">${rating}</p> <ul class="exercise-stars-list"></ul> я видалила поки що // ${renderStars(popularity)}
 function modalWindowMarkup({
   _id,
   bodyPart,
@@ -155,7 +228,7 @@ function modalWindowMarkup({
                     </p>
 
                     <div class="ex-add-btn-container">
-                        <button data-id="${_id}" class="ex-add-favorite">
+                        <button type="button" data-id="${_id}" class="ex-add-favorite">
                             Add to favorites
                             <svg
                                 class="heart-svg"

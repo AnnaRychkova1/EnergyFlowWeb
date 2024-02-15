@@ -21,6 +21,8 @@ if (window.innerWidth <= 768) {
 }
 
 async function renderExerciseByFilterName(expectedFilter, name) {
+    hideLoader(refs.loaderModal);
+
     let filter;
 
     if (expectedFilter === 'Body parts') {
@@ -36,15 +38,14 @@ async function renderExerciseByFilterName(expectedFilter, name) {
     if (refs.exercisesGalleryEl) {
         hide(refs.subexercisesDetailsContainer);
         refs.subexercisesSearchForm.reset();
-        hide(refs.subexercisesSearchForm);
+        // hide(refs.subexercisesSearchForm);
     }
 
+    refs.subexercisesFilteredCards.innerHTML = ''
     refs.exercisesSubtitle.textContent = `${name}`;
     show(refs.subexercisesDetailsContainer);
     show(refs.subexercisesSearchForm);
     showLoader(refs.loaderModal);
-
-    refs.subexercisesFilteredCards.innerHTML = ''
 
     if (!filter || !name) {
         isiToast.noResults();
@@ -54,7 +55,6 @@ async function renderExerciseByFilterName(expectedFilter, name) {
     }
 
     try {
-        showLoader(refs.loaderModal);
         const { results, totalPages } = await searchExerciseByFilters({
             filter: filter,
             name: name,
@@ -74,19 +74,19 @@ async function renderExerciseByFilterName(expectedFilter, name) {
             return;
         }
 
-        if (totalPages > 2) {
-            createPagination(totalPages);
-        
-        }
-
         renderCards(results);
-        getParams.page += 1;
+        
+        if (!refs.subExercisesPaginationContainer) {
+            createPagination(totalPages);
+        }
 
     } catch (error) {
         console.error('Error fetching images:', error);
         isiToast.apiIsiToastError();
     } finally {
         hideLoader(refs.loaderModal);
+        refs.subexercisesSearchForm.reset();
+
     }
 
     //!  Works with search button
@@ -136,7 +136,7 @@ async function renderExerciseByFilterName(expectedFilter, name) {
                 return;
             }
             
-            if (totalPages > 2) {
+            if (totalPages >= 2) {
                 createPagination(totalPages);
             }
 
@@ -161,6 +161,7 @@ function handleClickOnCardStart(evt) {
     }
     // showLoader(refs.loaderModal);
     const exerciseId = evt.target.dataset.id;
+    hide(refs.subexercisesDetailsContainer)
     //console.log(exerciseId);
     createModalMenu(exerciseId);
 }
@@ -217,34 +218,33 @@ function createCard({ _id, rating, name, burnedCalories, time, bodyPart, target 
   </li>`;
 }
 
-
 // ! Pagination
 
-
-function createPagination(totalPages) {
+function createPagination(totalPages, pageCurrentNumber) {
 
     refs.subExercisesPaginationContainer.innerHTML = '';
 
-    let startPage = Math.max(1, getParams.page - 1);
+    let startPage = Math.max(1, pageCurrentNumber - 1);
     let endPage = Math.min(totalPages, startPage + 2);
+    console.log(pageCurrentNumber);
 
     for (let i = startPage; i <= endPage; i++) {
         const button = document.createElement('button');
         button.textContent = i;
         button.classList.add('subexercises-pagination-button');
-        if (i === getParams.page) {
+        if (i === pageCurrentNumber) {
             button.classList.add('active');
         }
         button.addEventListener('click', () => handlePageChange(i));
         refs.subExercisesPaginationContainer.appendChild(button);
     }
+    console.log(refs.subExercisesPaginationContainer);
 }
 
 function handlePageChange(pageNumber) {
     getParams.page = pageNumber;
     console.log(pageNumber);
-    renderExerciseByFilterName(); // Оновлюємо список вправ при зміні сторінки
+    renderExerciseByFilterName(); 
 }
-
 
 export { renderExerciseByFilterName };

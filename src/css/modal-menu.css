@@ -27,8 +27,9 @@
 
 }
 .modal {
-    position: relative;
-    position: absolute;
+    /* position: relative; */
+    /* position: absolute; */
+    position: fixed;
     top: 50%;
     left: 50%;
     min-width: 320px;
