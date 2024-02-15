@@ -25,26 +25,37 @@ async function createModalMenu(expectedExercisesId) {
     console.log(expectedId);
     const addToFavoriteBtn = document.querySelector('.ex-add-favorite');
     addToFavoriteBtn.addEventListener('click', addToFavoriteOnClick);
-
-
     function addToFavoriteOnClick(event) {
       const exerciseId = event.target.dataset.id || expectedId;
       const exerciseName = document.querySelector('.exercise-name').textContent;
-      const exerciseBodyPart = document.querySelector('.exercise-information .ex-block:nth-child(1) .exercise-label').textContent;
-      const exerciseEquipment = document.querySelector('.exercise-information .ex-block:nth-child(2) .exercise-label').textContent;
-      const exerciseTime = document.querySelector('.exercise-information .ex-block:nth-child(3) .exercise-label').textContent;
-      const exerciseTarget = document.querySelector('.exercise-information .ex-block:nth-child(4) .exercise-label').textContent;
-      const exerciseBurnedCalories = document.querySelector('.exercise-information .ex-block:nth-child(5) .exercise-label').textContent;
+      const exerciseBodyPart = document.querySelector(
+        '.exercise-information .ex-block:nth-child(1) .exercise-label'
+      ).textContent;
+      const exerciseEquipment = document.querySelector(
+        '.exercise-information .ex-block:nth-child(2) .exercise-label'
+      ).textContent;
+      const exerciseTime = document.querySelector(
+        '.exercise-information .ex-block:nth-child(3) .exercise-label'
+      ).textContent;
+      const exerciseTarget = document.querySelector(
+        '.exercise-information .ex-block:nth-child(4) .exercise-label'
+      ).textContent;
+      const exerciseBurnedCalories = document.querySelector(
+        '.exercise-information .ex-block:nth-child(5) .exercise-label'
+      ).textContent;
       const exerciseGifUrl = document.querySelector('.exercise-gif img').src;
-      let favorites = JSON.parse(localStorage.getItem('exerciseFavorites')) || [];
-      const isFavorite = favorites.some((favorite) => favorite._id === exerciseId);
+      let favorites =
+        JSON.parse(localStorage.getItem('exerciseFavorites')) || [];
+      const isFavorite = favorites.some(
+        favorite => favorite._id === exerciseId
+      );
       if (isFavorite) {
         event.target.textContent = 'Add to favorites';
       } else {
         event.target.textContent = 'Remove from favorites';
       }
       if (isFavorite) {
-        favorites = favorites.filter((favorite) => favorite._id !== exerciseId);
+        favorites = favorites.filter(favorite => favorite._id !== exerciseId);
         localStorage.setItem('exerciseFavorites', JSON.stringify(favorites));
       } else {
         const newExercise = {
@@ -62,13 +73,14 @@ async function createModalMenu(expectedExercisesId) {
       }
     }
 
-     } catch (error) {
+    const closeButton = document.querySelector('.modal-close-btn');
+    closeButton.addEventListener('click', closeModal);
+    document.addEventListener('keydown', escapeClickHandler);
+    backdrop.addEventListener('click', backdropClickHandler);
+  } catch (error) {
     console.error('Error fetching images:', error);
   }
 }
-   
-
-    
 
 async function getCardInfo(exerciseId) {
   console.log(exerciseId);
@@ -81,7 +93,6 @@ async function getCardInfo(exerciseId) {
     console.error(err);
   }
 }
-
 
 // ! Good тут після <p class="ex-current-rating">${rating}</p> <ul class="exercise-stars-list"></ul> я видалила поки що // ${renderStars(popularity)}
 function modalWindowMarkup({
@@ -181,35 +192,27 @@ function modalWindowMarkup({
             </div>
         </div>
     `;
-  
-  modalCard.innerHTML = markup;  
-}
 
-function onClick() {
-  closeModal();
-}
-
-function backdropOnClick(event) {
-  if (event.target.closest('.modal')) {
-    return;
-  }
-  closeModal();
-}
-
-export function onEscape(event) {
-  event.preventDefault();
-  if (event.key === 'Escape') {
-    closeModal();
-  }
+  modalCard.innerHTML = markup;
 }
 
 function closeModal() {
-  modalCard.classList.add('visually-hidden');
-  backdrop.classList.add('visually-hidden');
-  modalCard.innerHTML = '';
-
-  document.removeEventListener('keydown', onEscape);
-  backdrop.removeEventListener('click', backdropOnClick);
+  hide(backdrop);
+  document.removeEventListener('click', closeModal);
+  document.removeEventListener('keydown', escapeClickHandler);
+  if (document.contains(backdrop)) {
+    backdrop.removeEventListener('click', backdropClickHandler);
+  }
+}
+function backdropClickHandler(event) {
+  if (event.target === backdrop) {
+    closeModal();
+  }
+}
+function escapeClickHandler(event) {
+  if (event.key === 'Escape') {
+    closeModal();
+  }
 }
 
 const stars = document.querySelectorAll('.ex-rate-icon');
