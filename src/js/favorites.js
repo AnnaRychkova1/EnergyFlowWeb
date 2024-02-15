@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { refs } from './templates/refs.js';
-import { handleClickOnCardStart } from './exercises-details.js';
+// import { handleClickOnCardStart } from './exercises-details.js';
 // import { onClickCardContent } from './modal-menu.js';
 
 
