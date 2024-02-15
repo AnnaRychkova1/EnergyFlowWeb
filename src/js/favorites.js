@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { refs } from './templates/refs.js';
-import { handleClickOnCardStart } from './exercises-details.js';
 // import { onClickCardContent } from './modal-menu.js';
 
 
@@ -16,12 +15,6 @@ function showMessageBlock() {
   refs.messageBlock.innerHTML = markupMessageBlock;
 }
 
-
-const test = document.querySelector('.favorites-btn');      
-
-test.addEventListener('click', handleClickOnCardStart);
-console.log(test);
-console.log(handleClickOnCardStart());
 
 
 // Creating gallery of favorite exersises
@@ -120,28 +113,30 @@ async function removeObjectFromLocalStorage(idToRemove) {
 
 
 
-// Scroll an element into view
-// function showScroll() {
-// const scrollElement = document.getElementById('targetElementId');
-// element.scrollIntoView({
-//   behavior: 'smooth', // Optional: 'auto' or 'smooth'
-//   block: 'start',     // Optional: 'start', 'center', 'end', or 'nearest'
-//   inline: 'start'     // Optional: 'start', 'center', 'end', or 'nearest'
-// });
-//   if ()
-//     refs.favoritesGallery.scrollTo({
-//       top: refs.favoritesGallery.scrollHeight,
-//       behavior: 'smooth',
-//     }
-// }
-// function hideScrollForFavorites() {
-//   favoritesGallery.classList.remove('scroll-on');
-//   favoritesGallery.classList.remove('padding-for-scroll-list');
-//   document
-//     .querySelector('.favor-wrapper')
-//     .classList.remove('padding-for-scroll-container');
-// }
+//  Scroll for favorites-gallery
+
+function showScroll() {
+const scrollElement = document.getElementById('targetElementId');
+element.scrollIntoView({
+  behavior: 'smooth', // Optional: 'auto' or 'smooth'
+  block: 'start',     // Optional: 'start', 'center', 'end', or 'nearest'
+  inline: 'start'     // Optional: 'start', 'center', 'end', or 'nearest'
+});
+  if (storedArray.length > 8)
+    refs.favoritesGallery.scrollTo({
+      top: refs.favoritesGallery.scrollHeight,
+      behavior: 'smooth',
+    }
+)}
+function hideScroll() {
+  favoritesGallery.classList.remove('scroll-on');
+  favoritesGallery.classList.remove('favorites-scroll');
+  document.querySelector('.favorites-gallery').classList.remove('favorites-scroll');
+}
   
+
+
+
 /// Create the Favorites page
 
 
@@ -173,7 +168,8 @@ async function createGalleryFromLS(event) {
   }
 
 
-    // Refresh the gallery by updating the displayed items
+// Refresh the gallery by updating the displayed items
+    
 async function refreshGallery() {
   refs.favoritesMessage.style.display = 'none';
     
@@ -296,14 +292,7 @@ async function refreshGallery() {
 //     }
 //   }
 
-//     // Scroll for container favorites-gallery for desktop and tablet
-//     function scrollBy() {
-//       refs.favoritesGallery.scrollTo({
-//         top: refs.favoritesGallery.scrollHeight,
-//         behavior: 'smooth',
-//       });
-//     }
-  
+//    
 
 // // Remove an exersise from an array stored in local storage
 

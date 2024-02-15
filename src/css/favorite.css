@@ -12,7 +12,7 @@
     display: none !important;
   }
 
-  .container .favorites-container {
+  .container.favorites-container {
     width: 335px;
     height: 450px;
   }
