@@ -2,12 +2,9 @@ import axios from 'axios';
 import { hide, show, showLoader, hideLoader } from './services/visibility';
 import icons from '../img/icons/symbol-defs.svg';
 
-const BASE_URL = 'https://energyflow.b.goit.study/api';
-
 const gallery = document.querySelector('.results'); // плюс название содержимого карточки //
 const backdrop = document.querySelector('.backdrop');
 const modalCard = document.querySelector('.modal');
-const favorites = document.querySelector('.ex-add-favorite');
 
 const heartIcon = `
 // <svg class="icon-heart" width="18" height="18">
@@ -18,6 +15,7 @@ const heartIcon = `
 let expectedId;
 // ! Something like this
 async function createModalMenu(expectedExercisesId) {
+  show(backdrop);
   expectedId = expectedExercisesId;
 
   try {
@@ -31,9 +29,7 @@ async function createModalMenu(expectedExercisesId) {
 
 
     function addToFavoriteOnClick(event) {
-      // Отримання id вправи з кнопки або з даних модального вікна
       const exerciseId = event.target.dataset.id || expectedId;
-      // Отримання даних про вправу з модального вікна
       const exerciseName = document.querySelector('.exercise-name').textContent;
       const exerciseBodyPart = document.querySelector('.exercise-information .ex-block:nth-child(1) .exercise-label').textContent;
       const exerciseEquipment = document.querySelector('.exercise-information .ex-block:nth-child(2) .exercise-label').textContent;
@@ -41,27 +37,17 @@ async function createModalMenu(expectedExercisesId) {
       const exerciseTarget = document.querySelector('.exercise-information .ex-block:nth-child(4) .exercise-label').textContent;
       const exerciseBurnedCalories = document.querySelector('.exercise-information .ex-block:nth-child(5) .exercise-label').textContent;
       const exerciseGifUrl = document.querySelector('.exercise-gif img').src;
-      // Отримання існуючих обраних з localStorage (або ініціалізація пустого масиву)
       let favorites = JSON.parse(localStorage.getItem('exerciseFavorites')) || [];
-      // Перевірка, чи вправа вже є в обраних
       const isFavorite = favorites.some((favorite) => favorite._id === exerciseId);
-      // Оновлення тексту кнопки
       if (isFavorite) {
-        event.target.textContent = 'Remove from favorites';
-      } else {
         event.target.textContent = 'Add to favorites';
-      }
-      // Зміна логіки залежно від того, чи є вправа в обраних
-      if (isFavorite) {
-        // Видалення вправи з обраних
-        favorites = favorites.filter((favorite) => favorite._id !== exerciseId);
-        // Оновлення localStorage новим списком обраних
-        localStorage.setItem('exerciseFavorites', JSON.stringify(favorites));
-        // Візуальний відгук (необов'язково)
-        event.target.textContent = 'Removed from favorites!';
-        // Або використовуйте інший механізм зворотного зв'язку (наприклад, зміна піктограми, спливаюче повідомлення)
       } else {
-        // Додавання нової вправи до масиву обраних
+        event.target.textContent = 'Remove from favorites';
+      }
+      if (isFavorite) {
+        favorites = favorites.filter((favorite) => favorite._id !== exerciseId);
+        localStorage.setItem('exerciseFavorites', JSON.stringify(favorites));
+      } else {
         const newExercise = {
           _id: exerciseId,
           name: exerciseName,
@@ -73,9 +59,7 @@ async function createModalMenu(expectedExercisesId) {
           gifUrl: exerciseGifUrl,
         };
         favorites.push(newExercise);
-        // Оновлення localStorage новим списком обраних
         localStorage.setItem('exerciseFavorites', JSON.stringify(favorites));
-        // Або використовуйте інший механізм зворотного зв'язку (наприклад, зміна піктограми, спливаюче повідомлення)
       }
     }
 
@@ -85,111 +69,7 @@ async function createModalMenu(expectedExercisesId) {
 }
    
 
-    // function addToFavoriteOnClick(event) {
-    //   console.log(event);
-    //   console.log(expectedId);
-        
-    //   // const element = event.target.closest('.add-favorite-btn');
-      
-    //   // const elementId = element.dataset.id;
-    //   // const favorites = localStorage.getItem('favorites');
     
-      
-    //   // console.log(elementId);
-    //   // console.log(expectedId);
-    // }
-  
-
-
-    //   const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-    //   console.log(expectedId);
-
-    // console.log(event.target);
-
-
-    // console.log(favorites);
-    //   const isFavorite = favorites.some(item => item._id === expectedId);
-
-    //   if (isFavorite) {
-    //     const updatedFavorites = favorites.filter(item => item._id !== expectedId);
-    //     localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
-    //     element.classList.remove('is-favorite');
-    //     element.innerHTML = changingButtonName('add');
-    //   } else {
-    
- 
-  //     function addToFavoriteOnClick(event) {
-  
-
-
-  //   const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-  //   console.log(expectedId);
-
-  // console.log(event.target);
-
-
-  // console.log(favorites);
-  //   const isFavorite = favorites.some(item => item._id === expectedId);
-
-  //   if (isFavorite) {
-  //     const updatedFavorites = favorites.filter(item => item._id !== expectedId);
-  //     localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
-  //     element.classList.remove('is-favorite');
-  //     element.innerHTML = changingButtonName('add');
-  //   } else {
-    
-  //     // const exercisesCardInfo = await getCardInfo(expectedId);
-  //     localStorage.setItem(
-  //       'favorites',
-  //       JSON.stringify([...favorites, responseIdObject])
-  //     );
-
-  //     // there must be event.target
-  //     element.classList.add('is-favorite');
-  //     element.innerHTML = changingButtonName('remove');
-  //   }
-  //     }
-    
-
-    
-
-
-
-
-
-    
-    
-    
-    
-    
-    
-    //closeBtn.addEventListener('click', onCloseModal);
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
 
 async function getCardInfo(exerciseId) {
   console.log(exerciseId);
@@ -304,53 +184,35 @@ function modalWindowMarkup({
         </div>
     `;
   
-  modalCard.innerHTML = markup;
-  
+  modalCard.innerHTML = markup;  
 }
 
+function onClick() {
+  closeModal();
+}
 
-//   const addToFavoriteBtn = document.querySelector('.ex-add-favorite');
-//   addToFavoriteBtn.addEventListener('click', addToFavoriteOnClick);
+function backdropOnClick(event) {
+  if (event.target.closest('.modal')) {
+    return;
+  }
+  closeModal();
+}
 
-//   const closeBtn = document.querySelector('.modal-close-btn');
-//   closeBtn.addEventListener('click', onCloseModal);
-//   backdrop.addEventListener('click', handleBackdropClick);
-//   document.addEventListener('keydown', handleEscapeKey);
- 
-// function onCloseModal() {
-//   modalCard.classList.add('is-hidden');
-//   backdrop.classList.add('is-hidden');
-//   modalCard.innerHTML = '';
+export function onEscape(event) {
+  event.preventDefault();
+  if (event.key === 'Escape') {
+    closeModal();
+  }
+}
 
-//   document.removeEventListener('keydown', handleEscapeKey);
-//   backdrop.removeEventListener('click', handleBackdropClick);
-// }
-// function handleBackdropClick(event) {
-//   if (event.target.closest('.modal')) {
-//     return;
-//   }
-//   modalCard.classList.add('is-hidden');
-//   backdrop.classList.add('is-hidden');
-//   modalCard.innerHTML = '';
+function closeModal() {
+  modalCard.classList.add('visually-hidden');
+  backdrop.classList.add('visually-hidden');
+  modalCard.innerHTML = '';
 
-//   document.removeEventListener('keydown', handleEscapeKey);
-//   backdrop.removeEventListener('click', handleBackdropClick);
-// }
-// function handleEscapeKey(event) {
-//   event.preventDefault();
-//   if (event.key === 'Escape') {
-//     modalCard.classList.add('is-hidden');
-//     backdrop.classList.add('is-hidden');
-//     modalCard.innerHTML = '';
-
-//     document.removeEventListener('keydown', handleEscapeKey);
-//     backdrop.removeEventListener('click', handleBackdropClick);
-//   }
-// }
-// const activeColor = '#eea10c';
-// const noActiveColor = '#e8e8e8';
-// const stars = document.querySelectorAll('.exercise-stars-list li');
-
+  document.removeEventListener('keydown', onEscape);
+  backdrop.removeEventListener('click', backdropOnClick);
+}
 
 const stars = document.querySelectorAll('.ex-rate-icon');
 const activeColor = '#eea10c';
@@ -378,20 +240,3 @@ const noActiveColor = '#e8e8e8';
 // }
 
 export { createModalMenu };
-
-
-
-//   function changingButtonName(value = 'add') {
-//     if (value === 'add') {
-//       return `Add to favorites
-//         <svg class="icon-heart" width="18" height="18">
-//           <use href="${heartIcon}#icon-heart"></use>
-//         </svg>`;
-//     } else {
-//       return `Remove from
-//         <svg class="icon-heart" width="18" height="18">
-//           <use href="${heartIcon}#icon-heart"></use>
-//         </svg>`;
-//     }
-//   }
-
