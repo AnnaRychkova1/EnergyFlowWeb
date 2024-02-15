@@ -33,6 +33,7 @@ if (screenWidth <= 375) {
 
 async function getExercisesByFilter() {
   showLoader(refs.loaderModal);
+
   try {
     const response = await axios.get(`${BASE_URL}/filters`, {
       params: {
@@ -76,7 +77,7 @@ async function filterBtnExercises(event) {
   hide(refs.subexercisesSearchForm);
   hide(refs.exercisesTitleSpan);
   refs.exercisesSubtitle.innerHTML = '';
-  // refs.subexercisesDetailsContainer.innerHTML = '';
+  refs.subexercisesDetailsContainer.innerHTML = '';
 
   const query = event.target.dataset.filter;
   refs.exercisesGalleryEl.innerHTML = '';
@@ -163,7 +164,9 @@ function filterCartsExercises(event) {
   showLoader(refs.loaderModal);
   refs.exercisesGalleryEl.innerHTML = '';
   refs.paginationEl.innerHTML = '';
+  show(refs.subexercisesDetailsContainer);
   show(refs.exercisesTitleSpan);
+  hideLoader(refs.loaderModal);
   renderExerciseByFilterName(exercisesParamFilter, exercisesParamName);
   scrollToExerciseGallery();
 }
