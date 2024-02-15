@@ -7,14 +7,12 @@ import { createModalMenu } from './modal-menu.js';
 const BASE_URL = 'https://energyflow.b.goit.study/api';
 const ENDPOINT_EXERCISES = 'exercises';
 
-refs.resultContainer.addEventListener('click', handleClickOnCardStart)
-
 const getParams = {
     filter: '',
     keyword: '',
     page: 1,
     limit: 9,
-}
+};
 
 if (window.innerWidth <= 768) {
     getParams.limit = 8;
@@ -26,35 +24,37 @@ async function renderExerciseByFilterName(expectedFilter, name) {
     let filter;
 
     if (expectedFilter === 'Body parts') {
-        filter = 'bodypart'
-    }
-    if (expectedFilter === 'Muscles') {
-        filter = 'muscles'
-    }
-    if (expectedFilter === 'Equipment') {
-        filter = 'equipment'
-    }
+        filter = 'bodypart';
+    } else if (expectedFilter === 'Muscles') {
+        filter = 'muscles';
+    } else if (expectedFilter === 'Equipment') {
+        filter = 'equipment';
+    }  
+
+    // ! why search form is still shown? Maybe i need remove listener from form?
 
     if (refs.exercisesGalleryEl) {
-        hide(refs.containerFilteredCards);
+        hide(refs.subexercisesDetailsContainer);
+        refs.subexercisesSearchForm.reset();
+        hide(refs.subexercisesSearchForm);
     }
+
     refs.exercisesSubtitle.textContent = `${name}`;
-    show(refs.containerFilteredCards);
-    show(refs.searchForm);
+    show(refs.subexercisesDetailsContainer);
+    show(refs.subexercisesSearchForm);
     showLoader(refs.loaderModal);
 
-    // ! need to check for the first ul. is there or not
-
-    refs.resultContainer.innerHTML = '';
+    refs.subexercisesFilteredCards.innerHTML = ''
 
     if (!filter || !name) {
         isiToast.noResults();
-        show(refs.textResult);
+        show(refs.subexercisesTextNoFound);
         hideLoader(refs.loaderModal);
         return;
     }
 
     try {
+        showLoader(refs.loaderModal);
         const { results, totalPages } = await searchExerciseByFilters({
             filter: filter,
             name: name,
@@ -62,62 +62,64 @@ async function renderExerciseByFilterName(expectedFilter, name) {
             limit: getParams.limit,
             page: getParams.page
         });
-        console.log(results);
+
         console.log(totalPages);
+        console.log(results);
+        console.log(getParams.page);
+
+        if (totalPages < 1) {
+            isiToast.noResults();
+            show(refs.subexercisesTextNoFound);
+            hideLoader(refs.loaderModal);
+            return;
+        }
 
         if (totalPages > 2) {
-//            show(refs.exercisesPagination); 
-//           createPagination(totalPages);
+            createPagination(totalPages);
+        
         }
 
-        if (totalPages === 0) {
-            isiToast.noResults();
-            show(refs.textResult);
-            hideLoader(refs.loaderModal);
-            return;
-        }
-
-        if (!results || totalPages === 0) {
-            isiToast.noResults();
-            show(refs.textResult);
-            hideLoader(refs.loaderModal);
-            return;
-        }
-
-        //  create markup for the first time or once
-
-        let markup = '';
-        for (const result of results) {
-            markup += createCardsOfExercises(result);
-        }
-
-        refs.resultContainer.innerHTML = markup;
-
+        renderCards(results);
         getParams.page += 1;
-//        handlePageChange(getParams.page);
 
     } catch (error) {
         console.error('Error fetching images:', error);
         isiToast.apiIsiToastError();
     } finally {
         hideLoader(refs.loaderModal);
- //       hide(refs.exercisesPagination);
     }
 
-
-    //  Works with search button
-    refs.searchForm.addEventListener('submit', handleSearch);
-
+    //!  Works with search button
+    refs.subexercisesSearchForm.addEventListener('submit', handleSearch);
+    
     async function handleSearch(evt) {
-
         evt.preventDefault();
-        refs.resultContainer.innerHTML = '';
-        getParams.page += 1;
 
-        const inputKeyword = evt.currentTarget;
-        getParams.keyword = inputKeyword.elements.query.value.trim();
-        console.log(getParams.keyword)
+         if (refs.exercisesGalleryEl) {
+            hide(refs.subexercisesDetailsContainer);
+            // refs.subexercisesSearchForm.reset();
+            hide(refs.subexercisesSearchForm);
+        }
 
+        refs.exercisesSubtitle.textContent = `${name}`;
+        show(refs.subexercisesDetailsContainer);
+        show(refs.subexercisesSearchForm);
+        showLoader(refs.loaderModal);
+        refs.subexercisesFilteredCards.innerHTML = '';
+
+        // get query
+        const formData = new FormData(evt.target)
+        getParams.keyword = formData.get('query');
+        console.log(getParams.keyword);
+
+        // ! check fot the wrong query
+    
+         if (getParams.keyword.trim() === '') {
+                isiToast.noQuery();
+                hideLoader(refs.loaderModal);
+                return
+        }
+       
         try {
             const { results, totalPages } = await searchExerciseByFilters({
                 filter: filter,
@@ -127,44 +129,65 @@ async function renderExerciseByFilterName(expectedFilter, name) {
                 page: getParams.page
             });
 
-            if (getParams.keyword.trim() === '') {
-                isiToast.noQuery();
-                show(refs.textResult);
+            if (totalPages < 1) {
+                isiToast.noResults();
+                show(refs.subexercisesTextNoFound);
                 hideLoader(refs.loaderModal);
-                return
-            }
-
-            // ! check fot the wrong query
-
-            if (totalPages > 2) {
- //                show(refs.exercisesPagination);
- //               createPagination(totalPages);
+                return;
             }
             
-            //  create markup for the first time or once
-
-            let markupFilteredCards = '';
-            for (const result of results) {
-                markupFilteredCards += createCardsOfExercises(result);
+            if (totalPages > 2) {
+                createPagination(totalPages);
             }
-            refs.resultContainer.innerHTML = markupFilteredCards;
+
+            renderCards(results);
             getParams.page += 1;
- //           handlePageChange(getParams.page);
 
         } catch (error) {
             console.error('Error fetching images:', error);
             isiToast.apiIsiToastError();
         } finally {
-            refs.searchForm.reset();
- //           hide(refs.exercisesPagination);
+            // refs.subexercisesSearchForm.reset();
+            hide(refs.loaderModal);
         }
     }
 }
 
+refs.subexercisesFilteredCards.addEventListener('click', handleClickOnCardStart)
 
-// Create markup
+function handleClickOnCardStart(evt) {
+    if (!evt.target.dataset.id) {
+        return
+    }
+    // showLoader(refs.loaderModal);
+    const exerciseId = evt.target.dataset.id;
+    //console.log(exerciseId);
+    createModalMenu(exerciseId);
+}
 
-function createCardsOfExercises({ _id, rating, name, burnedCalories, time, bodyPart, target }) {
+async function searchExerciseByFilters({filter, name, keyword, limit, page}) {
+    const response = await axios.get(
+        `${BASE_URL}/${ENDPOINT_EXERCISES}`,
+        {
+            params: {
+                [filter]: name,
+                keyword: keyword,
+                limit: limit,
+                page: page
+            },
+        }
+    );
+    return response.data;
+}
+
+// ! +++
+function renderCards(results) {
+    const markup = results.map(result => createCard(result)).join('');
+    refs.subexercisesFilteredCards.innerHTML = markup;
+}
+
+// ! +++
+function createCard({ _id, rating, name, burnedCalories, time, bodyPart, target }) {
     return `<li class="filtered-card-item">
         <div class="card-box-workout">
           <div class="card-box-info">
@@ -191,40 +214,37 @@ function createCardsOfExercises({ _id, rating, name, burnedCalories, time, bodyP
             <p class="filtered-descr-title">Target: <spam class="filtered-descr-value">${target}</spam></p>
           </li>
         </ul>
-  </li>
-  `;
+  </li>`;
 }
 
-// Function for create modal  Створити делегування подій на лішку
 
-function handleClickOnCardStart(evt) {
-    if (!evt.target.dataset.id) {
-        return
-    }
-    // showLoader(refs.loaderModal);
-    const exerciseId = evt.target.dataset.id;
-    //console.log(exerciseId);
-    createModalMenu(exerciseId);
-}
+// ! Pagination
 
-// Api Function
 
-async function searchExerciseByFilters({filter, name, keyword, limit, page}) {
-    const response = await axios.get(
-        `${BASE_URL}/${ENDPOINT_EXERCISES}`,
-        {
-            params: {
-                [filter]: name,
-                keyword: keyword,
-                limit: limit,
-                page: page
-            },
+function createPagination(totalPages) {
+
+    refs.subExercisesPaginationContainer.innerHTML = '';
+
+    let startPage = Math.max(1, getParams.page - 1);
+    let endPage = Math.min(totalPages, startPage + 2);
+
+    for (let i = startPage; i <= endPage; i++) {
+        const button = document.createElement('button');
+        button.textContent = i;
+        button.classList.add('subexercises-pagination-button');
+        if (i === getParams.page) {
+            button.classList.add('active');
         }
-    );
-    return response.data;
+        button.addEventListener('click', () => handlePageChange(i));
+        refs.subExercisesPaginationContainer.appendChild(button);
+    }
 }
+
+function handlePageChange(pageNumber) {
+    getParams.page = pageNumber;
+    console.log(pageNumber);
+    renderExerciseByFilterName(); // Оновлюємо список вправ при зміні сторінки
+}
+
 
 export { renderExerciseByFilterName };
-
-
-// ${renderStars(popularity)}

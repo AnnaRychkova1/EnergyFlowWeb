@@ -36,31 +36,30 @@
           </li>
         </ul>
       </div>
-      <form class="form is-hidden">
+      <form class="subexercises-search-form is-hidden">
         <input
-          class="exercises-input"
+          class="subexercises-input"
           type="text"
           name="query"
-          placeholder="Search images..."
+          placeholder="Search"
         />
-        <button class="search-btn" type="submit">Search</button>
+        <button type="submit" class="subexercises-search-btn">Search</button>
+        <button type="submit" class="subexercises-search-delete is-hidden">
+          Delete
+        </button>
       </form>
     </div>
     <ul class="exercises-gallery"></ul>
-    <div class="exercises-deteils is-hidden">
-      <ul class="filtered-cards"></ul>
-      <p class="exercise-text-no-found is-hidden">
+    <div class="subexercises-deteils-container is-hidden">
+      <ul class="subexercises-filtered-cards"></ul>
+      <p class="subexercises-text-no-found is-hidden">
         hi Unfortunately, <span class="exercise-no-found">no results</span> were
         found. You may want to consider other search options to find the
         exercise you are looking for. Our range is wide and you have the
         opportunity to find more options that suit your needs.
       </p>
     </div>
-    <!-- <div class="pagination-container-exercise">
-      <button class="pagination-button">1</button>
-      <button class="pagination-button">2</button>
-      <button class="pagination-button active">3</button>
-    </div> -->
+    <div class="subexercises-pagination-container"></div>
     <div class="exercises-pagination"></div>
   </div>
 </section>
