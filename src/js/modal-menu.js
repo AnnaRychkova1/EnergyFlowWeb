@@ -263,8 +263,4 @@ export { createModalMenu };
 //         </svg>`;
 //     }
 //   }
-  
-  
-  
-
 
