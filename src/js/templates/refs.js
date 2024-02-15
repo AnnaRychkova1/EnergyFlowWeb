@@ -13,11 +13,14 @@ export const refs = {
   exercisesContainerEl: document.querySelector('.exercises-container'),
 
   //  Anna
-  containerFilteredCards: document.querySelector('.exercises-deteils'),
-  resultContainer: document.querySelector('.filtered-cards'),
-  searchForm: document.querySelector('.form'),
-  textResult: document.querySelector('.exercise-text-no-found'),
+  subexercisesDetailsContainer: document.querySelector('.subexercises-deteils-container'),
+  subexercisesFilteredCards: document.querySelector('.subexercises-filtered-cards'),
+  subexercisesSearchForm: document.querySelector('.subexercises-search-form'),
+  subexercisesSearchBtn: document.querySelector('.subexercises-search-btn'),
+  subexercisesTextNoFound: document.querySelector('.subexercises-text-no-found'),
   exercisesSubtitle: document.querySelector('.exercises-subtitle'),
+  subExercisesPaginationContainer: document.querySelector('.subexercises-pagination-container'),
+  subexercisesPaginationButton: document.querySelector('.subexercises-pagination-button'),
   
   // Oksana
   favoritesGallery: document.querySelector('.favorites-gallery'),
