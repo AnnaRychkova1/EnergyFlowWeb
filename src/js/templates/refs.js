@@ -25,8 +25,9 @@ export const refs = {
   // Oksana
   favoritesGallery: document.querySelector('.favorites-gallery'),
   favoritesMessage: document.querySelector('.favorites-box-block'),
-  onRemoveBtn: document.querySelector('.favorites-remove-btn'),
+  onRemoveBtn: document.querySelectorAll('[data-favorites-remove]'),
   onStartBtn: document.querySelector('.favorites-start-btn'),
   addToFavoritesBtn: document.querySelector('.ex-add-btn'),
   galleryItem: document.querySelector('.favorites-gallery-item'),
+  messageBlock: document.querySelector('.favorites-box-block'),
 };

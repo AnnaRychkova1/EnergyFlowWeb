@@ -7,36 +7,52 @@ import { refs } from './templates/refs.js';
 const LS_KEY_FAVORITES = 'favorites';
 const itemsFromLS = JSON.parse(localStorage.getItem(LS_KEY_FAVORITES));
 
-// Creating a plug when the LS is empty
-const markupMessageBlock =
-  '<div class="favorites-message-block"></div> <div class="plug-icon"><img class="favorites-box-img" src="./img/icons/dumbbell.png" alt="dumbbell"/></div><div class="favorites-box-paragraf"></div>It appears that you have not added any exercises to your  favorites yet. To get started, you can add exercises that you like to your favorites for easier access in the future.</div></div>';
+const resultList = [];
 
-function showMessageBlock() {
-  refs.messageBlock.innerHTML = markupMessageBlock;
-}
+// Creating a plug when the LS is empty
+// const markupMessageBlock =
+//   '<div class="favorites-message-block"></div> <div class="plug-icon"><img class="favorites-box-img" src="./img/icons/dumbbell.png" alt="dumbbell"/></div><div class="favorites-box-paragraf"></div>It appears that you have not added any exercises to your  favorites yet. To get started, you can add exercises that you like to your favorites for easier access in the future.</div></div>';
+
+// function showMessageBlock() {
+//   refs.messageBlock.innerHTML = markupMessageBlock;
+// }
 
 
 
 // Creating gallery of favorite exersises
 
-if (!itemsFromLS) {
+if (itemsFromLS === null) {
   showMessageBlock();
-
-} else if (!itemsFromLS || !Array.isArray(itemsFromLS) || itemsFromLS.length === 0) {
-  showMessageBlock();
-  console.log('No items found in local storage or data is invalid.');
-
+  // } else if (itemsFromLS !== null && itemsFromLS.length === 0) {
+  //   showMessageBlock();
 } else if (itemsFromLS.length > 0) {
-  createGalleryFromLS(itemsFromLS);
-  
-  refs.onRemoveBtn.forEach(button => {button.addEventListener('click', removeFromLS)});      
-  //  chooseButtonForModal();
-  // addRemoveScroll();
+    createMarkupFavorites(itemsFromLS);
+    onRemoveBtn.forEach(button => {
+    button.addEventListener('click', removeFromLS)
+  });
+
+  resultList.innerHTML.addListenersForButtons();
+  // chooseButtonForModal();
+  addRemoveScroll();
 }
-    
- 
-function createMarkupFavorites(data) {
-  markupArray.innerHTML = data
+
+// if (!itemsFromLS) {
+//   // showMessageBlock();
+
+// } else if (!itemsFromLS || !Array.isArray(itemsFromLS) || itemsFromLS.length === 0) {
+//   showMessageBlock();
+//   console.log('No items found in local storage or data is invalid.');
+
+// } else if (itemsFromLS.length > 0) {
+//   createGalleryFromLS(itemsFromLS);
+  
+//   refs.onRemoveBtn.forEach(button => {button.addEventListener('click', removeFromLS)});      
+//   //  chooseButtonForModal();
+//   // addRemoveScroll();
+// }
+
+function createMarkupFavorites(arrayItemsFromLS) {
+  markupArray.innerHTML = arrayItemsFromLS
     .map(
       ({ _id, bodyPart, name, target, burnedCalories, time }) => {
         return `
@@ -49,12 +65,12 @@ function createMarkupFavorites(data) {
                     <use href="../img/icons/symbole-defs.svg#icon-basket"></use>
                   </svg>
                 </button>
-                <a href="/src/partials/modal-menu.html" class="favorites-start" data-id="${_id} data-modal-open"></a> 
+                <button class="favorites-start" type="submit" data-id="${_id} data-modal-open>
                   <span>Start</span>
                   <svg class="favorites-start-icon" width="14" height="14">
                     <use href="../img/icons/symbole-defs.svg#icon-line"></use>
                   </svg>
-                </a>
+                </button>
               </div>
               <div class="favorites-item-info">
                 <div class="favorites-man-icon">
@@ -78,6 +94,11 @@ function createMarkupFavorites(data) {
   refs.messageBlock.prepend(markupArray);
 }
   
+
+
+    
+ 
+
 
 // Removing an exersise from the array stored in LS
 
