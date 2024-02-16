@@ -2,7 +2,7 @@ import axios from 'axios';
 import { hide, show, showLoader, hideLoader } from './services/visibility';
 import { refs } from './templates/refs.js';
 import isiToast from './services/isiToast.js';
-import { createModalMenu } from './modal-menu.js';
+// import { createModalMenu } from './modal-menu.js';
 
 const BASE_URL = 'https://energyflow.b.goit.study/api';
 const ENDPOINT_EXERCISES = 'exercises';
@@ -32,10 +32,10 @@ async function renderExerciseByFilterName(expectedFilter, name) {
         filter = 'equipment';
     }  
 
-    if (refs.exercisesGalleryEl) {
-        hide(refs.subexercisesDetailsContainer);
-        hide(refs.subexercisesSearchForm);  
-    }
+    // if (refs.exercisesGalleryEl) {
+    //     hide(refs.subexercisesDetailsContainer);
+    //     hide(refs.subexercisesSearchForm);  
+    // }
 
     if (!filter || !name) {
         show(refs.subexercisesTextNoFound);
@@ -149,7 +149,7 @@ function handleClickOnCardStart(evt) {
 
     const exerciseId = evt.target.dataset.id;
     //showLoader(refs.loaderModal);
-    createModalMenu(exerciseId);
+    // createModalMenu(exerciseId);
 }
 
 // request to server
@@ -225,7 +225,7 @@ function pagesPagination(currentPage, totalPages) {
 
 async function onPaginationPages(event) {
   currentPage = event.target.textContent;
-  refs.exercisesGalleryEl.innerHTML = '';
+  refs.subexercisesFilteredCards.innerHTML = '';
   try {
     const { totalPages } = await searchExerciseByFilters(results
     );

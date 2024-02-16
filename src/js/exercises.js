@@ -169,7 +169,6 @@ function filterCartsExercises(event) {
     exercisesParamName = name;
     exercisesParamFilter = filter;
   }
-  showLoader(refs.loaderModal);
   refs.exercisesGalleryEl.innerHTML = '';
   refs.paginationEl.innerHTML = '';
   show(refs.subexercisesDetailsContainer);
