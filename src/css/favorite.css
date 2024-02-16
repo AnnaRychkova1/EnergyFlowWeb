@@ -11,7 +11,7 @@
   .favorites-pagination-block {
     display: none !important;
   }
-
+}
   /* .container .favorites-container {
     width: 335px;
     height: 450px;
@@ -1274,7 +1274,7 @@
   .info-from-target {
     left: 295px;
     top: 107px;
-
+  }
 /*============= Gallery of Cards for Desktop==============*/
 /* 
 @media screen and (min-width: 768px) and (max-width: 1440px) {

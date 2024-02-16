@@ -275,6 +275,36 @@
         justify-content: flex-start;
     }
 }
+
+.ex-rate-icon {
+    fill: #E8E8E8;
+    width: 100%;
+    height: 100%;
+}
+
+.selected-stars {
+    fill: #EEA10C;
+}
+
+button:hover,
+button:active {
+    background-color: var(--text-light-color);
+}
+
+.modal-container {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+}
+
+.exercise-description {
+    color: rgba(27, 27, 27, 0.6);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 18px;
+    /* overflow-y:scroll; */
+    border-top: solid 1px rgba(27, 27, 27, 0.2);
+}
 /* .exercises-modal-window {
     width: 335px;
     position: absolute;
