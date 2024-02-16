@@ -17,7 +17,7 @@
     height: 450px;
   } */
 
-  .quote-container {
+  .favorites-quote-container {
     margin-top: 75px;
   }
 
@@ -610,7 +610,6 @@
     flex-direction: row;
     align-items: center;
     flex-wrap: wrap;
-    /* padding: 16px 0; */
     margin: 0 auto;
   }
 
@@ -640,7 +639,6 @@
   .favorites-svg-day {
     width: 20px;
     height: 20px;
-    /* margin-bottom: 15px; */
   }
 
   .favorites-day-time {
@@ -815,7 +813,37 @@
     align-self: center;
   }
 
-  .favorites-start-icon {
+
+.exercises-serch-result {
+  position: absolute;
+  width: 295px;
+  height: 165px;
+  left: 20px;
+  right: 20px;
+  top: 92px;
+  bottom: 0;
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  border-radius: 15px;
+  background-color: rgb(255, 255, 255);
+}
+
+.exercises-serch-result:not(:first-child) {
+  padding: 20px;
+}
+
+.rating-start-container {
+  line-height: normal;
+  display: flex;
+  margin-bottom: 25px;
+  justify-content: space-between;
+  position: relative;
+}
+
+/*   .favorites-start-icon {
     width: 14px;
     height: 14px;
     fill: var(--background-dark);
@@ -830,7 +858,8 @@
   .favorites-start-icon:hover,
   .favorites-start-icon:focus {
     color: var(--background-dark-grey);
-  }
+  } */
+
 
   .favorites-item-title {
     display: flex;
@@ -852,11 +881,37 @@
     padding: 4px 5px;
   }
 
-  .icon-man {
+
+.rating .workout {
+  border-radius: 15px;
+  background-color: #7e847f;
+  text-transform: uppercase;
+  color: #f6f6f6;
+  position: absolute;
+  width: 76px;
+  height: 26px;
+  right: 45px;
+  top: -5px;
+  bottom: 128px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 8px 5px 8px;
+  font-family: sans-serif, 'DM Sans';
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 0%;
+  text-align: left;
+}
+
+/*   .icon-man {
     width: 14px;
     height: 16px;
     fill: var(--background-dark);
-  }
+  } */
+
 
   .favorites-name-item {
     font-size: 20px;
@@ -881,7 +936,27 @@
     color: rgba(27, 27, 27, 0.4);
   }
 
-  .favorites-gallery-info:not(:first-child) {
+
+.rating-cont button {
+  width: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 24px;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  font-size: 14px;
+  line-height: 1.28;
+  transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  position: absolute;
+  width: 12px;
+  height: 13.33px;
+  top: 2px;
+  right: 25px;
+}
+
+/*   .favorites-gallery-info:not(:first-child) {
     padding-left: 16px;
   }
 
@@ -890,7 +965,8 @@
     font-size: 12px;
     line-height: 1.5;
     color: var(--text-main-color);
-  }
+  } */
+
 
   .favorites-item-wrapper {
     display: flex;
@@ -908,7 +984,118 @@
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .favorites-remove-btn {
+.start-button-container button {
+  padding: 0;
+  gap: 8px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  font-size: 14px;
+  line-height: 1.28;
+  transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  position: absolute;
+  left: 85px;
+  top: 10px;
+  color: rgb(27, 27, 27);
+  font-family: sans-serif, 'DM Sans';
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: 0px;
+  text-align: left;
+}
+
+.start-svg {
+  transform: rotate(90deg);
+}
+
+.runnig-svg {
+  fill: #fff;
+  width: 14px;
+  height: 14px;
+  position: absolute;
+  left: 5px;
+  top: 5px;
+}
+
+.exercise-name {
+  border-radius: 50%;
+  position: relative;
+  top: 45px;
+  right: 120px;
+  background-color: rgb(126, 132, 127);
+  width: 24px;
+  height: 24px;
+}
+
+.exercise-of-name {
+  overflow: hidden;
+  color: #1b1b1b;
+  font-size: 20px;
+  font-weight: 400;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  position: absolute;
+  left: 40px;
+  bottom: 2px;
+  font-family: sans-serif, 'DM Sans';
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0px;
+  text-align: left;
+}
+
+.info-from-calories {
+  position: absolute;
+  top: 107px;
+  left: 16px;
+  color: rgba(27, 27, 27, 0.4);
+  font-family: sans-serif, 'DM Sans';
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: 0px;
+  text-align: left;
+}
+
+.info-from-part {
+  position: absolute;
+  top: 107px;
+  left: 185px;
+  font-family: sans-serif, 'DM Sans';
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: 0px;
+  text-align: left;
+}
+
+.info-from-target {
+  position: absolute;
+  top: 131px;
+  left: 16px;
+  font-family: sans-serif, 'DM Sans';
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: 0px;
+  text-align: left;
+}
+
+.info-from-back {
+  color: rgb(27, 27, 27);
+  font-family: sans-serif, 'DM Sans';
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: 0px;
+  text-align: left;
+}
+
+/*   .favorites-remove-btn {
     margin-right: 109px;
     background-color: transparent;
     border: none;
@@ -963,7 +1150,8 @@
     font-weight: 400;
     font-size: 24px;
     line-height: 1.33;
-  }
+  } 
+
 
   .favorites-gallery-info {
     margin: auto;
@@ -974,8 +1162,121 @@
   }
 }
 
-/*============= Gallery of Cards for Desktop==============*/
+/* ================================================================================================================================== */
 
+@media screen and (min-width: 768.95px) and (max-width: 1438.98px) {
+  .favorites-box {
+    position: relative;
+  }
+
+  .exercises-serch-result {
+    width: 313px;
+    height: 165px;
+    top: 135px;
+    padding: 14px;
+  }
+
+  .exercises-serch-result:not(:first-child) {
+    padding: 14px;
+  }
+
+  .rating .workout {
+    width: 76px;
+    height: 26px;
+    right: 55px;
+    top: 2px;
+    bottom: 128px;
+    font-family: sans-serif, 'DM Sans';
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 16px;
+    letter-spacing: 0%;
+    text-align: left;
+  }
+
+  .rating-cont button {
+    top: 8px;
+  }
+
+  .exercise-name {
+    top: 52px;
+    right: 130px;
+    font-family: sans-serif, 'DM Sans';
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 32px;
+    letter-spacing: 0px;
+    text-align: left;
+  }
+
+  .start-button-container button {
+    left: 100px;
+    font-family: sans-serif, 'DM Sans';
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0px;
+    text-align: left;
+  }
+}
+
+/* ================================================================================================================================= */
+
+@media screen and (min-width: 1440px) {
+  .favorites-box {
+    position: relative;
+  }
+
+  .exercises-serch-result {
+    width: 424px;
+    height: 141px;
+    top: 150px;
+    left: 50px;
+  }
+
+  .exercises-serch-result:not(:first-child) {
+    left: 20px;
+  }
+
+  .rating .workout {
+    right: 110px;
+    top: -5px;
+    font-family: sans-serif, 'DM Sans';
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 16px;
+    letter-spacing: 0%;
+    text-align: left;
+  }
+
+  .rating-cont button {
+    top: 0px;
+    right: 85px;
+  }
+
+  .start-button-container button {
+    left: 150px;
+    top: 5px;
+    color: rgb(27, 27, 27);
+    font-family: sans-serif, 'DM Sans';
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0px;
+    text-align: left;
+  }
+
+  .exercise-name {
+    top: 50px;
+    right: 185px;
+  }
+
+  .info-from-target {
+    left: 295px;
+    top: 107px;
+
+/*============= Gallery of Cards for Desktop==============*/
+/* 
 @media screen and (min-width: 768px) and (max-width: 1440px) {
   .favorites-gallery {
     list-style-type: none;
@@ -1070,6 +1371,6 @@
 
 @media screen and (min-width: 1440px) {
   .gap-container {
-    height: 128px;
+    height: 128px; 
   }
 }
