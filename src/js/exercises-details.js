@@ -8,175 +8,179 @@ const BASE_URL = 'https://energyflow.b.goit.study/api';
 const ENDPOINT_EXERCISES = 'exercises';
 
 const getParams = {
-    filter: '',
-    keyword: '',
-    page: 1,
-    limit: 9,
+  filter: '',
+  keyword: '',
+  page: 1,
+  limit: 9,
 };
 
 if (window.innerWidth <= 768) {
-    getParams.limit = 8;
+  getParams.limit = 8;
 } else {
-    getParams.limit = 9;
+  getParams.limit = 9;
 }
 
 async function renderExerciseByFilterName(expectedFilter, name) {
+  let filter;
 
-    let filter;
+  if (expectedFilter === 'Body parts') {
+    filter = 'bodypart';
+  } else if (expectedFilter === 'Muscles') {
+    filter = 'muscles';
+  } else if (expectedFilter === 'Equipment') {
+    filter = 'equipment';
+  }
 
-    if (expectedFilter === 'Body parts') {
-        filter = 'bodypart';
-    } else if (expectedFilter === 'Muscles') {
-        filter = 'muscles';
-    } else if (expectedFilter === 'Equipment') {
-        filter = 'equipment';
-    }  
+  // if (refs.exercisesGalleryEl) {
+  //     hide(refs.subexercisesDetailsContainer);
+  //     hide(refs.subexercisesSearchForm);
+  // }
 
-    // if (refs.exercisesGalleryEl) {
-    //     hide(refs.subexercisesDetailsContainer);
-    //     hide(refs.subexercisesSearchForm);  
-    // }
+  if (!filter || !name) {
+    show(refs.subexercisesTextNoFound);
+    hideLoader(refs.loaderModal);
+    return;
+  }
 
-    if (!filter || !name) {
-        show(refs.subexercisesTextNoFound);
-        hideLoader(refs.loaderModal);
-        return;
+  refs.exercisesSubtitle.textContent = `${name}`;
+  refs.subexercisesSearchForm.reset();
+  refs.subexercisesFilteredCards.innerHTML = '';
+  show(refs.subexercisesDetailsContainer);
+  show(refs.subexercisesSearchForm);
+  showLoader(refs.loaderModal);
+
+  try {
+    const { results, totalPages } = await searchExerciseByFilters({
+      filter: filter,
+      name: name,
+      keyword: getParams.keyword,
+      limit: getParams.limit,
+      page: getParams.page,
+    });
+
+    if (totalPages < 1) {
+      show(refs.subexercisesTextNoFound);
+      hideLoader(refs.loaderModal);
+      return;
     }
-  
+
+    renderCards(results);
+    getParams.page += 1;
+
+    if (!refs.subExercisesPaginationContainer) {
+      pagesPagination(getParams.page, totalPages);
+    }
+  } catch (error) {
+    console.error('Error fetching images:', error);
+  } finally {
+    hideLoader(refs.loaderModal);
+  }
+
+  refs.subexercisesSearchForm.addEventListener('submit', handleSearch);
+
+  async function handleSearch(evt) {
+    evt.preventDefault();
+
+    if (refs.exercisesGalleryEl) {
+      hide(refs.subexercisesDetailsContainer);
+      hide(refs.subexercisesSearchForm);
+    }
+
+    if (getParams.keyword.trim() === '') {
+      hideLoader(refs.loaderModal);
+      return;
+    }
+
     refs.exercisesSubtitle.textContent = `${name}`;
-    refs.subexercisesSearchForm.reset();
     refs.subexercisesFilteredCards.innerHTML = '';
     show(refs.subexercisesDetailsContainer);
     show(refs.subexercisesSearchForm);
     showLoader(refs.loaderModal);
 
+    const formData = new FormData(evt.target);
+    getParams.keyword = formData.get('query');
+    console.log(getParams.keyword);
+
     try {
-        const { results, totalPages } = await searchExerciseByFilters({
-            filter: filter,
-            name: name,
-            keyword: getParams.keyword,
-            limit: getParams.limit,
-            page: getParams.page
-        });
+      const { results, totalPages } = await searchExerciseByFilters({
+        filter: filter,
+        name: name,
+        keyword: getParams.keyword,
+        limit: getParams.limit,
+        page: getParams.page,
+      });
 
-        if (totalPages < 1) {
-            show(refs.subexercisesTextNoFound);
-            hideLoader(refs.loaderModal);
-            return;
-        }
-
-        renderCards(results);
-        getParams.page += 1
-        
-        if (!refs.subExercisesPaginationContainer) {
-            pagesPagination(getParams.page, totalPages);
-        }
-
-    } catch (error) {
-        console.error('Error fetching images:', error);
-    } finally {
+      if (totalPages < 1) {
+        isiToast.noResults();
+        show(refs.subexercisesTextNoFound);
         hideLoader(refs.loaderModal);
+        return;
+      }
+
+      if (totalPages >= 2) {
+        pagesPagination(getParams.page, totalPages);
+      }
+
+      renderCards(results);
+      getParams.page += 1;
+
+      if (!refs.subExercisesPaginationContainer) {
+        pagesPagination(getParams.page, totalPages);
+      }
+    } catch (error) {
+      console.error('Error fetching request:', error);
+    } finally {
+      hideLoader(refs.loaderModal);
     }
-
-    refs.subexercisesSearchForm.addEventListener('submit', handleSearch);
-    
-    async function handleSearch(evt) {
-        evt.preventDefault();
-
-        if (refs.exercisesGalleryEl) {
-            hide(refs.subexercisesDetailsContainer);
-            hide(refs.subexercisesSearchForm);
-        }
-
-        if (getParams.keyword.trim() === '') {
-            hideLoader(refs.loaderModal);
-            return
-        }
-
-        refs.exercisesSubtitle.textContent = `${name}`;
-        refs.subexercisesFilteredCards.innerHTML = '';
-        show(refs.subexercisesDetailsContainer);
-        show(refs.subexercisesSearchForm);
-        showLoader(refs.loaderModal);
-        
-        const formData = new FormData(evt.target)
-        getParams.keyword = formData.get('query');
-        console.log(getParams.keyword);
-
-        try {
-            const { results, totalPages } = await searchExerciseByFilters({
-                filter: filter,
-                name: name,
-                keyword: getParams.keyword,
-                limit: getParams.limit,
-                page: getParams.page
-            });
-
-            if (totalPages < 1) {
-                isiToast.noResults();
-                show(refs.subexercisesTextNoFound);
-                hideLoader(refs.loaderModal);
-                return;
-            }
-            
-            if (totalPages >= 2) {
-                pagesPagination(getParams.page, totalPages);
-            }
-
-            renderCards(results);
-            getParams.page += 1;
-
-            if (!refs.subExercisesPaginationContainer) {
-            pagesPagination(getParams.page, totalPages);
-        }
-
-        } catch (error) {
-            console.error('Error fetching request:', error);
-        } finally {
-            hideLoader(refs.loaderModal);
-        }
-    }
+  }
 }
 
-refs.subexercisesFilteredCards.addEventListener('click', handleClickOnCardStart);
+refs.subexercisesFilteredCards.addEventListener(
+  'click',
+  handleClickOnCardStart
+);
 
 // request to modal window
 function handleClickOnCardStart(evt) {
+  if (!evt.target.dataset.id) {
+    return;
+  }
 
-    if (!evt.target.dataset.id) {
-        return
-    }
-
-    const exerciseId = evt.target.dataset.id;
-    //showLoader(refs.loaderModal);
-    // createModalMenu(exerciseId);
+  const exerciseId = evt.target.dataset.id;
+  //showLoader(refs.loaderModal);
+  // createModalMenu(exerciseId);
 }
 
 // request to server
-async function searchExerciseByFilters({filter, name, keyword, limit, page}) {
-    const response = await axios.get(
-        `${BASE_URL}/${ENDPOINT_EXERCISES}`,
-        {
-            params: {
-                [filter]: name,
-                keyword: keyword,
-                limit: limit,
-                page: page
-            },
-        }
-    );
-    return response.data;
+async function searchExerciseByFilters({ filter, name, keyword, limit, page }) {
+  const response = await axios.get(`${BASE_URL}/${ENDPOINT_EXERCISES}`, {
+    params: {
+      [filter]: name,
+      keyword: keyword,
+      limit: limit,
+      page: page,
+    },
+  });
+  return response.data;
 }
 
 // renderCards
 function renderCards(results) {
-    const markup = results.map(result => createCard(result)).join('');
-    refs.subexercisesFilteredCards.innerHTML = markup;
+  const markup = results.map(result => createCard(result)).join('');
+  refs.subexercisesFilteredCards.innerHTML = markup;
 }
 
 // create Card
-function createCard({ _id, rating, name, burnedCalories, time, bodyPart, target }) {
-    return `<li class="filtered-card-item">
+function createCard({
+  _id,
+  rating,
+  name,
+  burnedCalories,
+  time,
+  bodyPart,
+  target,
+}) {
+  return `<li class="filtered-card-item">
         <div class="card-box-workout">
           <div class="card-box-info">
             <div class="filtered-workout">Workout</div>
@@ -186,9 +190,14 @@ function createCard({ _id, rating, name, burnedCalories, time, bodyPart, target 
             </div>
           </div>
           <button class="to-favorites-start" type="submit" data-id=${_id}>Start</button>
+          <svg class="start-svg" width="18" height="18">
+                    <use href="./img/icons/symbol-defs.svg#icon-arrow-top-right"></use>
+                </svg>
         </div>
         <div class="card-box-title">
-          <img class="filtered-athlete" href="#" alt="athlete" height="35"></img>
+          <svg class="filtered-athlete" width="14" height="14">
+          <use href="./img/icons/symbol-defs.svg#icon-Man"></use>
+          </svg>
           <h3 class="filteered-title">${name}</h3>
         </div>
         <ul class="filtered-description">
@@ -227,8 +236,7 @@ async function onPaginationPages(event) {
   currentPage = event.target.textContent;
   refs.subexercisesFilteredCards.innerHTML = '';
   try {
-    const { totalPages } = await searchExerciseByFilters(results
-    );
+    const { totalPages } = await searchExerciseByFilters(results);
     renderCards(totalPages);
     scrollToExerciseGallery();
   } catch (error) {
@@ -237,23 +245,6 @@ async function onPaginationPages(event) {
 }
 
 export { renderExerciseByFilterName };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // import axios from 'axios';
 // import { hide, show, showLoader, hideLoader } from './services/visibility';
@@ -278,9 +269,8 @@ export { renderExerciseByFilterName };
 //     getParams.limit = 9;
 // }
 
-
 // async function renderExerciseByFilterName(expectedFilter, name) {
-//     
+//
 
 //     let filter;
 
@@ -340,10 +330,9 @@ export { renderExerciseByFilterName };
 //         hideLoader(refs.loaderModal);
 //     }
 
-
 //     //!  Works with search button
 //         refs.subexercisesSearchForm.addEventListener('submit', handleSearch);
-    
+
 //         async function handleSearch(evt) {
 //             evt.preventDefault();
 
@@ -366,7 +355,7 @@ export { renderExerciseByFilterName };
 //             console.log(getParams.keyword);
 
 //             // ! check fot the wrong query
-    
+
 //              if (getParams.keyword.trim() === '') {
 //                     isiToast.noQuery();
 //                     hideLoader(refs.loaderModal);
@@ -376,9 +365,7 @@ export { renderExerciseByFilterName };
 //         // ! Очищувати список вправ
 //             // ! Очищувати мій дів
 //         // ! Очищувати форму
-        
 
-       
 //             try {
 //                 const { results, totalPages } = await searchExerciseByFilters({
 //                     filter: filter,
@@ -394,7 +381,7 @@ export { renderExerciseByFilterName };
 //                     hideLoader(refs.loaderModal);
 //                     return;
 //                 }
-            
+
 //                 if (totalPages > 1) {
 //           refs.paginationEl.innerHTML = pagesPagination(currentPage, totalPages);
 //         } else {
@@ -415,8 +402,6 @@ export { renderExerciseByFilterName };
 //     }
 
 // refs.subexercisesFilteredCards.addEventListener('click', handleClickOnCardStart)
-
-
 
 // function handleClickOnCardStart(evt) {
 //     if (!evt.target.dataset.id) {
@@ -479,4 +464,3 @@ export { renderExerciseByFilterName };
 //         </ul>
 //   </li>`;
 // }
-

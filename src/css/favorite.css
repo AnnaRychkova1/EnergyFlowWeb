@@ -12,10 +12,10 @@
     display: none !important;
   }
 
-  /* .container .favorites-container {
+  .container .favorites-container {
     width: 335px;
     height: 450px;
-  } */
+  }
 
   .favorites-quote-container {
     margin-top: 75px;
@@ -45,19 +45,14 @@
     width: 135px;
     display: flex;
     flex-direction: column;
-    /* padding-top: auto;
-    padding-bottom: auto; */
     margin: auto;
-    /* gap: 15px; */
     justify-content: flex-start;
     align-items: flex-start;
-    /* margin-top: 60px; */
     position: absolute;
     bottom: 96px;
     left: 101px;
     right: 101px;
     top: 96px;
-    /* margin-bottom: 97px; */
   }
 
   .favorites-svg-day {
@@ -107,18 +102,15 @@
     flex-direction: column;
     border-radius: 30px;
     margin-top: 20px;
-    /* border: #ff0000 1px solid; */
     height: 450px;
     margin-left: 0;
     padding-left: 0;
-    /* position: relative; */
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
     width: 335px;
-    /* height: 450px; */
   }
 
   .favorites-box-title {
@@ -178,11 +170,6 @@
     gap: 20px;
     margin-bottom: 20px;
   }
-
-  /* .favorites-pagination-block {
-    opacity: 1;
-    pointer-events: none;
-  } */
 
   .favorites-list-item {
     width: 295px;
@@ -311,8 +298,8 @@
     line-height: 1.5;
     margin: 0;
   }
-
 }
+
 /* Tablet  */
 
 @media screen and (min-width: 768.95px) and (max-width: 1438.98px) {
@@ -324,7 +311,6 @@
     margin: 0 auto;
     height: 100%;
   }
-
 
   .quote-fav-container {
     margin-top: 165px;
@@ -583,14 +569,13 @@
   }
 }
 
-/* Desktop */
+/* Desctop */
 
 @media screen and (min-width: 1440px) {
   .favorites-container {
     width: 100%;
     padding-bottom: 0;
   }
-
 
   .favorites-box-container {
     display: flex;
@@ -726,7 +711,7 @@
   }
 }
 
-/* PAGINATION FOR MOBILE */
+/* <!----------- PAGINATION FOR MOBILE------------------> */
 
 .favorites-pagination-block {
   display: flex;
@@ -763,59 +748,130 @@
     border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/*============= Gallery of Cards for Mobile===============*/
+/* Базовые стили Оксана */
 
-@media screen and (min-width: 375px) and (max-width: 767.98px) {
-  .favorites-gallery {
-    list-style-type: none;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    flex-wrap: wrap;
-    margin-left: auto;
-    margin-right: auto;
-    gap: 20px;
+.favorites-gallery {
+  list-style-type: none;
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: auto;
+  margin-right: auto;
+  row-gap: 20px;
+  column-gap: 28px;
+}
+
+.favorites-gallery-item {
+  border-radius: 15px;
+  padding: 140px 0;
+  width: 424px;
+  height: 141px;
+  background-color: var(--background-white);
+  flex-basis: calc((100% - 40px) / 3);
+}
+
+.workout {
+  border-radius: 15px;
+  padding: 5px 8px;
+  width: 76px;
+  height: 26px;
+  background-color: var(--background-light-grey);
+  color: var(--text-light-color);
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 12px;
+}
+
+.favorites-remove {
+  text-decoration: none;
+  margin: 0;
+  display: block;
+}
+
+.favorites-remove-btn {
+  color: var(--text-main-color);
+  border: none;
+  cursor: pointer;
+}
+
+/* .favorites-remove-icon {
+} */
+
+.favorites-remove-btn:hover,
+.favorites-remove-btn:focus {
+  color: var(--background-dark-grey);
+}
+
+.favorites-arrow-icon {
+  width: 61px;
+  height: 24px;
+  border: none;
+  color: #1b1b1b;
+  background-color: var(--background-white);
+  border: none;
+  cursor: pointer;
+}
+
+.favorites-arrow-icon:hover,
+.favorites-arrow-icon:focus {
+  color: var(--background-dark-grey);
+}
+
+/* .favorites-man-icon {
+  height: 24px;
+  width: 24px;
+} */
+
+.favorites-item-title {
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 1.33;
+  color: var(--text-main-color);
+}
+
+.favorites-item-desc {
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  gap: 16px;
+}
+
+.favorites-gallery-info-item {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.5;
+  color: rgba(27, 27, 27, 0.4);
+}
+
+.favorites-item-value {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--text-main-color);
+}
+
+/* Gap between header and quote sections */
+
+@media screen and (min-width: 1440px) {
+  .gap-container {
+    height: 128px;
   }
+}
 
+/* FAVORITES CARDS */
 
-  .favorites-gallery-item {
-    width: 295px;
-    height: 165px;
-    border-radius: 15px;
-    padding: 16px;
-    background-color: var(--background-white);
-    overflow: hidden;
-  }
+li {
+  list-style-type: none;
+}
 
-  .favorites-item-wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 25px;
-  }
-
-  .workout {
-    background-color: var(--background-dark-grey);
-    padding: 5px 8px;
-    color: var(--text-light-color);
-    font-size: 12px;
-    font-weight: 500;
-    line-height: 1.5;
-    border-radius: 15px;
-    width: 76px;
-    height: 26px;
-    text-transform: uppercase;
-  }
-
-  .favorites-start {
-    display: flex;
-    gap: 8px;
-    font-size: 14px;
-    line-height: 1.29;
-    color: var(--text-main-color);
-    align-self: center;
-  }
-
+.search-result-list {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 40px;
+  gap: 20px;
+}
 
 .exercises-serch-result {
   position: absolute;
@@ -846,44 +902,16 @@
   position: relative;
 }
 
-/*   .favorites-start-icon {
-    width: 14px;
-    height: 14px;
-    fill: var(--background-dark);
-    align-self: center;
-    border: none;
-    color: #1b1b1b;
-    background-color: var(--background-white);
-    border: none;
-    cursor: pointer;
-  }
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
 
-  .favorites-start-icon:hover,
-  .favorites-start-icon:focus {
-    color: var(--background-dark-grey);
-  } */
-
-
-  .favorites-item-title {
-    display: flex;
-    gap: 16px;
-    align-items: center;
-    margin-bottom: 16px;
-    align-items: center;
-    color: var(--text-main-color);
-  }
-
-  .favorites-man-icon {
-    display: flex;
-    flex-direction: row;
-    width: 24px;
-    height: 24px;
-    background-color: var(--background-dark-grey);
-    border-radius: 100%;
-    flex-shrink: 0;
-    padding: 4px 5px;
-  }
-
+.rating p {
+  padding: 0;
+  width: auto;
+}
 
 .rating .workout {
   border-radius: 15px;
@@ -909,36 +937,11 @@
   text-align: left;
 }
 
-/*   .icon-man {
-    width: 14px;
-    height: 16px;
-    fill: var(--background-dark);
-  } */
-
-
-  .favorites-name-item {
-    font-size: 20px;
-    line-height: 1.2;
-    text-wrap: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    letter-spacing: 0.5px;
-  }
-  .favorites-gallery-info {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
-  .favorites-gallery-info-item {
-    font-size: 12px;
-    line-height: 1.5;
-    text-wrap: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    font-weight: 400;
-    color: rgba(27, 27, 27, 0.4);
-  }
-
+.rating-cont {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
 
 .rating-cont button {
   width: 24px;
@@ -959,33 +962,16 @@
   right: 25px;
 }
 
-/*   .favorites-gallery-info:not(:first-child) {
-    padding-left: 16px;
-  }
+.rating .rating-num {
+  color: #1b1b1b;
+  font-size: 12px;
+  line-height: 1.5px;
+}
 
-  favorites-item-value {
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 1.5;
-    color: var(--text-main-color);
-  } */
-
-
-  .favorites-item-wrapper {
-    display: flex;
-    flex-direction: row;
-  }
-
-  .favorites-remove-icon {
-    stroke: transparent;
-    fill: var(--background-dark);
-    padding: 0px;
-    width: 12px;
-    height: 13px;
-    transition-property: fill;
-    transition-duration: 250ms;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  }
+.rating-star-svg {
+  fill: #eea10c;
+  padding-bottom: 2px;
+}
 
 .start-button-container button {
   padding: 0;
@@ -1097,77 +1083,19 @@
   letter-spacing: 0px;
   text-align: left;
 }
+
+.additional-information p {
+  width: auto;
+  padding: 0;
+  text-align: start;
+  color: rgba(27, 27, 27, 0.4);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.5;
+  margin: 0;
 }
 
-/*   .favorites-remove-btn {
-    margin-right: 109px;
-    background-color: transparent;
-    border: none;
-    margin-left: 8px;
-    padding: 0px;
-  }
-  .favorites-remove-btn:hover,
-  .favorites-remove-btn:focus {
-    color: var(--background-dark-grey);
-  }
-}
-*/
-/*============= Gallery of Cards for Tablet==============*/
-
-@media screen and (min-width: 375px) and (max-width: 768px) { 
-  .favorites-gallery {
-    row-gap: 14px;
-    column-gap: 20px;
-  }
-
-
-  .favorites-gallery-item {
-    border-radius: 15px;
-    padding: 144px 0;
-    width: 313px;
-    height: 165px;
-    background-color: var(--background-white);
-    flex-basis: calc((100% - 28px) / 2);
-  }
-
-  .favorites-remove {
-    text-decoration: none;
-    margin: 0;
-    display: block;
-  }
-
-  .favorites-remove-btn {
-    border: none;
-    cursor: pointer;
-  }
-
-  .favorites-remove-icon {
-    width: 33px;
-    height: 33px;
-  }
-
-  .favorites-start-icon {
-    width: 61px;
-    height: 24px;
-  }
-
-  .favorites-item-title {
-    font-weight: 400;
-    font-size: 24px;
-    line-height: 1.33;
-  } 
-
-
-  .favorites-gallery-info {
-    margin: auto;
-    display: flex;
-    flex-direction: row;
-    justify-content: left;
-    gap: 16px;
-  }
-}
-
-/* ================================================================================================================================== */
+/* Tablet */
 
 @media screen and (min-width: 768.95px) and (max-width: 1438.98px) {
   .favorites-box {
@@ -1225,7 +1153,7 @@
   }
 }
 
-/* ================================================================================================================================= */
+/* Desktop */
 
 @media screen and (min-width: 1440px) {
   .favorites-box {
@@ -1279,104 +1207,5 @@
   .info-from-target {
     left: 295px;
     top: 107px;
-  }
-}
-/*============= Gallery of Cards for Desktop==============*/
-/* 
-@media screen and (min-width: 768px) and (max-width: 1440px) {
-  .favorites-gallery {
-    list-style-type: none;
-    justify-content: space-between;
-    align-items: center;
-    display: flex;
-    flex-wrap: wrap;
-    margin-left: auto;
-    margin-right: auto;
-    row-gap: 20px;
-    column-gap: 28px;
-  }
-
-  .favorites-gallery-item {
-    border-radius: 15px;
-    padding: 140px 0;
-    width: 424px;
-    height: 141px;
-    background-color: var(--background-white);
-    flex-basis: calc((100% - 40px) / 3);
-  }
-
-  .favorites-remove {
-    text-decoration: none;
-    margin: 0;
-    display: block;
-  }
-
-  .favorites-remove-icon {
-    width: 33px;
-    height: 33px;
-  }
-
-  .favorites-start-icon {
-    width: 61px;
-    height: 24px;
-  }
-
-  .favorites-item-title {
-    font-weight: 400;
-    font-size: 24px;
-    line-height: 1.33;
-  }
-
-  .favorites-gallery-info {
-    margin: auto;
-    display: flex;
-    flex-direction: row;
-    justify-content: left;
-    gap: 16px;
-  }
-}
-
-/* ===============Pagination for Mobile======================================= */
-
-.favorites-pagination-block {
-  display: flex;
-  gap: 8px;
-  justify-content: center;
-  margin-top: 20px;
-}
-
-.favorites-pagination-block button {
-  color: rgba(27, 27, 27, 0.4);
-  font-size: 20px;
-  line-height: 1.6;
-  letter-spacing: 0.04em;
-  padding: 0;
-  background-color: transparent;
-  border: 1px solid transparent;
-}
-
-.favorites-pagination-block button.active-btn {
-  color: var(text-main-color);
-  border-color: var(text-main-color);
-}
-
-.active-btn {
-  color: var(text-main-color);
-  width: 32px;
-  height: 32px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 18px;
-  border: 1px solid var(text-main-color);
-  transition: color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-    border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Gap between header and quote sections */
-
-@media screen and (min-width: 1440px) {
-  .gap-container {
-    height: 128px; 
   }
 }
