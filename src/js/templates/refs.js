@@ -5,7 +5,7 @@ export const refs = {
   // Vasilina
   exercisesBtnEl: document.querySelector('.exercises-btn-list'),
   buttonsEl: document.querySelectorAll('.exercises-btn-item'),
-  musclesBtnEl: document.querySelector('[data-filter="muscles"]'),
+  musclesBtnEl: document.querySelector('[data-filter="Muscles"]'),
   bodyPartsBtnEl: document.querySelector('[data-filter="Body parts"]'),
   equipmentBtnEl: document.querySelector('[data-filter="Equipment"]'),
   exercisesGalleryEl: document.querySelector('.exercises-gallery'),
