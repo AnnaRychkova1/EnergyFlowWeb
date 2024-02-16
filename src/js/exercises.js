@@ -69,9 +69,6 @@ async function fetchDefaultMuscles() {
 fetchDefaultMuscles();
 
 async function filterBtnExercises(event) {
-  console.log(event.target);
-  const activeButten = event.target;
-  // activeButten.classList.remove('btn-item-active');
   event.preventDefault();
   hide(refs.subexercisesDetailsContainer);
   hide(refs.subexercisesSearchForm);
@@ -80,6 +77,7 @@ async function filterBtnExercises(event) {
   refs.subexercisesDetailsContainer.innerHTML = '';
 
   const query = event.target.dataset.filter;
+
   refs.exercisesGalleryEl.innerHTML = '';
   filterDefault = query;
   currentPage = 1;
@@ -95,6 +93,16 @@ async function filterBtnExercises(event) {
     );
     createExercisesByFilterMarkup(results);
     hideLoader(refs.loaderModal);
+
+    if (query !== 'Body parts') {
+      refs.musclesBtnEl.classList.add('btn-item-active');
+    }
+    if (query !== 'Equipment') {
+      refs.musclesBtnEl.classList.add('btn-item-active');
+    }
+    if (query !== 'Muscles') {
+      refs.musclesBtnEl.classList.remove('btn-item-active');
+    }
 
     if (totalPages > 1) {
       refs.paginationEl.innerHTML = pagesPagination(page, totalPages);

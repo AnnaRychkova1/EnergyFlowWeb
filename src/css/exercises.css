@@ -1,11 +1,7 @@
 .exercises-container {
   background-color: var(--background-light-grey);
-  /* display: flex;
-  justify-content: space-between;
   flex-direction: column;
-  position: relative; */
   width: 335px;
-  width: 100%;
   padding: 40px 20px;
   min-height: 760px;
 }
@@ -19,7 +15,7 @@
   margin-bottom: 20px;
 }
 
-/* === Exercises-btn === */
+/* Exercises-btn */
 
 .exercises-btn-list {
   display: flex;
@@ -45,7 +41,7 @@
   color: var(--text-light-color);
 }
 
-/* === Exercises-gallery === */
+/*  Exercises-gallery  */
 
 .exercises-gallery {
   margin-top: 40px;
@@ -55,9 +51,6 @@
   position: relative;
   cursor: pointer;
   background-color: var(--text-main-color);
-  /* display: flex;
-  align-items: center;
-  justify-content: center; */
   border-radius: 12px;
   border: 1px solid var(--background-btn-hover);
   transition: transform var(--anim);
@@ -115,7 +108,7 @@
   line-height: 1.5;
 }
 
-/* === Exercises-pagination ==== */
+/*  Exercises-pagination  */
 
 .exercises-pagination {
   display: flex;
@@ -124,7 +117,7 @@
   padding: 0px;
 }
 
-.exercises-pagination button {
+.button-pagination {
   width: 31px;
   height: 32px;
   display: flex;
@@ -133,10 +126,9 @@
   border-radius: 18px;
   padding: 0px 12px;
   color: rgba(27, 27, 27, 0.4);
-  border: 1px solid var(--text-main-color);
 }
 
-.exercises-pagination button.active {
+.active-pagination {
   background-color: var(--background-light-grey);
   border: 1px solid var(--text-main-color);
   color: var(--text-main-color);
@@ -148,11 +140,12 @@
   color: var(--text-main-color);
 } */
 
-/* ==== Tablet ==== */
+/* Tablet */
 
 @media only screen and (min-width: 768px) {
   .exercises-container {
     padding: 64px 48px;
+    width: 736px;
   }
 
   .exercises-title {
@@ -179,7 +172,6 @@
 
   .exercises-gallery {
     height: 1570px;
-    /* width: 640px; */
     margin-top: 32px;
     display: flex;
     flex-wrap: wrap;
@@ -187,7 +179,6 @@
   }
 
   .exercises-gallery-item {
-    flex-basis: calc((100% - 14px) / 2);
     margin-bottom: 0;
     max-width: 313px;
     height: 250px;
@@ -207,17 +198,21 @@
   }
 }
 
-/* ==== Desktop ==== */
+/*  Desktop  */
 
 @media only screen and (min-width: 1440px) {
+  .exercises-container {
+    width: 1408px;
+  }
+
   .exercises-gallery {
-    display: flex;
-    flex-wrap: wrap;
+    height: 830px;
+    flex-basis: calc((100% - 60px) / 4);
+    width: 1312px;
     gap: 40px 20px;
   }
 
   .exercises-gallery-item {
-    flex-basis: calc((100% - 60px) / 4);
     margin-bottom: 0;
   }
 }
