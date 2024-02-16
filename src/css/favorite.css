@@ -11,7 +11,7 @@
   .favorites-pagination-block {
     display: none !important;
   }
-}
+
   /* .container .favorites-container {
     width: 335px;
     height: 450px;
@@ -312,7 +312,7 @@
     margin: 0;
   }
 
-
+}
 /* Tablet  */
 
 @media screen and (min-width: 768.95px) and (max-width: 1438.98px) {
@@ -324,6 +324,7 @@
     margin: 0 auto;
     height: 100%;
   }
+
 
   .quote-fav-container {
     margin-top: 165px;
@@ -590,6 +591,7 @@
     padding-bottom: 0;
   }
 
+
   .favorites-box-container {
     display: flex;
     flex-direction: row;
@@ -774,6 +776,7 @@
     margin-right: auto;
     gap: 20px;
   }
+
 
   .favorites-gallery-item {
     width: 295px;
@@ -1094,6 +1097,7 @@
   letter-spacing: 0px;
   text-align: left;
 }
+}
 
 /*   .favorites-remove-btn {
     margin-right: 109px;
@@ -1107,14 +1111,15 @@
     color: var(--background-dark-grey);
   }
 }
-
+*/
 /*============= Gallery of Cards for Tablet==============*/
 
-@media screen and (min-width: 375px) and (max-width: 768px) {
+@media screen and (min-width: 375px) and (max-width: 768px) { 
   .favorites-gallery {
     row-gap: 14px;
     column-gap: 20px;
   }
+
 
   .favorites-gallery-item {
     border-radius: 15px;
@@ -1275,6 +1280,7 @@
     left: 295px;
     top: 107px;
   }
+}
 /*============= Gallery of Cards for Desktop==============*/
 /* 
 @media screen and (min-width: 768px) and (max-width: 1440px) {
