@@ -4,9 +4,9 @@ window.addEventListener('scroll', checkHeight);
 
 function checkHeight() {
   if (window.scrollY > 200) {
-    scrollUpBtn.classList.add('scroll-up-btn--show');
+    scrollUpBtn.classList.add('scroll-up-btn-show');
   } else {
-    scrollUpBtn.classList.remove('scroll-up-btn--show');
+    scrollUpBtn.classList.remove('scroll-up-btn-show');
   }
 }
 

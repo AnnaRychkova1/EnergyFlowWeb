@@ -19,10 +19,7 @@ color: rgba(27, 27, 27, 0.5);
 }
 
 .subexercises-search-btn {
-}
-
-.subexercises-search-delete {
-
+  color:red;
 }
 
 .subexercises-deteils-container {
