@@ -36,6 +36,12 @@
   color: var(--text-main-color);
 }
 
+.exercises-btn-item:hover,
+.exercises-btn-item:focus {
+  background-color: var(--text-color-accent);
+  color: var(--text-light-color);
+}
+
 .btn-item-active {
   background-color: var(--text-color-accent);
   color: var(--text-light-color);
@@ -116,23 +122,6 @@
   align-items: center;
   padding: 0px;
 }
-
-/* .button-pagination {
-  width: 31px;
-  height: 32px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 18px;
-  padding: 0px 12px;
-  color: rgba(27, 27, 27, 0.4);
-}
-
-.active-pagination {
-  background-color: var(--background-light-grey);
-  border: 1px solid var(--text-main-color);
-  color: var(--text-main-color);
-} */
 
 .button-pagination {
   display: flex;
