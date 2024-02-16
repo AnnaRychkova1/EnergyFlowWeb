@@ -26,13 +26,7 @@ export const refs = {
     '.subexercises-text-no-found'
   ),
   exercisesSubtitle: document.querySelector('.exercises-subtitle'),
-  subExercisesPaginationContainer: document.querySelector(
-    '.subexercises-pagination-container'
-  ),
-  subexercisesPaginationButton: document.querySelector(
-    '.subexercises-pagination-button'
-  ),
-
+  
   // Oksana
   favoritesGallery: document.querySelector('.favorites-gallery'),
   favoritesMessage: document.querySelector('.favorites-box-block'),
