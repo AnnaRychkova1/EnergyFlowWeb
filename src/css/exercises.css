@@ -119,7 +119,7 @@
   padding: 0px;
 }
 
- .exercises-pagination button {
+ /* .exercises-pagination button {
   width: 31px;
   height: 32px;
   display: flex;
@@ -129,12 +129,33 @@
   padding: 0px 12px;
   color: rgba(27, 27, 27, 0.4);
   border: 1px solid var(--text-main-color);
-}
+} */
 
-.exercises-pagination button.active {
+/* .exercises-pagination button.active {
   background-color: var(--background-light-grey);
   border: 1px solid var(--text-main-color);
   color: var(--text-main-color);
+} */
+
+.button-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  padding: 0px 12px;
+  font-weight: 400;
+  color: rgba(27, 27, 27, 0.4);
+  background-color: transparent;
+  border-radius: 18px;
+}
+
+.button-pagination:active,
+.button-pagination:hover {
+  font-size: 24px;
+  color: var(--text-main-color);
+  border: 1px solid var(--text-main-color);
+  background-color: transparent;
 }
 
 /* .exercises-pagination:hover,
