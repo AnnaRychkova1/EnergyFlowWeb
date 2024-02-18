@@ -1,5 +1,8 @@
 .container-header {
-  width: 100%;
+  /* width: 100%; */
+  width: 1408px;
+  margin-left: auto;
+  margin-right: auto;
   padding: 0 20px;
   margin: 0 auto;
   height: auto;
