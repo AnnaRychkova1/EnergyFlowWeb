@@ -1,21 +1,22 @@
-.backdrop {
+ .backdrop {
    position: fixed;
     top: 0;
     left: 0;
-    z-index: 100;
-    /* display: flex;
+    /* z-index: 100; */
+    display: flex;
     align-items: center;
-    justify-content: center;     */
+    justify-content: center;  
     width: 100%;
     height: 100%;
     background-color: rgba(27, 27, 27, 0.6);
-    /* opacity: 0;
-    visibility: hidden; */
+    opacity: 0;
+    visibility: hidden;
     overflow: auto;
     
     transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    visibility 250ms cubic-bezier(0.4, 0, 0.2, 1);
-}
+    visibility 250ms cubic-bezier(0.4, 0, 0.2, 1); 
+} 
+
 
 .backdrop.is-open {
     opacity: 1;
@@ -26,13 +27,13 @@
 
 }
 .modal {
-    /* position: relative; */
-    /* position: absolute; */
+    position: relative;
+   position: absolute;
     position: fixed;
     top: 50%;
     left: 50%;
     min-width: 320px;
-    /* width: 100%; */
+    width: 100%;
     padding: 40px 20px;
     transform: translate(-50%, -50%) scale(1);
     background-color: var(--text-light-color);
@@ -42,9 +43,6 @@
 
 .modal-close-btn {
     position: absolute;
-    /* display: flex;
-    justify-content: center;
-    align-items: center; */
     top: 14px;
     right: 10px;
     background-color: transparent;
@@ -61,7 +59,6 @@
 }
 .ex-add-btn-container {
     display: flex;
-    /* flex-direction: column; */
     justify-content: center;
     gap: 9px;
 }
@@ -104,14 +101,14 @@
     border-color: 1px solid var(--background-dark-grey);
     color: var(--background-dark-grey);
     background-color: transparent;
-}
+} 
 .exercise-gif {
   display: flex;
   justify-content: center;
   align-items: center;
   padding-top: 40px;
   margin-bottom: 20px;
-}
+} 
 .gif-ex {
     border-radius: 12px;
     margin-bottom: 20px;
@@ -213,11 +210,9 @@
 @media screen and (min-width: 768px) {
     .modal {
         width: 716px;
-        /* height: auto;
-        display: flex; */
         padding: 40px;
     }
-    .modal-container{
+     .modal-container{
         display: flex;
         justify-content: center;
         gap: 24px;
@@ -225,7 +220,7 @@
     .modal-close-btn {
         top: 14px;
         right: 10px;
-    }
+    } 
 
     .exercise-gif {
         flex-shrink: 0;
@@ -284,9 +279,9 @@
 
 .selected-stars {
     fill: #EEA10C;
-}
+} 
 
-button:hover,
+ button:hover,
 button:active {
     background-color: var(--text-light-color);
 }
@@ -302,10 +297,12 @@ button:active {
     font-size: 14px;
     font-weight: 400;
     line-height: 18px;
-    /* overflow-y:scroll; */
+    overflow-y:scroll;
     border-top: solid 1px rgba(27, 27, 27, 0.2);
-}
-/* .exercises-modal-window {
+} 
+
+
+.exercises-modal-window {
     width: 335px;
     position: absolute;
     color: var(--modal-backdrop);
@@ -358,25 +355,23 @@ button:active {
 
 .exercise-name-container {
     margin-bottom: 20px;
-} */
+} 
 
-/* .exercise-name {
+.exercise-name {
     color: var(--black);
     font-size: 20px;
     font-weight: 500;
-    line-height: 20px; */
-/* 100% */
-/* text-transform: capitalize;
-    margin-bottom: 10px; */
-/* } */
+    line-height: 20px; 
 
-/* .exercise-rating {
+    margin-bottom: 10px; 
+}
+
+.exercise-rating {
     font-size: 12px;
     line-height: 1.5;
 }
 
 .exercise-rating::after {
-    content: '';
     background-color: var(--stars);
     height: 1px;
     display: block;
@@ -404,7 +399,7 @@ button:active {
     color: rgba(27, 27, 27, 0.4);
     font-size: 12px;
     line-height: 1.5;
-}
+} 
 
 .exercise-param-value {
     color: #1b1b1b;
@@ -464,5 +459,5 @@ button:active {
 .exercise-raiting-btn:hover,
 .exercise-raiting-btn:focus {
     border: 1px solid var(--grey);
-}
- */
+} 
+

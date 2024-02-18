@@ -2,7 +2,7 @@ import axios from 'axios';
 import { hide, show, showLoader, hideLoader } from './services/visibility';
 import { refs } from './templates/refs.js';
 import isiToast from './services/isiToast.js';
-// import { createModalMenu } from './modal-menu.js';
+import { createModalMenu } from './modal-menu.js';
 
 const BASE_URL = 'https://energyflow.b.goit.study/api';
 const ENDPOINT_EXERCISES = 'exercises';
@@ -81,10 +81,10 @@ async function renderExerciseByFilterName(expectedFilter, name) {
   async function handleSearch(evt) {
     evt.preventDefault();
 
-    if (refs.exercisesGalleryEl) {
-      hide(refs.subexercisesDetailsContainer);
-      hide(refs.subexercisesSearchForm);
-    }
+    // if (refs.exercisesGalleryEl) {
+    //   hide(refs.subexercisesDetailsContainer);
+    //   hide(refs.subexercisesSearchForm);
+    // }
 
     if (getParams.keyword.trim() === '') {
       hideLoader(refs.loaderModal);
@@ -131,6 +131,7 @@ async function renderExerciseByFilterName(expectedFilter, name) {
       console.error('Error fetching request:', error);
     } finally {
       hideLoader(refs.loaderModal);
+      hide(refs.subexercisesSearchBtn);
     }
   }
 }
@@ -145,10 +146,11 @@ function handleClickOnCardStart(evt) {
   if (!evt.target.dataset.id) {
     return;
   }
-
+  
   const exerciseId = evt.target.dataset.id;
-  //showLoader(refs.loaderModal);
-  // createModalMenu(exerciseId);
+  showLoader(refs.loaderModal);
+  createModalMenu(exerciseId);
+
 }
 
 // request to server
@@ -190,14 +192,10 @@ function createCard({
             </div>
           </div>
           <button class="to-favorites-start" type="submit" data-id=${_id}>Start</button>
-          <svg class="start-svg" width="18" height="18">
-                    <use href="./img/icons/symbol-defs.svg#icon-arrow-top-right"></use>
-                </svg>
+          
         </div>
         <div class="card-box-title">
-          <svg class="filtered-athlete" width="14" height="14">
-          <use href="./img/icons/symbol-defs.svg#icon-Man"></use>
-          </svg>
+         
           <h3 class="filteered-title">${name}</h3>
         </div>
         <ul class="filtered-description">
@@ -213,6 +211,11 @@ function createCard({
         </ul>
   </li>`;
 }
+
+
+
+//  icon <svg class="start-svg" width="18" height="18"> <use href="./img/icons/symbol-defs.svg#icon-arrow-top-right"></use> </svg>
+  //     <svg class="filtered-athlete" width="14" height="14"><use href="./img/icons/symbol-defs.svg#icon-Man"></use></svg>
 
 // Pagination
 
