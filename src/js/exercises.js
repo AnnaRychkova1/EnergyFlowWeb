@@ -70,6 +70,10 @@ fetchDefaultMuscles();
 
 async function filterBtnExercises(event) {
   event.preventDefault();
+//  show(refs.subexercisesDetailsContainer);
+//   show(refs.subexercisesSearchForm);
+//   show(refs.exercisesTitleSpan);
+
   hide(refs.subexercisesDetailsContainer);
   hide(refs.subexercisesSearchForm);
   hide(refs.exercisesTitleSpan);
@@ -172,6 +176,7 @@ function filterCartsExercises(event) {
   refs.exercisesGalleryEl.innerHTML = '';
   refs.paginationEl.innerHTML = '';
   show(refs.subexercisesDetailsContainer);
+  show(refs.subexercisesSearchForm);
   show(refs.exercisesTitleSpan);
   hideLoader(refs.loaderModal);
   renderExerciseByFilterName(exercisesParamFilter, exercisesParamName);
