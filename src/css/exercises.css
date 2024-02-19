@@ -1,9 +1,7 @@
 .exercises-container {
   background-color: var(--background-light-grey);
-  display: flex;
-  justify-content: space-between;
   flex-direction: column;
-  position: relative;
+  width: 335px;
   padding: 40px 20px;
   min-height: 760px;
 }
@@ -17,10 +15,11 @@
   margin-bottom: 20px;
 }
 
-/* === Exercises-btn === */
+/* Exercises-btn */
 
 .exercises-btn-list {
   display: flex;
+  justify-content: space-between;
   gap: 6px;
 }
 
@@ -37,12 +36,18 @@
   color: var(--text-main-color);
 }
 
+.exercises-btn-item:hover,
+.exercises-btn-item:focus {
+  background-color: var(--text-color-accent);
+  color: var(--text-light-color);
+}
+
 .btn-item-active {
   background-color: var(--text-color-accent);
   color: var(--text-light-color);
 }
 
-/* === Exercises-gallery === */
+/*  Exercises-gallery  */
 
 .exercises-gallery {
   margin-top: 40px;
@@ -52,9 +57,6 @@
   position: relative;
   cursor: pointer;
   background-color: var(--text-main-color);
-  display: flex;
-  align-items: center;
-  justify-content: center;
   border-radius: 12px;
   border: 1px solid var(--background-btn-hover);
   transition: transform var(--anim);
@@ -66,6 +68,8 @@
 }
 
 .exercises-gallery-img {
+  width: 295px;
+  height: 232px;
   width: 100%;
   height: 100%;
   border-radius: 12px;
@@ -110,45 +114,42 @@
   line-height: 1.5;
 }
 
-/* === Exercises-pagination ==== */
+/*  Exercises-pagination  */
 
- .exercises-pagination {
+.exercises-pagination {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 0px;
 }
 
- .exercises-pagination button {
-  width: 31px;
-  height: 32px;
+.button-pagination {
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 18px;
+  width: 32px;
+  height: 32px;
   padding: 0px 12px;
+  font-weight: 400;
   color: rgba(27, 27, 27, 0.4);
-  border: 1px solid var(--text-main-color);
+  background-color: transparent;
+  border-radius: 18px;
 }
 
-.exercises-pagination button.active {
-  background-color: var(--background-light-grey);
-  border: 1px solid var(--text-main-color);
+.button-pagination:active,
+.button-pagination:hover {
+  font-size: 24px;
   color: var(--text-main-color);
+  border: 1px solid var(--text-main-color);
+  background-color: transparent;
 }
 
-/* .exercises-pagination:hover,
-.exercises-pagination:focus {
-  background-color: var(--background-light-grey);
-  color: var(--text-main-color);
-} */
-
-/* ==== Tablet ==== */
+/* Tablet */
 
 @media only screen and (min-width: 768px) {
   .exercises-container {
-    /* width: 768px; */
     padding: 64px 48px;
+    width: 736px;
   }
 
   .exercises-title {
@@ -174,6 +175,7 @@
   }
 
   .exercises-gallery {
+    /* height: 1570px; */
     margin-top: 32px;
     display: flex;
     flex-wrap: wrap;
@@ -181,13 +183,14 @@
   }
 
   .exercises-gallery-item {
-    flex-basis: calc((100% - 14px) / 2);
     margin-bottom: 0;
     max-width: 313px;
+    height: 250px;
   }
 
   .exercises-gallery-img {
     width: 313px;
+    height: 250px;
   }
 
   .exercises-gallery-title {
@@ -199,17 +202,21 @@
   }
 }
 
-/* ==== Desktop ==== */
+/*  Desktop  */
 
 @media only screen and (min-width: 1440px) {
+  .exercises-container {
+    width: 1408px;
+  }
+
   .exercises-gallery {
-    display: flex;
-    flex-wrap: wrap;
+    /* height: 830px; */
+    flex-basis: calc((100% - 60px) / 4);
+    width: 1312px;
     gap: 40px 20px;
   }
 
   .exercises-gallery-item {
-    flex-basis: calc((100% - 60px) / 4);
     margin-bottom: 0;
   }
 }
