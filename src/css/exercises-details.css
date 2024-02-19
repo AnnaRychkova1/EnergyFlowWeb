@@ -1,12 +1,9 @@
-.exercises-subtitle {font-weight: 400;
-font-size: 24px;
-line-height: 1.33;
-letter-spacing: -0.02em;
-color: rgba(27, 27, 27, 0.5);
-}
-
-.subexercises-search-form {
-  margin-top: 20px;
+.exercises-subtitle {
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 1.33;
+  letter-spacing: -0.02em;
+  color: rgba(27, 27, 27, 0.5);
 }
 
 @media only screen and (min-width: 768px) {
@@ -15,46 +12,519 @@ color: rgba(27, 27, 27, 0.5);
   }
 }
 
-.subexercises-input {
+@media screen and (min-width: 375px) and (max-width: 767.98px) {
+  .subexercises-search-form {
+    margin-top: 20px;
+    position: absolute;
+  }
+
+  .subexercises-input {
+    width: 295px;
+    height: 42px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    border-radius: 30px;
+    background: rgb(246, 246, 246);
+    border: none;
+  }
+
+  .subexercises-search-icon {
+    position: absolute;
+    top: 12px;
+    left: 260px;
+    transform: rotate(90deg);
+  }
+
+  .subexercises-search-btn {
+    position: absolute;
+    top: 9px;
+    left: 14px;
+  }
+
+  .subexercises-deteils-container {
+    list-style-type: none;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: auto;
+    margin-right: auto;
+    gap: 20px;
+  }
+
+  .subexercises-filtered-cards {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 60px;
+  }
+
+  .filtered-card-item {
+    position: relative;
+  }
+
+  .filtered-workout {
+    border-radius: 15px;
+    background-color: #7e847f;
+    text-transform: uppercase;
+    color: #f6f6f6;
+    position: absolute;
+    width: 76px;
+    height: 26px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 8px 5px 8px;
+    font-family: sans-serif, 'DM Sans';
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 16px;
+    letter-spacing: 0%;
+    text-align: left;
+  }
+
+  .to-favorites-start {
+    /* padding: 0; */
+    /* gap: 8px; */
+    height: 100%;
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    font-size: 14px;
+    line-height: 1.28;
+    transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1);
+    position: absolute;
+    /* left: 85px; */
+    /* top: 10px; */
+    right: 15px;
+    color: rgb(27, 27, 27);
+    font-family: sans-serif, 'DM Sans';
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0px;
+    text-align: left;
+  }
+
+  .filtered-athlete {
+    fill: #f6f6f6;
+    position: absolute;
+    top: 4px;
+    left: 5px;
+  }
+
+  .card-box-title {
+    width: 24px;
+    height: 24px;
+    border-radius: 50px;
+    background-color: rgb(126, 132, 127);
+    position: relative;
+  }
+
+  .filteered-title {
+    overflow: hidden;
+    color: #1b1b1b;
+    font-size: 20px;
+    font-weight: 400;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    position: absolute;
+    left: 40px;
+    bottom: 2px;
+    font-family: sans-serif, 'DM Sans';
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0px;
+    text-align: left;
+  }
+
+  .filtered-description {
+    display: flex;
+    width: auto;
+    padding: 0;
+    text-align: start;
+    color: rgba(27, 27, 27, 0.4);
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.5;
+    margin: 0;
+    flex-direction: row;
+    flex-wrap: wrap;
+    column-gap: 6px;
+    gap: 4px;
+    margin-top: 25px;
+  }
+
+  .filtered-descr-value {
+    color: rgb(27, 27, 27);
+    font-family: sans-serif, 'DM Sans';
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0px;
+    text-align: left;
+  }
 }
 
-.subexercises-search-btn {
+@media screen and (min-width: 768.95px) and (max-width: 1438.98px) {
+  .exercises-container {
+    position: relative;
+  }
+
+  .subexercises-search-form {
+    margin-top: 20px;
+    position: absolute;
+    left: 430px;
+    top: 123px;
+  }
+
+  .subexercises-input {
+    width: 246px;
+    height: 48px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    border-radius: 30px;
+    background: rgb(246, 246, 246);
+    border: none;
+  }
+
+  .subexercises-search-icon {
+    position: absolute;
+    top: 15px;
+    left: 210px;
+    transform: rotate(90deg);
+  }
+
+  .subexercises-search-btn {
+    position: absolute;
+    top: 12px;
+    left: 14px;
+  }
+
+  .subexercises-deteils-container {
+    list-style-type: none;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: auto;
+    margin-right: auto;
+    gap: 20px;
+  }
+
+  .subexercises-filtered-cards {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0;
+  }
+
+  .filtered-card-item {
+    position: relative;
+  }
+
+  .filtered-workout {
+    border-radius: 15px;
+    background-color: #7e847f;
+    text-transform: uppercase;
+    color: #f6f6f6;
+    position: absolute;
+    width: 76px;
+    height: 26px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 8px 5px 8px;
+    font-family: sans-serif, 'DM Sans';
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 16px;
+    letter-spacing: 0%;
+    text-align: left;
+  }
+
+  .to-favorites-start {
+    /* padding: 0; */
+    /* gap: 8px; */
+    height: 100%;
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    font-size: 14px;
+    line-height: 1.28;
+    transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1);
+    position: absolute;
+    /* left: 85px; */
+    /* top: 10px; */
+    right: 15px;
+    color: rgb(27, 27, 27);
+    font-family: sans-serif, 'DM Sans';
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0px;
+    text-align: left;
+  }
+
+  .filtered-athlete {
+    fill: #f6f6f6;
+    position: absolute;
+    top: 4px;
+    left: 5px;
+  }
+
+  .card-box-title {
+    width: 24px;
+    height: 24px;
+    border-radius: 50px;
+    background-color: rgb(126, 132, 127);
+    position: relative;
+  }
+
+  .filteered-title {
+    overflow: hidden;
+    color: #1b1b1b;
+    font-size: 20px;
+    font-weight: 400;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    position: absolute;
+    left: 40px;
+    bottom: 2px;
+    font-family: sans-serif, 'DM Sans';
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0px;
+    text-align: left;
+    max-width: 350px;
+  }
+
+  .filtered-description {
+    display: flex;
+    width: auto;
+    padding: 0;
+    text-align: start;
+    color: rgba(27, 27, 27, 0.4);
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.5;
+    margin: 0;
+    flex-direction: row;
+    flex-wrap: wrap;
+    column-gap: 6px;
+    gap: 4px;
+    margin-top: 25px;
+  }
+
+  .filtered-descr-value {
+    color: rgb(27, 27, 27);
+    font-family: sans-serif, 'DM Sans';
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0px;
+    text-align: left;
+  }
 }
 
-.subexercises-search-delete {
+@media screen and (min-width: 1440px) {
+  .exercises-container {
+    position: relative;
+  }
 
+  .subexercises-search-form {
+    margin-top: 20px;
+    position: absolute;
+    left: 1087px;
+    top: 123px;
+  }
+
+  .subexercises-input {
+    width: 273px;
+    height: 48px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    border-radius: 30px;
+    background: rgb(246, 246, 246);
+    border: none;
+  }
+
+  .subexercises-search-icon {
+    position: absolute;
+    top: 15px;
+    left: 240px;
+    transform: rotate(90deg);
+  }
+
+  .subexercises-search-btn {
+    position: absolute;
+    top: 12px;
+    left: 14px;
+  }
+
+  .subexercises-deteils-container {
+    list-style-type: none;
+    justify-content: center;
+    align-items: start;
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: auto;
+    margin-right: auto;
+    gap: 20px;
+    flex-direction: column;
+  }
+
+  .subexercises-filtered-cards {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0;
+  }
+
+  .filtered-card-item {
+    position: relative;
+  }
+
+  .filtered-workout {
+    border-radius: 15px;
+    background-color: #7e847f;
+    text-transform: uppercase;
+    color: #f6f6f6;
+    position: absolute;
+    width: 76px;
+    height: 26px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 8px 5px 8px;
+    font-family: sans-serif, 'DM Sans';
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 16px;
+    letter-spacing: 0%;
+    text-align: left;
+  }
+
+  .to-favorites-start {
+    /* padding: 0; */
+    /* gap: 8px; */
+    height: 100%;
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    font-size: 14px;
+    line-height: 1.28;
+    transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1);
+    position: absolute;
+    /* left: 85px; */
+    /* top: 10px; */
+    right: 15px;
+    color: rgb(27, 27, 27);
+    font-family: sans-serif, 'DM Sans';
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0px;
+    text-align: left;
+  }
+
+  .filtered-athlete {
+    fill: #f6f6f6;
+    position: absolute;
+    top: 4px;
+    left: 5px;
+  }
+
+  .card-box-title {
+    width: 24px;
+    height: 24px;
+    border-radius: 50px;
+    background-color: rgb(126, 132, 127);
+    position: relative;
+  }
+
+  .filteered-title {
+    overflow: hidden;
+    color: #1b1b1b;
+    font-size: 20px;
+    font-weight: 400;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    position: absolute;
+    left: 40px;
+    bottom: 2px;
+    font-family: sans-serif, 'DM Sans';
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0px;
+    text-align: left;
+  }
+
+  .filtered-description {
+    display: flex;
+    width: auto;
+    padding: 0;
+    text-align: start;
+    color: rgba(27, 27, 27, 0.4);
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.5;
+    margin: 0;
+    flex-direction: row;
+    flex-wrap: wrap;
+    column-gap: 6px;
+    gap: 4px;
+    margin-top: 25px;
+  }
+
+  .filtered-descr-value {
+    color: rgb(27, 27, 27);
+    font-family: sans-serif, 'DM Sans';
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0px;
+    text-align: left;
+  }
 }
-
-.subexercises-deteils-container {
-  list-style-type: none;
-  justify-content: center;
-  align-items: center;
-  display: flex;
-  flex-wrap: wrap;
-  margin-left: auto;
-  margin-right: auto;
-  gap: 20px;
-}
-
-@media only screen and (min-width: 768px) {
+/* @media only screen and (min-width: 768px) {
   .subexercises-deteils-container {
     width: 736px;
   }
-}
+} */
 
-@media only screen and (min-width: 1440px) {
+/* @media only screen and (min-width: 1440px) {
   .subexercises-deteils-container {
     width: 1408px;
   }
-}
-
-.subexercises-filtered-cards {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-}
+} */
 
 @media only screen and (min-width: 768px) {
   .subexercises-filtered-cards {
@@ -68,7 +538,7 @@ color: rgba(27, 27, 27, 0.5);
   }
 }
 
-.subexercises-text-no-found {
+/* .subexercises-text-no-found {
 }
 
 @media only screen and (min-width: 768px) {
@@ -82,8 +552,7 @@ color: rgba(27, 27, 27, 0.5);
 }
 
 .exercise-no-found {
-
-}
+} */
 
 .filtered-card-item {
   width: 295px;
@@ -134,28 +603,22 @@ color: rgba(27, 27, 27, 0.5);
   flex-direction: row;
 }
 
-.filtered-rating {
+/* .filtered-rating {
 }
 
 .filtered-star {
-}
+} */
 
-.to-favorites-start {
+/* .to-favorites-start {
   padding: 5px;
   height: 28px;
   color: black;
   background-color: antiquewhite;
   border-radius: 0;
-}
+} */
 
-.to-favorites-start:hover {
-  background-color: aqua;
-}
 
-.card-box-title {
-}
-
-.filtered-athlete {
+/* .filtered-athlete {
 }
 
 .filteered-title {
@@ -171,11 +634,9 @@ color: rgba(27, 27, 27, 0.5);
 }
 
 .filtered-descr-value {
-}
-
+} */
 
 /* Pagination */
 
-.subexercises-pagination-container {
-
-}
+/* .subexercises-pagination-container {
+} */
