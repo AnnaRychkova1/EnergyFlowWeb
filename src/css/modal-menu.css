@@ -23,9 +23,6 @@
     visibility: visible;
     pointer-events: auto;
 }
-.modal-container {
-
-}
 .modal {
     position: relative;
    position: absolute;

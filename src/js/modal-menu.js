@@ -24,8 +24,6 @@ async function createModalMenu(expectedExercisesId) {
     console.log(expectedId);
     const addToFavoriteBtn = document.querySelector('.ex-add-favorite');
     addToFavoriteBtn.addEventListener('click', addToFavoriteOnClick);
-
-
     function addToFavoriteOnClick(event) {
       const exerciseId = event.target.dataset.id || expectedId;
       const exerciseName = document.querySelector('.exercise-name').textContent;
