@@ -87,8 +87,7 @@ async function renderExerciseByFilterName(expectedFilter, name) {
     // }
 
     if (getParams.keyword.trim() === '') {
-      hideLoader(refs.loaderModal);
-      return;
+      hideLoader(refs.loaderModal);2
     }
 
     refs.exercisesSubtitle.textContent = `${name}`;
@@ -148,7 +147,7 @@ function handleClickOnCardStart(evt) {
   }
   
   const exerciseId = evt.target.dataset.id;
-  showLoader(refs.loaderModal);
+  // showLoader(refs.loaderModal);
   createModalMenu(exerciseId);
 
 }
