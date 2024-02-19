@@ -1,9 +1,8 @@
 import axios from 'axios';
 import { hide, show, showLoader, hideLoader } from './services/visibility';
 import icons from '../img/icons/symbol-defs.svg';
+import { refs } from './templates/refs';
 
-const gallery = document.querySelector('.results'); // плюс название содержимого карточки //
-const backdrop = document.querySelector('.backdrop');
 const modalCard = document.querySelector('.modal');
 
 const heartIcon = `
@@ -14,7 +13,7 @@ const heartIcon = `
 let expectedId;
 // ! Something like this
 async function createModalMenu(expectedExercisesId) {
-  show(backdrop);
+  show(refs.backdrop);
   expectedId = expectedExercisesId;
 
   try {
@@ -76,7 +75,7 @@ async function createModalMenu(expectedExercisesId) {
     const closeButton = document.querySelector('.modal-close-btn');
     closeButton.addEventListener('click', closeModal);
     document.addEventListener('keydown', escapeClickHandler);
-    backdrop.addEventListener('click', backdropClickHandler);
+    refs.backdrop.addEventListener('click', backdropClickHandler);
   } catch (error) {
     console.error('Error fetching images:', error);
   }
@@ -94,7 +93,6 @@ async function getCardInfo(exerciseId) {
   }
 }
 
-// ! Good тут після <p class="ex-current-rating">${rating}</p> <ul class="exercise-stars-list"></ul> я видалила поки що // ${renderStars(popularity)}
 function modalWindowMarkup({
   _id,
   bodyPart,
@@ -108,7 +106,9 @@ function modalWindowMarkup({
   rating,
   description,
 }) {
-  const markup = `<div class="modal-container">
+  let fillUpStarsRating  = rating.toFixed(1);
+  const markup =
+    `<div class="modal-container">
             <button class="modal-close-btn">
                 <svg
                     class="modal-close-icon"
@@ -139,13 +139,63 @@ function modalWindowMarkup({
                     alt="${name}"
                   />
               </picture>
+              <div class="exercises-modal-content"></div>
             </div>
             <div class="ex-content-container">
                 <h3 class="exercise-name">${name}</h3>
                <div class="rating-container">
-                <p class="ex-current-rating">${rating}</p>
+                <p class="ex-current-rating">${fillUpStarsRating }</p>
                 <ul class="exercise-stars-list">
-                     
+                  <li>
+              <svg
+                class="ex-rate-icon selected-stars"
+                width="18"
+                height="18"
+                aria-label="rating icon"
+              >
+                <use href="../img/icons/symbol-defs.svg#icon-Star-1"></use>
+              </svg>
+            </li>
+            <li>
+              <svg
+                class="ex-rate-icon selected-stars"
+                width="18"
+                height="18"
+                aria-label="rating icon"
+              >
+                <use href="../img/icons/symbol-defs.svg#icon-Star-1"></use>
+              </svg>
+            </li>
+            <li>
+              <svg
+                class="ex-rate-icon selected-stars"
+                width="18"
+                height="18"
+                aria-label="rating icon"
+              >
+                <use href="../img/icons/symbol-defs.svg#icon-Star-1"></use>
+              </svg>
+            </li>
+            <li>
+              <svg
+                class="ex-rate-icon selected-stars"
+                width="18"
+                height="18"
+                aria-label="rating icon"
+              >
+                <use href="../img/icons/symbol-defs.svg#icon-Star-1"></use>
+              </svg>
+            </li>
+            <li>
+              <svg
+                class="ex-rate-icon"
+                width="18"
+                height="18"
+                aria-label="rating icon"
+              >
+                <use href="../img/icons/symbol-defs.svg#icon-Star-1"></use>
+              </svg>
+            </li>
                 </ul>
                 </div>
                 <div class="exercise-information">
@@ -184,7 +234,7 @@ function modalWindowMarkup({
                                 <use href="${icons}#icon-heart"></use>
                             </svg>
                         </button>
-                         <button data-id="${_id}" class="ex-rating-button">
+                         <button type="button" data-id="${_id}" class="ex-rating-button">
                            Give a rating
                          </button>
                     </div>
@@ -192,20 +242,32 @@ function modalWindowMarkup({
             </div>
         </div>
     `;
-
+  
   modalCard.innerHTML = markup;
+  modalCard.insertAdjacentHTML('beforeend', markup);
+  renderStars(Math.round(rating));
+
+   
+  
+  function renderStars(number) {
+     const star = document.querySelectorAll('.ex-rate-icon');
+    const arrayOfStars = [...star];
+    for (let i = 0; i < number; i += 1) {
+      arrayOfStars[i].classList.add('.selected-stars')
+    }
+  }
 }
 
 function closeModal() {
-  hide(backdrop);
+  hide(refs.backdrop);
   document.removeEventListener('click', closeModal);
   document.removeEventListener('keydown', escapeClickHandler);
-  if (document.contains(backdrop)) {
-    backdrop.removeEventListener('click', backdropClickHandler);
+  if (document.contains(refs.backdrop)) {
+    refs.backdrop.removeEventListener('click', backdropClickHandler);
   }
 }
 function backdropClickHandler(event) {
-  if (event.target === backdrop) {
+  if (event.target === refs.backdrop) {
     closeModal();
   }
 }
@@ -215,29 +277,5 @@ function escapeClickHandler(event) {
   }
 }
 
-const stars = document.querySelectorAll('.ex-rate-icon');
-const activeColor = '#eea10c';
-const noActiveColor = '#e8e8e8';
-
-// stars.forEach((star, index) => {
-//   const rating = Number(star.getAttribute('data-rating'));
-//   const starHTML = renderStars(rating);
-//   const filledStarsCount = (starHTML.match(/&#9733;/g) || []).length;
-//   if (index < filledStarsCount) {
-//     star.style.fill = activeColor;
-//   } else {
-//     star.style.fill = noActiveColor;
-//   }
-// });
-
-// function renderStars(rating) {
-//   const filledStar = '<span class="star">&#9733;</span>';
-//   const emptyStar = '<span class="star">&#9734;</span>';
-//   const filledStars = filledStar.repeat(Math.floor(rating));
-//   const halfStar = rating % 1 !== 0 ? '<span class="star">&#9733;</span>' : '';
-//   const emptyStarsCount = Math.max(0, 5 - Math.ceil(rating)); // Ensure non-negative value
-//   const emptyStars = emptyStar.repeat(emptyStarsCount);
-//   return filledStars + halfStar + emptyStars;
-// }
 
 export { createModalMenu };

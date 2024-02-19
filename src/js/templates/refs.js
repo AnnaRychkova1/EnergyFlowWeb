@@ -40,4 +40,7 @@ export const refs = {
   onStartBtn: document.querySelector('.favorites-start-btn'),
   addToFavoritesBtn: document.querySelector('.ex-add-btn'),
   galleryItem: document.querySelector('.favorites-gallery-item'),
+
+  // Maria
+  backdrop: document.querySelector('.backdrop'),
 };

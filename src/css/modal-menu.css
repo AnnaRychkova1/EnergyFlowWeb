@@ -105,6 +105,14 @@
     color: var(--background-dark-grey);
     background-color: transparent;
 }
+.ex-rate-icon {
+    fill: #e8e8e8;
+    width: 100%;
+    height: 100%;
+}
+.selected-stars {
+    fill: #eea10c;
+}
 .exercise-gif {
   display: flex;
   justify-content: center;
