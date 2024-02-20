@@ -1,5 +1,10 @@
+/* Стили Данил */
+
+/* ============================================================================================================================== */
+
 /* Mobile */
 
+/* ============================================================================================================================== */
 @media (max-width: 375px) {
   .favorites-section .favorites-container {
     width: 100%;
@@ -12,7 +17,7 @@
     display: none !important;
   }
 
-  .container.favorites-container {
+  .container .favorites-container {
     width: 335px;
     height: 450px;
   }
@@ -313,7 +318,7 @@
   }
 }
 
-/* Tablet  */
+/* Tablet*/
 
 @media screen and (min-width: 768.95px) and (max-width: 1438.98px) {
   .favorites-container {
@@ -726,7 +731,7 @@
   }
 }
 
-/* PAGINATION FOR MOBILE */
+/*  PAGINATION FOR MOBILE */
 
 .favorites-pagination-block {
   display: flex;
@@ -762,7 +767,6 @@
   transition: color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
     border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
-
 /*============= Gallery of Cards for Mobile===============*/
 
 @media screen and (min-width: 375px) and (max-width: 767.98px) {
