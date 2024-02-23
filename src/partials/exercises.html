@@ -37,24 +37,27 @@
         </ul>
       </div>
       <form class="subexercises-search-form is-hidden">
-        <input class="subexercises-input" type="text" name="query" />
+        <input
+          class="subexercises-input"
+          type="text"
+          name="query"
+          placeholder="Search"
+        />
         <button type="submit" class="subexercises-search-btn">
           <svg class="subexercises-search-icon" width="18" height="18">
-            <use href="../img/icons/symbol-defs.svg#icon-arrow-top-right"></use>
+            <use href="../img/icons/symbol-defs.svg#icon-search"></use>
           </svg>
         </button>
       </form>
     </div>
     <ul class="exercises-gallery"></ul>
-    <div class="subexercises-deteils-container is-hidden">
-      <ul class="subexercises-filtered-cards"></ul>
-      <p class="subexercises-text-no-found is-hidden">
-        Unfortunately, <span class="exercise-no-found">no results</span> were
-        found. You may want to consider other search options to find the
-        exercise you are looking for. Our range is wide and you have the
-        opportunity to find more options that suit your needs.
-      </p>
-    </div>
+    <ul class="subexercises-filtered-cards is-hidden"></ul>
+    <p class="subexercises-text-no-found is-hidden">
+      Unfortunately, <span class="exercise-no-found">no results</span> were
+      found. You may want to consider other search options to find the exercise
+      you are looking for. Our range is wide and you have the opportunity to
+      find more options that suit your needs.
+    </p>
 
     <div class="exercises-pagination"></div>
   </div>

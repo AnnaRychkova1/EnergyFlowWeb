@@ -150,6 +150,7 @@
   .exercises-container {
     padding: 64px 48px;
     width: 736px;
+    min-height: 1092px;
   }
 
   .exercises-title {
@@ -207,6 +208,7 @@
 @media only screen and (min-width: 1440px) {
   .exercises-container {
     width: 1408px;
+    min-height: 872px;
   }
 
   .exercises-gallery {

@@ -14,9 +14,9 @@ export const refs = {
   exercisesTitleSpan: document.querySelector('.exercises-title-span'),
 
   //  Anna
-  subexercisesDetailsContainer: document.querySelector(
-    '.subexercises-deteils-container'
-  ),
+  // subexercisesDetailsContainer: document.querySelector(
+  //   '.subexercises-deteils-container'
+  // ),
   subexercisesFilteredCards: document.querySelector(
     '.subexercises-filtered-cards'
   ),
@@ -26,7 +26,7 @@ export const refs = {
     '.subexercises-text-no-found'
   ),
   exercisesSubtitle: document.querySelector('.exercises-subtitle'),
-  
+
   // Oksana
   favoritesGallery: document.querySelector('.favorites-gallery'),
   favoritesMessage: document.querySelector('.favorites-box-block'),

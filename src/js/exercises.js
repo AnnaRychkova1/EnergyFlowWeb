@@ -23,10 +23,8 @@ refs.exercisesBtnEl.addEventListener('click', filterBtnExercises);
 refs.exercisesGalleryEl.addEventListener('click', filterCartsExercises);
 refs.paginationEl.addEventListener('click', onPaginationPages);
 
-if (screenWidth <= 375) {
+if (screenWidth < 768) {
   currentLimit = 8;
-} else if (screenWidth <= 768) {
-  currentLimit = 12;
 } else {
   currentLimit = 12;
 }
@@ -70,12 +68,12 @@ fetchDefaultMuscles();
 
 async function filterBtnExercises(event) {
   event.preventDefault();
-//  show(refs.subexercisesDetailsContainer);
-//   show(refs.subexercisesSearchForm);
-//   show(refs.exercisesTitleSpan);
+  //  show(refs.subexercisesDetailsContainer);
+  //show(refs.subexercisesSearchForm);
+  //   show(refs.exercisesTitleSpan);
 
-  hide(refs.subexercisesDetailsContainer);
-  hide(refs.subexercisesSearchForm);
+  //hide(refs.subexercisesDetailsContainer);
+  //hide(refs.subexercisesSearchForm);
   hide(refs.exercisesTitleSpan);
   refs.exercisesSubtitle.innerHTML = '';
   refs.subexercisesDetailsContainer.innerHTML = '';
@@ -175,8 +173,8 @@ function filterCartsExercises(event) {
   }
   refs.exercisesGalleryEl.innerHTML = '';
   refs.paginationEl.innerHTML = '';
-  show(refs.subexercisesDetailsContainer);
-  show(refs.subexercisesSearchForm);
+  //show(refs.subexercisesDetailsContainer);
+
   show(refs.exercisesTitleSpan);
   hideLoader(refs.loaderModal);
   renderExerciseByFilterName(exercisesParamFilter, exercisesParamName);
