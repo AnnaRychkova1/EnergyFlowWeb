@@ -5,14 +5,14 @@ import{a as h}from"./vendor-8cce9181.js";import{show as u,hideLoader as d,showLo
             <div class="card-box-rating">
               <p class="filtered-rating">${Math.round(t)}</p>
               <svg class="filtered-star" width="16" height="16">
-                <use href="../img/icons/symbol-defs.svg#icon-Star-1"></use>
+                <use href="/img/icons/symbol-defs.svg#icon-Star-1"></use>
               </svg>
             </div>
           </div>
           <button class="to-favorites-start" type="submit" data-id=${i}>
             <span>Start</span>
             <svg class="filtered-start" width="16" height="16">
-              <use href="../img/icons/symbol-defs.svg#icon-arrow-right"></use>
+              <use href="/img/icons/symbol-defs.svg#icon-arrow-right"></use>
             </svg>
           </button> 
         </div>
@@ -20,7 +20,7 @@ import{a as h}from"./vendor-8cce9181.js";import{show as u,hideLoader as d,showLo
         <div class="card-box-title">
           <div class="filtered-athlete-box">
             <svg class="filtered-athlete" width="16" height="16">
-              <use href="../img/icons/symbol-defs.svg#icon-Man"></use>
+              <use href="/img/icons/symbol-defs.svg#icon-Man"></use>
             </svg>
           </div>
           <h3 class="filtered-title">${r}</h3>
@@ -38,4 +38,4 @@ import{a as h}from"./vendor-8cce9181.js";import{show as u,hideLoader as d,showLo
           </li>
         </ul>
   </li>`}function f(i,t){let r="";const o=Math.min(t,3),a=Math.max(1,i-1);p(e.loaderModal);for(let l=a;l<a+o;l++)r+=`<button class="button-pagination" type="button">${l}</button>`;return d(e.loaderModal),r}export{$ as renderExerciseByFilterName};
-//# sourceMappingURL=exercises-details-4f5b17f2.js.map
+//# sourceMappingURL=exercises-details-892bb219.js.map
