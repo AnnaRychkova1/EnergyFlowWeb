@@ -192,14 +192,14 @@ function createCard({
             <div class="card-box-rating">
               <p class="filtered-rating">${Math.round(rating)}</p>
               <svg class="filtered-star" width="16" height="16">
-                <use href="../img/icons/symbol-defs.svg#icon-Star-1"></use>
+                <use href="/img/icons/symbol-defs.svg#icon-Star-1"></use>
               </svg>
             </div>
           </div>
           <button class="to-favorites-start" type="submit" data-id=${_id}>
             <span>Start</span>
             <svg class="filtered-start" width="16" height="16">
-              <use href="../img/icons/symbol-defs.svg#icon-arrow-right"></use>
+              <use href="/img/icons/symbol-defs.svg#icon-arrow-right"></use>
             </svg>
           </button> 
         </div>
@@ -207,7 +207,7 @@ function createCard({
         <div class="card-box-title">
           <div class="filtered-athlete-box">
             <svg class="filtered-athlete" width="16" height="16">
-              <use href="../img/icons/symbol-defs.svg#icon-Man"></use>
+              <use href="/img/icons/symbol-defs.svg#icon-Man"></use>
             </svg>
           </div>
           <h3 class="filtered-title">${name}</h3>
