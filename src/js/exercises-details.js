@@ -18,13 +18,13 @@ const getParams = {
   limit: 9,
 };
 
-if (screenWidth < 1440) {
-  getParams.limit = 8;
-} else {
-  getParams.limit = 9;
-}
-
 async function renderExerciseByFilterName(expectedFilter, name) {
+  if (screenWidth < 1440) {
+    getParams.limit = 8;
+  } else {
+    getParams.limit = 9;
+  }
+
   let filter;
 
   show(refs.subexercisesSearchForm);
@@ -155,6 +155,7 @@ function handleClickOnCardStart(evt) {
   }
 
   const exerciseId = evt.target.dataset.id;
+  console.log('start is working');
   // showLoader(refs.loaderModal);
   createModalMenu(exerciseId);
 }
@@ -233,9 +234,6 @@ function createCard({
         </ul>
   </li>`;
 }
-
-//  icon <svg class="start-svg" width="18" height="18"> <use href="./img/icons/symbol-defs.svg#icon-arrow-top-right"></use> </svg>
-//     <svg class="filtered-athlete" width="14" height="14"><use href="./img/icons/symbol-defs.svg#icon-Man"></use></svg>
 
 // Pagination
 
