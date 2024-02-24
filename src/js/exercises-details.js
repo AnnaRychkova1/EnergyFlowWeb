@@ -3,9 +3,13 @@ import { hide, show, showLoader, hideLoader } from './services/visibility';
 import { refs } from './templates/refs.js';
 import isiToast from './services/isiToast.js';
 import { createModalMenu } from './modal-menu.js';
+import icons from '/img/icons/symbol-defs.svg';
 
 const BASE_URL = 'https://energyflow.b.goit.study/api';
 const ENDPOINT_EXERCISES = 'exercises';
+
+const screenWidth = window.innerWidth;
+console.log(screenWidth);
 
 const getParams = {
   filter: '',
@@ -14,7 +18,7 @@ const getParams = {
   limit: 9,
 };
 
-if (refs.subexercisesFilteredCards.screenWidth < 768) {
+if (screenWidth < 1440) {
   getParams.limit = 8;
 } else {
   getParams.limit = 9;
@@ -191,14 +195,14 @@ function createCard({
             <div class="card-box-rating">
               <p class="filtered-rating">${Math.round(rating)}</p>
               <svg class="filtered-star" width="16" height="16">
-                <use href="/img/icons/symbol-defs.svg#icon-Star-1"></use>
+                <use href="${icons}#icon-Star-1"></use>
               </svg>
             </div>
           </div>
           <button class="to-favorites-start" type="submit" data-id=${_id}>
             <span>Start</span>
             <svg class="filtered-start" width="16" height="16">
-              <use href="/img/icons/symbol-defs.svg#icon-arrow-right"></use>
+              <use href="${icons}#icon-arrow-right"></use>
             </svg>
           </button> 
         </div>
@@ -206,7 +210,7 @@ function createCard({
         <div class="card-box-title">
           <div class="filtered-athlete-box">
             <svg class="filtered-athlete" width="16" height="16">
-              <use href="/img/icons/symbol-defs.svg#icon-Man"></use>
+              <use href="${icons}#icon-Man"></use>
             </svg>
           </div>
           <h3 class="filtered-title">${name}</h3>
@@ -262,9 +266,6 @@ async function onPaginationPages(event) {
     console.log(error);
   }
 }
-
-const screenWidth = window.innerWidth;
-console.log(screenWidth);
 
 export { renderExerciseByFilterName };
 
