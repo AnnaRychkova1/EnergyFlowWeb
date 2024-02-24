@@ -68,15 +68,15 @@ fetchDefaultMuscles();
 
 async function filterBtnExercises(event) {
   event.preventDefault();
-  //  show(refs.subexercisesDetailsContainer);
+  show(refs.subexercisesFilteredCards);
   //show(refs.subexercisesSearchForm);
   //   show(refs.exercisesTitleSpan);
 
-  //hide(refs.subexercisesDetailsContainer);
+  //hide(refs.subexercisesFilteredCards);
   //hide(refs.subexercisesSearchForm);
   hide(refs.exercisesTitleSpan);
   refs.exercisesSubtitle.innerHTML = '';
-  refs.subexercisesDetailsContainer.innerHTML = '';
+  refs.subexercisesFilteredCards.innerHTML = '';
 
   const query = event.target.dataset.filter;
 
@@ -173,7 +173,7 @@ function filterCartsExercises(event) {
   }
   refs.exercisesGalleryEl.innerHTML = '';
   refs.paginationEl.innerHTML = '';
-  //show(refs.subexercisesDetailsContainer);
+  show(refs.subexercisesFilteredCards);
 
   show(refs.exercisesTitleSpan);
   hideLoader(refs.loaderModal);

@@ -14,9 +14,6 @@ export const refs = {
   exercisesTitleSpan: document.querySelector('.exercises-title-span'),
 
   //  Anna
-  // subexercisesDetailsContainer: document.querySelector(
-  //   '.subexercises-deteils-container'
-  // ),
   subexercisesFilteredCards: document.querySelector(
     '.subexercises-filtered-cards'
   ),

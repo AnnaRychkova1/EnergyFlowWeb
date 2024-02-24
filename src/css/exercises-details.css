@@ -24,8 +24,7 @@
 }
 
 .subexercises-input:hover,
-.subexercises-input:focus,
-.subexercises-input:target {
+.subexercises-input:active {
   background-color: rgb(246, 246, 246);
   outline: none;
   border: none;
@@ -63,18 +62,6 @@
   box-shadow: -2px -2px 15px #fff, 2px 2px 15px #babecc;
   fill: grey;
 }
-
-/* ! deleted
-.subexercises-deteils-container {
-    list-style-type: none;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    flex-wrap: wrap;
-    margin-left: auto;
-    margin-right: auto;
-    gap: 20px;
-  } */
 
 .subexercises-filtered-cards {
   display: flex;
@@ -115,7 +102,6 @@
   text-transform: uppercase;
   color: #f6f6f6;
   font-size: 12px;
-  font-weight: 500;
   text-align: center;
 }
 
@@ -236,12 +222,7 @@
   color: #7e847f;
 }
 
-/* Pagination */
-
-/* .subexercises-pagination-container {
-} */
-
-/* ! Adaptive */
+/* Adaptive */
 
 @media only screen and (min-width: 768px) {
   .exercises-subtitle {
@@ -311,17 +292,55 @@
 }
 
 @media only screen and (min-width: 1440px) {
+  .subexercises-search-form {
+    width: 273px;
+    height: 48px;
+  }
+
   .subexercises-input {
     width: 273px;
     height: 48px;
     font-size: 16px;
   }
-}
 
-/* 
+  .subexercises-search-btn {
+    top: 5px;
+    left: 245px;
+  }
 
-@media only screen and (min-width: 1440px) {
+  .subexercises-search-icon {
+    top: -2px;
+    left: -32px;
+  }
+
+  .subexercises-filtered-cards {
+    gap: 28px 20px;
+  }
+
   .filtered-card-item {
     width: 424px;
+    height: 141px;
   }
+
+  .filtered-title {
+    max-width: 318px;
+  }
+
+  .subexercises-text-no-found {
+    margin: 218px 314px auto 314px;
+    font-size: 18px;
+    line-height: 1.33;
+  }
+
+  .filtered-description {
+    gap: 16px;
+    flex-wrap: nowrap;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+/* Pagination */
+
+/* .subexercises-pagination-container {
 } */

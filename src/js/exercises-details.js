@@ -14,7 +14,7 @@ const getParams = {
   limit: 9,
 };
 
-if (refs.subexercisesFilteredCards.scrollWidth < 768) {
+if (refs.subexercisesFilteredCards.screenWidth < 768) {
   getParams.limit = 8;
 } else {
   getParams.limit = 9;
@@ -48,7 +48,7 @@ async function renderExerciseByFilterName(expectedFilter, name) {
   refs.subexercisesSearchForm.reset();
   refs.subexercisesFilteredCards.innerHTML = '';
   //show(refs.subexercisesSearchForm);
-  //show(refs.subexercisesDetailsContainer);
+  show(refs.subexercisesFilteredCards);
   //show(refs.subexercisesSearchForm);
   showLoader(refs.loaderModal);
 
@@ -97,7 +97,6 @@ async function renderExerciseByFilterName(expectedFilter, name) {
 
     refs.exercisesSubtitle.textContent = `${name}`;
     refs.subexercisesFilteredCards.innerHTML = '';
-    //show(refs.subexercisesDetailsContainer);
     //show(refs.subexercisesSearchForm);
     showLoader(refs.loaderModal);
 
@@ -264,6 +263,9 @@ async function onPaginationPages(event) {
   }
 }
 
+const screenWidth = window.innerWidth;
+console.log(screenWidth);
+
 export { renderExerciseByFilterName };
 
 // import axios from 'axios';
@@ -306,10 +308,6 @@ export { renderExerciseByFilterName };
 //         show(refs.subexercisesTextNoFound);
 //         hideLoader(refs.loaderModal);
 //         return;
-//     }
-
-//     if (refs.exercisesGalleryEl) {
-//         hide(refs.subexercisesDetailsContainer);
 //     }
 
 //     refs.exercisesSubtitle.textContent = `${name}`;
@@ -357,13 +355,11 @@ export { renderExerciseByFilterName };
 //             evt.preventDefault();
 
 //              if (refs.exercisesGalleryEl) {
-//                 hide(refs.subexercisesDetailsContainer);
 //                 // refs.subexercisesSearchForm.reset();
 //                 hide(refs.subexercisesSearchForm);
 //             }
 
 //             refs.exercisesSubtitle.textContent = `${name}`;
-//             show(refs.subexercisesDetailsContainer);
 //             show(refs.subexercisesSearchForm);
 //             showLoader(refs.loaderModal);
 //             refs.subexercisesFilteredCards.innerHTML = '';
