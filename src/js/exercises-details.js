@@ -165,7 +165,7 @@ async function renderExerciseByFilterName(expectedFilter, name) {
     }
 }
 
-refs.subexercisesFilteredCards.addEventListener('click', handleClickOnCardStart)
+// refs.subexercisesFilteredCards.addEventListener('click', handleClickOnCardStart)
 
 function handleClickOnCardStart(evt) {
     if (!evt.target.dataset.id) {

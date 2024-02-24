@@ -17,46 +17,50 @@ import { refs } from "./templates/refs.js";
 //   quoteAuthor.textContent = quoteData.author;
 // }
 
-
+//===============================================================================================
      
 // Create Favorites page
-async function createFavoritesGallery() {
+// async function createFavoritesGallery() {
   
-  try {
-      const itemsFromLS = await JSON.parse(localStorage.getItem('exerciseFavorites'));  
-console.log(itemsFromLS);
+//   try {
+//       const itemsFromLS = await JSON.parse(localStorage.getItem('exerciseFavorites'));
+//     console.log(itemsFromLS);
+    
+
       // if (!itemsFromLS) {
       //   console.log('')
       // }else if  (itemsFromLS.length === 0) {
       //     console.log('Array in local storage is empty or does not exist.');
        
            
-        const { results, totalPages } = await searchExerciseByFilters({
-            filter: filter,
-            name: name,
-            keyword: getParams.keyword,
-            limit: getParams.limit,
-            page: getParams.page
-        });
+//         const { results, totalPages } = await searchExerciseByFilters({
+//             filter: filter,
+//             name: name,
+//             keyword: getParams.keyword,
+//             limit: getParams.limit,
+//             page: getParams.page
+//         });
 
-        console.log(totalPages);
-        console.log(results);
-        console.log(getParams.page);
+//         console.log(totalPages);
+//         console.log(results);
+//         console.log(getParams.page);
 
-        refs.favoritesGallery.innerHTML = '';
-      itemsFromLS.forEach(item => {
-      const markup = createMarkupFavorites(item);
-         });
+//         refs.favoritesGallery.innerHTML = '';
+//       itemsFromLS.forEach(item => {
+//       const markup = createMarkupFavorites(item);
+//          });
 
        
-    } catch (error) {
-      console.error('Error refreshing gallery:', error);
+//     } catch (error) {
+//       console.error('Error refreshing gallery:', error);
       
-    }
-}
+//     }
+// }
 
     
-refreshGallery()
+// refreshGallery()
+
+//==============================================================================
 // Refresh the gallery by updating the displayed items
 // async function refreshGallery() {
 //     try {
@@ -107,37 +111,64 @@ refreshGallery()
 
 // refs.onStartBtn.addEventListener('click', handleStartButtonClick)
 
-function handleStartButtonClick(evt) {
-    if (!evt.target.dataset.id) {
-        return
-    }
-    // showLoader(refs.loaderModal);
-    const exerciseId = evt.target.dataset.id;
-  hide(refs.favoritesGallery);
-    createModalMenu(exerciseId);
-}
+// function handleStartButtonClick(evt) {
+//     if (!evt.target.dataset.id) {
+//         return
+//     }
+//     // showLoader(refs.loaderModal);
+//     const exerciseId = evt.target.dataset.id;
+//   hide(refs.favoritesGallery);
+//     createModalMenu(exerciseId);
+// }
 
 // Creating a plug when the LS is empty
 
-const markupMessageBlock =
-  `<div class="favorites-message-block">
-      <div class="plug-icon">
-        <img class="favorites-box-img" src="./img/icons/dumbbell.png" alt="dumbbell" />
-      </div >
-      <div class="favorites-box-paragraf">
-          It appears that you have not added any exercises to your  favorites yet.To get started, you can add exercises that you like to your favorites for easier access in the future.
-      </div>
-    </div>`;
+// const markupMessageBlock =
+//   `<div class="favorites-message-block">
+//       <div class="plug-icon">
+//         <img class="favorites-box-img" src="./img/icons/dumbbell.png" alt="dumbbell" />
+//       </div >
+//       <div class="favorites-box-paragraf">
+//           It appears that you have not added any exercises to your  favorites yet.To get started, you can add exercises that you like to your favorites for easier access in the future.
+//       </div>
+//     </div>`;
 
 
-function showMessageBlock() {
-  refs.messageBlock.innerHTML = markupMessageBlock;
+// function showMessageBlock() {
+//   refs.messageBlock.innerHTML = markupMessageBlock;
+// }
+
+//!===========================================================================================================
+const list = document.querySelector('.favorites-gallery');
+
+// async function fetchGallery() {
+//    return itemsFromLS = await JSON.parse(localStorage.getItem('exerciseFavorites'));
+//   console.log(itemsFromLS);
+  
+// }
+function fetchGallery() {
+  return fetch('https://energyflow.b.goit.study/api/exercises/?id={_id}').then(response => {
+    if (!response.ok) {
+      throw new Error ('Response error with status ${response.status}')
+      
+    }
+    return response.json
+  })
 }
 
+fetchGallery().then(data => {
+  console.log(data);
+  list.insertAdjacentHTML("beforeend", createMarkupGallery(data))
+})
+.catch((err) => console.log(err));
+         
+
+function createMarkupGallery(data) {
+  return data.map(createLi).join('')
+}
        
-function createMarkupFavorites({ _id, bodyPart, name, target, burnedCalories, time }) {
- return markup `
-        <li class="favorites-gallery-item" data-id="${_id}" id="card-${_id}">
+function createLi({ _id, bodyPart, name, target, burnedCalories, time }) {
+  return `<li class="favorites-gallery-item" data-id="${_id}" id="card-${_id}">
            <div class="favorites-item">
               <div class="favorites-item-wrapper">
                 <span class="workout">Workout</span>
@@ -172,8 +203,7 @@ function createMarkupFavorites({ _id, bodyPart, name, target, burnedCalories, ti
         </li>`};
   // refs.messageBlock.innerHTML = '';
   // refs.messageBlock.prepend(markup);
-  refs.favoritesGallery.insertAdjacentHTML('afterbegin', markup);
-}
+  // refs.favoritesGallery.insertAdjacentHTML('afterbegin', markup);
 
 //  Scroll for favorites-gallery
 
