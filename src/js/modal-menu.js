@@ -1,15 +1,14 @@
 import axios from 'axios';
-import { hide, show, showLoader, hideLoader } from './services/visibility';
+import { hide, show } from './services/visibility';
 import icons from '../img/icons/symbol-defs.svg';
 import { refs } from './templates/refs';
 
 const modalCard = document.querySelector('.modal');
 
-const heartIcon = `
-// <svg class="icon-heart" width="18" height="18">
-//     <use href="${icons}#icon-heart"></use>
-// </svg>`;
-
+// const heartIcon = `
+// // <svg class="icon-heart" width="18" height="18">
+// //     <use href="${icons}#icon-heart"></use>
+// // </svg>`;
 
 let expectedId;
 async function createModalMenu(expectedExercisesId) {
@@ -27,28 +26,34 @@ async function createModalMenu(expectedExercisesId) {
     function addToFavoriteOnClick(event) {
       const exerciseId = event.target.dataset.id || expectedId;
       const exerciseName = document.querySelector('.exercise-name').textContent;
-      const exerciseBodyPart =
-document.querySelector('.exercise-information .ex-block:nth-child(1).exercise-label').textContent;
-      const exerciseEquipment =
-document.querySelector('.exercise-information .ex-block:nth-child(2).exercise-label').textContent;
-      const exerciseTime =
-document.querySelector('.exercise-information .ex-block:nth-child(3).exercise-label').textContent;
-      const exerciseTarget =
-document.querySelector('.exercise-information .ex-block:nth-child(4).exercise-label').textContent;
-      const exerciseBurnedCalories =
-document.querySelector('.exercise-information .ex-block:nth-child(5).exercise-label').textContent;
+      const exerciseBodyPart = document.querySelector(
+        '.exercise-information .ex-block:nth-child(1).exercise-label'
+      ).textContent;
+      const exerciseEquipment = document.querySelector(
+        '.exercise-information .ex-block:nth-child(2).exercise-label'
+      ).textContent;
+      const exerciseTime = document.querySelector(
+        '.exercise-information .ex-block:nth-child(3).exercise-label'
+      ).textContent;
+      const exerciseTarget = document.querySelector(
+        '.exercise-information .ex-block:nth-child(4).exercise-label'
+      ).textContent;
+      const exerciseBurnedCalories = document.querySelector(
+        '.exercise-information .ex-block:nth-child(5).exercise-label'
+      ).textContent;
       const exerciseGifUrl = document.querySelector('.exercise-gif img').src;
       let favorites =
-JSON.parse(localStorage.getItem('exerciseFavorites')) || [];
-      const isFavorite = favorites.some((favorite) => favorite._id ===
-exerciseId);
+        JSON.parse(localStorage.getItem('exerciseFavorites')) || [];
+      const isFavorite = favorites.some(
+        favorite => favorite._id === exerciseId
+      );
       if (isFavorite) {
         event.target.textContent = 'Add to favorites';
       } else {
         event.target.textContent = 'Remove from favorites';
       }
       if (isFavorite) {
-        favorites = favorites.filter((favorite) => favorite._id !== exerciseId);
+        favorites = favorites.filter(favorite => favorite._id !== exerciseId);
         localStorage.setItem('exerciseFavorites', JSON.stringify(favorites));
       } else {
         const newExercise = {
@@ -68,15 +73,12 @@ exerciseId);
 
     const closeButton = document.querySelector('.modal-close-btn');
     closeButton.addEventListener('click', closeModal);
-    document.addEventListener('keydown', escapeClickHandler);
+    //document.addEventListener('keydown', escapeClickHandler);
     refs.backdrop.addEventListener('click', backdropClickHandler);
   } catch (error) {
     console.error('Error fetching images:', error);
   }
 }
-
-
-
 
 async function getCardInfo(exerciseId) {
   console.log(exerciseId);
@@ -103,10 +105,8 @@ function modalWindowMarkup({
   rating,
   description,
 }) {
-
-  let fillUpStarsRating  = rating.toFixed(1);
-  const markup =
-    `<div class="modal-container">
+  let fillUpStarsRating = rating.toFixed(1);
+  const markup = `<div class="modal-container">
             <button class="modal-close-btn">
                 <svg
                     class="modal-close-icon"
@@ -142,7 +142,7 @@ function modalWindowMarkup({
             <div class="ex-content-container">
                 <h3 class="exercise-title">${name}</h3>
                <div class="rating-container">
-                <p class="ex-current-rating">${fillUpStarsRating }</p>
+                <p class="ex-current-rating">${fillUpStarsRating}</p>
                 <ul class="exercise-stars-list">
                   <li>
               <svg
@@ -242,18 +242,16 @@ class="ex-add-favorite">
             </div>
         </div>
     `;
-  
+
   modalCard.innerHTML = markup;
   modalCard.insertAdjacentHTML('beforeend', markup);
   renderStars(Math.round(rating));
 
-   
-  
   function renderStars(number) {
-     const star = document.querySelectorAll('.ex-rate-icon');
+    const star = document.querySelectorAll('.ex-rate-icon');
     const arrayOfStars = [...star];
     for (let i = 0; i < number; i += 1) {
-      arrayOfStars[i].classList.add('.selected-stars')
+      arrayOfStars[i].classList.add('.selected-stars');
     }
   }
 }
@@ -280,21 +278,12 @@ export function onEscape(event) {
   }
 }
 
-
 export { createModalMenu };
-  
-  
-  
- 
 
-
-
-  
-  
 //   // import axios from 'axios';
 // import { hide, show, showLoader, hideLoader } from './services/visibility';
 // import icons from '../img/icons/symbol-defs.svg';
-// const gallery = document.querySelector('.results'); 
+// const gallery = document.querySelector('.results');
 
 // const backdrop = document.querySelector('.backdrop');
 // const modalCard = document.querySelector('.modal');
@@ -505,13 +494,3 @@ export { createModalMenu };
 // const activeColor = '#eea10c';
 // const noActiveColor = '#e8e8e8';
 // export { createModalMenu };
-
-
-
-
-
-
-
-
-
-
