@@ -150,13 +150,11 @@ refs.subexercisesFilteredCards.addEventListener(
 
 // request to modal window
 function handleClickOnCardStart(evt) {
-  console.log(evt);
   if (!evt.target.dataset.id) {
     return;
   }
 
   const exerciseId = evt.target.dataset.id;
-  console.log('start is working');
   // showLoader(refs.loaderModal);
   createModalMenu(exerciseId);
 }
@@ -202,9 +200,9 @@ function createCard({
             </div>
           </div>
           <button class="to-favorites-start" type="click" data-id=${_id}>
-            <span>Start</span>
-            <svg class="filtered-start" width="16" height="16">
-              <use href="${icons}#icon-arrow-right"></use>
+            <span data-id=${_id}>Start</span>
+            <svg data-id=${_id} class="filtered-start" width="16" height="16">
+              <use data-id=${_id} href="${icons}#icon-arrow-right"></use>
             </svg>
           </button> 
         </div>
