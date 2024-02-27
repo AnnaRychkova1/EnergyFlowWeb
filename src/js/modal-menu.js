@@ -140,7 +140,7 @@ function modalWindowMarkup({
               <div class="exercises-modal-content"></div>
             </div>
             <div class="ex-content-container">
-                <h3 class="exercise-name">${name}</h3>
+                <h3 class="exercise-title">${name}</h3>
                <div class="rating-container">
                 <p class="ex-current-rating">${fillUpStarsRating }</p>
                 <ul class="exercise-stars-list">
