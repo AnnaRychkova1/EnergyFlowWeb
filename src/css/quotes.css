@@ -157,7 +157,7 @@
 }
 @media screen and (min-width: 1440px) {
   .container-quote {
-    max-width: 1440px;
+    min-width: 1440px;
   }
   .container-quote {
     display: flex;
