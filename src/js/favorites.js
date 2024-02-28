@@ -1,7 +1,27 @@
-import axios from "axios";
+// 1. Створи пустий масив, куди ти будеш записувати дані.
+// 2. Потім звернися до локал сторадж
+// 3. Візьми звідти дані і розпарсь їх
+// 4. Ти отримаєш  масив об"єктів, як про книги чи про покемонів було.
+// 5. Перевір, чи є в тебе вже такий об"єкт.
+// 6. Додай його до своєї галерей
+// 7. Тепер побудуй їх як в моїй функції я будую
+// 8. Створи подію нажимання на кнопку
+// 9. при натисканні на кнопку
+// ПРи натисканні відкривай модальне вікно як у Маши.
+// 10.  При відкритому вікні всі кнопки мають текстконтент Ремув фром фаворит
+// 11. Знову еадавай кнопці слухача, при кліну записуй цей об"єкт в масив сторадж, попередньо застрінгифай
 
-import { hide, show } from "./services/visibility";
-import { refs } from "./templates/refs.js";
+// Ти пишеш свою, але дуже схожу. Мої параметри це фільтр і ім"я, а твої це фйді. Я роблю запит на сервер, а ти ні. Я будую маркап за масивом об"єктів, а ти за одним об"єктом.
+
+
+
+
+
+
+// import axios from "axios";
+
+// import { hide, show } from "./services/visibility";
+// import { refs } from "./templates/refs.js";
 
 
 
@@ -18,44 +38,46 @@ import { refs } from "./templates/refs.js";
 // }
 
 //===============================================================================================
+const LS_KEY = 'exerciseFavorites';
      
+
 // Create Favorites page
-// async function createFavoritesGallery() {
+async function createFavoritesGallery(event) {
+  event.preventDefault;
   
-//   try {
-//       const itemsFromLS = await JSON.parse(localStorage.getItem('exerciseFavorites'));
-//     console.log(itemsFromLS);
+  try {
+    const itemsFromLS = await JSON.parse(localStorage.getItem(LS_KEY));
+    console.log(itemsFromLS);
     
+    if (!itemsFromLS || itemsFromLS.length === 0) {
+      console.log('Array in local storage is empty or does not exist.');
+      return showMessageBlock();
+    }
+    refs.favoritesGallery.innerHTML = '';            
+    // const { results, totalPages } = await searchExerciseByFilters({
+    //     filter: filter,
+    //     name: name,
+    //     keyword: getParams.keyword,
+    //     limit: getParams.limit,
+    //     page: getParams.page
+    //   });
 
-      // if (!itemsFromLS) {
-      //   console.log('')
-      // }else if  (itemsFromLS.length === 0) {
-      //     console.log('Array in local storage is empty or does not exist.');
-       
-           
-//         const { results, totalPages } = await searchExerciseByFilters({
-//             filter: filter,
-//             name: name,
-//             keyword: getParams.keyword,
-//             limit: getParams.limit,
-//             page: getParams.page
-//         });
+    //   console.log(totalPages);
+    //   console.log(results);
+    //   console.log(getParams.page);
 
-//         console.log(totalPages);
-//         console.log(results);
-//         console.log(getParams.page);
-
-//         refs.favoritesGallery.innerHTML = '';
-//       itemsFromLS.forEach(item => {
-//       const markup = createMarkupFavorites(item);
-//          });
-
-       
-//     } catch (error) {
-//       console.error('Error refreshing gallery:', error);
       
-//     }
-// }
+      // itemsFromLS.forEach(item => {
+      //   const markup = createMarkupFavorites(item);
+      // });
+
+       
+    } catch (error) {
+      console.error('Error refreshing gallery:', error);
+      
+    }
+  }
+
 
     
 // refreshGallery()
@@ -123,44 +145,40 @@ import { refs } from "./templates/refs.js";
 
 // Creating a plug when the LS is empty
 
-// const markupMessageBlock =
-//   `<div class="favorites-message-block">
-//       <div class="plug-icon">
-//         <img class="favorites-box-img" src="./img/icons/dumbbell.png" alt="dumbbell" />
-//       </div >
-//       <div class="favorites-box-paragraf">
-//           It appears that you have not added any exercises to your  favorites yet.To get started, you can add exercises that you like to your favorites for easier access in the future.
-//       </div>
-//     </div>`;
-
-
-// function showMessageBlock() {
-//   refs.messageBlock.innerHTML = markupMessageBlock;
-// }
+function showMessageBlock() {
+  refs.messageBlock.innerHTML = `<div class="favorites-message-block">
+      <div class="plug-icon">
+        <img class="favorites-box-img" src="./img/icons/dumbbell.png" alt="dumbbell" />
+      </div >
+      <div class="favorites-box-paragraf">
+          It appears that you have not added any exercises to your  favorites yet.To get started, you can add exercises that you like to your favorites for easier access in the future.
+      </div>
+    </div>`;
+}
 
 //!===========================================================================================================
-const list = document.querySelector('.favorites-gallery');
+// const list = document.querySelector('.favorites-gallery');
 
 // async function fetchGallery() {
 //    return itemsFromLS = await JSON.parse(localStorage.getItem('exerciseFavorites'));
 //   console.log(itemsFromLS);
   
 // }
-function fetchGallery() {
-  return fetch('https://energyflow.b.goit.study/api/exercises/?id={_id}').then(response => {
-    if (!response.ok) {
-      throw new Error ('Response error with status ${response.status}')
+// function fetchGallery() {
+//   return fetch('https://energyflow.b.goit.study/api/exercises/?id={_id}').then(response => {
+//     if (!response.ok) {
+//       throw new Error ('Response error with status ${response.status}')
       
-    }
-    return response.json
-  })
-}
+//     }
+//     return response.json
+//   })
+// }
 
-fetchGallery().then(data => {
-  console.log(data);
-  list.insertAdjacentHTML("beforeend", createMarkupGallery(data))
-})
-.catch((err) => console.log(err));
+// fetchGallery().then(data => {
+//   console.log(data);
+//   list.insertAdjacentHTML("beforeend", createMarkupGallery(data))
+// })
+// .catch((err) => console.log(err));
          
 
 function createMarkupGallery(data) {
