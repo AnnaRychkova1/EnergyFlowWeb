@@ -1,0 +1,1 @@
+{"version":3,"file":"scrollTo-6516673a.js","sources":["../../src/js/services/scrollTo.js"],"sourcesContent":["function scrollTo(element) {\n  element.scrollIntoView({\n    behavior: 'smooth',\n    block: 'start',\n  });\n}\n\nexport { scrollTo };\n"],"names":["scrollTo","element"],"mappings":"AAAA,SAASA,EAASC,EAAS,CACzBA,EAAQ,eAAe,CACrB,SAAU,SACV,MAAO,OACX,CAAG,CACH"}
