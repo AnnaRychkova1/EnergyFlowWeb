@@ -54,8 +54,8 @@ async function fetchDefaultMuscles() {
 
     if (results && results.length > 0) {
       createExercisesByFilterMarkup(results);
+      refs.paginationEl.innerHTML = '';
       refs.paginationEl.innerHTML = pagesPagination(page, totalPages);
-      hideLoader(refs.loaderModal);
     } else {
       console.error('No results found for this filter');
     }
@@ -68,19 +68,9 @@ fetchDefaultMuscles();
 
 async function filterBtnExercises(event) {
   event.preventDefault();
-  show(refs.subexercisesFilteredCards);
-  //show(refs.subexercisesSearchForm);
-  //   show(refs.exercisesTitleSpan);
-
-  //hide(refs.subexercisesFilteredCards);
-  //hide(refs.subexercisesSearchForm);
-  hide(refs.exercisesTitleSpan);
-  refs.exercisesSubtitle.innerHTML = '';
-  refs.subexercisesFilteredCards.innerHTML = '';
 
   const query = event.target.dataset.filter;
 
-  refs.exercisesGalleryEl.innerHTML = '';
   filterDefault = query;
   currentPage = 1;
   showLoader(refs.loaderModal);
@@ -88,6 +78,14 @@ async function filterBtnExercises(event) {
   if (event.target === event.currentTarget) {
     return;
   }
+
+  hide(refs.subexercisesFilteredCards);
+  hide(refs.subexercisesSearchForm);
+  hide(refs.exercisesTitleSpan);
+
+  refs.exercisesGalleryEl.innerHTML = '';
+  refs.exercisesSubtitle.innerHTML = '';
+  refs.subexercisesFilteredCards.innerHTML = '';
 
   try {
     const { results, page, totalPages } = await getExercisesByFilter(
@@ -114,6 +112,8 @@ async function filterBtnExercises(event) {
     scrollToExerciseGallery();
   } catch (error) {
     console.log(error);
+  } finally {
+    filterDefault = '';
   }
 }
 
@@ -171,11 +171,9 @@ function filterCartsExercises(event) {
     exercisesParamName = name;
     exercisesParamFilter = filter;
   }
+  show(refs.exercisesTitleSpan);
   refs.exercisesGalleryEl.innerHTML = '';
   refs.paginationEl.innerHTML = '';
-  show(refs.subexercisesFilteredCards);
-
-  show(refs.exercisesTitleSpan);
   hideLoader(refs.loaderModal);
   renderExerciseByFilterName(exercisesParamFilter, exercisesParamName);
   scrollToExerciseGallery();
