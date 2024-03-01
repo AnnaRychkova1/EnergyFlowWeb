@@ -82,6 +82,7 @@ async function filterBtnExercises(event) {
   hide(refs.subexercisesFilteredCards);
   hide(refs.subexercisesSearchForm);
   hide(refs.exercisesTitleSpan);
+  hide(refs.subexercisesTextNoFound);
 
   refs.exercisesGalleryEl.innerHTML = '';
   refs.exercisesSubtitle.innerHTML = '';
