@@ -1,22 +1,19 @@
-import axios from "axios";
+import axios from 'axios';
 
-import { hide, show } from "./services/visibility";
-import { refs } from "./templates/refs.js";
-import isiToast from './services/isiToast.js';
-
+import { hide, show } from './services/visibility';
+import { refs } from './templates/refs.js';
 
 // //  Quote of Day if it is not part of favorites
 
-const LS_KEY_QUOTE = "quoteResponse";
+const LS_KEY_QUOTE = 'quoteResponse';
 const quoteFromLS = JSON.parse(localStorage.getItem(LS_KEY_QUOTE));
 console.log(quoteFromLS);
 
-
 function displayQuoteOnPage(quoteData) {
- const quoteText = document.querySelector('.quote-text');
- const quoteAuthor = document.querySelector('.quote-author');
- quoteText.textContent = quoteData.quote;
- quoteAuthor.textContent = quoteData.author;
+  const quoteText = document.querySelector('.quote-text');
+  const quoteAuthor = document.querySelector('.quote-author');
+  quoteText.textContent = quoteData.quote;
+  quoteAuthor.textContent = quoteData.author;
 }
 
 /// Create Favorites page
@@ -24,56 +21,54 @@ function displayQuoteOnPage(quoteData) {
 // const LS_KEY_FAVORITES = 'exerciseFavorites';
 
 async function createGalleryFromLS(LS_KEY_FAVORITES, createMarkupFavorites) {
- try {
-   const itemsFromLS = JSON.parse(localStorage.getItem('exersiseFavorites'));
-console.log(itemsFromLS);
+  try {
+    const itemsFromLS = JSON.parse(localStorage.getItem('exersiseFavorites'));
+    console.log(itemsFromLS);
 
+    if (
+      !itemsFromLS ||
+      !Array.isArray(itemsFromLS) ||
+      itemsFromLS.length === 0
+    ) {
+      console.log('No items found in local storage or data is invalid.');
 
+      return;
+    }
 
-   if (!itemsFromLS || !Array.isArray(itemsFromLS) ||
-itemsFromLS.length === 0) {
-     console.log('No items found in local storage or data is invalid.');
-     apiIsiToastError();
-     return;
-   }
-
-   refs.favoritesGallery.innerHTML = '';
-   refs.favoritesGallery.appendChild(refs.galleryItem);
-
- } catch (error) {
-   console.error('Error creating gallery from local storage:', error);
- } finally {
-   console.log();
-refreshGallery();
- }
+    refs.favoritesGallery.innerHTML = '';
+    refs.favoritesGallery.appendChild(refs.galleryItem);
+  } catch (error) {
+    console.error('Error creating gallery from local storage:', error);
+  } finally {
+    console.log();
+    refreshGallery();
+  }
 }
-
 
 // Refresh the gallery by updating the displayed items
 async function refreshGallery() {
-   try {
-     const itemsFromLS = JSON.parse(localStorage.getItem('exersiseFavorites'));
-     console.log(itemsFromLS)
+  try {
+    const itemsFromLS = JSON.parse(localStorage.getItem('exersiseFavorites'));
+    console.log(itemsFromLS);
 
-       if (!Array.isArray(itemsFromLS) || itemsFromLS.length === 0) {
-         console.log('Array in local storage is empty or does not exist.');
-         apiIsiToastError();
-           return;
-       }
+    if (!Array.isArray(itemsFromLS) || itemsFromLS.length === 0) {
+      console.log('Array in local storage is empty or does not exist.');
 
-       refs.favoritesGallery.innerHTML = '';
+      return;
+    }
 
-       itemsFromLS.forEach(item => {
-       const markup = createMarkupFavorites(item);
+    refs.favoritesGallery.innerHTML = '';
 
-       refs.favoritesGallery.insertAdjacentHTML('afterbegin', markup);
-       });
+    itemsFromLS.forEach(item => {
+      const markup = createMarkupFavorites(item);
 
-       console.log('Gallery refreshed successfully.');
-   } catch (error) {
-     console.error('Error refreshing gallery:', error);
-     apiIsiToastError();
-   }
+      refs.favoritesGallery.insertAdjacentHTML('afterbegin', markup);
+    });
+
+    console.log('Gallery refreshed successfully.');
+  } catch (error) {
+    console.error('Error refreshing gallery:', error);
+  }
 }
 
 // Remove an exersise from an array stored in local storage
@@ -81,40 +76,37 @@ async function refreshGallery() {
 // refs.onRemoveBtn.addEventListener('click', removeObjectFromLocalStorage);
 
 async function removeObjectFromLocalStorage(idToRemove) {
-   try {
-       let itemsFromLS = JSON.parse(localStorage.getItem('exersiseFavorites'));
+  try {
+    let itemsFromLS = JSON.parse(localStorage.getItem('exersiseFavorites'));
 
-       if (!Array.isArray(itemsFromLS) || itemsFromLS.length === 0) {
-           console.log('Array in local storage is empty or does not exist.');
-           return;
-       }
-       itemsFromLS = itemsFromLS.filter(item => item._id !== idToRemove);
-       localStorage.setItem('exersiseFavorites', JSON.stringify(itemsFromLS));
-       console.log(`Object with ID ${idToRemove} removed from local storage.`);
-       await refreshGallery();
-   } catch (error) {
-       console.error('Error removing object from local storage:', error);
-   }
+    if (!Array.isArray(itemsFromLS) || itemsFromLS.length === 0) {
+      console.log('Array in local storage is empty or does not exist.');
+      return;
+    }
+    itemsFromLS = itemsFromLS.filter(item => item._id !== idToRemove);
+    localStorage.setItem('exersiseFavorites', JSON.stringify(itemsFromLS));
+    console.log(`Object with ID ${idToRemove} removed from local storage.`);
+    await refreshGallery();
+  } catch (error) {
+    console.error('Error removing object from local storage:', error);
+  }
 }
-
-
 
 // refs.onStartBtn.addEventListener('click', handleStartButtonClick)
 
 function handleStartButtonClick(evt) {
-   if (!evt.target.dataset.id) {
-       return
-   }
-   // showLoader(refs.loaderModal);
-   const exerciseId = evt.target.dataset.id;
- hide(refs.favoritesGallery);
-   createModalMenu(exerciseId);
+  if (!evt.target.dataset.id) {
+    return;
+  }
+  // showLoader(refs.loaderModal);
+  const exerciseId = evt.target.dataset.id;
+  hide(refs.favoritesGallery);
+  createModalMenu(exerciseId);
 }
 
 // Creating a plug when the LS is empty
 
-const markupMessageBlock =
- `<div class="favorites-message-block">
+const markupMessageBlock = `<div class="favorites-message-block">
      <div class="plug-icon">
        <img class="favorites-box-img" src="./img/icons/dumbbell.png"
 alt="dumbbell" />
@@ -126,17 +118,14 @@ your favorites for easier access in the future.
      </div>
    </div>`;
 
-
 function showMessageBlock() {
- refs.messageBlock.innerHTML = markupMessageBlock;
+  refs.messageBlock.innerHTML = markupMessageBlock;
 }
 
-
 function createMarkupFavorites(itemsFromLS) {
- markupArray.innerHTML = itemsFromLS
-   .map(
-     ({ _id, bodyPart, name, target, burnedCalories, time }) => {
-       return `
+  markupArray.innerHTML = itemsFromLS
+    .map(({ _id, bodyPart, name, target, burnedCalories, time }) => {
+      return `
        <li class="favorites-gallery-item" data-id="${_id}" id="card-${_id}">
           <div class="favorites-item">
              <div class="favorites-item-wrapper">
@@ -162,8 +151,9 @@ href="./img/icons/symbol-defs.svg#icon-arrow-top-right"></use>
                    <use href="./img/icons/symbol-defs.svg#icon-Man""></use>
                  </svg>
                  <h3
-class="favorites-item-title">${name.charAt(0).toUpperCase() +
-name.slice(1)}</h3>
+class="favorites-item-title">${
+        name.charAt(0).toUpperCase() + name.slice(1)
+      }</h3>
                </div>
              </div>
              <div class="favorites-item-info-wrapper">
@@ -172,55 +162,50 @@ name.slice(1)}</h3>
 calories: <span class="favorites-item-value">${burnedCalories} /
 ${time} min</span></li>
                  <li class="favorites-gallery-info-item">Body part:
-<span class="favorites-item-value">${bodyPart.charAt(0).toUpperCase()
-+ bodyPart.slice(1)}</span></li>
+<span class="favorites-item-value">${
+        bodyPart.charAt(0).toUpperCase() + bodyPart.slice(1)
+      }</span></li>
                  <li class="favorites-gallery-info-item">Target:
-<span class="favorites-item-value">${target.charAt(0).toUpperCase() +
-target.slice(1)}</span></li>
+<span class="favorites-item-value">${
+        target.charAt(0).toUpperCase() + target.slice(1)
+      }</span></li>
                </ul>
              </div>
           </div>
-       </li>`})
-   .join('');
- refs.messageBlock.innerHTML = '';
- refs.messageBlock.prepend(markupArray);
+       </li>`;
+    })
+    .join('');
+  refs.messageBlock.innerHTML = '';
+  refs.messageBlock.prepend(markupArray);
 }
 
 //  Scroll for favorites-gallery
 
 function showScroll() {
-const scrollElement = document.getElementById('.favorites-gallery');
-element.scrollIntoView({
- behavior: 'smooth',
- block: 'start',
- inline: 'start'
-});
- if (storedArray.length > 8)
-   refs.favoritesGallery.scrollTo({
-     top: refs.favoritesGallery.scrollHeight,
-     behavior: 'smooth',
-   }
-)}
-function hideScroll() {
-        favoritesGallery.classList.remove('scroll-on');
-        favoritesGallery.classList.remove('favorites-scroll');
-        document.querySelector('.favorites-gallery').classList.remove('favorites-scroll');
+  const scrollElement = document.getElementById('.favorites-gallery');
+  element.scrollIntoView({
+    behavior: 'smooth',
+    block: 'start',
+    inline: 'start',
+  });
+  if (storedArray.length > 8)
+    refs.favoritesGallery.scrollTo({
+      top: refs.favoritesGallery.scrollHeight,
+      behavior: 'smooth',
+    });
 }
-
-
-
-
-
-
-
-
-
+function hideScroll() {
+  favoritesGallery.classList.remove('scroll-on');
+  favoritesGallery.classList.remove('favorites-scroll');
+  document
+    .querySelector('.favorites-gallery')
+    .classList.remove('favorites-scroll');
+}
 
 // import axios from 'axios';
 // import { refs } from './templates/refs.js';
 // // import { handleClickOnCardStart } from './exercises-details.js';
 // // import { onClickCardContent } from './modal-menu.js';
-
 
 // // Getting items from the LS
 // const LS_KEY_FAVORITES = 'favorites';
@@ -234,13 +219,11 @@ function hideScroll() {
 //   refs.messageBlock.innerHTML = markupMessageBlock;
 // }
 
-
-// const test = document.querySelector('.favorites-btn');      
+// const test = document.querySelector('.favorites-btn');
 
 // test.addEventListener('click', handleClickOnCardStart);
 // console.log(test);
 // console.log(handleClickOnCardStart());
-
 
 // // Creating gallery of favorite exersises
 
@@ -253,13 +236,12 @@ function hideScroll() {
 
 // } else if (itemsFromLS.length > 0) {
 //   createGalleryFromLS(itemsFromLS);
-  
-//   refs.onRemoveBtn.forEach(button => {button.addEventListener('click', removeFromLS)});      
+
+//   refs.onRemoveBtn.forEach(button => {button.addEventListener('click', removeFromLS)});
 //   //  chooseButtonForModal();
 //   // addRemoveScroll();
 // }
-    
- 
+
 // function createMarkupFavorites(data) {
 //   markupArray.innerHTML = data
 //     .map(
@@ -274,7 +256,7 @@ function hideScroll() {
 //                     <use href="../img/icons/symbole-defs.svg#icon-basket"></use>
 //                   </svg>
 //                 </button>
-//                 <a href="/src/partials/modal-menu.html" class="favorites-start" data-id="${_id} data-modal-open"></a> 
+//                 <a href="/src/partials/modal-menu.html" class="favorites-start" data-id="${_id} data-modal-open"></a>
 //                   <span>Start</span>
 //                   <svg class="favorites-start-icon" width="14" height="14">
 //                     <use href="../img/icons/symbole-defs.svg#icon-line"></use>
@@ -302,7 +284,6 @@ function hideScroll() {
 //   refs.messageBlock.innerHTML = '';
 //   refs.messageBlock.prepend(markupArray);
 // }
-  
 
 // // Removing an exersise from the array stored in LS
 
@@ -314,16 +295,16 @@ function hideScroll() {
 //           console.log('Array in local storage is empty or does not exist.');
 //           return;
 //         }
-    
+
 //         itemsFromLS = itemsFromLS.filter(item => item._id !== idToRemove);
-       
+
 //         localStorage.setItem(LS_KEY_FAVORITES, JSON.stringify(itemsFromLS));
 //         console.log(`Object with ID ${idToRemove} removed from local storage.`);
-        
-//         refs.onRemoveBtn.removeEventListener('click', removeObjectFromLocalStorage);      
-             
+
+//         refs.onRemoveBtn.removeEventListener('click', removeObjectFromLocalStorage);
+
 //         await refreshGallery();
-    
+
 //     storedArray = storedArray.filter(item => item._id !== idToRemove);
 //     localStorage.setItem(LS_KEY_FAVORITES, JSON.stringify(storedArray));
 //     console.log(`Object with ID ${idToRemove} removed from local storage.`);
@@ -332,11 +313,6 @@ function hideScroll() {
 //     console.error('Error removing object from local storage:', error);
 //   }
 // }
-
-
-
-
-
 
 // // Scroll an element into view
 // // function showScroll() {
@@ -359,27 +335,24 @@ function hideScroll() {
 // //     .querySelector('.favor-wrapper')
 // //     .classList.remove('padding-for-scroll-container');
 // // }
-  
+
 // /// Create the Favorites page
-
-
 
 // async function createGalleryFromLS(event) {
 //   event.preventDefault();
-  
+
 //   refs.favoritesGallery.innerHTML = '';
 //   refs.favoritesMessage.style.display = 'none';
-  
+
 //   try {
 //     const itemsFromLS = await JSON.parse(localStorage.getItem(LS_KEY_FAVORITES));
-    
 
 //     refs.favoritesGallery.insertAdjacentHTML("afterbegin", createMarkupFavorites(itemsFromLS));
-    
+
 //     if (itemsFromLS > 9) {
-//       scrollBy(); 
+//       scrollBy();
 //     }
-//     refs.onRemoveBtn.forEach.addEventListener('click', removeObjectFromLocalStorage);      
+//     refs.onRemoveBtn.forEach.addEventListener('click', removeObjectFromLocalStorage);
 //     refs.onStartBtn.forEach.addEventListener('click', handleStartButtonClick);
 
 //     } catch (error) {
@@ -390,25 +363,24 @@ function hideScroll() {
 //     }
 //   }
 
-
 //     // Refresh the gallery by updating the displayed items
 // async function refreshGallery() {
 //   refs.favoritesMessage.style.display = 'none';
-    
+
 //   try {
 //     const itemsFromLS = await JSON.parse(localStorage.getItem(LS_KEY_FAVORITES));
-        
+
 //     if (!Array.isArray(itemsFromLS) || itemsFromLS.length === 0) {
 //       console.log('Array in local storage is empty or does not exist.');
 //       refs.favoritesMessage.style.display = 'block';
 
 //     }
-       
+
 //     refs.favoritesGallery.innerHTML = '';
 
 //     itemsFromLS.forEach(itemsFromLS => {
 //       refs.favoritesGallery.insertAdjacentHTML('afterbegin', createMarkupFavorites(itemsFromLS));
-        
+
 //       refs.onRemoveBtn.forEach.addEventListener('click', removeObjectFromLocalStorage);
 //       refs.onStartBtn.forEach.addEventListener('click', handleStartButtonClick);
 //     });
@@ -447,18 +419,16 @@ function hideScroll() {
 // //   return response.data;
 // // }
 
-
 // // /// Create the Favorites page
 
 // // const LS_KEY_FAVORITES = 'favorites';
 
-
 // // async function createGalleryFromLS(event) {
 // //   event.preventDefault();
-  
+
 // //   refs.favoritesGallery.innerHTML = '';
 // //   refs.favoritesMessage.style.display = 'none';
-  
+
 // //   try {
 // //     const itemsFromLS = await JSON.parse(localStorage.getItem(LS_KEY_FAVORITES));
 // //     if (
@@ -471,7 +441,7 @@ function hideScroll() {
 // //     }
 
 // //     refs.favoritesGallery.insertAdjacentHTML("afterbegin", createMarkupFavorites(itemsFromLS));
-    
+
 // //     if (itemsFromLS > 9) {
 // //       scrollBy();
 // //     }
@@ -486,24 +456,23 @@ function hideScroll() {
 // //     }
 // //   }
 
-
 // //     // Refresh the gallery by updating the displayed items
 // //   async function refreshGallery() {
 // //     refs.favoritesMessage.style.display = 'none';
-    
+
 // //       try {
 // //         const itemsFromLS = await JSON.parse(localStorage.getItem(LS_KEY_FAVORITES));
-        
+
 // //         if (!Array.isArray(itemsFromLS) || itemsFromLS.length === 0) {
 // //           console.log('Array in local storage is empty or does not exist.');
 // //           refs.favoritesMessage.style.display = 'block';
 // //       }
-       
+
 // //       refs.favoritesGallery.innerHTML = '';
 
 // //       itemsFromLS.forEach(itemsFromLS => {
 // //         refs.favoritesGallery.insertAdjacentHTML('afterbegin', createMarkupFavorites(itemsFromLS));
-        
+
 // //         refs.onRemoveBtn.forEach.addEventListener('click', removeObjectFromLocalStorage);
 // //         refs.onStartBtn.forEach.addEventListener('click', handleStartButtonClick);
 // //       });
@@ -521,7 +490,6 @@ function hideScroll() {
 // //         behavior: 'smooth',
 // //       });
 // //     }
-  
 
 // // // Remove an exersise from an array stored in local storage
 
@@ -533,16 +501,16 @@ function hideScroll() {
 // //           console.log('Array in local storage is empty or does not exist.');
 // //           return;
 // //         }
-    
+
 // //         itemsFromLS = itemsFromLS.filter(item => item._id !== idToRemove);
-       
+
 // //         localStorage.setItem(LS_KEY_FAVORITES, JSON.stringify(itemsFromLS));
 // //         console.log(`Object with ID ${idToRemove} removed from local storage.`);
-        
+
 // //         refs.onRemoveBtn.removeEventListener('click', removeObjectFromLocalStorage);
-             
+
 // //         await refreshGallery();
-    
+
 // //     storedArray = storedArray.filter(item => item._id !== idToRemove);
 // //     localStorage.setItem(LS_KEY_FAVORITES, JSON.stringify(storedArray));
 // //     console.log(`Object with ID ${idToRemove} removed from local storage.`);
@@ -551,7 +519,6 @@ function hideScroll() {
 // //     console.error('Error removing object from local storage:', error);
 // //   }
 // // }
-
 
 // //===================================================================================
 
@@ -579,18 +546,16 @@ function hideScroll() {
 // //         }
 // //     } catch (error) {
 // //       console.error("Error adding exercise to favorites:", error);
-// //       apiIsiToastError();
+
 // //     }
 // // }
-
-
 
 // // After click  "Start" arrow
 // // function handleStartButtonClick(event) {
 // //   event.preventDefault();
 // //   // Open the modal
 // //   // onClickCardContent();
-        
+
 // //   refs.onStartBtn.removeEventListener('click', handleStartButtonClick);
 // // }
 
@@ -649,7 +614,7 @@ function hideScroll() {
 // //                   <svg class="icon-Man" width="14" height="14">
 // //                     <use href="../img/icons/symbol-defs.svg#icon-Man""></use>
 // //                   </svg>
-        //          // <h3 class="favorites-item-title">${name.charAt(0).toUpperCase() + name.slice(1)}</h3>
+//          // <h3 class="favorites-item-title">${name.charAt(0).toUpperCase() + name.slice(1)}</h3>
 // //                 </div>
 // //               </div>
 // //               <div class="favorites-item-info-wrapper">
@@ -663,6 +628,3 @@ function hideScroll() {
 // //         </li>`)
 // //     .join('');
 // //   }
-
-
-  

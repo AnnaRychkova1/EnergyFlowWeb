@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { hide, show, showLoader, hideLoader } from './services/visibility';
 import { refs } from './templates/refs.js';
-import isiToast from './services/isiToast.js';
+import { scrollTo } from './services/scrollTo.js';
 import { createModalMenu } from './modal-menu.js';
 import icons from '/img/icons/symbol-defs.svg';
 
@@ -17,12 +17,10 @@ const getParams = {
   limit: 9,
 };
 
-// Hello
-
 async function renderExerciseByFilterName(expectedFilter, name) {
   if (refs.exercisesGalleryEl) {
-    //hide(refs.subexercisesFilteredCards);
-    //hide(refs.subexercisesSearchForm);
+    hide(refs.subexercisesFilteredCards);
+    hide(refs.subexercisesSearchForm);
   }
 
   if (screenWidth < 1440) {
@@ -71,11 +69,7 @@ async function renderExerciseByFilterName(expectedFilter, name) {
 
     renderCards(results);
 
-    // getParams.page += 1;
-
-    // if (!refs.subExercisesPaginationContainer) {
-    //   pagesPagination(getParams.page, totalPages);
-    // }
+    scrollTo(refs.subexercisesFilteredCards);
   } catch (error) {
     console.error('Error fetching images:', error);
   } finally {
@@ -88,12 +82,12 @@ async function renderExerciseByFilterName(expectedFilter, name) {
     evt.preventDefault();
 
     if (refs.exercisesGalleryEl) {
-      //hide(refs.subexercisesFilteredCards);
-      //hide(refs.subexercisesSearchForm);
+      hide(refs.subexercisesFilteredCards);
+      hide(refs.subexercisesSearchForm);
     }
 
     const formData = evt.currentTarget;
-    getParams.keyword = formData.elements.query.value.trim();
+    getParams.keyword = formData.query.value.trim();
 
     console.log(getParams.keyword);
 
@@ -117,22 +111,14 @@ async function renderExerciseByFilterName(expectedFilter, name) {
       });
 
       if (totalPages < 1) {
-        isiToast.noResults();
         show(refs.subexercisesTextNoFound);
         hideLoader(refs.loaderModal);
         return;
       }
 
-      // if (totalPages >= 2) {
-      //   pagesPagination(getParams.page, totalPages);
-      // }
-
       renderCards(results);
-      // getParams.page += 1;
 
-      // if (!refs.subExercisesPaginationContainer) {
-      //   pagesPagination(getParams.page, totalPages);
-      // }
+      scrollTo(refs.subexercisesFilteredCards);
     } catch (error) {
       console.error('Error fetching request:', error);
     } finally {
@@ -156,7 +142,6 @@ function handleClickOnCardStart(evt) {
   }
 
   const exerciseId = evt.target.dataset.id;
-  // showLoader(refs.loaderModal);
   createModalMenu(exerciseId);
 }
 
@@ -201,13 +186,13 @@ function createCard({
               </svg>
             </div>
           </div>
-          
+
           <button class="to-favorites-start" type="click" data-id=${_id}>
             <span data-id=${_id}>Start</span>
             <svg data-id=${_id} class="filtered-start" width="16" height="16">
               <use href="${icons}#icon-arrow-right"></use>
             </svg>
-          </button> 
+          </button>
 
         </div>
 
@@ -236,36 +221,6 @@ function createCard({
           </li>
         </ul>
   </li>`;
-}
-
-// Pagination
-
-function pagesPagination(currentPage, totalPages) {
-  let disabledMoveButton = '';
-  const totalPagesToShow = Math.min(totalPages, 3);
-  const startPage = Math.max(1, currentPage - 1);
-
-  showLoader(refs.loaderModal);
-
-  for (let i = startPage; i < startPage + totalPagesToShow; i++) {
-    disabledMoveButton += `<button class="button-pagination" type="button">${i}</button>`;
-  }
-
-  hideLoader(refs.loaderModal);
-
-  return disabledMoveButton;
-}
-
-async function onPaginationPages(event) {
-  currentPage = event.target.textContent;
-  // refs.subexercisesFilteredCards.innerHTML = '';
-  try {
-    const { totalPages } = await searchExerciseByFilters(results);
-    // renderCards(totalPages);
-    scrollToExerciseGallery();
-  } catch (error) {
-    console.log(error);
-  }
 }
 
 export { renderExerciseByFilterName };

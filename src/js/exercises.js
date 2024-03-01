@@ -3,6 +3,7 @@ import { refs } from './templates/refs.js';
 import { renderExerciseByFilterName } from './exercises-details.js';
 
 import { hide, show, showLoader, hideLoader } from './services/visibility';
+import { scrollTo } from './services/scrollTo.js';
 
 const BASE_URL = 'https://energyflow.b.goit.study/api';
 
@@ -110,7 +111,7 @@ async function filterBtnExercises(event) {
     } else {
       refs.paginationEl.innerHTML = '';
     }
-    scrollToExerciseGallery();
+    scrollTo(refs.exercisesContainerEl);
   } catch (error) {
     console.log(error);
   } finally {
@@ -154,7 +155,7 @@ async function onPaginationPages(event) {
       queryParams
     );
     createExercisesByFilterMarkup(results);
-    scrollToExerciseGallery();
+    scrollTo(refs.exercisesContainerEl);
   } catch (error) {
     console.log(error);
   }
@@ -177,13 +178,6 @@ function filterCartsExercises(event) {
   refs.paginationEl.innerHTML = '';
   hideLoader(refs.loaderModal);
   renderExerciseByFilterName(exercisesParamFilter, exercisesParamName);
-  scrollToExerciseGallery();
 }
 
-function scrollToExerciseGallery() {
-  refs.exercisesContainerEl.scrollIntoView({
-    behavior: 'smooth',
-    block: 'start',
-  });
-}
-export { scrollToExerciseGallery };
+// export {};
