@@ -17,6 +17,8 @@ const getParams = {
   limit: 9,
 };
 
+// Hello
+
 async function renderExerciseByFilterName(expectedFilter, name) {
   if (refs.exercisesGalleryEl) {
     //hide(refs.subexercisesFilteredCards);
