@@ -141,7 +141,6 @@ async function renderExerciseByFilterName(expectedFilter, name) {
       getParams.keyword = '';
       // filter = '';
       // name = '';
-
       // refs.subexercisesSearchForm.removeEventListener('submit', handleSearch);
     }
   }
