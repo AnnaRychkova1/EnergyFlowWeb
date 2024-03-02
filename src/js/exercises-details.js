@@ -48,10 +48,11 @@ async function renderExerciseByFilterName(expectedFilter, name) {
     return;
   }
 
+  hide(refs.exercisesGalleryEl);
+  hide(refs.subexercisesTextNoFound);
   show(refs.subexercisesSearchForm);
   show(refs.subexercisesFilteredCards);
   show(refs.exercisesSubtitle);
-  hide(refs.subexercisesTextNoFound);
   refs.exercisesSubtitle.textContent = `${name}`;
   refs.subexercisesFilteredCards.innerHTML = '';
 
@@ -77,6 +78,15 @@ async function renderExerciseByFilterName(expectedFilter, name) {
     console.error('Error fetching images:', error);
   } finally {
     hideLoader(refs.loaderModal);
+
+    // if (refs.exercisesBtnEl.classList.contains('is-clicked')) {
+    //   // Очищаємо дані
+    //   filter = '';
+    //   name = '';
+    // } else {
+    //   // Додаємо слухача до форми
+    //   refs.subexercisesSearchForm.addEventListener('submit', handleSearch);
+    // }
   }
 
   refs.subexercisesSearchForm.addEventListener('submit', handleSearch);
@@ -99,10 +109,10 @@ async function renderExerciseByFilterName(expectedFilter, name) {
       console.log('input keyword');
     }
 
-    refs.subexercisesFilteredCards.innerHTML = '';
     show(refs.subexercisesSearchForm);
     hide(refs.subexercisesTextNoFound);
     showLoader(refs.loaderModal);
+    refs.subexercisesFilteredCards.innerHTML = '';
 
     try {
       const { results, totalPages } = await searchExerciseByFilters({
@@ -210,17 +220,17 @@ function createCard({
 
         <ul class="filtered-description">
           <li class="filtered-descr-item">
-            <p class="filtered-descr-title">Burned calories: <spam class="filtered-descr-value">${burnedCalories} / ${time} min</spam></p>
+            <p class="filtered-descr-title">Burned calories: <span class="filtered-descr-value">${burnedCalories} / ${time} min</span></p>
           </li>
           <li class="filtered-descr-item">
-            <p class="filtered-descr-title">Body part: <spam class="filtered-descr-value value-capitalized">${
+            <p class="filtered-descr-title">Body part: <span class="filtered-descr-value">${
               bodyPart.charAt(0).toUpperCase() + bodyPart.slice(1)
-            }</spam></p>
+            }</span></p>
           </li>
           <li class="filtered-descr-item">
-            <p class="filtered-descr-title">Target: <spam class="filtered-descr-value value-capitalized">${
+            <p class="filtered-descr-title">Target: <span class="filtered-descr-value">${
               target.charAt(0).toUpperCase() + target.slice(1)
-            }</spam></p>
+            }</span></p>
           </li>
         </ul>
   </li>`;

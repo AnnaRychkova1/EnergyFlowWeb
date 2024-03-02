@@ -84,7 +84,7 @@ async function filterBtnExercises(event) {
   hide(refs.subexercisesSearchForm);
   hide(refs.exercisesTitleSpan);
   hide(refs.subexercisesTextNoFound);
-
+  show(refs.exercisesGalleryEl);
   refs.exercisesGalleryEl.innerHTML = '';
   refs.exercisesSubtitle.innerHTML = '';
   refs.subexercisesFilteredCards.innerHTML = '';
@@ -174,6 +174,7 @@ function filterCartsExercises(event) {
     exercisesParamFilter = filter;
   }
   show(refs.exercisesTitleSpan);
+
   refs.exercisesGalleryEl.innerHTML = '';
   refs.paginationEl.innerHTML = '';
   hideLoader(refs.loaderModal);
