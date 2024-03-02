@@ -174,7 +174,7 @@ function filterCartsExercises(event) {
     exercisesParamFilter = filter;
   }
   show(refs.exercisesTitleSpan);
-  hide(refs.exercisesGalleryEl);
+
   refs.exercisesGalleryEl.innerHTML = '';
   refs.paginationEl.innerHTML = '';
   hideLoader(refs.loaderModal);

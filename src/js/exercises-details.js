@@ -45,10 +45,11 @@ async function renderExerciseByFilterName(expectedFilter, name) {
     return;
   }
 
+  hide(refs.exercisesGalleryEl);
+  hide(refs.subexercisesTextNoFound);
   show(refs.subexercisesSearchForm);
   show(refs.subexercisesFilteredCards);
   show(refs.exercisesSubtitle);
-  hide(refs.subexercisesTextNoFound);
   refs.exercisesSubtitle.textContent = `${name}`;
   refs.subexercisesFilteredCards.innerHTML = '';
 
@@ -105,10 +106,10 @@ async function renderExerciseByFilterName(expectedFilter, name) {
       console.log('input keyword');
     }
 
-    refs.subexercisesFilteredCards.innerHTML = '';
     show(refs.subexercisesSearchForm);
     hide(refs.subexercisesTextNoFound);
     showLoader(refs.loaderModal);
+    refs.subexercisesFilteredCards.innerHTML = '';
 
     try {
       const { results, totalPages } = await searchExerciseByFilters({
