@@ -217,17 +217,17 @@ function createCard({
 
         <ul class="filtered-description">
           <li class="filtered-descr-item">
-            <p class="filtered-descr-title">Burned calories: <spam class="filtered-descr-value">${burnedCalories} / ${time} min</spam></p>
+            <p class="filtered-descr-title">Burned calories: <span class="filtered-descr-value">${burnedCalories} / ${time} min</span></p>
           </li>
           <li class="filtered-descr-item">
-            <p class="filtered-descr-title">Body part: <spam class="filtered-descr-value value-capitalized">${
+            <p class="filtered-descr-title">Body part: <span class="filtered-descr-value">${
               bodyPart.charAt(0).toUpperCase() + bodyPart.slice(1)
-            }</spam></p>
+            }</span></p>
           </li>
           <li class="filtered-descr-item">
-            <p class="filtered-descr-title">Target: <spam class="filtered-descr-value value-capitalized">${
+            <p class="filtered-descr-title">Target: <span class="filtered-descr-value">${
               target.charAt(0).toUpperCase() + target.slice(1)
-            }</spam></p>
+            }</span></p>
           </li>
         </ul>
   </li>`;

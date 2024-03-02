@@ -334,10 +334,21 @@
   }
 
   .filtered-description {
-    gap: 16px;
+    gap: 10px;
     flex-wrap: nowrap;
-    text-overflow: ellipsis;
     white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .filtered-descr-item:last-child {
+    overflow: hidden;
+    /* text-overflow: ellipsis; */
+  }
+
+  .filtered-descr-title:last-child {
+    max-width: fit-content;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 }
 
