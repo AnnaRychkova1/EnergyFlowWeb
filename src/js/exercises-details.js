@@ -74,6 +74,15 @@ async function renderExerciseByFilterName(expectedFilter, name) {
     console.error('Error fetching images:', error);
   } finally {
     hideLoader(refs.loaderModal);
+
+    // if (refs.exercisesBtnEl.classList.contains('is-clicked')) {
+    //   // Очищаємо дані
+    //   filter = '';
+    //   name = '';
+    // } else {
+    //   // Додаємо слухача до форми
+    //   refs.subexercisesSearchForm.addEventListener('submit', handleSearch);
+    // }
   }
 
   refs.subexercisesSearchForm.addEventListener('submit', handleSearch);
