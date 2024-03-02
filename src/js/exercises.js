@@ -84,7 +84,7 @@ async function filterBtnExercises(event) {
   hide(refs.subexercisesSearchForm);
   hide(refs.exercisesTitleSpan);
   hide(refs.subexercisesTextNoFound);
-  show(refs.exercisesGalleryEl);
+  // show(refs.exercisesGalleryEl);
   refs.exercisesGalleryEl.innerHTML = '';
   refs.exercisesSubtitle.innerHTML = '';
   refs.subexercisesFilteredCards.innerHTML = '';

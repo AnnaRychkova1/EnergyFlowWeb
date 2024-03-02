@@ -17,14 +17,11 @@ const getParams = {
   limit: 9,
 };
 
-// today
-console.log(new Date());
-
 async function renderExerciseByFilterName(expectedFilter, name) {
-  if (refs.exercisesGalleryEl) {
-    hide(refs.subexercisesFilteredCards);
-    hide(refs.subexercisesSearchForm);
-  }
+  // if (refs.exercisesGalleryEl) {
+  //   hide(refs.subexercisesFilteredCards);
+  //   hide(refs.subexercisesSearchForm);
+  // }
 
   if (screenWidth < 1440) {
     getParams.limit = 8;
@@ -48,13 +45,14 @@ async function renderExerciseByFilterName(expectedFilter, name) {
     return;
   }
 
-  hide(refs.exercisesGalleryEl);
+  // hide(refs.exercisesGalleryEl);
   hide(refs.subexercisesTextNoFound);
   show(refs.subexercisesSearchForm);
   show(refs.subexercisesFilteredCards);
   show(refs.exercisesSubtitle);
   refs.exercisesSubtitle.textContent = `${name}`;
   refs.subexercisesFilteredCards.innerHTML = '';
+  // refs.exercisesGalleryEl.removeEventListener('click', filterCartsExercises);
 
   try {
     const { results, totalPages } = await searchExerciseByFilters({
@@ -94,15 +92,17 @@ async function renderExerciseByFilterName(expectedFilter, name) {
   async function handleSearch(evt) {
     evt.preventDefault();
 
-    if (refs.exercisesGalleryEl) {
-      hide(refs.subexercisesFilteredCards);
-      hide(refs.subexercisesSearchForm);
-    }
+    // if (refs.exercisesGalleryEl) {
+    //   hide(refs.subexercisesFilteredCards);
+    //   hide(refs.subexercisesSearchForm);
+    // }
 
     const formData = evt.currentTarget;
     getParams.keyword = formData.query.value.trim();
 
     console.log(getParams.keyword);
+    console.log(filter);
+    console.log(name);
 
     if (!getParams.keyword) {
       hideLoader(refs.loaderModal);
@@ -125,6 +125,7 @@ async function renderExerciseByFilterName(expectedFilter, name) {
 
       if (totalPages < 1) {
         show(refs.subexercisesTextNoFound);
+        refs.subexercisesFilteredCards.innerHTML = '';
         hideLoader(refs.loaderModal);
         return;
       }
@@ -138,7 +139,10 @@ async function renderExerciseByFilterName(expectedFilter, name) {
       hideLoader(refs.loaderModal);
       refs.subexercisesSearchForm.reset();
       getParams.keyword = '';
-      refs.subexercisesSearchForm.removeEventListener('submit', handleSearch);
+      // filter = '';
+      // name = '';
+
+      // refs.subexercisesSearchForm.removeEventListener('submit', handleSearch);
     }
   }
 }
