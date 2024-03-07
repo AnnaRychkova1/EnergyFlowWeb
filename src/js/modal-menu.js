@@ -259,7 +259,7 @@ class="ex-add-favorite">
 function closeModal() {
   hide(refs.backdrop);
   document.removeEventListener('click', closeModal);
-  document.removeEventListener('keydown', escapeClickHandler);
+  // document.removeEventListener('keydown', escapeClickHandler);
   if (document.contains(refs.backdrop)) {
     refs.backdrop.removeEventListener('click', backdropClickHandler);
   }

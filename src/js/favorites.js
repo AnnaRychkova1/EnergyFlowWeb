@@ -14,45 +14,74 @@
 // Ти пишеш свою, але дуже схожу. Мої параметри це фільтр і ім"я, а твої це фйді. Я роблю запит на сервер, а ти ні. Я будую маркап за масивом об"єктів, а ти за одним об"єктом.
 
 
+const LS_KEY = 'exerciseFavorites';
 
+//======= Temporary send array to LS =====================================
 
+const array = [
+  {
+    "_id": "64f389465ae26083f39b17a5",
+    "bodyPart": "waist",
+    "equipment": "body weight",
+    "gifUrl": "https://ftp.goit.study/img/power-pulse/gifs/0006.gif",
+    "name": "alternate heel touchers",
+    "target": "abs",
+    "description": "This refers to your core muscles, which include the rectus abdominis, obliques, and transverse abdominis. They're essential for maintaining posture, stability, and generating force in many movements. Exercises that target the abs include crunches, leg raises, and planks.",
+    "rating": 3.99,
+    "burnedCalories": 116,
+    "time": 3,
+    "popularity": 9276
+  },
+  {
+    "_id": "64f389465ae26083f39b17e2",
+    "bodyPart": "upper arms",
+    "equipment": "barbell",
+    "gifUrl": "https://ftp.goit.study/img/power-pulse/gifs/0070.gif",
+    "name": "barbell preacher curl",
+    "target": "biceps",
+    "description": "Located on the front part of the upper arm, the biceps are responsible for elbow flexion and supination of the forearm. Exercises that target biceps include bicep curls, hammer curls, and chin-ups.",
+    "rating": 3,
+    "burnedCalories": 188,
+    "time": 3,
+    "popularity": 107
+  },
+  {
+    "_id": "64f389465ae26083f39b1b69",
+    "bodyPart": "upper arms",
+    "equipment": "cable",
+    "gifUrl": "https://ftp.goit.study/img/power-pulse/gifs/1643.gif",
+    "name": "cable seated overhead curl",
+    "target": "biceps",
+    "description": "Located on the front part of the upper arm, the biceps are responsible for elbow flexion and supination of the forearm. Exercises that target biceps include bicep curls, hammer curls, and chin-ups.",
+    "rating": 3,
+    "burnedCalories": 233,
+    "time": 3,
+    "popularity": 59
+  }
+]
+ 
+localStorage.setItem(LS_KEY, JSON.stringify(array))
 
-
+//=======================================================
 // import axios from "axios";
 
 // import { hide, show } from "./services/visibility";
 // import { refs } from "./templates/refs.js";
 
-
-
-// //  Quote of Day if it is not part of favorites
-
-// const LS_KEY_QUOTE = "quoteResponse";
-// const quoteFromLS = JSON.parse(localStorage.getItem(LS_KEY_QUOTE));
-
-// function displayQuoteOnPage(quoteData) {
-//   const quoteText = document.querySelector('.quote-text');
-//   const quoteAuthor = document.querySelector('.quote-author');
-//   quoteText.textContent = quoteData.quote;
-//   quoteAuthor.textContent = quoteData.author;
-// }
-
-//===============================================================================================
-const LS_KEY = 'exerciseFavorites';
      
 
 // Create Favorites page
 async function createFavoritesGallery(event) {
-  event.preventDefault;
-  
+  // event.preventDefault;
+  if (!itemsFromLS.length === 0) {
+      console.log('Array in local storage is empty or does not exist.');
+      return;
+    }
   try {
     const itemsFromLS = await JSON.parse(localStorage.getItem(LS_KEY));
-    console.log(itemsFromLS);
     
-    if (!itemsFromLS || itemsFromLS.length === 0) {
-      console.log('Array in local storage is empty or does not exist.');
-      return showMessageBlock();
-    }
+    
+    
     refs.favoritesGallery.innerHTML = '';            
     // const { results, totalPages } = await searchExerciseByFilters({
     //     filter: filter,
@@ -77,6 +106,9 @@ async function createFavoritesGallery(event) {
       
     }
   }
+
+createFavoritesGallery().then(data => console.log(data))
+  
 
 
     

@@ -1,190 +1,190 @@
-import axios from 'axios';
-import { refs } from './templates/refs.js';
-import { renderExerciseByFilterName } from './exercises-details.js';
+// import axios from 'axios';
+// import { refs } from './templates/refs.js';
+// import { renderExerciseByFilterName } from './exercises-details.js';
 
-import { hide, show, showLoader, hideLoader } from './services/visibility';
+// import { hide, show, showLoader, hideLoader } from './services/visibility';
 
-const BASE_URL = 'https://energyflow.b.goit.study/api';
+// const BASE_URL = 'https://energyflow.b.goit.study/api';
 
-let filterDefault = 'Muscles';
-let currentPage = 1;
-let currentLimit = 0;
-let screenWidth = window.innerWidth;
-let exercisesParamFilter;
-let exercisesParamName;
+// let filterDefault = 'Muscles';
+// let currentPage = 1;
+// let currentLimit = 0;
+// let screenWidth = window.innerWidth;
+// let exercisesParamFilter;
+// let exercisesParamName;
 
-const queryParams = {
-  filter: filterDefault,
-  page: currentPage,
-  limit: currentLimit,
-};
+// const queryParams = {
+//   filter: filterDefault,
+//   page: currentPage,
+//   limit: currentLimit,
+// };
 
-refs.exercisesBtnEl.addEventListener('click', filterBtnExercises);
-refs.exercisesGalleryEl.addEventListener('click', filterCartsExercises);
-refs.paginationEl.addEventListener('click', onPaginationPages);
+// refs.exercisesBtnEl.addEventListener('click', filterBtnExercises);
+// refs.exercisesGalleryEl.addEventListener('click', filterCartsExercises);
+// refs.paginationEl.addEventListener('click', onPaginationPages);
 
-if (screenWidth < 768) {
-  currentLimit = 8;
-} else {
-  currentLimit = 12;
-}
+// if (screenWidth < 768) {
+//   currentLimit = 8;
+// } else {
+//   currentLimit = 12;
+// }
 
-async function getExercisesByFilter() {
-  showLoader(refs.loaderModal);
+// async function getExercisesByFilter() {
+//   showLoader(refs.loaderModal);
 
-  try {
-    const response = await axios.get(`${BASE_URL}/filters`, {
-      params: {
-        filter: filterDefault,
-        page: currentPage,
-        limit: currentLimit,
-      },
-    });
-    return response.data;
-  } catch (error) {
-    console.log(error);
-  }
-}
+//   try {
+//     const response = await axios.get(`${BASE_URL}/filters`, {
+//       params: {
+//         filter: filterDefault,
+//         page: currentPage,
+//         limit: currentLimit,
+//       },
+//     });
+//     return response.data;
+//   } catch (error) {
+//     console.log(error);
+//   }
+// }
 
-async function fetchDefaultMuscles() {
-  try {
-    const { results, page, totalPages } = await getExercisesByFilter(
-      queryParams
-    );
+// async function fetchDefaultMuscles() {
+//   try {
+//     const { results, page, totalPages } = await getExercisesByFilter(
+//       queryParams
+//     );
 
-    if (results && results.length > 0) {
-      createExercisesByFilterMarkup(results);
-      refs.paginationEl.innerHTML = pagesPagination(page, totalPages);
-      hideLoader(refs.loaderModal);
-    } else {
-      console.error('No results found for this filter');
-    }
-  } catch (error) {
-    console.log('Error fetching images:', error);
-  }
-}
+//     if (results && results.length > 0) {
+//       createExercisesByFilterMarkup(results);
+//       refs.paginationEl.innerHTML = pagesPagination(page, totalPages);
+//       hideLoader(refs.loaderModal);
+//     } else {
+//       console.error('No results found for this filter');
+//     }
+//   } catch (error) {
+//     console.log('Error fetching images:', error);
+//   }
+// }
 
-fetchDefaultMuscles();
+// fetchDefaultMuscles();
 
-async function filterBtnExercises(event) {
-  event.preventDefault();
-  show(refs.subexercisesFilteredCards);
-  //show(refs.subexercisesSearchForm);
-  //   show(refs.exercisesTitleSpan);
+// async function filterBtnExercises(event) {
+//   event.preventDefault();
+//   show(refs.subexercisesFilteredCards);
+//   //show(refs.subexercisesSearchForm);
+//   //   show(refs.exercisesTitleSpan);
 
-  //hide(refs.subexercisesFilteredCards);
-  //hide(refs.subexercisesSearchForm);
-  hide(refs.exercisesTitleSpan);
-  refs.exercisesSubtitle.innerHTML = '';
-  refs.subexercisesFilteredCards.innerHTML = '';
+//   //hide(refs.subexercisesFilteredCards);
+//   //hide(refs.subexercisesSearchForm);
+//   hide(refs.exercisesTitleSpan);
+//   refs.exercisesSubtitle.innerHTML = '';
+//   refs.subexercisesFilteredCards.innerHTML = '';
 
-  const query = event.target.dataset.filter;
+//   const query = event.target.dataset.filter;
 
-  refs.exercisesGalleryEl.innerHTML = '';
-  filterDefault = query;
-  currentPage = 1;
-  showLoader(refs.loaderModal);
+//   refs.exercisesGalleryEl.innerHTML = '';
+//   filterDefault = query;
+//   currentPage = 1;
+//   showLoader(refs.loaderModal);
 
-  if (event.target === event.currentTarget) {
-    return;
-  }
+//   if (event.target === event.currentTarget) {
+//     return;
+//   }
 
-  try {
-    const { results, page, totalPages } = await getExercisesByFilter(
-      queryParams
-    );
-    createExercisesByFilterMarkup(results);
-    hideLoader(refs.loaderModal);
+//   try {
+//     const { results, page, totalPages } = await getExercisesByFilter(
+//       queryParams
+//     );
+//     createExercisesByFilterMarkup(results);
+//     hideLoader(refs.loaderModal);
 
-    if (query !== 'Body parts') {
-      refs.musclesBtnEl.classList.add('btn-item-active');
-    }
-    if (query !== 'Equipment') {
-      refs.musclesBtnEl.classList.add('btn-item-active');
-    }
-    if (query !== 'Muscles') {
-      refs.musclesBtnEl.classList.remove('btn-item-active');
-    }
+//     if (query !== 'Body parts') {
+//       refs.musclesBtnEl.classList.add('btn-item-active');
+//     }
+//     if (query !== 'Equipment') {
+//       refs.musclesBtnEl.classList.add('btn-item-active');
+//     }
+//     if (query !== 'Muscles') {
+//       refs.musclesBtnEl.classList.remove('btn-item-active');
+//     }
 
-    if (totalPages > 1) {
-      refs.paginationEl.innerHTML = pagesPagination(page, totalPages);
-    } else {
-      refs.paginationEl.innerHTML = '';
-    }
-    scrollToExerciseGallery();
-  } catch (error) {
-    console.log(error);
-  }
-}
+//     if (totalPages > 1) {
+//       refs.paginationEl.innerHTML = pagesPagination(page, totalPages);
+//     } else {
+//       refs.paginationEl.innerHTML = '';
+//     }
+//     scrollToExerciseGallery();
+//   } catch (error) {
+//     console.log(error);
+//   }
+// }
 
-function createExercisesByFilterMarkup(results) {
-  const markup = results
-    .map(
-      ({ name, filter, imgUrl }) =>
-        `<li class="exercises-gallery-item" data-filter>
-        <img class="exercises-gallery-img" src="${imgUrl}" alt="${filter}">
-        <div class="exercises-gallery-text">
-          <h3 class="exercises-gallery-title">${name}</h3>
-          <p class="exercises-gallery-filter">${filter}</p>
-        </div>
-        </li>`
-    )
-    .join('');
-  refs.exercisesGalleryEl.insertAdjacentHTML('beforeend', markup);
-  hideLoader(refs.loaderModal);
-}
+// function createExercisesByFilterMarkup(results) {
+//   const markup = results
+//     .map(
+//       ({ name, filter, imgUrl }) =>
+//         `<li class="exercises-gallery-item" data-filter>
+//         <img class="exercises-gallery-img" src="${imgUrl}" alt="${filter}">
+//         <div class="exercises-gallery-text">
+//           <h3 class="exercises-gallery-title">${name}</h3>
+//           <p class="exercises-gallery-filter">${filter}</p>
+//         </div>
+//         </li>`
+//     )
+//     .join('');
+//   refs.exercisesGalleryEl.insertAdjacentHTML('beforeend', markup);
+//   hideLoader(refs.loaderModal);
+// }
 
-function pagesPagination(page, totalPages) {
-  let disabledMoveButton = '';
-  showLoader(refs.loaderModal);
-  for (let i = 1; i <= totalPages; i++) {
-    disabledMoveButton += `<button class="button-pagination" type="button">${i}</button>`;
-    hideLoader(refs.loaderModal);
-  }
+// function pagesPagination(page, totalPages) {
+//   let disabledMoveButton = '';
+//   showLoader(refs.loaderModal);
+//   for (let i = 1; i <= totalPages; i++) {
+//     disabledMoveButton += `<button class="button-pagination" type="button">${i}</button>`;
+//     hideLoader(refs.loaderModal);
+//   }
 
-  return disabledMoveButton;
-}
+//   return disabledMoveButton;
+// }
 
-async function onPaginationPages(event) {
-  currentPage = event.target.textContent;
-  refs.exercisesGalleryEl.innerHTML = '';
-  try {
-    const { results, page, totalPages } = await getExercisesByFilter(
-      queryParams
-    );
-    createExercisesByFilterMarkup(results);
-    scrollToExerciseGallery();
-  } catch (error) {
-    console.log(error);
-  }
-}
+// async function onPaginationPages(event) {
+//   currentPage = event.target.textContent;
+//   refs.exercisesGalleryEl.innerHTML = '';
+//   try {
+//     const { results, page, totalPages } = await getExercisesByFilter(
+//       queryParams
+//     );
+//     createExercisesByFilterMarkup(results);
+//     scrollToExerciseGallery();
+//   } catch (error) {
+//     console.log(error);
+//   }
+// }
 
-function filterCartsExercises(event) {
-  const exerciseElement = event.target.closest('.exercises-gallery-item');
-  if (exerciseElement) {
-    const name = exerciseElement.querySelector(
-      '.exercises-gallery-title'
-    ).textContent;
-    const filter = exerciseElement.querySelector(
-      '.exercises-gallery-filter'
-    ).textContent;
-    exercisesParamName = name;
-    exercisesParamFilter = filter;
-  }
-  refs.exercisesGalleryEl.innerHTML = '';
-  refs.paginationEl.innerHTML = '';
-  show(refs.subexercisesFilteredCards);
+// function filterCartsExercises(event) {
+//   const exerciseElement = event.target.closest('.exercises-gallery-item');
+//   if (exerciseElement) {
+//     const name = exerciseElement.querySelector(
+//       '.exercises-gallery-title'
+//     ).textContent;
+//     const filter = exerciseElement.querySelector(
+//       '.exercises-gallery-filter'
+//     ).textContent;
+//     exercisesParamName = name;
+//     exercisesParamFilter = filter;
+//   }
+//   refs.exercisesGalleryEl.innerHTML = '';
+//   refs.paginationEl.innerHTML = '';
+//   show(refs.subexercisesFilteredCards);
 
-  show(refs.exercisesTitleSpan);
-  hideLoader(refs.loaderModal);
-  renderExerciseByFilterName(exercisesParamFilter, exercisesParamName);
-  scrollToExerciseGallery();
-}
+//   show(refs.exercisesTitleSpan);
+//   hideLoader(refs.loaderModal);
+//   renderExerciseByFilterName(exercisesParamFilter, exercisesParamName);
+//   scrollToExerciseGallery();
+// }
 
-function scrollToExerciseGallery() {
-  refs.exercisesContainerEl.scrollIntoView({
-    behavior: 'smooth',
-    block: 'start',
-  });
-}
-export { scrollToExerciseGallery };
+// function scrollToExerciseGallery() {
+//   refs.exercisesContainerEl.scrollIntoView({
+//     behavior: 'smooth',
+//     block: 'start',
+//   });
+// }
+// export { scrollToExerciseGallery };
