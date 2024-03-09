@@ -66,23 +66,51 @@ localStorage.setItem(LS_KEY, JSON.stringify(array))
 // import axios from "axios";
 
 // import { hide, show } from "./services/visibility";
-// import { refs } from "./templates/refs.js";
+import { refs } from "./templates/refs.js";
+import icons from '/img/icons/symbol-defs.svg';
 
-     
+const itemsFromLS = JSON.parse(localStorage.getItem(LS_KEY));    
+console.log(itemsFromLS)
+
+// Creating a plug when the LS is empty
+const createMarkupMessageBlock = `<div class="favorites-box">
+            <h2 class="favorites-box-title">Favorites</h2>
+            <div class="favorites-box-block block">
+              <img
+                class="favorites-box-img"
+                src="./img/icons/dumbbell.png"
+                alt="dumbbell"
+              />
+              <p class="favorites-box-paragraf">
+                It appears that you haven't added any exercises to your
+                favorites yet. To get started, you can add exercises that you
+                like to your favorites for easier access in the future.
+              </p>
+            </div>
+            </div> `;
+function showMessageBlock() {
+  refs.favoritesBox.innerHTML = createMarkupMessageBlock;
+}
+
 
 // Create Favorites page
-async function createFavoritesGallery(event) {
-  // event.preventDefault;
-  if (!itemsFromLS.length === 0) {
-      console.log('Array in local storage is empty or does not exist.');
-      return;
+// async function createFavoritesGallery() {
+ 
+
+if (!itemsFromLS || itemsFromLS.length === 0) {
+    showMessageBlock()
+    console.log('Array in local storage is empty or does not exist.');
+      
+} else {
+  createMarkupGallery(itemsFromLS)
+    console.log('Array in local storage');
     }
-  try {
-    const itemsFromLS = await JSON.parse(localStorage.getItem(LS_KEY));
+ 
     
     
     
-    refs.favoritesGallery.innerHTML = '';            
+    
+    // refs.favoritesGallery.innerHTML = '';            
     // const { results, totalPages } = await searchExerciseByFilters({
     //     filter: filter,
     //     name: name,
@@ -101,13 +129,10 @@ async function createFavoritesGallery(event) {
       // });
 
        
-    } catch (error) {
-      console.error('Error refreshing gallery:', error);
-      
-    }
-  }
+    
+  // }
 
-createFavoritesGallery().then(data => console.log(data))
+// createFavoritesGallery().then(data => console.log(data))
   
 
 
@@ -175,18 +200,6 @@ createFavoritesGallery().then(data => console.log(data))
 //     createModalMenu(exerciseId);
 // }
 
-// Creating a plug when the LS is empty
-
-function showMessageBlock() {
-  refs.messageBlock.innerHTML = `<div class="favorites-message-block">
-      <div class="plug-icon">
-        <img class="favorites-box-img" src="./img/icons/dumbbell.png" alt="dumbbell" />
-      </div >
-      <div class="favorites-box-paragraf">
-          It appears that you have not added any exercises to your  favorites yet.To get started, you can add exercises that you like to your favorites for easier access in the future.
-      </div>
-    </div>`;
-}
 
 //!===========================================================================================================
 // const list = document.querySelector('.favorites-gallery');
@@ -213,44 +226,60 @@ function showMessageBlock() {
 // .catch((err) => console.log(err));
          
 
-function createMarkupGallery(data) {
-  return data.map(createLi).join('')
-}
-       
-function createLi({ _id, bodyPart, name, target, burnedCalories, time }) {
-  return `<li class="favorites-gallery-item" data-id="${_id}" id="card-${_id}">
-           <div class="favorites-item">
-              <div class="favorites-item-wrapper">
-                <span class="workout">Workout</span>
-                <button type="button" data-id=${_id} data-favorites-remove class="favorites-remove-btn"></button>
+   
+function createMarkupGallery(arr) {
+  refs.favoritesGallery.innerHTML = arr
+    .map(({ bodyPart, name, target, burnedCalories, time, _id }) => {
+      return `<li class="filtered-card-item">
+         <div class="card-box-workout">
+           <div class="card-box-info">
+             <div class="filtered-workout">Workout</div>
+              <div class="card-box-basket">
+                <button type="button" data-id=${_id} class="favorites-remove-btn">
                   <svg class="favorites-remove-icon" width="12" height="13">
                     <use href="./img/icons/symbol-defs.svg#icon-basket"></use>
                   </svg>
                 </button>
-                <button class="favorites-start" type="submit" data-id="${_id} data-modal-open>
-                  <span>Start</span>
-                  <svg class="favorites-start-icon" width="14" height="14">
-                    <use href="./img/icons/symbol-defs.svg#icon-arrow-top-right"></use>
-                  </svg>
-                </button>
               </div>
-              <div class="favorites-item-info">
-                <div class="favorites-man-icon">
-                  <svg class="icon-Man" width="14" height="14">
-                    <use href="./img/icons/symbol-defs.svg#icon-Man""></use>
-                  </svg>
-                  <h3 class="favorites-item-title">${name.charAt(0).toUpperCase() + name.slice(1)}</h3>
-                </div>
               </div>
-              <div class="favorites-item-info-wrapper">
-                <ul class="favorites-gallery-info">
-                  <li class="favorites-gallery-info-item">Burned calories: <span class="favorites-item-value">${burnedCalories} / ${time} min</span></li>
-                  <li class="favorites-gallery-info-item">Body part: <span class="favorites-item-value">${bodyPart.charAt(0).toUpperCase() + bodyPart.slice(1)}</span></li>
-                  <li class="favorites-gallery-info-item">Target: <span class="favorites-item-value">${target.charAt(0).toUpperCase() + target.slice(1)}</span></li>
-                </ul>
-              </div>
-           </div>
-        </li>`};
+                <button class="to-favorites-start" type="click" data-id=${_id}>
+            <span data-id=${_id}>Start</span>
+            <svg data-id=${_id} class="filtered-start" width="16" height="16">
+              <use data-id=${_id} href="${icons}#icon-arrow-right"></use>
+            </svg>
+          </button> 
+        </div>
+
+        <div class="card-box-title">
+          <div class="filtered-athlete-box">
+            <svg class="filtered-athlete" width="16" height="16">
+              <use href="${icons}#icon-Man"></use>
+            </svg>
+          </div>
+          <h3 class="filtered-title">${name}</h3>
+        </div>
+
+        <ul class="filtered-description">
+          <li class="filtered-descr-item">
+            <p class="filtered-descr-title">Burned calories: <spam class="filtered-descr-value">${burnedCalories} / ${time} min</spam></p>
+          </li>
+          <li class="filtered-descr-item">
+            <p class="filtered-descr-title">Body part: <spam class="filtered-descr-value value-capitalized">${
+              bodyPart.charAt(0).toUpperCase() + bodyPart.slice(1)
+            }</spam></p>
+          </li>
+          <li class="filtered-descr-item">
+            <p class="filtered-descr-title">Target: <spam class="filtered-descr-value value-capitalized">${
+              target.charAt(0).toUpperCase() + target.slice(1)
+            }</spam></p>
+          </li>
+        </ul>
+  </li>`;
+       })
+    .join('');
+  refs.favoritesContant.innerHTML = '';
+  refs.favoritesContant.prepend(refs.favoritesGallery);
+}
   // refs.messageBlock.innerHTML = '';
   // refs.messageBlock.prepend(markup);
   // refs.favoritesGallery.insertAdjacentHTML('afterbegin', markup);

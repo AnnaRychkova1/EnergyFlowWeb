@@ -25,7 +25,9 @@ export const refs = {
   exercisesSubtitle: document.querySelector('.exercises-subtitle'),
 
   // Oksana
+  favoritesBox: document.querySelector('.favorites-box'),
   favoritesGallery: document.querySelector('.favorites-gallery'),
+  favoritesContant: document.querySelector('.favorites-contant'),
   favoritesMessage: document.querySelector('.favorites-box-block'),
   onRemoveBtn: document.querySelector('.favorites-remove-btn'),
   onStartBtn: document.querySelector('.favorites-start-btn'),
