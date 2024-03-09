@@ -3,10 +3,7 @@ import { hide, show } from './services/visibility';
 import icons from '../img/icons/symbol-defs.svg';
 import { refs } from './templates/refs';
 
-// const heartIcon = `
-// // <svg class="icon-heart" width="18" height="18">
-// //     <use href="${icons}#icon-heart"></use>
-// // </svg>`;
+// const modal = document.querySelector('.modal-container');
 
 let expectedId;
 async function renderModalMenu(expectedExercisesId) {
@@ -104,7 +101,6 @@ function modalWindowMarkup({
   rating,
   description,
 }) {
-  let fillUpStarsRating = rating.toFixed(1);
   const markup = `
   <div class="modal-container">
 
@@ -128,56 +124,46 @@ function modalWindowMarkup({
       <h3 class="ex-title">${name}</h3>
 
       <div class="ex-rating-container">
-        <p class="ex-current-rating">${fillUpStarsRating}</p>
+        <p class="ex-current-rating">${rating.toFixed(1)}</p>
         <ul class="ex-stars-list">
           <li>
-            <svg
-              class="ex-rate-icon selected-stars"
+             <svg
+              class="ex-rate-icon"
               width="18"
-              height="18"
-              aria-label="rating icon"
-            >
-              <use href="../img/icons/symbol-defs.svg#icon-Star-1"></use>
-            </svg>
-          </li>
-          <li>
-            <svg
-              class="ex-rate-icon selected-stars"
-              width="18"
-              height="18"
-              aria-label="rating icon"
-            >
-              <use href="../img/icons/symbol-defs.svg#icon-Star-1"></use>
-            </svg>
-          </li>
-          <li>
-            <svg
-              class="ex-rate-icon selected-stars"
-              width="18"
-              height="18"
-              aria-label="rating icon"
-            >
-              <use href="../img/icons/symbol-defs.svg#icon-Star-1"></use>
-            </svg>
-          </li>
-          <li>
-            <svg
-              class="ex-rate-icon selected-stars"
-              width="18"
-              height="18"
-              aria-label="rating icon"
-            >
-              <use href="../img/icons/symbol-defs.svg#icon-Star-1"></use>
+              height="18">
+              <use href="${icons}#icon-Star-1"></use>
             </svg>
           </li>
           <li>
             <svg
               class="ex-rate-icon"
               width="18"
-              height="18"
-              aria-label="rating icon"
-            >
-              <use href="../img/icons/symbol-defs.svg#icon-Star-1"></use>
+              height="18">
+              <use href="${icons}#icon-Star-1"></use>
+            </svg>
+          </li>
+          <li>
+             <svg
+              class="ex-rate-icon"
+              width="18"
+              height="18">
+              <use href="${icons}#icon-Star-1"></use>
+            </svg>
+          </li>
+          <li>
+             <svg
+              class="ex-rate-icon"
+              width="18"
+              height="18">
+              <use href="${icons}#icon-Star-1"></use>
+            </svg>
+          </li>
+          <li>
+             <svg
+              class="ex-rate-icon"
+              width="18"
+              height="18">
+              <use href="${icons}#icon-Star-1"></use>
             </svg>
           </li>
         </ul>
@@ -233,13 +219,13 @@ function modalWindowMarkup({
     `;
 
   refs.backdrop.innerHTML = markup;
-  renderStars(Math.round(rating));
+  drawStars(Math.round(rating));
 
-  function renderStars(number) {
-    const star = document.querySelectorAll('.ex-rate-icon');
-    const arrayOfStars = [...star];
+  function drawStars(number) {
+    const star = refs.backdrop.querySelectorAll('.ex-rate-icon');
+    const arrOfStars = [...star];
     for (let i = 0; i < number; i += 1) {
-      arrayOfStars[i].classList.add('.selected-stars');
+      arrOfStars[i].classList.add('selected-stars');
     }
   }
 }

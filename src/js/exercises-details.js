@@ -196,7 +196,7 @@ function createCard({
           <div class="card-box-info">
             <div class="filtered-workout">Workout</div>
             <div class="card-box-rating">
-              <p class="filtered-rating">${Math.round(rating)}</p>
+              <p class="filtered-rating">${rating.toFixed(1)}</p>
               <svg class="filtered-star" width="16" height="16">
                 <use href="${icons}#icon-Star-1"></use>
               </svg>
