@@ -2,7 +2,7 @@ import axios from 'axios';
 import { hide, show, showLoader, hideLoader } from './services/visibility';
 import { refs } from './templates/refs.js';
 import { scrollTo } from './services/scrollTo.js';
-import { createModalMenu } from './modal-menu.js';
+import { renderModalMenu } from './modal-menu.js';
 import icons from '/img/icons/symbol-defs.svg';
 
 const BASE_URL = 'https://energyflow.b.goit.study/api';
@@ -158,7 +158,7 @@ function handleClickOnCardStart(evt) {
   }
 
   const exerciseId = evt.target.dataset.id;
-  createModalMenu(exerciseId);
+  renderModalMenu(exerciseId);
 }
 
 // request to server
