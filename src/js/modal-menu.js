@@ -198,7 +198,9 @@ function modalWindowMarkup({
         </div>
       </div>
 
-      <p class="ex-description">${description}</p>
+      <div class="ex-modal-container-text"">
+        <p class="ex-description">${description}</p>
+      </div>
 
       <div class="ex-add-btn-container">
         <button type="button" data-id="${_id}" class="ex-add-favorite">
