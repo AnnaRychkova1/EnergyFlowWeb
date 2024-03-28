@@ -6,16 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Energy Flow</title>
     
-    <script type="module" crossorigin src="/EnergyFlowWeb/assets/main-c3b4337a.js"></script>
-    <link rel="stylesheet" href="/EnergyFlowWeb/assets/main-1b283521.css">
+    <script type="module" crossorigin src="/EnergyFlowWeb/assets/main-d0558c13.js"></script>
+    <link rel="stylesheet" href="/EnergyFlowWeb/assets/main-d3f599cd.css">
     <link rel="stylesheet" href="/EnergyFlowWeb/assets/index-85fda046.css">
   </head>
 
   <body>
-    <!-- Oksana, Danil -->
-    <!-- <a href="./favorites.html">Go to favorites</a> -->
-
-    <!-- Pasha -->
     <header class="header-section section">
   <div class="container container-header">
     <div class="header-section-container">
@@ -113,7 +109,6 @@
 </div>
 
     <main>
-      <!-- Adelina -->
       <section class="section">
   <div class="container hero">
     <div class="hero-section">
@@ -147,8 +142,6 @@
   </div>
 
 </section>
-
-      <!-- Mukola -->
       <section class="section quote-section">
   <div class="container container-quote">
     <blockquote class="quote-container">
@@ -176,8 +169,6 @@
   </div>
 </section>
 
-
-      <!-- Vasylyna, Anna -->
       <section class="section first-exercises-section">
   <div class="container exercises-container">
     <h2 class="exercises-title">
@@ -243,8 +234,6 @@
   </div>
 </section>
 
-
-      <!-- Roman -->
       <section class="section">
   <div class="container container-div">
     <h2 class="visually-hidden">Recommendations</h2>
@@ -271,8 +260,6 @@
 
       
     </main>
-
-    <!-- Footer -->
     <footer class="section footer">
   <div class="container footer-container">
     <h2 class="footer-headline">Footer</h2>
@@ -384,12 +371,8 @@
   </div>
 </footer>
 
-
-    <!-- Mariia, Illia -->
     <div class="backdrop is-hidden"></div>
 
-
-    <!-- Loader, ScrollUp -->
     <button class="scroll-up-btn" type="button" title="Scroll up to top">
   <svg class="scroll-up-arrow" width="33" height="33">
     <use href="/EnergyFlowWeb/assets/symbol-defs-544a0e4e.svg#icon-arrow-top-right"></use>
@@ -399,6 +382,75 @@
     <div class="overlay">
       <div class="loader-container"><span class="loader"></span></div>
     </div>
+    <div class="overlay-rating">
+  <div class="modal-rating">
+    <button class="close-modal-rating-btn" title="Close window">
+      <svg class="close-modal-rating-icon" width="24" height="24">
+        <use href="./img/icons.svg#icon-cross"></use>
+      </svg>
+    </button>
+    <div class="modal-rating-container">
+      <form name="ratingForm" class="rating-form" method="post" action="#">
+        <div class="rating-form-field">
+          Rating
+          <div class="rating-stars-group">
+            <div class="rating-value">0.0</div>
+            <div class="star-container">
+              <input type="radio" name="star" id="five" value="5" />
+              <label class="star-label" for="five">
+                <svg class="star" width="24" height="24">
+                  <use href="./img/icons.svg#icon-star "></use>
+                </svg>
+              </label>
+              <input type="radio" name="star" id="four" value="4" />
+              <label class="star-label" for="four">
+                <svg class="star" width="24" height="24">
+                  <use href="./img/icons.svg#icon-star "></use>
+                </svg>
+              </label>
+              <input type="radio" name="star" id="three" value="3" />
+              <label class="star-label" for="three">
+                <svg class="star" width="24" height="24">
+                  <use href="./img/icons.svg#icon-star "></use>
+                </svg>
+              </label>
+              <input type="radio" name="star" id="two" value="2" />
+              <label class="star-label" for="two">
+                <svg class="star" width="24" height="24">
+                  <use href="./img/icons.svg#icon-star "></use>
+                </svg>
+              </label>
+              <input type="radio" name="star" id="one" value="1" />
+              <label class="star-label" for="one">
+                <svg class="star" width="24" height="24">
+                  <use href="./img/icons.svg#icon-star "></use>
+                </svg>
+              </label>
+            </div>
+          </div>
+        </div>
+        <input
+          class="rating-field rating-input"
+          type="email"
+          name="email"
+          id="ratingEmail"
+          pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
+          placeholder="Email"
+        />
+        <textarea
+          class="rating-field rating-textarea"
+          name="review"
+          id="review"
+          placeholder="Your comment"
+        ></textarea>
+        <button type="submit" name="submit" class="send-rating-btn">
+          Send
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
 
     
   </body>
