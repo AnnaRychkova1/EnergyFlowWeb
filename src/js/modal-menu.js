@@ -1,83 +1,69 @@
 import axios from 'axios';
-import { hide, show } from './services/visibility';
+import { hide, show, hideLoader, showLoader } from './services/visibility';
+import { addGiveRatingListener, removeGiveRatingListener } from './give-rating';
 import icons from '../img/icons/symbol-defs.svg';
 import { refs } from './templates/refs';
-
-// const modal = document.querySelector('.modal-container');
 
 let expectedId;
 async function renderModalMenu(expectedExercisesId) {
   show(refs.backdrop);
+  // hideLoader(refs.loaderModal);
+  refs.backdrop.innerHTML = '';
   expectedId = expectedExercisesId;
 
   try {
     const responseIdObject = await getCardInfo(expectedId);
-    // console.log(responseIdObject);
+
     modalWindowMarkup(responseIdObject);
-
-    console.log(expectedId);
-
-    const addToFavoriteBtn = document.querySelector('.ex-add-favorite');
-    addToFavoriteBtn.addEventListener('click', addToFavoriteOnClick);
-    function addToFavoriteOnClick(event) {
-      const exerciseId = event.target.dataset.id || expectedId;
-      const exerciseName = document.querySelector('.exercise-name').textContent;
-      const exerciseBodyPart = document.querySelector(
-        '.exercise-information .ex-block:nth-child(1).exercise-label'
-      ).textContent;
-      const exerciseEquipment = document.querySelector(
-        '.exercise-information .ex-block:nth-child(2).exercise-label'
-      ).textContent;
-      const exerciseTime = document.querySelector(
-        '.exercise-information .ex-block:nth-child(3).exercise-label'
-      ).textContent;
-      const exerciseTarget = document.querySelector(
-        '.exercise-information .ex-block:nth-child(4).exercise-label'
-      ).textContent;
-      const exerciseBurnedCalories = document.querySelector(
-        '.exercise-information .ex-block:nth-child(5).exercise-label'
-      ).textContent;
-      const exerciseGifUrl = document.querySelector('.exercise-gif img').src;
-      let favorites =
-        JSON.parse(localStorage.getItem('exerciseFavorites')) || [];
-      const isFavorite = favorites.some(
-        favorite => favorite._id === exerciseId
-      );
-      if (isFavorite) {
-        event.target.textContent = 'Add to favorites';
-      } else {
-        event.target.textContent = 'Remove from favorites';
-      }
-      if (isFavorite) {
-        favorites = favorites.filter(favorite => favorite._id !== exerciseId);
-        localStorage.setItem('exerciseFavorites', JSON.stringify(favorites));
-      } else {
-        const newExercise = {
-          _id: exerciseId,
-          name: exerciseName,
-          bodyPart: exerciseBodyPart,
-          equipment: exerciseEquipment,
-          time: exerciseTime,
-          target: exerciseTarget,
-          burnedCalories: exerciseBurnedCalories,
-          gifUrl: exerciseGifUrl,
-        };
-        favorites.push(newExercise);
-        localStorage.setItem('exerciseFavorites', JSON.stringify(favorites));
-      }
-    }
 
     const closeButton = document.querySelector('.modal-close-btn');
     closeButton.addEventListener('click', closeModal);
-    document.addEventListener('keydown', escapeClickHandler);
-    // refs.backdrop.addEventListener('click', backdropClickHandler);
+    document.addEventListener('keydown', onEscape);
+    refs.backdrop.addEventListener('click', backdropClickHandler);
+
+    addGiveRatingListener();
+
+    const addToFavoriteBtn = document.querySelector('.ex-add-favorite');
+    addToFavoriteBtn.addEventListener('click', addToFavoriteOnClick);
+
+    function addToFavoriteOnClick(event) {
+      const element = event.target.closest('.ex-add-favorite');
+      const elementId = element.dataset.id;
+      const favorites = localStorage.getItem('favorites');
+
+      if (favorites) {
+        const favoriteList = JSON.parse(favorites);
+        const condition = favoriteList.some(({ _id }) => _id === elementId);
+        if (condition) {
+          localStorage.setItem(
+            'favorites',
+            JSON.stringify(favoriteList.filter(({ _id }) => _id !== elementId))
+          );
+          element.innerHTML = addInnerHTML();
+          const favCard = document.getElementById('card-' + elementId);
+          if (favCard) {
+            favCard.remove();
+            onClick();
+            showAlert('Card removed from favorites!');
+          }
+        } else {
+          localStorage.setItem(
+            'favorites',
+            JSON.stringify([...favoriteList, responseIdObject])
+          );
+          element.innerHTML = addInnerHTML('remove');
+        }
+      } else {
+        localStorage.setItem('favorites', JSON.stringify([responseIdObject]));
+        element.innerHTML = addInnerHTML('remove');
+      }
+    }
   } catch (error) {
     console.error('Error fetching images:', error);
   }
 }
 
 async function getCardInfo(exerciseId) {
-  console.log(exerciseId);
   try {
     const BASE_URL = 'https://energyflow.b.goit.study/api';
     const ENDPOINT = 'exercises';
@@ -101,6 +87,13 @@ function modalWindowMarkup({
   rating,
   description,
 }) {
+  let isFavorite = false;
+  const favorites = localStorage.getItem('favorites');
+
+  if (favorites) {
+    const favoriteList = JSON.parse(favorites);
+    isFavorite = favoriteList.some(item => item._id === _id);
+  }
   const markup = `
   <div class="modal-container">
 
@@ -204,7 +197,7 @@ function modalWindowMarkup({
 
       <div class="ex-add-btn-container">
         <button type="button" data-id="${_id}" class="ex-add-favorite">
-          Add to favorites
+             ${isFavorite ? 'Remove from' : 'Add to favorites'}
           <svg
             class="heart-svg"
             width="18"
@@ -219,7 +212,6 @@ function modalWindowMarkup({
     </div>
   </div>
     `;
-
   refs.backdrop.innerHTML = markup;
   drawStars(Math.round(rating));
 
@@ -234,24 +226,40 @@ function modalWindowMarkup({
 
 function closeModal() {
   hide(refs.backdrop);
+  refs.backdrop.innerHTML = '';
+  removeGiveRatingListener();
   document.removeEventListener('click', closeModal);
-  document.removeEventListener('keydown', escapeClickHandler);
+  document.removeEventListener('keydown', onEscape);
   if (document.contains(refs.backdrop)) {
     refs.backdrop.removeEventListener('click', backdropClickHandler);
   }
 }
+
 function backdropClickHandler(event) {
   if (event.target === refs.backdrop) {
     closeModal();
   }
-  closeModal();
 }
 
-export function onEscape(event) {
+function onEscape(event) {
   event.preventDefault();
   if (event.key === 'Escape') {
     closeModal();
   }
 }
 
-export { renderModalMenu };
+function addInnerHTML(value = 'add') {
+  if (value === 'add') {
+    return `Add to favorites
+        <svg class="heart-svg" width="18" height="18">
+          <use href="${icons}#icon-heart"></use>
+        </svg>`;
+  } else {
+    return `Remove from
+        <svg class="heart-svg" width="18" height="18">
+          <use href="${icons}#icon-heart"></use>
+        </svg>`;
+  }
+}
+
+export { renderModalMenu, onEscape };

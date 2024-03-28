@@ -13,13 +13,14 @@
 @import url('./footer.css');
 @import url('./favorite.css');
 @import url('./scrollUp.css');
+@import url('./give-rating.css');
 
 :root {
   font-family: 'DM Sans', sans-serif;
   font-size: 16px;
   line-height: 1.5;
   font-weight: 500;
-  color: var(--text-main-color);  
+  color: var(--text-main-color);
   background-color: var(--background-main);
 
   --text-main-color: #1b1b1b;

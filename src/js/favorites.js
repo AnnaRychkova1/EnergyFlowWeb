@@ -7,7 +7,7 @@ import { refs } from './templates/refs.js';
 
 const LS_KEY_QUOTE = 'quoteResponse';
 const quoteFromLS = JSON.parse(localStorage.getItem(LS_KEY_QUOTE));
-console.log(quoteFromLS);
+// console.log(quoteFromLS);
 
 function displayQuoteOnPage(quoteData) {
   const quoteText = document.querySelector('.quote-text');

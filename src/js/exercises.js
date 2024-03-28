@@ -178,6 +178,9 @@ function filterCartsExercises(event) {
   refs.exercisesGalleryEl.innerHTML = '';
   refs.paginationEl.innerHTML = '';
   hideLoader(refs.loaderModal);
+  queryParams.filter = '';
+  queryParams.page = '';
+  queryParams.limit = '';
   renderExerciseByFilterName(exercisesParamFilter, exercisesParamName);
 }
 

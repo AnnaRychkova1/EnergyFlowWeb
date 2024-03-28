@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { hide, show, showLoader, hideLoader } from './services/visibility';
+import { hide, show, hideLoader, showLoader } from './services/visibility';
 import { refs } from './templates/refs.js';
 import { scrollTo } from './services/scrollTo.js';
 import { renderModalMenu } from './modal-menu.js';
@@ -15,6 +15,7 @@ const getParams = {
   keyword: '',
   page: 1,
   limit: 9,
+  query: '',
 };
 
 async function renderExerciseByFilterName(expectedFilter, name) {
@@ -139,9 +140,9 @@ async function renderExerciseByFilterName(expectedFilter, name) {
       hideLoader(refs.loaderModal);
       refs.subexercisesSearchForm.reset();
       getParams.keyword = '';
-      // filter = '';
-      // name = '';
-      // refs.subexercisesSearchForm.removeEventListener('submit', handleSearch);
+      filter = '';
+      name = '';
+      refs.subexercisesSearchForm.removeEventListener('submit', handleSearch);
     }
   }
 }
@@ -158,6 +159,7 @@ function handleClickOnCardStart(evt) {
   }
 
   const exerciseId = evt.target.dataset.id;
+  // showLoader(refs.loaderModal);
   renderModalMenu(exerciseId);
 }
 

@@ -12,3 +12,4 @@ import('./js/templates/localStorage.js');
 import('./js/templates/refs.js');
 import('./js/services/visibility.js');
 import('./js/services/scrollTo.js');
+import('./js/give-rating.js');
