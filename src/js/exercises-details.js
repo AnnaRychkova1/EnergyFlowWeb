@@ -27,6 +27,7 @@ if (screenWidth < 1440) {
 }
 
 async function renderExerciseByFilterName(expectedFilter, expectedName) {
+  hideLoader(refs.loaderModal);
   name = expectedName;
 
   if (expectedFilter === 'Body parts') {
@@ -39,7 +40,6 @@ async function renderExerciseByFilterName(expectedFilter, expectedName) {
 
   if (!filter || !name) {
     show(refs.subexercisesTextNoFound);
-    hideLoader(refs.loaderModal);
     return;
   }
 
@@ -51,6 +51,7 @@ async function renderExerciseByFilterName(expectedFilter, expectedName) {
   refs.subexercisesFilteredCards.innerHTML = '';
 
   try {
+    showLoader(refs.loaderModal);
     const { results, totalPages } = await searchExerciseByFilters({
       filter: filter,
       name: name,
@@ -66,10 +67,11 @@ async function renderExerciseByFilterName(expectedFilter, expectedName) {
     }
 
     renderCards(results);
-
+    hideLoader(refs.loaderModal);
     scrollTo(refs.subexercisesFilteredCards);
   } catch (error) {
     console.error('Error fetching images:', error);
+    hideLoader(refs.loaderModal);
   } finally {
     hideLoader(refs.loaderModal);
   }
@@ -101,16 +103,15 @@ async function handleSearch(evt) {
   console.log(name);
 
   if (!getParams.keyword) {
-    hideLoader(refs.loaderModal);
     console.log('input keyword');
   }
 
   show(refs.subexercisesSearchForm);
   hide(refs.subexercisesTextNoFound);
-  showLoader(refs.loaderModal);
   refs.subexercisesFilteredCards.innerHTML = '';
 
   try {
+    showLoader(refs.loaderModal);
     const { results, totalPages } = await searchExerciseByFilters({
       filter: filter,
       name: name,
@@ -127,12 +128,13 @@ async function handleSearch(evt) {
     }
 
     renderCards(results);
+    hideLoader(refs.loaderModal);
 
     scrollTo(refs.subexercisesFilteredCards);
   } catch (error) {
     console.error('Error fetching request:', error);
-  } finally {
     hideLoader(refs.loaderModal);
+  } finally {
     refs.subexercisesSearchForm.reset();
     getParams.keyword = '';
   }
