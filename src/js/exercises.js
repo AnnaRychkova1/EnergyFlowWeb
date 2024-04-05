@@ -32,7 +32,6 @@ if (screenWidth < 1440) {
 
 async function getExercisesByFilter() {
   showLoader(refs.loaderModal);
-
   try {
     const response = await axios.get(`${BASE_URL}/filters`, {
       params: {
@@ -41,14 +40,17 @@ async function getExercisesByFilter() {
         limit: currentLimit,
       },
     });
+    hideLoader(refs.loaderModal);
     return response.data;
   } catch (error) {
     console.log(error);
+    hideLoader(refs.loaderModal);
   }
 }
 
 async function fetchDefaultMuscles() {
   try {
+    showLoader(refs.loaderModal);
     const { results, page, totalPages } = await getExercisesByFilter(
       queryParams
     );
@@ -57,11 +59,13 @@ async function fetchDefaultMuscles() {
       createExercisesByFilterMarkup(results);
       refs.paginationEl.innerHTML = '';
       refs.paginationEl.innerHTML = pagesPagination(page, totalPages);
+      hideLoader(refs.loaderModal);
     } else {
       console.error('No results found for this filter');
     }
   } catch (error) {
     console.log('Error fetching images:', error);
+    hideLoader(refs.loaderModal);
   }
 }
 
@@ -77,6 +81,7 @@ async function filterBtnExercises(event) {
   showLoader(refs.loaderModal);
 
   if (event.target === event.currentTarget) {
+    hideLoader(refs.loaderModal);
     return;
   }
 
@@ -113,6 +118,7 @@ async function filterBtnExercises(event) {
     scrollTo(refs.exercisesContainerEl);
   } catch (error) {
     console.log(error);
+    hideLoader(refs.loaderModal);
   } finally {
     filterDefault = '';
   }
@@ -150,13 +156,16 @@ async function onPaginationPages(event) {
   currentPage = event.target.textContent;
   refs.exercisesGalleryEl.innerHTML = '';
   try {
+    showLoader(refs.loaderModal);
     const { results, page, totalPages } = await getExercisesByFilter(
       queryParams
     );
     createExercisesByFilterMarkup(results);
+    hideLoader(refs.loaderModal);
     scrollTo(refs.exercisesContainerEl);
   } catch (error) {
     console.log(error);
+    hideLoader(refs.loaderModal);
   }
 }
 

@@ -2,8 +2,6 @@ const scrollUpBtn = document.querySelector('.scroll-up-btn');
 
 window.addEventListener('scroll', checkHeight);
 
-console.log(window.scrollY);
-
 function checkHeight() {
   if (window.scrollY > 200) {
     scrollUpBtn.classList.add('scroll-up-btn-show');

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import { hide, show } from './services/visibility';
-import { refs } from './templates/refs.js';
+// import { refs } from './templates/refs.js';
 
 // //  Quote of Day if it is not part of favorites
 
