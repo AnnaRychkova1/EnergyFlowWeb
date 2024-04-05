@@ -37,7 +37,6 @@ function handleGiveRatingClick(event) {
 }
 
 function openGiveRatingModal() {
-  // refs.backdrop.classList.add('is-hidden');
   modalRating.classList.remove('is-hidden');
   overlayRating.style.display = 'block';
   refs.backdrop.style.display = 'none';
