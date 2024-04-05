@@ -15,22 +15,19 @@ const getParams = {
   keyword: '',
   page: 1,
   limit: 9,
-  query: '',
 };
 
-async function renderExerciseByFilterName(expectedFilter, name) {
-  // if (refs.exercisesGalleryEl) {
-  //   hide(refs.subexercisesFilteredCards);
-  //   hide(refs.subexercisesSearchForm);
-  // }
+let filter = '';
+let name = '';
 
-  if (screenWidth < 1440) {
-    getParams.limit = 8;
-  } else {
-    getParams.limit = 9;
-  }
+if (screenWidth < 1440) {
+  getParams.limit = 8;
+} else {
+  getParams.limit = 9;
+}
 
-  let filter;
+async function renderExerciseByFilterName(expectedFilter, expectedName) {
+  name = expectedName;
 
   if (expectedFilter === 'Body parts') {
     filter = 'bodypart';
@@ -46,14 +43,12 @@ async function renderExerciseByFilterName(expectedFilter, name) {
     return;
   }
 
-  // hide(refs.exercisesGalleryEl);
   hide(refs.subexercisesTextNoFound);
   show(refs.subexercisesSearchForm);
   show(refs.subexercisesFilteredCards);
   show(refs.exercisesSubtitle);
   refs.exercisesSubtitle.textContent = `${name}`;
   refs.subexercisesFilteredCards.innerHTML = '';
-  // refs.exercisesGalleryEl.removeEventListener('click', filterCartsExercises);
 
   try {
     const { results, totalPages } = await searchExerciseByFilters({
@@ -77,73 +72,69 @@ async function renderExerciseByFilterName(expectedFilter, name) {
     console.error('Error fetching images:', error);
   } finally {
     hideLoader(refs.loaderModal);
+  }
+}
 
-    // if (refs.exercisesBtnEl.classList.contains('is-clicked')) {
-    //   // Очищаємо дані
-    //   filter = '';
-    //   name = '';
-    // } else {
-    //   // Додаємо слухача до форми
-    //   refs.subexercisesSearchForm.addEventListener('submit', handleSearch);
-    // }
+// refs.exercisesBtnEl.addEventListener('click', changeRequest);
+
+// function changeRequest(evt) {
+//   evt.preventDefault();
+//   getParams.keyword = '';
+//   console.log(getParams.keyword);
+//   getParams.page = 1;
+//   filter = '';
+//   name = '';
+//   console.log('changimg');
+//   return;
+// }
+
+refs.subexercisesSearchForm.addEventListener('submit', handleSearch);
+
+async function handleSearch(evt) {
+  evt.preventDefault();
+
+  const formData = evt.currentTarget;
+  getParams.keyword = formData.query.value.trim();
+
+  console.log(getParams.keyword);
+  console.log(filter);
+  console.log(name);
+
+  if (!getParams.keyword) {
+    hideLoader(refs.loaderModal);
+    console.log('input keyword');
   }
 
-  refs.subexercisesSearchForm.addEventListener('submit', handleSearch);
+  show(refs.subexercisesSearchForm);
+  hide(refs.subexercisesTextNoFound);
+  showLoader(refs.loaderModal);
+  refs.subexercisesFilteredCards.innerHTML = '';
 
-  async function handleSearch(evt) {
-    evt.preventDefault();
+  try {
+    const { results, totalPages } = await searchExerciseByFilters({
+      filter: filter,
+      name: name,
+      keyword: getParams.keyword,
+      limit: getParams.limit,
+      page: getParams.page,
+    });
 
-    // if (refs.exercisesGalleryEl) {
-    //   hide(refs.subexercisesFilteredCards);
-    //   hide(refs.subexercisesSearchForm);
-    // }
-
-    const formData = evt.currentTarget;
-    getParams.keyword = formData.query.value.trim();
-
-    console.log(getParams.keyword);
-    console.log(filter);
-    console.log(name);
-
-    if (!getParams.keyword) {
+    if (totalPages < 1) {
+      show(refs.subexercisesTextNoFound);
+      refs.subexercisesFilteredCards.innerHTML = '';
       hideLoader(refs.loaderModal);
-      console.log('input keyword');
+      return;
     }
 
-    show(refs.subexercisesSearchForm);
-    hide(refs.subexercisesTextNoFound);
-    showLoader(refs.loaderModal);
-    refs.subexercisesFilteredCards.innerHTML = '';
+    renderCards(results);
 
-    try {
-      const { results, totalPages } = await searchExerciseByFilters({
-        filter: filter,
-        name: name,
-        keyword: getParams.keyword,
-        limit: getParams.limit,
-        page: getParams.page,
-      });
-
-      if (totalPages < 1) {
-        show(refs.subexercisesTextNoFound);
-        refs.subexercisesFilteredCards.innerHTML = '';
-        hideLoader(refs.loaderModal);
-        return;
-      }
-
-      renderCards(results);
-
-      scrollTo(refs.subexercisesFilteredCards);
-    } catch (error) {
-      console.error('Error fetching request:', error);
-    } finally {
-      hideLoader(refs.loaderModal);
-      refs.subexercisesSearchForm.reset();
-      getParams.keyword = '';
-      filter = '';
-      name = '';
-      refs.subexercisesSearchForm.removeEventListener('submit', handleSearch);
-    }
+    scrollTo(refs.subexercisesFilteredCards);
+  } catch (error) {
+    console.error('Error fetching request:', error);
+  } finally {
+    hideLoader(refs.loaderModal);
+    refs.subexercisesSearchForm.reset();
+    getParams.keyword = '';
   }
 }
 

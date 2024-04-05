@@ -1,6 +1,6 @@
 export const refs = {
   // Loader
-  loaderModal: document.querySelector('.overlay'),
+  loaderModal: document.querySelector('.overlay-loader'),
 
   // Vasilina
   exercisesBtnEl: document.querySelector('.exercises-btn-list'),

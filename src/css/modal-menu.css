@@ -11,7 +11,7 @@
     visibility 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.backdrop.is-hidden {
+.is-hidden {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
@@ -19,7 +19,7 @@
 
 .modal-container {
   position: absolute;
-  top: 57%;
+  top: 54%;
   left: 50%;
 
   min-width: 280px;

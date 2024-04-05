@@ -24,7 +24,7 @@ refs.exercisesBtnEl.addEventListener('click', filterBtnExercises);
 refs.exercisesGalleryEl.addEventListener('click', filterCartsExercises);
 refs.paginationEl.addEventListener('click', onPaginationPages);
 
-if (screenWidth < 768) {
+if (screenWidth < 1440) {
   currentLimit = 8;
 } else {
   currentLimit = 12;
@@ -84,7 +84,6 @@ async function filterBtnExercises(event) {
   hide(refs.subexercisesSearchForm);
   hide(refs.exercisesTitleSpan);
   hide(refs.subexercisesTextNoFound);
-  // show(refs.exercisesGalleryEl);
   refs.exercisesGalleryEl.innerHTML = '';
   refs.exercisesSubtitle.innerHTML = '';
   refs.subexercisesFilteredCards.innerHTML = '';
@@ -179,8 +178,6 @@ function filterCartsExercises(event) {
   refs.paginationEl.innerHTML = '';
   hideLoader(refs.loaderModal);
   queryParams.filter = '';
-  queryParams.page = '';
-  queryParams.limit = '';
   renderExerciseByFilterName(exercisesParamFilter, exercisesParamName);
 }
 

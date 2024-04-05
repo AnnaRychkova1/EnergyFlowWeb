@@ -30,10 +30,6 @@
   }
 }
 
-.is-hidden {
-  display: none;
-}
-
 button {
   border: none;
   border-radius: 30px;
@@ -51,18 +47,8 @@ button:hover {
   color: var(--text-light-color);
 }
 
-.overlay {
-  visibility: hidden;
-  position: fixed;
-  /* display: none; */
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(152, 151, 151, 0.979);
-  z-index: 998;
-  opacity: 0;
-  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+.is-hidden {
+  display: none;
 }
 
 .show {
@@ -70,35 +56,7 @@ button:hover {
   visibility: visible;
 }
 
-.loader-container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.loader {
-  display: flex;
-  position: relative;
-  width: 100px;
-  height: 100px;
-}
-
-.loader:before,
-.loader:after {
-  content: '';
-  border-radius: 50%;
-  position: absolute;
-  inset: 0;
-  box-shadow: 0 0 24px 4px rgba(255, 255, 255, 0.995) inset;
-}
-
-.loader:after {
-  box-shadow: 0 6px 0 rgb(40, 40, 40) inset;
-  animation: rotate 2s linear infinite;
-}
-
-@keyframes rotate {
+/* @keyframes rotate {
   0% {
     transform: rotate(0);
   }
@@ -106,4 +64,4 @@ button:hover {
   100% {
     transform: rotate(360deg);
   }
-}
+} */

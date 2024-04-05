@@ -98,7 +98,7 @@ function handleStartButtonClick(evt) {
   if (!evt.target.dataset.id) {
     return;
   }
-  // showLoader(refs.loaderModal);
+  showLoader(refs.loaderModal);
   const exerciseId = evt.target.dataset.id;
   hide(refs.favoritesGallery);
   createModalMenu(exerciseId);

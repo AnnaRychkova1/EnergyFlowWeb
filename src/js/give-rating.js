@@ -110,17 +110,11 @@ function closeRatingModal() {
   document.addEventListener('keydown', onEscape);
 }
 
-/**
- * Тимчасово приховуємо вікно з інформацією про вправу
- */
 function hideExercisesModal() {
   const modalCard = document.querySelector('.modal-container');
   modalCard.classList.add('is-hidden');
 }
 
-/**
- * Відновлюємо вікно з інформацією про вправу
- */
 function restoreExercisesModal() {
   const modalCard = document.querySelector('.modal-container');
   modalCard.classList.remove('is-hidden');
