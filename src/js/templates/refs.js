@@ -2,6 +2,9 @@ export const refs = {
   // Loader
   loaderModal: document.querySelector('.overlay-loader'),
 
+  // ScrollUp
+  scrollUpBtn: document.querySelector('.scroll-up-btn'),
+
   // Vasilina
   exercisesBtnEl: document.querySelector('.exercises-btn-list'),
   buttonsEl: document.querySelectorAll('.exercises-btn-item'),

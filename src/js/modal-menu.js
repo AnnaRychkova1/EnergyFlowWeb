@@ -7,6 +7,7 @@ import { refs } from './templates/refs';
 let expectedId;
 async function renderModalMenu(expectedExercisesId) {
   show(refs.backdrop);
+  hide(refs.scrollUpBtn);
   // hideLoader(refs.loaderModal);
   refs.backdrop.innerHTML = '';
   expectedId = expectedExercisesId;
@@ -225,6 +226,7 @@ function modalWindowMarkup({
 }
 
 function closeModal() {
+  show(refs.scrollUpBtn);
   hide(refs.backdrop);
   refs.backdrop.innerHTML = '';
   removeGiveRatingListener();

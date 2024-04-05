@@ -184,7 +184,7 @@ function pagesPagination(page, totalPages) {
   let endButton = Math.min(totalPages, startButton + maxVisibleButtons - 1);
 
   if (startButton > 1) {
-    buttons += `<button class="button-pagination prev" type="button">+</button>`;
+    buttons += `<button class="button-pagination prev" type="button"><<</button>`;
   }
 
   for (let i = startButton; i <= endButton; i++) {
@@ -194,7 +194,7 @@ function pagesPagination(page, totalPages) {
   }
 
   if (endButton < totalPages) {
-    buttons += `<button class="button-pagination next" type="button">+</button>`;
+    buttons += `<button class="button-pagination next" type="button">>></button>`;
   }
 
   return buttons;
