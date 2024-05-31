@@ -70,6 +70,12 @@ function handleSendRatingBtnClick(event) {
     hideLoader(refs.loaderModal);
     return;
   }
+
+  if (review === '') {
+    console.log('Please enter your review!', 'ERROR');
+    hideLoader(refs.loaderModal);
+    return;
+  }
   sendRatingData(rate, email, review)
     .then(function (response) {
       console.log('Thank you! Your rating has been sent!', 'OK');

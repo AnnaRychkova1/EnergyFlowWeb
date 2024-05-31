@@ -19,7 +19,7 @@
 
 .modal-container {
   position: absolute;
-  top: 54%;
+  top: 85%;
   left: 50%;
 
   min-width: 280px;
@@ -188,7 +188,7 @@
   .modal-container {
     display: flex;
     justify-content: center;
-    top: 50%;
+    top: 51%;
     left: 50%;
     gap: 24px;
     width: 716px;

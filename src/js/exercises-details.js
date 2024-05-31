@@ -2,6 +2,7 @@ import axios from 'axios';
 import { hide, show, hideLoader, showLoader } from './services/visibility';
 import { refs } from './templates/refs.js';
 import { scrollTo } from './services/scrollTo.js';
+import { onPaginationClick, pagesPagination } from './services/pagination';
 import { renderModalMenu } from './modal-menu.js';
 import icons from '/img/icons/symbol-defs.svg';
 
@@ -10,25 +11,47 @@ const ENDPOINT_EXERCISES = 'exercises';
 
 const screenWidth = window.innerWidth;
 
-const getParams = {
-  filter: '',
+let page = 1;
+let filter = '';
+let currentLimit;
+let getParams = {
   keyword: '',
-  page: 1,
-  limit: 9,
+  page: page,
+  limit: currentLimit,
 };
 
-let filter = '';
-let name = '';
-
 if (screenWidth < 1440) {
-  getParams.limit = 8;
+  currentLimit = 8;
 } else {
-  getParams.limit = 9;
+  currentLimit = 9;
 }
+
+refs.subexercisesSearchForm.addEventListener('submit', handleSearch);
+
+refs.paginationEl.addEventListener(
+  'click',
+  onPaginationClick(
+    renderCards,
+    searchExerciseByFilters,
+    getParams,
+    refs.subexercisesFilteredCards,
+    'second-pagination'
+  )
+);
 
 async function renderExerciseByFilterName(expectedFilter, expectedName) {
   hideLoader(refs.loaderModal);
-  name = expectedName;
+
+  if (!expectedFilter || !expectedName) {
+    show(refs.subexercisesTextNoFound);
+    return;
+  }
+
+  getParams = {
+    keyword: '',
+    page: page,
+    limit: currentLimit,
+  };
 
   if (expectedFilter === 'Body parts') {
     filter = 'bodypart';
@@ -38,10 +61,7 @@ async function renderExerciseByFilterName(expectedFilter, expectedName) {
     filter = 'equipment';
   }
 
-  if (!filter || !name) {
-    show(refs.subexercisesTextNoFound);
-    return;
-  }
+  getParams[filter] = expectedName;
 
   hide(refs.subexercisesTextNoFound);
   show(refs.subexercisesSearchForm);
@@ -49,26 +69,29 @@ async function renderExerciseByFilterName(expectedFilter, expectedName) {
   show(refs.exercisesSubtitle);
   refs.exercisesSubtitle.textContent = `${name}`;
   refs.subexercisesFilteredCards.innerHTML = '';
+  refs.paginationEl.innerHTML = '';
+  refs.exercisesGalleryEl.innerHTML = '';
+  refs.paginationEl.classList.add('second-pagination');
+  refs.paginationEl.classList.remove('first-pagination');
 
   try {
     showLoader(refs.loaderModal);
-    const { results, totalPages } = await searchExerciseByFilters({
-      filter: filter,
-      name: name,
-      keyword: getParams.keyword,
-      limit: getParams.limit,
-      page: getParams.page,
-    });
+    const { results, totalPages } = await searchExerciseByFilters(page);
 
-    if (totalPages < 1) {
+    if (totalPages > 1) {
+      refs.paginationEl.innerHTML = pagesPagination(page, totalPages);
+    }
+
+    if (results && results.length > 0) {
+      renderCards(results);
+      hideLoader(refs.loaderModal);
+    } else {
       show(refs.subexercisesTextNoFound);
       hideLoader(refs.loaderModal);
       return;
     }
 
-    renderCards(results);
-    hideLoader(refs.loaderModal);
-    scrollTo(refs.subexercisesFilteredCards);
+    scrollTo(refs.exercisesContainerEl);
   } catch (error) {
     console.error('Error fetching images:', error);
     hideLoader(refs.loaderModal);
@@ -76,21 +99,6 @@ async function renderExerciseByFilterName(expectedFilter, expectedName) {
     hideLoader(refs.loaderModal);
   }
 }
-
-// refs.exercisesBtnEl.addEventListener('click', changeRequest);
-
-// function changeRequest(evt) {
-//   evt.preventDefault();
-//   getParams.keyword = '';
-//   console.log(getParams.keyword);
-//   getParams.page = 1;
-//   filter = '';
-//   name = '';
-//   console.log('changimg');
-//   return;
-// }
-
-refs.subexercisesSearchForm.addEventListener('submit', handleSearch);
 
 async function handleSearch(evt) {
   evt.preventDefault();
@@ -100,7 +108,7 @@ async function handleSearch(evt) {
 
   console.log(getParams.keyword);
   console.log(filter);
-  console.log(name);
+  console.log(getParams[filter]);
 
   if (!getParams.keyword) {
     console.log('input keyword');
@@ -109,34 +117,31 @@ async function handleSearch(evt) {
   show(refs.subexercisesSearchForm);
   hide(refs.subexercisesTextNoFound);
   refs.subexercisesFilteredCards.innerHTML = '';
+  refs.paginationEl.innerHTML = '';
+  refs.exercisesGalleryEl.innerHTML = '';
 
   try {
     showLoader(refs.loaderModal);
-    const { results, totalPages } = await searchExerciseByFilters({
-      filter: filter,
-      name: name,
-      keyword: getParams.keyword,
-      limit: getParams.limit,
-      page: getParams.page,
-    });
+    const { results, totalPages } = await searchExerciseByFilters(page);
 
-    if (totalPages < 1) {
+    if (totalPages > 1) {
+      refs.paginationEl.innerHTML = pagesPagination(page, totalPages);
+    }
+
+    if (results && results.length > 0) {
+      renderCards(results);
+      hideLoader(refs.loaderModal);
+    } else {
       show(refs.subexercisesTextNoFound);
-      refs.subexercisesFilteredCards.innerHTML = '';
       hideLoader(refs.loaderModal);
       return;
     }
-
-    renderCards(results);
-    hideLoader(refs.loaderModal);
-
-    scrollTo(refs.subexercisesFilteredCards);
+    scrollTo(refs.exercisesContainerEl);
   } catch (error) {
     console.error('Error fetching request:', error);
     hideLoader(refs.loaderModal);
   } finally {
     refs.subexercisesSearchForm.reset();
-    getParams.keyword = '';
   }
 }
 
@@ -150,27 +155,22 @@ function handleClickOnCardStart(evt) {
   if (!evt.target.dataset.id) {
     return;
   }
-
   const exerciseId = evt.target.dataset.id;
   // showLoader(refs.loaderModal);
   renderModalMenu(exerciseId);
 }
 
 // request to server
-async function searchExerciseByFilters({ filter, name, keyword, limit, page }) {
+async function searchExerciseByFilters(page) {
   const response = await axios.get(`${BASE_URL}/${ENDPOINT_EXERCISES}`, {
-    params: {
-      [filter]: name,
-      keyword: keyword,
-      limit: limit,
-      page: page,
-    },
+    params: { ...getParams, page },
   });
   return response.data;
 }
 
 // renderCards
 function renderCards(results) {
+  refs.exercisesGalleryEl.innerHTML = '';
   const markup = results.map(result => createCard(result)).join('');
   refs.subexercisesFilteredCards.innerHTML = markup;
 }

@@ -3,7 +3,6 @@
   flex-direction: column;
   width: 335px;
   padding: 40px 20px;
-  min-height: 760px;
 }
 
 .exercises-title {
@@ -16,7 +15,6 @@
 }
 
 /* Exercises-btn */
-
 .exercises-btn-list {
   display: flex;
   justify-content: space-between;
@@ -48,7 +46,6 @@
 }
 
 /*  Exercises-gallery  */
-
 .exercises-gallery {
   margin-top: 40px;
 }
@@ -61,6 +58,10 @@
   border: 1px solid var(--background-btn-hover);
   transition: transform var(--anim);
   margin-bottom: 20px;
+}
+
+.exercises-gallery-item:last-child {
+  margin-bottom: 0px;
 }
 
 .exercises-gallery-item:hover {
@@ -115,12 +116,12 @@
 }
 
 /*  Exercises-pagination  */
-
 .exercises-pagination {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 0px;
+  margin-top: 20px;
 }
 
 .button-pagination {
@@ -157,7 +158,6 @@
   .exercises-container {
     padding: 64px 48px;
     width: 736px;
-    min-height: 1092px;
   }
 
   .exercises-title {
@@ -183,7 +183,6 @@
   }
 
   .exercises-gallery {
-    /* height: 1570px; */
     margin-top: 32px;
     display: flex;
     flex-wrap: wrap;
@@ -208,6 +207,11 @@
   .exercises-pagination {
     margin-top: 32px;
   }
+
+  /* Pagination */
+  .exercises-pagination {
+    margin-top: 32px;
+  }
 }
 
 /*  Desktop  */
@@ -215,11 +219,9 @@
 @media only screen and (min-width: 1440px) {
   .exercises-container {
     width: 1408px;
-    min-height: 872px;
   }
 
   .exercises-gallery {
-    /* height: 830px; */
     flex-basis: calc((100% - 60px) / 4);
     width: 1312px;
     gap: 40px 20px;

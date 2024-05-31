@@ -68,7 +68,6 @@
   gap: 20px;
   flex-wrap: wrap;
   align-items: center;
-  margin-top: 40px;
 }
 
 .filtered-card-item {
@@ -210,7 +209,8 @@
 }
 
 .subexercises-text-no-found {
-  margin: 164px 20px auto 20px;
+  margin: 124px auto 260px auto;
+  width: 295px;
   text-align: center;
   font-weight: 400;
   font-size: 14px;
@@ -255,7 +255,7 @@
   }
 
   .subexercises-filtered-cards {
-    margin-top: 23px;
+    padding-top: 23px;
     gap: 20px 14px;
   }
 
@@ -285,7 +285,8 @@
   }
 
   .subexercises-text-no-found {
-    margin: 222px 52px auto 52px;
+    margin: 167px auto 489px auto;
+    width: 536px;
     font-size: 18px;
     line-height: 1.33;
   }
@@ -314,7 +315,7 @@
   }
 
   .subexercises-filtered-cards {
-    margin-top: 0;
+    padding-top: 0;
     gap: 28px 20px;
   }
 
@@ -328,7 +329,8 @@
   }
 
   .subexercises-text-no-found {
-    margin: 218px 314px auto 314px;
+    margin: 164px auto 254px auto;
+    width: 648px;
     font-size: 18px;
     line-height: 1.33;
   }
@@ -342,7 +344,6 @@
 
   .filtered-descr-item:last-child {
     overflow: hidden;
-    /* text-overflow: ellipsis; */
   }
 
   .filtered-descr-title:last-child {
@@ -351,8 +352,3 @@
     text-overflow: ellipsis;
   }
 }
-
-/* Pagination */
-
-/* .subexercises-pagination-container {
-} */

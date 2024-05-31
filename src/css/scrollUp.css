@@ -3,9 +3,6 @@
   height: 100px;
   width: 100px;
   visibility: hidden;
-  justify-content: center;
-  align-items: center;
-  bottom: -100px;
   right: 35px;
   border-radius: 50%;
   background-color: var(--background-dark-grey);
@@ -37,6 +34,7 @@
   .scroll-up-btn {
     width: 40px;
     height: 40px;
+    padding: 12px 12px;
   }
 
   .scroll-up-arrow {
