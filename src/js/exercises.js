@@ -27,31 +27,40 @@ if (screenWidth < 1440) {
   currentLimit = 12;
 }
 
-refs.exercisesBtnEl.addEventListener('click', filterBtnExercises);
-refs.exercisesGalleryEl.addEventListener('click', filterCartsExercises);
+if (refs.exercisesBtnEl) {
+  refs.exercisesBtnEl.addEventListener('click', filterBtnExercises);
+}
 
-refs.paginationEl.addEventListener(
-  'click',
-  onPaginationClick(
-    createExercisesByFilterMarkup,
-    getExercisesByFilter,
-    queryParams,
-    refs.exercisesGalleryEl,
-    'first-pagination'
-  )
-);
+if (refs.exercisesGalleryEl) {
+  refs.exercisesGalleryEl.addEventListener('click', filterCartsExercises);
+}
+
+if (refs.paginationEl) {
+  refs.paginationEl.addEventListener(
+    'click',
+    onPaginationClick(
+      createExercisesByFilterMarkup,
+      getExercisesByFilter,
+      queryParams,
+      refs.exercisesGalleryEl,
+      'first-pagination'
+    )
+  );
+}
 
 fetchDefaultMuscles();
 
 // default request
 async function fetchDefaultMuscles() {
-  refs.paginationEl.classList.add('first-pagination');
-  refs.paginationEl.classList.remove('second-pagination');
+  if (refs.paginationEl) {
+    refs.paginationEl.classList.add('first-pagination');
+    refs.paginationEl.classList.remove('second-pagination');
+  }
   try {
     showLoader(refs.loaderModal);
     const { results, totalPages } = await getExercisesByFilter(page);
 
-    if (totalPages > 1) {
+    if (totalPages > 1 && refs.paginationEl) {
       refs.paginationEl.innerHTML = pagesPagination(page, totalPages);
     }
 
@@ -164,7 +173,10 @@ function createExercisesByFilterMarkup(results) {
         </li>`
     )
     .join('');
-  refs.exercisesGalleryEl.insertAdjacentHTML('beforeend', markup);
+
+  if (refs.exercisesGalleryEl) {
+    refs.exercisesGalleryEl.insertAdjacentHTML('beforeend', markup);
+  }
   hideLoader(refs.loaderModal);
 }
 

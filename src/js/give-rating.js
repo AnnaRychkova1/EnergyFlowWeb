@@ -108,9 +108,9 @@ async function sendRatingData(rate, email, review) {
 }
 
 function closeRatingModal() {
-  modalRating.classList.add('is-hidden');
+  hide(modalRating);
   overlayRating.style.display = 'none';
-  refs.backdrop.style.display = 'block';
+  refs.backdrop.style.display = 'flex';
   restoreExercisesModal();
   document.addEventListener('keydown', onEscape);
 }

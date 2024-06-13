@@ -68,7 +68,6 @@
   justify-content: center;
   align-items: center;
   padding: 4px 16px;
-  /* margin-bottom: 8px; */
   color: #f6f6f6;
   font-size: 16px;
   font-style: normal;
@@ -127,7 +126,6 @@
     gap: 20px;
     align-items: center;
     width: 335px;
-    /* height: 387px; */
   }
 
   .section-left {

@@ -26,18 +26,22 @@ if (screenWidth < 1440) {
   currentLimit = 9;
 }
 
-refs.subexercisesSearchForm.addEventListener('submit', handleSearch);
+if (refs.subexercisesSearchForm) {
+  refs.subexercisesSearchForm.addEventListener('submit', handleSearch);
+}
 
-refs.paginationEl.addEventListener(
-  'click',
-  onPaginationClick(
-    renderCards,
-    searchExerciseByFilters,
-    getParams,
-    refs.subexercisesFilteredCards,
-    'second-pagination'
-  )
-);
+if (refs.paginationEl) {
+  refs.paginationEl.addEventListener(
+    'click',
+    onPaginationClick(
+      renderCards,
+      searchExerciseByFilters,
+      getParams,
+      refs.subexercisesFilteredCards,
+      'second-pagination'
+    )
+  );
+}
 
 async function renderExerciseByFilterName(expectedFilter, expectedName) {
   hideLoader(refs.loaderModal);
@@ -67,7 +71,7 @@ async function renderExerciseByFilterName(expectedFilter, expectedName) {
   show(refs.subexercisesSearchForm);
   show(refs.subexercisesFilteredCards);
   show(refs.exercisesSubtitle);
-  refs.exercisesSubtitle.textContent = `${name}`;
+  refs.exercisesSubtitle.textContent = `${expectedName}`;
   refs.subexercisesFilteredCards.innerHTML = '';
   refs.paginationEl.innerHTML = '';
   refs.exercisesGalleryEl.innerHTML = '';
@@ -106,10 +110,6 @@ async function handleSearch(evt) {
   const formData = evt.currentTarget;
   getParams.keyword = formData.query.value.trim();
 
-  console.log(getParams.keyword);
-  console.log(filter);
-  console.log(getParams[filter]);
-
   if (!getParams.keyword) {
     console.log('input keyword');
   }
@@ -145,10 +145,12 @@ async function handleSearch(evt) {
   }
 }
 
-refs.subexercisesFilteredCards.addEventListener(
-  'click',
-  handleClickOnCardStart
-);
+if (refs.subexercisesFilteredCards) {
+  refs.subexercisesFilteredCards.addEventListener(
+    'click',
+    handleClickOnCardStart
+  );
+}
 
 // request to modal window
 function handleClickOnCardStart(evt) {
@@ -156,7 +158,7 @@ function handleClickOnCardStart(evt) {
     return;
   }
   const exerciseId = evt.target.dataset.id;
-  // showLoader(refs.loaderModal);
+  showLoader(refs.loaderModal);
   renderModalMenu(exerciseId);
 }
 
@@ -234,4 +236,4 @@ function createCard({
   </li>`;
 }
 
-export { renderExerciseByFilterName };
+export { renderExerciseByFilterName, handleSearch };

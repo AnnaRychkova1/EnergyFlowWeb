@@ -8,35 +8,29 @@
     <title>Favorites</title>
   </head>
   <body>
+    <div class="gap-container"></div>
+    <load ="partials/header.html" />
+    <load ="partials/mobile-menu.html" />
     <main>
-      <load ="partials/header.html" />
-      <load ="partials/mobile-menu.html" />
-
-      <div class="gap-container"></div>
       <div class="favorites-quote-container"></div>
       <load ="partials/quote-fav.html" />
-      <section class="section">
+      <section class="section section-favorites">
         <div class="container favorites-container">
-          <!-- <div class="favorites-box-block block"> -->
-
-          <div class="favorites-box">
-            <h2 class="favorites-box-title">Favorites</h2>
-            <div class="favorites-box-block block">
-              <img
-                class="favorites-box-img"
-                src="./img/icons/dumbbell.png"
-                alt="dumbbell"
-              />
-              <p class="favorites-box-paragraf">
-                It appears that you haven't added any exercises to your
-                favorites yet. To get started, you can add exercises that you
-                like to your favorites for easier access in the future.
-              </p>
-            </div>
+          <h2 class="favorites-box-title">Favorites</h2>
+          <div class="favorites-box-block is-hidden">
+            <img
+              class="favorites-box-img"
+              src="./img/icons/dumbbell.png"
+              alt="dumbbell"
+            />
+            <p class="favorites-box-paragraf">
+              It appears that you haven't added any exercises to your favorites
+              yet. To get started, you can add exercises that you like to your
+              favorites for easier access in the future.
+            </p>
           </div>
+          <ul class="favorites-gallery"></ul>
         </div>
-        <load ="partials/loader.html" />
-        <load ="partials/scrollUp.html" />
 
         <!------ PAGINATION FOR MOBILE----->
 
@@ -49,6 +43,10 @@
             </div> -->
       </section>
     </main>
+    <load ="partials/loader.html" />
+    <load ="partials/scrollUp.html" />
+    <load ="partials/modal-menu.html" />
+    <load ="partials/give-rating.html" />
 
     <script type="module" src="./main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

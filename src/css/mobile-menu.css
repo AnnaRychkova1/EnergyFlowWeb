@@ -99,12 +99,6 @@
   display: none;
 }
 
-/* .active-page {
-  background-color: #ffffff;
-  color: #1b1b1b;
-  border-radius: 30px;
-  transition: all var(--timing-function);
-} */
 .current {
   background-color: #ffffff;
   color: #1b1b1b;

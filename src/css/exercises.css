@@ -14,7 +14,6 @@
   margin-bottom: 20px;
 }
 
-/* Exercises-btn */
 .exercises-btn-list {
   display: flex;
   justify-content: space-between;
@@ -45,7 +44,6 @@
   color: var(--text-light-color);
 }
 
-/*  Exercises-gallery  */
 .exercises-gallery {
   margin-top: 40px;
 }
@@ -115,43 +113,6 @@
   line-height: 1.5;
 }
 
-/*  Exercises-pagination  */
-.exercises-pagination {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0px;
-  margin-top: 20px;
-}
-
-.button-pagination {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 32px;
-  height: 32px;
-  padding: 0px 12px;
-  font-weight: 400;
-  color: rgba(27, 27, 27, 0.4);
-  background-color: transparent;
-  border-radius: 18px;
-}
-
-.button-pagination:active,
-.button-pagination:hover {
-  font-size: 24px;
-  color: var(--text-main-color);
-  border: 1px solid var(--text-main-color);
-  background-color: transparent;
-}
-
-.active {
-  font-size: 24px;
-  color: var(--text-main-color);
-  border: 1px solid var(--text-main-color);
-  background-color: transparent;
-}
-
 /* Tablet */
 
 @media only screen and (min-width: 768px) {
@@ -204,11 +165,6 @@
     font-size: 24px;
   }
 
-  .exercises-pagination {
-    margin-top: 32px;
-  }
-
-  /* Pagination */
   .exercises-pagination {
     margin-top: 32px;
   }

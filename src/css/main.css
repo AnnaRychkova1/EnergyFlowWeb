@@ -30,6 +30,15 @@
   }
 }
 
+.is-hidden {
+  display: none;
+}
+
+.show {
+  opacity: 1;
+  visibility: visible;
+}
+
 button {
   border: none;
   border-radius: 30px;
@@ -38,15 +47,10 @@ button {
   height: 48px;
   background-color: var(--background-dark-grey);
   color: var(--text-light-color);
-  /* font-weight: 700; */
   transition: all var(----anim);
 }
 
 button:hover {
   background-color: var(--background-btn-hover);
   color: var(--text-light-color);
-}
-
-.is-hidden {
-  display: none;
 }

@@ -44,7 +44,8 @@
   background-color: transparent;
 }
 
-.subexercises-search-btn:hover {
+.subexercises-search-btn:hover,
+.subexercises-search-btn:focus {
   background-color: transparent;
 }
 
@@ -57,10 +58,10 @@
   height: 24px;
 }
 
-.subexercises-search-btn:hover .subexercises-search-icon {
-  border-radius: 50%;
-  box-shadow: -2px -2px 15px #fff, 2px 2px 15px #babecc;
-  fill: grey;
+.subexercises-search-btn:hover .subexercises-search-icon,
+.subexercises-search-btn:focus .subexercises-search-icon {
+  transform: scale(1.4);
+  transition: transform 0.3s ease;
 }
 
 .subexercises-filtered-cards {
@@ -139,19 +140,22 @@
 }
 
 .to-favorites-start:hover {
-  color: grey;
+  color: #1b1b1b;
   background-color: transparent;
-  box-shadow: -2px -2px 15px #fff, 2px 2px 15px #babecc;
+  transform: scale(1.2);
+  transition: transform 0.3s ease;
+}
+
+.to-favorites-start:hover,
+.to-favorites-start:focus {
+  transform: scale(1.2);
+  transition: transform 0.3s ease;
 }
 
 .filtered-start {
   width: 14px;
   height: 14px;
   fill: #1b1b1b;
-}
-
-.to-favorites-start:hover > .filtered-start {
-  fill: grey;
 }
 
 .card-box-title {
@@ -222,7 +226,7 @@
   color: #7e847f;
 }
 
-/* Adaptive */
+/* Tablet */
 
 @media only screen and (min-width: 768px) {
   .exercises-subtitle {
@@ -291,6 +295,8 @@
     line-height: 1.33;
   }
 }
+
+/* Desctop */
 
 @media only screen and (min-width: 1440px) {
   .subexercises-search-form {

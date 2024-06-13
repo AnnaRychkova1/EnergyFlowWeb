@@ -5,9 +5,8 @@ import 'izitoast/dist/css/iziToast.min.css';
 
 const form = document.querySelector('.footer-form');
 
-document
-  .querySelector('.footer-form')
-  .addEventListener('submit', function (event) {
+if (form) {
+  form.addEventListener('submit', function (event) {
     event.preventDefault();
 
     const emailInput = document
@@ -26,6 +25,7 @@ document
       });
     }
   });
+}
 
 async function sendSubscriptionRequest(email) {
   const request = await axios

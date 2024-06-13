@@ -12,11 +12,11 @@ export const refs = {
   bodyPartsBtnEl: document.querySelector('[data-filter="Body parts"]'),
   equipmentBtnEl: document.querySelector('[data-filter="Equipment"]'),
   exercisesGalleryEl: document.querySelector('.exercises-gallery'),
-  paginationEl: document.querySelector('.exercises-pagination'),
   exercisesContainerEl: document.querySelector('.exercises-container'),
   exercisesTitleSpan: document.querySelector('.exercises-title-span'),
 
   //  Anna
+  paginationEl: document.querySelector('.pagination'),
   subexercisesFilteredCards: document.querySelector(
     '.subexercises-filtered-cards'
   ),
@@ -30,8 +30,7 @@ export const refs = {
   // Oksana
   favoritesGallery: document.querySelector('.favorites-gallery'),
   favoritesMessage: document.querySelector('.favorites-box-block'),
-  onRemoveBtn: document.querySelector('.favorites-remove-btn'),
-  onStartBtn: document.querySelector('.favorites-start-btn'),
+
   addToFavoritesBtn: document.querySelector('.ex-add-btn'),
   galleryItem: document.querySelector('.favorites-gallery-item'),
 

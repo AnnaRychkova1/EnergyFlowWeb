@@ -5,10 +5,12 @@ import icons from '../img/icons/symbol-defs.svg';
 import { refs } from './templates/refs';
 
 let expectedId;
+
+const addToFavoriteBtn = document.querySelector('.ex-add-favorite');
 async function renderModalMenu(expectedExercisesId) {
   show(refs.backdrop);
   hide(refs.scrollUpBtn);
-  // hideLoader(refs.loaderModal);
+  hideLoader(refs.loaderModal);
   refs.backdrop.innerHTML = '';
   expectedId = expectedExercisesId;
 
@@ -25,7 +27,9 @@ async function renderModalMenu(expectedExercisesId) {
     addGiveRatingListener();
 
     const addToFavoriteBtn = document.querySelector('.ex-add-favorite');
-    addToFavoriteBtn.addEventListener('click', addToFavoriteOnClick);
+    if (document.contains(addToFavoriteBtn)) {
+      addToFavoriteBtn.addEventListener('click', addToFavoriteOnClick);
+    }
 
     function addToFavoriteOnClick(event) {
       const element = event.target.closest('.ex-add-favorite');
@@ -44,8 +48,6 @@ async function renderModalMenu(expectedExercisesId) {
           const favCard = document.getElementById('card-' + elementId);
           if (favCard) {
             favCard.remove();
-            onClick();
-            showAlert('Card removed from favorites!');
           }
         } else {
           localStorage.setItem(
@@ -60,7 +62,7 @@ async function renderModalMenu(expectedExercisesId) {
       }
     }
   } catch (error) {
-    console.error('Error fetching images:', error);
+    console.error('Error fetching cards:', error);
   }
 }
 
@@ -232,6 +234,9 @@ function closeModal() {
   removeGiveRatingListener();
   document.removeEventListener('click', closeModal);
   document.removeEventListener('keydown', onEscape);
+  if (document.contains(addToFavoriteBtn)) {
+    addToFavoriteBtn.removeEventListener('click', addToFavoriteOnClick);
+  }
   if (document.contains(refs.backdrop)) {
     refs.backdrop.removeEventListener('click', backdropClickHandler);
   }
