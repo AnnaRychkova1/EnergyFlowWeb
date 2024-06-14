@@ -1,7 +1,7 @@
 import axios from 'axios';
-
-import iziToast from 'izitoast';
-import 'izitoast/dist/css/iziToast.min.css';
+import { refs } from './templates/refs';
+import { hideLoader, showLoader } from './services/visibility';
+import { errorResult, successResult } from './services/iziToast';
 
 const form = document.querySelector('.footer-form');
 
@@ -17,46 +17,34 @@ if (form) {
     if (emailInput) {
       sendSubscriptionRequest(emailInput);
     } else {
-      iziToast.error({
-        title: 'Error!',
-        message:
-          'Invalid email entered. Please check the format and try again.',
-        position: 'topRight',
-      });
+      errorResult(
+        'Invalid email entered. Please check the format and try again.'
+      );
     }
   });
 }
 
 async function sendSubscriptionRequest(email) {
+  showLoader(refs.loaderModal);
   const request = await axios
     .post('https://energyflow.b.goit.study/api/subscription', {
       email: email,
     })
     .then(function (response) {
-      iziToast.success({
-        title: 'Successfully!',
-        message: response.data.message,
-        position: 'topRight',
-      });
+      successResult('Your subscription is succesfully');
       form.reset();
     })
     .catch(function (error) {
       if (error.response.status === 409) {
-        iziToast.info({
-          title: 'Info!',
-          message: 'Subscription already exists.',
-          position: 'topRight',
-        });
+        errorResult('Subscription already exists.');
       } else {
-        iziToast.error({
-          title: 'Error!',
-          message:
-            'An error occured while sending the request. Please try again.',
-          position: 'topRight',
-        });
+        errorResult(
+          'An error occured while sending the request. Please try again.'
+        );
       }
     })
     .finally(function () {
+      hideLoader(refs.loaderModal);
       form.reset();
     });
 }

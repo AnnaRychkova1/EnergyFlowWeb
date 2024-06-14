@@ -1,19 +1,24 @@
 import axios from 'axios';
-import { hide, show, hideLoader, showLoader } from './services/visibility';
-import { addGiveRatingListener, removeGiveRatingListener } from './give-rating';
 import icons from '../img/icons/symbol-defs.svg';
-import { refs } from './templates/refs';
+import {
+  addGiveRatingListener,
+  removeGiveRatingListener,
+} from './give-rating.js';
+import { refs } from './templates/refs.js';
+import { hide, show, hideLoader, showLoader } from './services/visibility.js';
+import { errorResult } from './services/iziToast.js';
 
 let expectedId;
 
 const addToFavoriteBtn = document.querySelector('.ex-add-favorite');
+
 async function renderModalMenu(expectedExercisesId) {
   show(refs.backdrop);
   hide(refs.scrollUpBtn);
-  hideLoader(refs.loaderModal);
   refs.backdrop.innerHTML = '';
   expectedId = expectedExercisesId;
 
+  showLoader(refs.loaderModal);
   try {
     const responseIdObject = await getCardInfo(expectedId);
 
@@ -62,18 +67,23 @@ async function renderModalMenu(expectedExercisesId) {
       }
     }
   } catch (error) {
-    console.error('Error fetching cards:', error);
+    errorResult('Error creating Modal Menu. Try Later');
+  } finally {
+    hideLoader(refs.loaderModal);
   }
 }
 
 async function getCardInfo(exerciseId) {
+  showLoader(refs.loaderModal);
   try {
     const BASE_URL = 'https://energyflow.b.goit.study/api';
     const ENDPOINT = 'exercises';
     const { data } = await axios.get(`${BASE_URL}/${ENDPOINT}/${exerciseId}`);
     return data;
   } catch (err) {
-    console.error(err);
+    errorResult('Server Exercises By Id did not responded');
+  } finally {
+    hideLoader(refs.loaderModal);
   }
 }
 

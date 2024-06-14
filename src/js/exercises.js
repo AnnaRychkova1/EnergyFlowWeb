@@ -1,10 +1,10 @@
 import axios from 'axios';
-import { refs } from './templates/refs.js';
 import { renderExerciseByFilterName } from './exercises-details.js';
-import { onPaginationClick, pagesPagination } from './services/pagination';
-
-import { hide, show, showLoader, hideLoader } from './services/visibility';
+import { refs } from './templates/refs.js';
+import { onPaginationClick, pagesPagination } from './services/pagination.js';
+import { hide, show, showLoader, hideLoader } from './services/visibility.js';
 import { scrollTo } from './services/scrollTo.js';
+import { errorResult } from './services/iziToast.js';
 
 const BASE_URL = 'https://energyflow.b.goit.study/api';
 
@@ -56,8 +56,8 @@ async function fetchDefaultMuscles() {
     refs.paginationEl.classList.add('first-pagination');
     refs.paginationEl.classList.remove('second-pagination');
   }
+  showLoader(refs.loaderModal);
   try {
-    showLoader(refs.loaderModal);
     const { results, totalPages } = await getExercisesByFilter(page);
 
     if (totalPages > 1 && refs.paginationEl) {
@@ -66,12 +66,12 @@ async function fetchDefaultMuscles() {
 
     if (results && results.length > 0) {
       createExercisesByFilterMarkup(results);
-      hideLoader(refs.loaderModal);
     } else {
-      console.error('No results found for this filter');
+      errorResult('No results found for this filter');
     }
   } catch (error) {
-    console.log('Error fetching images:', error);
+    errorResult('Server Exercises did not responded');
+  } finally {
     hideLoader(refs.loaderModal);
   }
 }
@@ -84,10 +84,7 @@ async function filterBtnExercises(event) {
 
   filterDefault = query;
 
-  showLoader(refs.loaderModal);
-
   if (event.target === event.currentTarget) {
-    hideLoader(refs.loaderModal);
     return;
   }
   show(refs.exercisesGalleryEl);
@@ -102,6 +99,7 @@ async function filterBtnExercises(event) {
   refs.paginationEl.classList.add('first-pagination');
   refs.paginationEl.classList.remove('second-pagination');
 
+  showLoader(refs.loaderModal);
   try {
     if (query === 'Body parts') {
       refs.bodyPartsBtnEl.classList.add('btn-item-active');
@@ -127,15 +125,14 @@ async function filterBtnExercises(event) {
 
     if (results && results.length > 0) {
       createExercisesByFilterMarkup(results);
-
-      hideLoader(refs.loaderModal);
     } else {
-      console.error('No results found for this filter');
+      errorResult('No results found for this filter');
     }
 
     scrollTo(refs.exercisesContainerEl);
   } catch (error) {
-    console.log(error);
+    errorResult('Server Exercises did not responded');
+  } finally {
     hideLoader(refs.loaderModal);
   }
 }
@@ -151,10 +148,10 @@ async function getExercisesByFilter(page) {
         limit: currentLimit,
       },
     });
-    hideLoader(refs.loaderModal);
     return response.data;
   } catch (error) {
-    console.log(error);
+    errorResult('Server Exercises did not responded');
+  } finally {
     hideLoader(refs.loaderModal);
   }
 }
@@ -177,7 +174,6 @@ function createExercisesByFilterMarkup(results) {
   if (refs.exercisesGalleryEl) {
     refs.exercisesGalleryEl.insertAdjacentHTML('beforeend', markup);
   }
-  hideLoader(refs.loaderModal);
 }
 
 // request for adition info
@@ -198,8 +194,5 @@ function filterCartsExercises(event) {
   refs.exercisesGalleryEl.innerHTML = '';
   refs.paginationEl.innerHTML = '';
 
-  hideLoader(refs.loaderModal);
   renderExerciseByFilterName(exercisesParamFilter, exercisesParamName);
 }
-
-// export { };

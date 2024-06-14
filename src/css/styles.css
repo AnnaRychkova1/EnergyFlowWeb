@@ -36,6 +36,8 @@
   --background-dark: #1b1b1b;
   --background-btn-hover: #5f6560;
 
+  --bac: #a6b0b0bd;
+
   --anim: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   font-synthesis: none;

@@ -6,7 +6,7 @@
   height: auto;
 }
 .quote-section {
-  padding: 10px 0;
+  padding: 10px 16px;
 }
 .quote-container {
   background-color: var(--background-dark-grey);
@@ -97,7 +97,7 @@
 }
 @media screen and (min-width: 768px) {
   .quote-section {
-    padding: 8px 0;
+    padding: 8px 16px;
   }
   .container-quote {
     padding: 0 16px;

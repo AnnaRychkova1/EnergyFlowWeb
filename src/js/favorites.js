@@ -1,4 +1,5 @@
 import { renderModalMenu } from './modal-menu.js';
+import createScrollFavorites from './services/scrollFavorites.js';
 import { hide, show } from './services/visibility';
 import { refs } from './templates/refs.js';
 import icons from '/img/icons/symbol-defs.svg';
@@ -7,31 +8,32 @@ import icons from '/img/icons/symbol-defs.svg';
 
 const favorites = localStorage.getItem('favorites');
 const favoriteList = JSON.parse(favorites);
-console.log(favoriteList);
 
 createFavoritesGallery();
 
-async function createFavoritesGallery() {
-  try {
-    if (!Array.isArray(favoriteList) || favoriteList.length === 0) {
-      console.log('Array in local storage is empty or does not exist.');
-      show(refs.favoritesMessage);
+function createFavoritesGallery() {
+  // try {
+  if (!Array.isArray(favoriteList) || favoriteList.length === 0) {
+    show(refs.favoritesMessage);
 
-      return;
-    }
-
-    if (refs.favoritesMessage) {
-      hide(refs.favoritesMessage);
-    }
-
-    if (refs.favoritesGallery) {
-      refs.favoritesGallery.innerHTML = '';
-    }
-
-    createMarkupFavorites(favoriteList);
-  } catch (error) {
-    console.error('Error refreshing gallery:', error);
+    return;
   }
+
+  if (refs.favoritesMessage) {
+    hide(refs.favoritesMessage);
+  }
+
+  if (refs.favoritesGallery) {
+    refs.favoritesGallery.innerHTML = '';
+  }
+
+  createMarkupFavorites(favoriteList);
+
+  createScrollFavorites();
+  // } catch (error) {
+  //   console.error('Error creating gallery:', error);
+  // TODO
+  // }
 }
 
 function createMarkupFavorites(favoriteList) {
@@ -43,7 +45,7 @@ function createMarkupFavorites(favoriteList) {
         <div class="favorites-card-top">
           <div class="favorites-workout-block">
             <div class="workout">Workout</div>
-            <button type="button" data-id=${_id} data-favorites-remove class="favorites-remove-btn">
+            <button type="button" data-id=${_id} class="favorites-remove-btn">
               <svg class="favorites-remove-icon" width="16" height="16">
                 <use href="${icons}#icon-basket"></use>
               </svg>
@@ -92,7 +94,7 @@ function createMarkupFavorites(favoriteList) {
   }
 
   function addRemoveButtonListeners() {
-    const removeButtons = document.querySelectorAll('[data-favorites-remove]');
+    const removeButtons = document.querySelectorAll('.favorites-remove-btn');
 
     removeButtons.forEach(button => {
       button.addEventListener('click', handleRemoveFavorite);
@@ -133,48 +135,11 @@ function handleRemoveFavorite(event) {
 
   if (favoriteList.length === 0) {
     show(refs.favoritesMessage);
-    console.log('Array in local storage is empty or does not exist.');
   }
 }
 
 function handleStartButtons(event) {
-  console.log(refs.backdrop);
   const button = event.currentTarget;
   const id = button.getAttribute('data-id');
   renderModalMenu(id);
 }
-
-// refs.onStartBtn.addEventListener('click', handleStartButtonClick)
-
-// function handleStartButtonClick(evt) {
-//   if (!evt.target.dataset.id) {
-//     return;
-//   }
-//   showLoader(refs.loaderModal);
-//   const exerciseId = evt.target.dataset.id;
-//   hide(refs.favoritesGallery);
-//   createModalMenu(exerciseId);
-// }
-
-//  Scroll for favorites-gallery
-
-// function showScroll() {
-//   const scrollElement = document.getElementById('.favorites-gallery');
-//   element.scrollIntoView({
-//     behavior: 'smooth',
-//     block: 'start',
-//     inline: 'start',
-//   });
-//   if (storedArray.length > 8)
-//     refs.favoritesGallery.scrollTo({
-//       top: refs.favoritesGallery.scrollHeight,
-//       behavior: 'smooth',
-//     });
-// }
-// function hideScroll() {
-//   favoritesGallery.classList.remove('scroll-on');
-//   favoritesGallery.classList.remove('favorites-scroll');
-//   document
-//     .querySelector('.favorites-gallery')
-//     .classList.remove('favorites-scroll');
-// }

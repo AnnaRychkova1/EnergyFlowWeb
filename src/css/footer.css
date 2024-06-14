@@ -1,6 +1,7 @@
 .footer {
   padding-left: 20px;
   padding-right: 20px;
+  padding-bottom: 0;
 }
 
 @media screen and (min-width: 768px) {

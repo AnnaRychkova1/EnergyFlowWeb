@@ -5,18 +5,21 @@ export const refs = {
   // ScrollUp
   scrollUpBtn: document.querySelector('.scroll-up-btn'),
 
-  // Vasilina
-  exercisesBtnEl: document.querySelector('.exercises-btn-list'),
+  // Pagination
+  paginationEl: document.querySelector('.pagination'),
+
+  // exercises
   buttonsEl: document.querySelectorAll('.exercises-btn-item'),
   musclesBtnEl: document.querySelector('[data-filter="Muscles"]'),
   bodyPartsBtnEl: document.querySelector('[data-filter="Body parts"]'),
   equipmentBtnEl: document.querySelector('[data-filter="Equipment"]'),
+  exercisesBtnEl: document.querySelector('.exercises-btn-list'),
   exercisesGalleryEl: document.querySelector('.exercises-gallery'),
   exercisesContainerEl: document.querySelector('.exercises-container'),
   exercisesTitleSpan: document.querySelector('.exercises-title-span'),
+  exercisesSubtitle: document.querySelector('.exercises-subtitle'),
 
-  //  Anna
-  paginationEl: document.querySelector('.pagination'),
+  //  subexercises
   subexercisesFilteredCards: document.querySelector(
     '.subexercises-filtered-cards'
   ),
@@ -25,15 +28,13 @@ export const refs = {
   subexercisesTextNoFound: document.querySelector(
     '.subexercises-text-no-found'
   ),
-  exercisesSubtitle: document.querySelector('.exercises-subtitle'),
 
-  // Oksana
+  // favorites
+  favoritesContainer: document.querySelector('.favorites-container'),
   favoritesGallery: document.querySelector('.favorites-gallery'),
   favoritesMessage: document.querySelector('.favorites-box-block'),
+  containerScroll: document.querySelector('.scroll-fav'),
 
-  addToFavoritesBtn: document.querySelector('.ex-add-btn'),
-  galleryItem: document.querySelector('.favorites-gallery-item'),
-
-  // Maria
+  // modal-menu
   backdrop: document.querySelector('.backdrop'),
 };

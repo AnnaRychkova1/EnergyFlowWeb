@@ -1,8 +1,12 @@
 import axios from 'axios';
+
+import { saveQuoteToLocalStorage } from './templates/localStorage.js';
+import { refs } from './templates/refs.js';
+import { hideLoader, showLoader } from './services/visibility.js';
+import { errorResult } from './services/iziToast.js';
+
 const BASE_URL = 'https://energyflow.b.goit.study/api';
 const ENDPOINT_QUOTE = 'quote';
-//import { fetchQuoteFromServer } from './services/mainApi';
-import { saveQuoteToLocalStorage } from './templates/localStorage';
 
 function displayQuoteOnPage(quoteData) {
   const quoteText = document.querySelector('.quote-text');
@@ -10,9 +14,11 @@ function displayQuoteOnPage(quoteData) {
   quoteText.textContent = quoteData.quote;
   quoteAuthor.textContent = quoteData.author;
 }
-export async function getQuoteOffTheDay() {
+
+async function getQuoteOffTheDay() {
   const quoteResponse = JSON.parse(localStorage.getItem('quoteResponse'));
   const savedDate = JSON.parse(localStorage.getItem('savedDate'));
+  showLoader(refs.loaderModal);
   try {
     let quoteData;
     if (savedDate && quoteResponse) {
@@ -37,18 +43,23 @@ export async function getQuoteOffTheDay() {
     // Відображаємо цитату на сторінці
     displayQuoteOnPage(quoteData);
   } catch (error) {
-    console.log(error);
+    errorResult('Saved Quotes did not respond');
+  } finally {
+    hideLoader(refs.loaderModal);
   }
 }
+
 getQuoteOffTheDay();
 
 async function fetchQuoteFromServer() {
+  showLoader(refs.loaderModal);
   try {
     const response = await axios.get(`${BASE_URL}/${ENDPOINT_QUOTE}`);
     return response.data;
   } catch (error) {
-    console.log(error);
+    errorResult('Server Quotes did not respond');
     throw error;
+  } finally {
+    hideLoader(refs.loaderModal);
   }
 }
-

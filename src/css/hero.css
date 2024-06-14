@@ -1,3 +1,7 @@
+.section-hero {
+  padding-top: 0;
+}
+
 .hero-section {
   display: flex;
   flex-direction: row;

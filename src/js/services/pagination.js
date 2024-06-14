@@ -1,6 +1,7 @@
 import { refs } from '../templates/refs.js';
 import { showLoader, hideLoader } from '../services/visibility.js';
 import { scrollTo } from '../services/scrollTo.js';
+import { errorResult } from '../services/iziToast.js';
 
 function pagesPagination(page, totalPages) {
   let buttons = '';
@@ -59,8 +60,8 @@ function onPaginationClick(
 
     filledContainer.innerHTML = '';
 
+    showLoader(refs.loaderModal);
     try {
-      showLoader(refs.loaderModal);
       const { results, totalPages } = await requestFunction(page, params);
 
       if (results && results.length > 0) {
@@ -68,10 +69,10 @@ function onPaginationClick(
         refs.paginationEl.innerHTML = pagesPagination(page, totalPages);
         scrollTo(refs.exercisesContainerEl);
       } else {
-        console.error('No results found for this filter');
+        errorResult('No results found for this exercise');
       }
     } catch (error) {
-      console.log(error);
+      errorResult('Server for this exercises did not responded');
     } finally {
       hideLoader(refs.loaderModal);
     }

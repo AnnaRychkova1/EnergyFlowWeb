@@ -1,10 +1,11 @@
 import axios from 'axios';
-import { hide, show, hideLoader, showLoader } from './services/visibility';
-import { refs } from './templates/refs.js';
-import { scrollTo } from './services/scrollTo.js';
-import { onPaginationClick, pagesPagination } from './services/pagination';
-import { renderModalMenu } from './modal-menu.js';
 import icons from '/img/icons/symbol-defs.svg';
+import { renderModalMenu } from './modal-menu.js';
+import { refs } from './templates/refs.js';
+import { hide, show, hideLoader, showLoader } from './services/visibility.js';
+import { onPaginationClick, pagesPagination } from './services/pagination.js';
+import { scrollTo } from './services/scrollTo.js';
+import { errorResult } from './services/iziToast.js';
 
 const BASE_URL = 'https://energyflow.b.goit.study/api';
 const ENDPOINT_EXERCISES = 'exercises';
@@ -44,8 +45,6 @@ if (refs.paginationEl) {
 }
 
 async function renderExerciseByFilterName(expectedFilter, expectedName) {
-  hideLoader(refs.loaderModal);
-
   if (!expectedFilter || !expectedName) {
     show(refs.subexercisesTextNoFound);
     return;
@@ -78,8 +77,8 @@ async function renderExerciseByFilterName(expectedFilter, expectedName) {
   refs.paginationEl.classList.add('second-pagination');
   refs.paginationEl.classList.remove('first-pagination');
 
+  showLoader(refs.loaderModal);
   try {
-    showLoader(refs.loaderModal);
     const { results, totalPages } = await searchExerciseByFilters(page);
 
     if (totalPages > 1) {
@@ -88,17 +87,14 @@ async function renderExerciseByFilterName(expectedFilter, expectedName) {
 
     if (results && results.length > 0) {
       renderCards(results);
-      hideLoader(refs.loaderModal);
     } else {
       show(refs.subexercisesTextNoFound);
-      hideLoader(refs.loaderModal);
       return;
     }
 
     scrollTo(refs.exercisesContainerEl);
   } catch (error) {
-    console.error('Error fetching images:', error);
-    hideLoader(refs.loaderModal);
+    errorResult('Server Exercises By Filter did not responded');
   } finally {
     hideLoader(refs.loaderModal);
   }
@@ -111,7 +107,7 @@ async function handleSearch(evt) {
   getParams.keyword = formData.query.value.trim();
 
   if (!getParams.keyword) {
-    console.log('input keyword');
+    errorResult('Input keyword');
   }
 
   show(refs.subexercisesSearchForm);
@@ -120,8 +116,8 @@ async function handleSearch(evt) {
   refs.paginationEl.innerHTML = '';
   refs.exercisesGalleryEl.innerHTML = '';
 
+  showLoader(refs.loaderModal);
   try {
-    showLoader(refs.loaderModal);
     const { results, totalPages } = await searchExerciseByFilters(page);
 
     if (totalPages > 1) {
@@ -130,17 +126,15 @@ async function handleSearch(evt) {
 
     if (results && results.length > 0) {
       renderCards(results);
-      hideLoader(refs.loaderModal);
     } else {
       show(refs.subexercisesTextNoFound);
-      hideLoader(refs.loaderModal);
       return;
     }
     scrollTo(refs.exercisesContainerEl);
   } catch (error) {
-    console.error('Error fetching request:', error);
-    hideLoader(refs.loaderModal);
+    errorResult('Server Exercises By Query did not responded');
   } finally {
+    hideLoader(refs.loaderModal);
     refs.subexercisesSearchForm.reset();
   }
 }
@@ -158,16 +152,22 @@ function handleClickOnCardStart(evt) {
     return;
   }
   const exerciseId = evt.target.dataset.id;
-  showLoader(refs.loaderModal);
   renderModalMenu(exerciseId);
 }
 
 // request to server
 async function searchExerciseByFilters(page) {
-  const response = await axios.get(`${BASE_URL}/${ENDPOINT_EXERCISES}`, {
-    params: { ...getParams, page },
-  });
-  return response.data;
+  showLoader(refs.loaderModal);
+  try {
+    const response = await axios.get(`${BASE_URL}/${ENDPOINT_EXERCISES}`, {
+      params: { ...getParams, page },
+    });
+    return response.data;
+  } catch (error) {
+    errorResult('Server Exercises By Params did not responded');
+  } finally {
+    hideLoader(refs.loaderModal);
+  }
 }
 
 // renderCards

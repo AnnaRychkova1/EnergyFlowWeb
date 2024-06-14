@@ -1,7 +1,8 @@
 import axios from 'axios';
-import { hide, show, showLoader, hideLoader } from './services/visibility';
-import { refs } from './templates/refs';
-import { onEscape } from './modal-menu';
+import { onEscape } from './modal-menu.js';
+import { refs } from './templates/refs.js';
+import { hide, showLoader, hideLoader } from './services/visibility.js';
+import { errorResult, successResult } from './services/iziToast.js';
 
 let giveRatingBtn;
 let id;
@@ -52,7 +53,6 @@ function handleClickOnStar(event) {
 
 function handleSendRatingBtnClick(event) {
   event.preventDefault();
-  showLoader(refs.loaderModal);
   const formData = document.querySelector('.rating-form');
   const rate = formData.elements['star'].value;
   const email = formData.elements['email'].value.trim();
@@ -61,24 +61,23 @@ function handleSendRatingBtnClick(event) {
   const re = /\S+@\S+\.\S+/;
 
   if (rate === '') {
-    console.log('Please set your estimation!', 'ERROR');
-    hideLoader(refs.loaderModal);
+    errorResult('Please set your estimation!');
     return;
   }
   if (email === '' || !re.test(email)) {
-    console.log('Please enter your email!', 'ERROR');
-    hideLoader(refs.loaderModal);
+    errorResult('Please enter your email!');
     return;
   }
 
   if (review === '') {
-    console.log('Please enter your review!', 'ERROR');
-    hideLoader(refs.loaderModal);
+    errorResult('Please enter your review!');
     return;
   }
+
+  showLoader(refs.loaderModal);
   sendRatingData(rate, email, review)
     .then(function (response) {
-      console.log('Thank you! Your rating has been sent!', 'OK');
+      successResult('Thank you! Your rating has been sent!');
       const ratingValue = document.querySelector('.rating-value');
       ratingValue.textContent = '0.0';
       formData.reset();
@@ -86,25 +85,34 @@ function handleSendRatingBtnClick(event) {
     })
     .catch(function (error) {
       if (error.response.status === 409) {
-        console.log('Such email already exists!');
+        errorResult('Such email already exists!');
       } else if (error.response.status === 404) {
-        console.log('Such exercise not found!');
+        errorResult('Such exercise not found!');
       } else {
-        console.log(error.message, 'ERROR');
+        errorResult('Server Rating did not responded');
       }
+    })
+    .finally(function () {
+      hideLoader(refs.loaderModal);
     });
-  hideLoader(refs.loaderModal);
 }
 
 async function sendRatingData(rate, email, review) {
-  const BASE_URL = 'https://energyflow.b.goit.study/api';
-  const ENDPOINT = 'exercises';
-  rate = Number(rate);
-  return axios.patch(`${BASE_URL}/${ENDPOINT}/${id}/rating/`, {
-    rate,
-    email,
-    review,
-  });
+  showLoader(refs.loaderModal);
+  try {
+    const BASE_URL = 'https://energyflow.b.goit.study/api';
+    const ENDPOINT = 'exercises';
+    rate = Number(rate);
+    return axios.patch(`${BASE_URL}/${ENDPOINT}/${id}/rating/`, {
+      rate,
+      email,
+      review,
+    });
+  } catch (error) {
+    errorResult('Server Rating did not responded');
+  } finally {
+    hideLoader(refs.loaderModal);
+  }
 }
 
 function closeRatingModal() {
