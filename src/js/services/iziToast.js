@@ -1,11 +1,10 @@
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
-import icons from '/img/icons/symbol-defs.svg';
 
 function successResult(message) {
   iziToast.show({
     position: 'topCenter',
-    iconUrl: `${icons}#dumbbell-big`,
+    iconUrl: '/img/favorites/mob-dumbbell.png',
     title: 'Congradulation!',
     titleSize: '20px',
     message: message,
@@ -22,8 +21,7 @@ function successResult(message) {
 function errorResult(message) {
   iziToast.show({
     position: 'topCenter',
-    iconUrl: '/img/icons/all-icons/dumbbell-big.svg',
-    // iconUrl: `${icons}#dumbbell-big`,
+    iconUrl: '/img/favorites/mob-dumbbell.png',
     title: 'Upps!',
     titleSize: '20px',
     message: message,
