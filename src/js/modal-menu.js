@@ -1,12 +1,12 @@
 import axios from 'axios';
-import icons from '../img/icons/symbol-defs.svg';
+import icons from '/img/icons/symbol-defs.svg';
 import {
   addGiveRatingListener,
   removeGiveRatingListener,
-} from './give-rating.js';
-import { refs } from './templates/refs.js';
-import { hide, show, hideLoader, showLoader } from './services/visibility.js';
-import { errorResult } from './services/iziToast.js';
+} from '/js/give-rating.js';
+import { refs } from '/js/templates/refs.js';
+import { hide, show, hideLoader, showLoader } from '/js/services/visibility.js';
+import { errorResult } from '/js/services/iziToast.js';
 
 let expectedId;
 

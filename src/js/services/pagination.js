@@ -1,7 +1,7 @@
-import { refs } from '../templates/refs.js';
-import { showLoader, hideLoader } from '../services/visibility.js';
-import { scrollTo } from '../services/scrollTo.js';
-import { errorResult } from '../services/iziToast.js';
+import { refs } from '/js/templates/refs.js';
+import { showLoader, hideLoader } from '/js/services/visibility.js';
+import { scrollTo } from '/js/services/scrollTo.js';
+import { errorResult } from '/js/services/iziToast.js';
 
 function pagesPagination(page, totalPages) {
   let buttons = '';
@@ -72,7 +72,7 @@ function onPaginationClick(
         errorResult('No results found for this exercise');
       }
     } catch (error) {
-      errorResult('Server for this exercises did not responded');
+      errorResult('Server did not responded');
     } finally {
       hideLoader(refs.loaderModal);
     }

@@ -1,11 +1,11 @@
 import axios from 'axios';
 import icons from '/img/icons/symbol-defs.svg';
-import { renderModalMenu } from './modal-menu.js';
-import { refs } from './templates/refs.js';
-import { hide, show, hideLoader, showLoader } from './services/visibility.js';
-import { onPaginationClick, pagesPagination } from './services/pagination.js';
-import { scrollTo } from './services/scrollTo.js';
-import { errorResult } from './services/iziToast.js';
+import { renderModalMenu } from '/js/modal-menu.js';
+import { refs } from '/js/templates/refs.js';
+import { hide, show, hideLoader, showLoader } from '/js/services/visibility.js';
+import { onPaginationClick, pagesPagination } from '/js/services/pagination.js';
+import { scrollTo } from '/js/services/scrollTo.js';
+import { errorResult } from '/js/services/iziToast.js';
 
 const BASE_URL = 'https://energyflow.b.goit.study/api';
 const ENDPOINT_EXERCISES = 'exercises';
@@ -157,17 +157,10 @@ function handleClickOnCardStart(evt) {
 
 // request to server
 async function searchExerciseByFilters(page) {
-  showLoader(refs.loaderModal);
-  try {
-    const response = await axios.get(`${BASE_URL}/${ENDPOINT_EXERCISES}`, {
-      params: { ...getParams, page },
-    });
-    return response.data;
-  } catch (error) {
-    errorResult('Server Exercises By Params did not responded');
-  } finally {
-    hideLoader(refs.loaderModal);
-  }
+  const response = await axios.get(`${BASE_URL}/${ENDPOINT_EXERCISES}`, {
+    params: { ...getParams, page },
+  });
+  return response.data;
 }
 
 // renderCards

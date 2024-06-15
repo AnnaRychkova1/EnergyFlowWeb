@@ -1,8 +1,9 @@
-import { renderModalMenu } from './modal-menu.js';
-import createScrollFavorites from './services/scrollFavorites.js';
-import { hide, show } from './services/visibility';
-import { refs } from './templates/refs.js';
 import icons from '/img/icons/symbol-defs.svg';
+import { renderModalMenu } from '/js/modal-menu.js';
+import { refs } from '/js/templates/refs.js';
+import createScrollFavorites from '/js/services/scrollFavorites.js';
+import { hide, show, hideLoader, showLoader } from '/js/services/visibility';
+import { errorResult } from '/js/services/iziToast.js';
 
 // Create favorites list
 
@@ -11,29 +12,28 @@ const favoriteList = JSON.parse(favorites);
 
 createFavoritesGallery();
 
-function createFavoritesGallery() {
-  // try {
-  if (!Array.isArray(favoriteList) || favoriteList.length === 0) {
-    show(refs.favoritesMessage);
+async function createFavoritesGallery() {
+  showLoader(refs.loaderModal);
+  try {
+    if (!Array.isArray(favoriteList) || favoriteList.length === 0) {
+      show(refs.favoritesMessage);
+      return;
+    }
 
-    return;
-  }
+    if (refs.favoritesMessage) {
+      hide(refs.favoritesMessage);
+    }
 
-  if (refs.favoritesMessage) {
-    hide(refs.favoritesMessage);
-  }
-
-  if (refs.favoritesGallery) {
     refs.favoritesGallery.innerHTML = '';
+
+    createMarkupFavorites(favoriteList);
+
+    createScrollFavorites();
+  } catch (error) {
+    errorResult('Error creating favorites gallery');
+  } finally {
+    hideLoader(refs.loaderModal);
   }
-
-  createMarkupFavorites(favoriteList);
-
-  createScrollFavorites();
-  // } catch (error) {
-  //   console.error('Error creating gallery:', error);
-  // TODO
-  // }
 }
 
 function createMarkupFavorites(favoriteList) {
@@ -113,33 +113,47 @@ function createMarkupFavorites(favoriteList) {
   addStartButtonListenners();
 }
 
-function handleRemoveFavorite(event) {
+async function handleRemoveFavorite(event) {
   const button = event.currentTarget;
   const id = button.getAttribute('data-id');
 
-  // Delete card
-  const removedCard = document.getElementById(`card-${id}`);
-  if (removedCard) {
-    removedCard.remove();
-  }
+  showLoader(refs.loaderModal);
+  try {
+    // Delete card
+    const removedCard = document.getElementById(`card-${id}`);
+    if (removedCard) {
+      removedCard.remove();
+    }
 
-  // Update favoriteList in LocalStorage
-  const updatedFavorites = favoriteList.filter(item => item._id !== id);
-  localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+    // Update favoriteList in LocalStorage
+    const updatedFavorites = favoriteList.filter(item => item._id !== id);
+    localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
 
-  // Update favoritesList in the page
-  favoriteList.splice(
-    favoriteList.findIndex(item => item._id === id),
-    1
-  );
+    // Update favoritesList in the page
+    favoriteList.splice(
+      favoriteList.findIndex(item => item._id === id),
+      1
+    );
 
-  if (favoriteList.length === 0) {
-    show(refs.favoritesMessage);
+    if (favoriteList.length === 0) {
+      show(refs.favoritesMessage);
+    }
+  } catch (error) {
+    errorResult('Error updating favorites list');
+  } finally {
+    hideLoader(refs.loaderModal);
   }
 }
 
-function handleStartButtons(event) {
+async function handleStartButtons(event) {
   const button = event.currentTarget;
   const id = button.getAttribute('data-id');
-  renderModalMenu(id);
+  showLoader(refs.loaderModal);
+  try {
+    await renderModalMenu(id);
+  } catch (error) {
+    errorResult('Error creating modal menu');
+  } finally {
+    hideLoader(refs.loaderModal);
+  }
 }

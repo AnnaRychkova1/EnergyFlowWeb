@@ -1,8 +1,8 @@
 import axios from 'axios';
-import { onEscape } from './modal-menu.js';
-import { refs } from './templates/refs.js';
-import { hide, showLoader, hideLoader } from './services/visibility.js';
-import { errorResult, successResult } from './services/iziToast.js';
+import { onEscape } from '/js/modal-menu.js';
+import { refs } from '/js/templates/refs.js';
+import { hide, showLoader, hideLoader } from '/js/services/visibility.js';
+import { errorResult, successResult } from '/js/services/iziToast.js';
 
 let giveRatingBtn;
 let id;
@@ -74,7 +74,6 @@ function handleSendRatingBtnClick(event) {
     return;
   }
 
-  showLoader(refs.loaderModal);
   sendRatingData(rate, email, review)
     .then(function (response) {
       successResult('Thank you! Your rating has been sent!');
@@ -91,9 +90,6 @@ function handleSendRatingBtnClick(event) {
       } else {
         errorResult('Server Rating did not responded');
       }
-    })
-    .finally(function () {
-      hideLoader(refs.loaderModal);
     });
 }
 

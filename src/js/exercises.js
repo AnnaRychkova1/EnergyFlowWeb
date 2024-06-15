@@ -1,10 +1,10 @@
 import axios from 'axios';
-import { renderExerciseByFilterName } from './exercises-details.js';
-import { refs } from './templates/refs.js';
-import { onPaginationClick, pagesPagination } from './services/pagination.js';
-import { hide, show, showLoader, hideLoader } from './services/visibility.js';
-import { scrollTo } from './services/scrollTo.js';
-import { errorResult } from './services/iziToast.js';
+import { renderExerciseByFilterName } from '/js/exercises-details.js';
+import { refs } from '/js/templates/refs.js';
+import { onPaginationClick, pagesPagination } from '/js/services/pagination.js';
+import { hide, show, showLoader, hideLoader } from '/js/services/visibility.js';
+import { scrollTo } from '/js/services/scrollTo.js';
+import { errorResult } from '/js/services/iziToast.js';
 
 const BASE_URL = 'https://energyflow.b.goit.study/api';
 
@@ -139,21 +139,14 @@ async function filterBtnExercises(event) {
 
 // request to server
 async function getExercisesByFilter(page) {
-  showLoader(refs.loaderModal);
-  try {
-    const response = await axios.get(`${BASE_URL}/filters`, {
-      params: {
-        filter: filterDefault,
-        page: page,
-        limit: currentLimit,
-      },
-    });
-    return response.data;
-  } catch (error) {
-    errorResult('Server Exercises did not responded');
-  } finally {
-    hideLoader(refs.loaderModal);
-  }
+  const response = await axios.get(`${BASE_URL}/filters`, {
+    params: {
+      filter: filterDefault,
+      page: page,
+      limit: currentLimit,
+    },
+  });
+  return response.data;
 }
 
 // create Markup

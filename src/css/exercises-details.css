@@ -58,8 +58,7 @@
   height: 24px;
 }
 
-.subexercises-search-btn:hover .subexercises-search-icon,
-.subexercises-search-btn:focus .subexercises-search-icon {
+.subexercises-search-btn:hover .subexercises-search-icon {
   transform: scale(1.4);
   transition: transform 0.3s ease;
 }

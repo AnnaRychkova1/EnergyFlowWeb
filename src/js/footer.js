@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { refs } from './templates/refs';
-import { hideLoader, showLoader } from './services/visibility';
-import { errorResult, successResult } from './services/iziToast';
+import { refs } from '/js/templates/refs.js';
+import { hideLoader, showLoader } from '/js/services/visibility.js';
+import { errorResult, successResult } from '/js/services/iziToast.js';
 
 const form = document.querySelector('.footer-form');
 
@@ -15,7 +15,9 @@ if (form) {
       .toLowerCase();
 
     if (emailInput) {
+      showLoader(refs.loaderModal);
       sendSubscriptionRequest(emailInput);
+      hideLoader(refs.loaderModal);
     } else {
       errorResult(
         'Invalid email entered. Please check the format and try again.'
@@ -25,7 +27,6 @@ if (form) {
 }
 
 async function sendSubscriptionRequest(email) {
-  showLoader(refs.loaderModal);
   const request = await axios
     .post('https://energyflow.b.goit.study/api/subscription', {
       email: email,
@@ -44,7 +45,6 @@ async function sendSubscriptionRequest(email) {
       }
     })
     .finally(function () {
-      hideLoader(refs.loaderModal);
       form.reset();
     });
 }

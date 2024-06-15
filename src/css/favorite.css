@@ -1,5 +1,3 @@
-/* @import '~perfect-scrollbar/css/perfect-scrollbar.css'; */
-
 /* Mobile */
 
 @media (max-width: 375px) {
@@ -113,11 +111,6 @@
 
 .favorites-box-block.is-hidden {
   display: none;
-}
-
-.favorites-box-img {
-  width: 85px;
-  height: 52px;
 }
 
 .favorites-box-paragraf {
@@ -256,11 +249,6 @@
     padding: 208px 43px 373px 43px;
   }
 
-  .favorites-box-img {
-    width: 115px;
-    height: 71px;
-  }
-
   .favorites-box-paragraf {
     font-size: 18px;
     line-height: 24px;
@@ -383,53 +371,36 @@
   }
 }
 
+/* Image dumbbell */
+.favorites-dumbbell-img {
+  width: 85px;
+  height: 52px;
+  background-image: url(/img/favorites/mob-dumbbell.png);
+  background-size: contain;
+}
+@media (min-resolution: 192dpi) {
+  .favorites-dumbbell-img {
+    background-image: url(/img/favorites/mob-dumbbell@2x.png);
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .favorites-dumbbell-img {
+    width: 115px;
+    height: 71px;
+    background-image: url(/img/favorites/desctop-dumbbell.png);
+    background-size: contain;
+  }
+  @media (min-resolution: 192dpi) {
+    .favorites-dumbbell-img {
+      background-image: url(/img/favorites/desctop-dumbbell@2x.png);
+    }
+  }
+}
+
 /* Scroll for favorites */
 
 .scroll-fav {
   position: relative;
   top: 0px;
 }
-
-/* .ps__rail-y {
-  opacity: 0.6;
-
-  display: block;
-  height: 479px;
-  width: 8px;
-  background-color: rgba(27, 27, 27, 0.1);
-  border-radius: 12px;
-} */
-
-/* .scroll-fav {
-  overflow-y: scroll;
-  scrollbar-width: thin;
-  scrollbar-color: #888 #f1f1f1;
-  border-radius: 12px;
-} */
-
-/* .scroll-fav {
-  overflow-y: scroll;
-  scrollbar-width: thin; 
-  scrollbar-color: #888 #f1f1f1; 
-  border-radius: 12px;
-}
-
-.scroll-fav::-webkit-scrollbar {
-  width: 8px; 
-}
-
-.scroll-fav::-webkit-scrollbar-track {
-  background: #f1f1f1; 
-  border-radius: 12px; 
-  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3); 
-}
-
-.scroll-fav::-webkit-scrollbar-thumb {
-  background: #888; 
-  border-radius: 12px; 
-  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5); 
-}
-
-.scroll-fav::-webkit-scrollbar-thumb:hover {
-  background: #555; 
-} */

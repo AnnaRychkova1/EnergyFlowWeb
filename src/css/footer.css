@@ -26,7 +26,7 @@
       rgba(27, 27, 27, 0.7),
       rgba(27, 27, 27, 0.7)
     ),
-    url(../img/mobile/mobile-footer@1.jpg);
+    url(/img/mobile/mobile-footer@1.jpg);
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -39,7 +39,7 @@
         rgba(27, 27, 27, 0.7),
         rgba(27, 27, 27, 0.7)
       ),
-      url(../img/mobile/mobile-footer@2.jpg);
+      url(/img/mobile/mobile-footer@2.jpg);
   }
 }
 
@@ -49,7 +49,7 @@
         rgba(27, 27, 27, 0.7),
         rgba(27, 27, 27, 0.7)
       ),
-      url(../img/tablet/tablet-footer@1.jpg);
+      url(/img/tablet/tablet-footer@1.jpg);
   }
 }
 
@@ -61,7 +61,7 @@
         rgba(27, 27, 27, 0.7),
         rgba(27, 27, 27, 0.7)
       ),
-      url(../img/tablet/tablet-footer@2.jpg);
+      url(/img/tablet/tablet-footer@2.jpg);
   }
 }
 
@@ -71,7 +71,7 @@
         rgba(27, 27, 27, 0.7),
         rgba(27, 27, 27, 0.7)
       ),
-      url(../img/desctop/footer@1.jpg);
+      url(/img/desctop/footer@1.jpg);
   }
 }
 
@@ -83,7 +83,7 @@
         rgba(27, 27, 27, 0.7),
         rgba(27, 27, 27, 0.7)
       ),
-      url(../img/desctop/footer@1@2.jpg);
+      url(/img/desctop/footer@1@2.jpg);
   }
 }
 

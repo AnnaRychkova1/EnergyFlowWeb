@@ -4,7 +4,7 @@ import 'izitoast/dist/css/iziToast.min.css';
 function successResult(message) {
   iziToast.show({
     position: 'topCenter',
-    iconUrl: '../../img/icons/dumbbell.png',
+    iconUrl: '/img/icons/all_icons/dumbbell-big.svg',
     title: 'Congradulation!',
     titleSize: '20px',
     message: message,
@@ -21,7 +21,7 @@ function successResult(message) {
 function errorResult(message) {
   iziToast.show({
     position: 'topCenter',
-    iconUrl: '../../img/icons/dumbbell.png',
+    iconUrl: '/img/icons/all_icons/dumbbell-big.svg',
     title: 'Upps!',
     titleSize: '20px',
     message: message,

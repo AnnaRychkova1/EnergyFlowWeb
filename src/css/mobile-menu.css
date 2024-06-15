@@ -1,6 +1,3 @@
-@import url('./reset.css');
-@import url('./main.css');
-
 /* Mobile-menu */
 .mobile-menu-wrapper {
   position: fixed;

@@ -1,6 +1,6 @@
 import 'perfect-scrollbar/css/perfect-scrollbar.css';
 import PerfectScrollbar from 'perfect-scrollbar';
-import { refs } from '../templates/refs.js';
+import { refs } from '/js/templates/refs.js';
 
 const ps = new PerfectScrollbar(refs.containerScroll, {
   wheelSpeed: 2,
