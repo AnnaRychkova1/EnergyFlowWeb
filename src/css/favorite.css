@@ -375,12 +375,12 @@
 .favorites-dumbbell-img {
   width: 85px;
   height: 52px;
-  background-image: url(/img/favorites/mob-dumbbell.png);
+  background-image: url(/assets/img/favorites/mob-dumbbell.png);
   background-size: contain;
 }
 @media (min-resolution: 192dpi) {
   .favorites-dumbbell-img {
-    background-image: url(/img/favorites/mob-dumbbell@2x.png);
+    background-image: url(/assets/img/favorites/mob-dumbbell@2x.png);
   }
 }
 
@@ -388,12 +388,12 @@
   .favorites-dumbbell-img {
     width: 115px;
     height: 71px;
-    background-image: url(/img/favorites/desctop-dumbbell.png);
+    background-image: url(/assets/img/favorites/desctop-dumbbell.png);
     background-size: contain;
   }
   @media (min-resolution: 192dpi) {
     .favorites-dumbbell-img {
-      background-image: url(/img/favorites/desctop-dumbbell@2x.png);
+      background-image: url(/assets/img/favorites/desctop-dumbbell@2x.png);
     }
   }
 }

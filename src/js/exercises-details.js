@@ -1,5 +1,5 @@
 import axios from 'axios';
-import icons from '/img/icons/symbol-defs.svg';
+import icons from '/assets/symbol-defs.svg';
 import { renderModalMenu } from '/js/modal-menu.js';
 import { refs } from '/js/templates/refs.js';
 import { hide, show, hideLoader, showLoader } from '/js/services/visibility.js';

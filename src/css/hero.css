@@ -11,7 +11,7 @@
   margin-right: auto;
 }
 .section-left {
-  background-image: url(/img/desctop/desc-hero@1.jpg);
+  background-image: url(/assets/img/desctop/desc-hero@1.jpg);
   border-radius: 50px 0px 50px 50px;
   width: 704px;
   height: 884px;
@@ -89,7 +89,7 @@
     width: 768px;
   }
   .section-left {
-    background-image: url(/img/tablet/tablet-new-hero.jpg);
+    background-image: url(/assets/img/tablet/tablet-new-hero.jpg);
     width: 248px;
     height: 900px;
     flex-shrink: 0;
@@ -133,7 +133,7 @@
   }
 
   .section-left {
-    background-image: url(/img/mobile/mobile-hero@1.jpg);
+    background-image: url(/assets/img/mobile/mobile-hero@1.jpg);
     border-radius: 30px;
     width: 335px;
     height: 387px;

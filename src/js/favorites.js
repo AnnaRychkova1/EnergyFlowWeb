@@ -1,4 +1,4 @@
-import icons from '/img/icons/symbol-defs.svg';
+import icons from '/assets/symbol-defs.svg';
 import { renderModalMenu } from '/js/modal-menu.js';
 import { refs } from '/js/templates/refs.js';
 import createScrollFavorites from '/js/services/scrollFavorites.js';

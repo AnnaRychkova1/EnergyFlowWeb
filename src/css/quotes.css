@@ -57,7 +57,7 @@
   min-height: 272px;
   border-radius: 30px;
   background-repeat: no-repeat;
-  background-image: url(/img/mobile/mobile-section2@1.jpg);
+  background-image: url(/assets/img/mobile/mobile-section2@1.jpg);
 }
 .quote-svg-com {
   width: 28px;
@@ -152,7 +152,7 @@
     width: 100%;
     min-height: 302px;
     border-radius: 50px;
-    background-image: url(/img/tablet/tablet-section2@1.jpg);
+    background-image: url(/assets/img/tablet/tablet-section2@1.jpg);
   }
 }
 @media screen and (min-width: 1440px) {
@@ -168,7 +168,7 @@
   }
   .quote-img-container {
     max-width: 704px;
-    background-image: url(/img/desctop/desc-section2@1.jpg);
+    background-image: url(/assets/img/desctop/desc-section2@1.jpg);
   }
   .quote-img {
     height: 302px;
@@ -176,19 +176,19 @@
 }
 @media screen and (min-resolution: 192dpi) {
   .quote-img-container {
-    background-image: url(/img/mobile/mobile-section2@2.jpg);
+    background-image: url(/assets/img/mobile/mobile-section2@2.jpg);
     background-size: 335px;
   }
 }
 @media screen and (min-width: 768px) and (min-resolution: 192dpi) {
   .quote-img-container {
-    background-image: url(/img/tablet/tablet-section2@2.jpg);
+    background-image: url(/assets/img/tablet/tablet-section2@2.jpg);
     background-size: 736px;
   }
 }
 @media screen and (min-width: 1440px) and (min-resolution: 192dpi) {
   .quote-img-container {
-    background-image: url(/img/desctop/desc-section2@2.jpg);
+    background-image: url(/assets/img/desctop/desc-section2@2.jpg);
     background-size: 704px;
   }
 }
@@ -202,7 +202,7 @@
   min-height: 272px;
   border-radius: 30px;
   background-repeat: no-repeat;
-  background-image: url(/img/mobile/mobile-page-fafor-girl@1.jpg);
+  background-image: url(/assets/img/mobile/mobile-page-fafor-girl@1.jpg);
 }
 .quote-fav-motivation {
   background-color: #fff;
@@ -265,18 +265,18 @@
 }
 @media screen and (min-resolution: 192dpi) {
   .quote-fav-img {
-    background-image: url(/img/mobile/mobile-page-fafor-girl@2.jpg);
+    background-image: url(/assets/img/mobile/mobile-page-fafor-girl@2.jpg);
     background-size: 335px;
   }
 }
 @media screen and (min-width: 768px) and (min-resolution: 192dpi) {
   .quote-fav-img {
-    background-image: url(/img/mobile/mobile-page-fafor-girl@2.jpg);
+    background-image: url(/assets/img/mobile/mobile-page-fafor-girl@2.jpg);
     background-size: 368px;
   }
 }
 @media screen and (min-width: 1440px) and (min-resolution: 192dpi) {
   .quote-fav-img {
-    background-image: url(/img/mobile/mobile-page-fafor-girl@2.jpg);
+    background-image: url(/assets/img/mobile/mobile-page-fafor-girl@2.jpg);
   }
 }

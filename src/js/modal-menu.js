@@ -1,5 +1,5 @@
 import axios from 'axios';
-import icons from '/img/icons/symbol-defs.svg';
+import icons from '/assets/symbol-defs.svg';
 import {
   addGiveRatingListener,
   removeGiveRatingListener,

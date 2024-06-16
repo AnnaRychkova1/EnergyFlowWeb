@@ -23,7 +23,7 @@
   }
 
   .container-picture {
-    background-image: url(/img/mobile/mobile-section3@1.jpg);
+    background-image: url(/assets/img/mobile/mobile-section3@1.jpg);
     flex: 1 2 269px;
     margin-left: auto;
     margin-right: auto;
@@ -126,7 +126,7 @@
   .container-picture {
     margin-left: auto;
     margin-right: auto;
-    background-image: url(/img/tablet/tablet-section3@1.jpg);
+    background-image: url(/assets/img/tablet/tablet-section3@1.jpg);
     flex: 1 2 302px;
     width: 736px;
     height: 302px;
@@ -228,7 +228,7 @@
   .container-picture {
     margin-left: auto;
     margin-right: auto;
-    background-image: url(/img/tablet/tablet-section3@1.jpg);
+    background-image: url(/assets/img/tablet/tablet-section3@1.jpg);
     height: 302px;
     border-radius: 50px;
   }
