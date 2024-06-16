@@ -34,7 +34,6 @@ async function getQuoteOffTheDay() {
         // Використовуємо збережену цитату з локального сховища
         quoteData = quoteResponse;
       }
-    } else {
       // Отримуємо нову цитату з сервера
       quoteData = await fetchQuoteFromServer();
       saveQuoteToLocalStorage(quoteData);
