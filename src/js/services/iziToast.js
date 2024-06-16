@@ -4,7 +4,8 @@ import 'izitoast/dist/css/iziToast.min.css';
 function successResult(message) {
   iziToast.show({
     position: 'topCenter',
-    iconUrl: '/src/assets/img/favorites/desctop-dumbbell.png',
+    iconUrl:
+      'https://github.com/AnnaRychkova1/EnergyFlowWeb/blob/main/src/assets/img/favorites/mob-dumbbell.png',
     title: 'Congradulation!',
     titleSize: '20px',
     message: message,
@@ -21,7 +22,8 @@ function successResult(message) {
 function errorResult(message) {
   iziToast.show({
     position: 'topCenter',
-    iconUrl: '/src/assets/img/favorites/desctop-dumbbell.png',
+    iconUrl:
+      'https://github.com/AnnaRychkova1/EnergyFlowWeb/blob/main/src/assets/img/favorites/mob-dumbbell.png',
     title: 'Upps!',
     titleSize: '20px',
     message: message,
